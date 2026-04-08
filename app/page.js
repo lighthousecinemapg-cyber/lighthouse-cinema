@@ -210,6 +210,92 @@ export default function HomePage() {
           <a href="sms:+18317474470?body=JOIN" className="btn btn-gold">Text JOIN &rarr;</a>
         </div>
       </section>
+
+      {/* ANNOUNCEMENTS MARQUEE */}
+      <section style={{ background: 'var(--gold)', color: '#0a0a0a', padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
+        <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
+          BINGO THURSDAYS 6PM-8:30PM &nbsp;&middot;&nbsp; BAR &amp; GRILL OPEN &nbsp;&middot;&nbsp; MOVIE &amp; A MEAL IS BACK APRIL 5TH &nbsp;&middot;&nbsp; KARAOKE FRIDAYS 6:00PM-12:00AM &nbsp;&middot;&nbsp; SALSA DANCE NIGHT SATURDAYS 8:00PM-12:00AM &nbsp;&middot;&nbsp; MURDER MYSTERY NIGHT &mdash; EASTER WEEKEND PREMIERE
+        </div>
+      </section>
+
+      {/* NOW PLAYING */}
+      <section style={{ padding: '72px 0', background: '#0c0c0c' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <h2 style={{ fontSize: '2rem', marginBottom: '12px' }}>
+            What's <span className="gold-text">Playing</span> at Lighthouse Cinema
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '40px' }}>Now showing &middot; Coming soon</p>
+          <div className="card" style={{ maxWidth: '520px', margin: '0 auto', padding: '28px', textAlign: 'left' }}>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
+              <span className="badge badge-gold">G</span>
+              <span className="badge badge-gold">56 MIN</span>
+              <span className="badge badge-gold">APR 04, 2026</span>
+            </div>
+            <h3 style={{ fontSize: '1.4rem', marginBottom: '8px' }}>Best of Both Worlds: Cohousing's Promise (2011)</h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '20px' }}>
+              Documentary &middot; Lifestyle &middot; Environmental &middot; Social Issues
+            </p>
+            <a href="#events" className="btn btn-gold btn-sm">Book Now &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      {/* CURRENT PROMOTIONS */}
+      <section style={{ padding: '72px 0' }}>
+        <div className="container">
+          <h2 style={{ fontSize: '2rem', marginBottom: '32px', textAlign: 'center' }}>
+            Current <span className="gold-text">Promotions</span>
+          </h2>
+          <div className="grid grid-2">
+            <div className="card" style={{ padding: '28px' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '12px' }}>🔪</div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>Murder Mystery Night &mdash; Easter Weekend Premiere</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '16px' }}>
+                Lighthouse Cinema presents "The Director's Cut Killer." Friday, April 3. An interactive whodunit night with dinner, drinks, and clues throughout the theater.
+              </p>
+              <a href="#events" className="btn btn-gold btn-sm">Get Tickets &rarr;</a>
+            </div>
+            <div className="card" style={{ padding: '28px' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '12px' }}>🎤</div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>Monterey Comedy Improv &mdash; April 18, 7:00&ndash;9:00 PM</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '16px' }}>
+                Laugh it up at Lighthouse Cinema with Monterey Comedy Improv, happening the first and third Fridays of the month.
+              </p>
+              <a href="#events" className="btn btn-gold btn-sm">View Event &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section style={{ padding: '72px 0', background: '#0c0c0c', borderTop: '1px solid rgba(201,168,76,0.12)' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <h2 style={{ fontSize: '2rem', marginBottom: '12px' }}>
+            Contact <span className="gold-text">Lighthouse Cinema</span>
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: '640px', margin: '0 auto 40px' }}>
+            Reach our team directly for movie times, private events, reservations, and VIP assistance.
+          </p>
+          <div className="grid grid-3" style={{ textAlign: 'left', marginBottom: '32px' }}>
+            <div className="card" style={{ padding: '24px' }}>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '8px' }}>⚡ Fast answers</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Ask about showtimes, seating, special menus, or upcoming events.</p>
+            </div>
+            <div className="card" style={{ padding: '24px' }}>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '8px' }}>📩 Direct contact</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Your message goes straight to Lighthouse Cinema, not a third party.</p>
+            </div>
+            <div className="card" style={{ padding: '24px' }}>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '8px' }}>📱 Simple &amp; convenient</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Text us anytime, or call during business hours for immediate help.</p>
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="sms:+18317173124" className="btn btn-gold">Text the Cinema</a>
+            <a href="tel:+18317173124" className="btn btn-dark">Call the Cinema</a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
