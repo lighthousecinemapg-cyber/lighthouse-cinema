@@ -50,6 +50,31 @@ export default function HomePage() {
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#events" className="btn btn-gold">Book an Event</a>
             <a href="https://messages.squareup.com/" target="_blank" rel="noopener noreferrer" className="btn btn-dark">Message Us</a>
+            <a href="/menu.html" className="btn btn-dark">🍽 View Menu</a>
+          </div>
+
+          {/* MOVIE CATEGORY BUTTONS — THE BIG THREE */}
+          <div style={{ marginTop: '48px' }}>
+            <div style={{ fontSize: '0.8rem', letterSpacing: '3px', color: 'var(--gold)', marginBottom: '18px', textTransform: 'uppercase', textAlign: 'center' }}>
+              🎬 What&apos;s On Screen Tonight
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', maxWidth: '900px', margin: '0 auto' }}>
+              <a href="#now-playing" style={{ display: 'block', padding: '28px 20px', background: 'linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.06))', border: '2px solid var(--gold)', borderRadius: '12px', textAlign: 'center', textDecoration: 'none', color: '#F0E9D7', transition: 'transform .2s' }}>
+                <div style={{ fontSize: '2.4rem', marginBottom: '8px' }}>🎬</div>
+                <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--gold)', letterSpacing: '1.5px', marginBottom: '4px' }}>NOW PLAYING</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Latest releases &amp; blockbusters</div>
+              </a>
+              <a href="#documentaries" style={{ display: 'block', padding: '28px 20px', background: 'linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.06))', border: '2px solid var(--gold)', borderRadius: '12px', textAlign: 'center', textDecoration: 'none', color: '#F0E9D7', transition: 'transform .2s' }}>
+                <div style={{ fontSize: '2.4rem', marginBottom: '8px' }}>🎞️</div>
+                <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--gold)', letterSpacing: '1.5px', marginBottom: '4px' }}>DOCUMENTARIES</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>True stories worth seeing</div>
+              </a>
+              <a href="#classics" style={{ display: 'block', padding: '28px 20px', background: 'linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.06))', border: '2px solid var(--gold)', borderRadius: '12px', textAlign: 'center', textDecoration: 'none', color: '#F0E9D7', transition: 'transform .2s' }}>
+                <div style={{ fontSize: '2.4rem', marginBottom: '8px' }}>🏛️</div>
+                <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--gold)', letterSpacing: '1.5px', marginBottom: '4px' }}>CLASSIC MOVIES</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Timeless favorites on the big screen</div>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -76,7 +101,7 @@ export default function HomePage() {
               <div style={{ fontSize: '0.8rem', letterSpacing: '2px', color: 'var(--gold)', marginBottom: '8px' }}>📅 TOMORROW — APRIL 9</div>
               <h3 style={{ fontSize: '1.35rem', marginBottom: '14px' }}>Plan Your Visit</h3>
               <p style={{ color: 'var(--text-secondary)', marginBottom: '6px' }}>🎥 <strong>Movie:</strong> Feature Film — 7:00 PM</p>
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '20px' }}>🮲 <strong>Event:</strong> Bingo Night — 6:30–8:30 PM</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '20px' }}>🎲 <strong>Event:</strong> Bingo Night — 6:30–8:30 PM</p>
               <a href="#events" className="btn btn-dark">Plan Your Visit &rarr;</a>
             </div>
           </div>
