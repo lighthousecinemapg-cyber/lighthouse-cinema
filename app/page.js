@@ -54,6 +54,80 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* LIVE SCHEDULE — TODAY / TOMORROW / THIS WEEK */}
+      <section id="schedule" style={{ padding: '56px 0', background: 'linear-gradient(180deg, #0c0c0c, #0a0a0a)', borderTop: '1px solid rgba(201,168,76,0.18)', borderBottom: '1px solid rgba(201,168,76,0.18)' }}>
+        <div className="container">
+          <h2 style={{ fontSize: '2rem', marginBottom: '8px', textAlign: 'center' }}>
+            🎬 What&apos;s <span className="gold-text">Playing Now</span>
+          </h2>
+          <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '40px' }}>
+            Tonight, tomorrow, and the week ahead — at a glance
+          </p>
+
+          <div className="grid grid-2" style={{ marginBottom: '24px' }}>
+            <div className="card" style={{ padding: '28px', border: '1px solid rgba(201,168,76,0.35)' }}>
+              <div style={{ fontSize: '0.8rem', letterSpacing: '2px', color: 'var(--gold)', marginBottom: '8px' }}>📅 TODAY — APRIL 8</div>
+              <h3 style={{ fontSize: '1.35rem', marginBottom: '14px' }}>Tonight at Lighthouse</h3>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '6px' }}>🎥 <strong>Movie:</strong> Feature Film — 6:30 PM</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '20px' }}>🎤 <strong>Event:</strong> Karaoke Night — 6:30–9:00 PM</p>
+              <a href="sms:+18317173124?body=Coming%20tonight" className="btn btn-gold">Come Tonight &rarr;</a>
+            </div>
+            <div className="card" style={{ padding: '28px' }}>
+              <div style={{ fontSize: '0.8rem', letterSpacing: '2px', color: 'var(--gold)', marginBottom: '8px' }}>📅 TOMORROW — APRIL 9</div>
+              <h3 style={{ fontSize: '1.35rem', marginBottom: '14px' }}>Plan Your Visit</h3>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '6px' }}>🎥 <strong>Movie:</strong> Feature Film — 7:00 PM</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '20px' }}>🮲 <strong>Event:</strong> Bingo Night — 6:30–8:30 PM</p>
+              <a href="#events" className="btn btn-dark">Plan Your Visit &rarr;</a>
+            </div>
+          </div>
+
+          <div className="card" style={{ padding: '28px', marginBottom: '24px' }}>
+            <h3 style={{ fontSize: '1.2rem', marginBottom: '16px', textAlign: 'center' }}>🔥 This Week at a Glance</h3>
+            <div className="grid grid-4" style={{ gap: '12px' }}>
+              <div style={{ textAlign: 'center', padding: '14px', background: 'rgba(201,168,76,0.06)', borderRadius: '8px' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--gold)', letterSpacing: '1.5px' }}>THURSDAY</div>
+                <div style={{ fontSize: '1.5rem', margin: '6px 0' }}>🎲</div>
+                <div style={{ fontWeight: 600 }}>Bingo Night</div>
+              </div>
+              <div style={{ textAlign: 'center', padding: '14px', background: 'rgba(201,168,76,0.06)', borderRadius: '8px' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--gold)', letterSpacing: '1.5px' }}>FRIDAY</div>
+                <div style={{ fontSize: '1.5rem', margin: '6px 0' }}>🎤</div>
+                <div style={{ fontWeight: 600 }}>Karaoke</div>
+              </div>
+              <div style={{ textAlign: 'center', padding: '14px', background: 'rgba(201,168,76,0.06)', borderRadius: '8px' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--gold)', letterSpacing: '1.5px' }}>SATURDAY</div>
+                <div style={{ fontSize: '1.5rem', margin: '6px 0' }}>💃</div>
+                <div style={{ fontWeight: 600 }}>Salsa Night</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>8 PM–1 AM</div>
+              </div>
+              <div style={{ textAlign: 'center', padding: '14px', background: 'rgba(201,168,76,0.06)', borderRadius: '8px' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--gold)', letterSpacing: '1.5px' }}>SUNDAY</div>
+                <div style={{ fontSize: '1.5rem', margin: '6px 0' }}>🍳</div>
+                <div style={{ fontWeight: 600 }}>Brunch + Movie</div>
+              </div>
+            </div>
+          </div>
+
+          {/* FULL GOOGLE CALENDAR EMBED */}
+          <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+            <h3 style={{ fontSize: '1.3rem', marginBottom: '6px' }}>📆 Full Schedule</h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Click any day to see showtimes and events</p>
+          </div>
+          <div className="card" style={{ padding: '8px', overflow: 'hidden' }}>
+            <iframe
+              src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FLos_Angeles&bgcolor=%230a0a0a&color=%23c9a84c&showTitle=0&showPrint=0&showCalendars=0&mode=MONTH"
+              style={{ border: 0, width: '100%', height: '520px', borderRadius: '8px', background: '#0a0a0a' }}
+              frameBorder="0"
+              scrolling="no"
+              title="Lighthouse Cinema Schedule"
+            ></iframe>
+          </div>
+          <p style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.8rem', marginTop: '12px' }}>
+            To show your own events: create a public Google Calendar named &quot;Lighthouse Cinema Schedule&quot;, then text us the calendar ID and we&apos;ll swap it in.
+          </p>
+        </div>
+      </section>
+
       {/* EVENTS */}
       <section id="events" style={{ padding: '72px 0 32px', textAlign: 'center' }}>
         <div className="container">
