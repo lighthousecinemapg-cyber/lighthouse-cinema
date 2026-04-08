@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthouse Cinema — Menu · Pacific Grove</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C9A84C; --gold-l:#E2C87A; --gold-d:#8B6A2E;
+  --black:#080807; --ink:#101008; --surface:#161613; --surface2:#1C1B17;
+  --border:rgba(201,168,76,0.22); --border2:rgba(201,168,76,0.4);
+  --text:#F0E9D7; --text-s:#BFAE87; --text-d:#7A6D52;
+  --radius:6px; --radius-l:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:19px}
+body{background:var(--black);color:var(--text);font-family:'Lora',Georgia,serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:6rem}
+img{display:block;max-width:100%}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .55s ease both}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}
+
+.header{text-align:center;padding:3rem 1.5rem 2.25rem;background:var(--ink);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 0%,rgba(201,168,76,.08),transparent 70%)}
+.header-eyebrow{font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;font-family:'Lora',serif;font-weight:500}
+.header h1{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(2.4rem,8vw,3.6rem);color:var(--gold-l);line-height:1.05}
+.header-sub{margin-top:.6rem;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-s)}
+.header-divider{display:flex;align-items:center;gap:.75rem;margin:1.1rem auto 1rem;max-width:220px}
+.header-divider::before,.header-divider::after{content:'';flex:1;height:1px;background:var(--gold-d)}
+.header-divider span{color:var(--gold);font-size:12px}
+.header-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--text-s)}
+
+.cat-nav{position:sticky;top:0;z-index:90;background:var(--ink);border-bottom:1px solid var(--border);padding:.75rem 1rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.cat-nav::-webkit-scrollbar{display:none}
+.cat-nav-inner{display:flex;gap:.5rem;min-width:max-content}
+.cat-btn{background:transparent;border:1px solid var(--border);color:var(--text-s);font-family:'Lora',serif;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.6rem 1.1rem;border-radius:100px;cursor:pointer;white-space:nowrap;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.cat-btn:hover,.cat-btn.active{background:rgba(201,168,76,.14);border-color:var(--gold);color:var(--gold-l)}
+
+.page{max-width:720px;margin:0 auto;padding:0 1.25rem}
+.section{scroll-margin-top:70px;padding-top:2.5rem}
+.section-label{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap;margin-bottom:1.4rem;padding-bottom:.85rem;border-bottom:1px solid var(--border)}
+.section-label h2{font-family:'Playfair Display',serif;font-weight:500;font-size:1.85rem;color:var(--gold-l)}
+.section-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--text-s)}
+
+.badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px;vertical-align:middle;font-family:'Lora',serif}
+.b-gold{background:rgba(201,168,76,.16);color:var(--gold-l);border:1px solid rgba(201,168,76,.35)}
+.b-pop{background:rgba(180,110,60,.16);color:#E2A578;border:1px solid rgba(180,110,60,.35)}
+.b-new{background:rgba(255,255,255,.06);color:var(--text-s);border:1px solid rgba(255,255,255,.12)}
+.b-veg{background:rgba(80,155,80,.12);color:#8FD28F;border:1px solid rgba(80,155,80,.3)}
+.b-ltd{background:rgba(180,80,60,.14);color:#E29578;border:1px solid rgba(180,80,60,.3)}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+
+.combo-grid,.combo-grid-bottom{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.combo-grid{margin-bottom:.85rem}
+@media (max-width:480px){.combo-grid,.combo-grid-bottom{grid-template-columns:1fr}}
+.combo{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-l);padding:1.3rem;position:relative;overflow:hidden}
+.combo::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold-d)}
+.combo.hero{border-color:rgba(201,168,76,.45);background:var(--surface2)}
+.combo.hero::after{background:var(--gold)}
+.combo-eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem;font-weight:600}
+.combo-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--text);line-height:1.2;margin-bottom:.55rem}
+.combo-desc{font-size:1rem;color:var(--text-s);line-height:1.5;margin-bottom:1rem}
+.combo-footer{display:flex;align-items:flex-end;justify-content:space-between}
+.combo-price{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--gold);line-height:1}
+.combo-price::before{content:'$';font-size:1.2rem;vertical-align:super;margin-right:2px}
+.combo-save{font-size:11px;color:var(--gold-d);letter-spacing:.06em;text-align:right;line-height:1.4;font-weight:500}
+
+.pop-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:.6rem}
+.pop-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem .5rem 1rem;text-align:center;position:relative}
+.pop-card.best-val{border-color:rgba(201,168,76,.5)}
+.pop-card.best-val::before{content:'BEST VALUE';position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:0 0 4px 4px}
+.pop-sz{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-s);margin-bottom:.45rem;font-weight:600}
+.pop-pr{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--gold)}
+.pop-pr::before{content:'$';font-size:1rem;vertical-align:super;margin-right:1px}
+.pop-note{font-size:11px;color:var(--text-d);margin-top:.35rem;font-style:italic}
+
+.items{display:flex;flex-direction:column}
+.item{display:flex;align-items:flex-start;gap:1rem;padding:1.15rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.item:last-child{border-bottom:none}
+.item.featured{background:var(--surface);border:1px solid rgba(201,168,76,.28);border-radius:var(--radius);padding:1.1rem 1.15rem;margin-bottom:.6rem}
+.item-body{flex:1;min-width:0}
+.item-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--text);margin-bottom:.3rem;line-height:1.25}
+.item-desc{font-size:1rem;color:var(--text-s);line-height:1.55}
+.item-mod{font-size:.92rem;color:var(--text-d);font-style:italic;margin-top:.35rem}
+.item-pair{font-size:.9rem;color:var(--gold-d);margin-top:.4rem;font-style:italic}
+.item-pair span{color:var(--gold-l);font-weight:500}
+.item-price{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:600;color:var(--gold);white-space:nowrap;flex-shrink:0;padding-top:2px}
+.item-price::before{content:'$';font-size:.9rem;vertical-align:super;margin-right:1px}
+.item-social{font-size:.85rem;color:var(--gold-d);margin-top:.35rem;font-style:italic}
+
+.upsell{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.15rem;margin:1.5rem 0;display:flex;align-items:center;gap:.9rem}
+.upsell-icon{color:var(--gold);font-size:1.4rem;flex-shrink:0;font-style:normal}
+.upsell-body{flex:1}
+.upsell-hed{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--text-s);line-height:1.4}
+.upsell-hed strong{color:var(--gold-l);font-style:normal;font-weight:600}
+.upsell-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);margin-top:.3rem;font-weight:600}
+
+.staff-cue{border-left:3px solid var(--gold-d);padding:.9rem 1.15rem;margin:1.2rem 0;background:rgba(201,168,76,.05);border-radius:0 4px 4px 0}
+.staff-cue-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;font-weight:700}
+.staff-cue-txt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--text-s)}
+
+.crepe-provenance{display:flex;gap:.9rem;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.15rem;margin-bottom:1.4rem}
+.crepe-provenance-mark{color:var(--gold);flex-shrink:0;font-size:1.4rem;line-height:1}
+.crepe-provenance-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--text-s);line-height:1.5}
+.crepe-provenance-text strong{color:var(--gold-l);font-style:normal;font-weight:600}
+.crepe-sub-label{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);padding:.75rem 0 .5rem;margin-bottom:.2rem;border-bottom:1px solid rgba(201,168,76,.12);font-weight:700}
+
+.drink-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1.75rem}
+@media (max-width:480px){.drink-grid{grid-template-columns:1fr}}
+.drink-col-head{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--border);padding-bottom:.5rem;margin-bottom:.6rem;font-weight:700}
+
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:99;background:var(--ink);border-top:1px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.sticky-bar-left{font-size:.9rem;color:var(--text-s);font-family:'Cormorant Garamond',serif;font-style:italic;line-height:1.35}
+.sticky-bar-left strong{color:var(--gold-l);font-style:normal;display:block;font-size:.95rem;font-family:'Lora',serif;font-weight:600}
+.print-btn{background:transparent;border:1px solid var(--border2);color:var(--gold);font-family:'Lora',serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:.6rem 1.15rem;border-radius:100px;cursor:pointer;white-space:nowrap}
+.print-btn:hover{background:rgba(201,168,76,.1)}
+
+.anchor-notice{text-align:center;padding:.85rem 1rem;background:rgba(201,168,76,.06);border-bottom:1px solid var(--border);font-size:.95rem;color:var(--text-s);font-family:'Cormorant Garamond',serif;font-style:italic}
+
+.foot{text-align:center;padding:2.5rem 1rem 1.5rem;margin-top:2.5rem;border-top:1px solid var(--border)}
+.foot p{font-size:13px;color:var(--text-d);letter-spacing:.06em;line-height:2}
+.foot strong{color:var(--gold);font-weight:600}
+
+@media print{
+  @page{size:letter;margin:.6in .7in}
+  body{background:#fff!important;color:#111!important;font-size:10pt;padding-bottom:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cat-nav,.sticky-bar,.upsell,.staff-cue,.anchor-notice,.print-btn{display:none!important}
+  .header{background:#fff!important;border-bottom:1.5pt solid #C9A84C;padding:0 0 12pt!important}
+  .header::before{display:none}
+  .header-eyebrow{color:#8B6A2E}.header h1{font-size:24pt;color:#8B6A2E}
+  .header-sub,.header-tagline{color:#555}
+  .page{max-width:100%;padding:0;column-count:2;column-gap:24pt}
+  .section{break-inside:avoid-page;padding-top:14pt}
+  .section-label{border-bottom:.75pt solid #C9A84C;margin-bottom:8pt;padding-bottom:4pt}
+  .section-label h2{font-size:13pt;color:#8B6A2E}
+  .combo-grid,.combo-grid-bottom{display:block}
+  .combo{background:#f9f7f3!important;border:.5pt solid #C9A84C!important;padding:8pt 10pt!important;margin-bottom:6pt;page-break-inside:avoid}
+  .combo-name{font-size:11pt;color:#111}.combo-desc{color:#555;font-size:9pt}
+  .combo-price{font-size:13pt;color:#8B6A2E}
+  .pop-row{display:flex;gap:6pt}
+  .pop-card{flex:1;background:#f9f7f3!important;border:.5pt solid #C9A84C!important}
+  .item{padding:6pt 0;border-bottom:.5pt solid #eee}
+  .item.featured{background:#f9f7f3!important;border:.5pt solid #ddd!important;padding:7pt 9pt!important}
+  .item-name{font-size:10pt;color:#111}.item-desc{font-size:9pt;color:#555}
+  .item-price{font-size:12pt;color:#8B6A2E}
+  .b-gold{background:#f5efd8!important;color:#8B6A2E!important}
+  .b-pop{background:#f5ede0!important;color:#8B4A1E!important}
+  .b-veg{background:#eef5ee!important;color:#2A6B2A!important}
+  .foot{border-top-color:#C9A84C}.foot p{color:#888}.foot strong{color:#8B6A2E}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <p class="header-eyebrow fade-up">Pacific Grove · California · Since 1987</p>
+  <h1 class="fade-up delay-1">Lighthouse Cinema</h1>
+  <p class="header-sub fade-up delay-1">680 Lighthouse Ave · (831) 717-3124</p>
+  <div class="header-divider fade-up delay-2"><span>✦</span></div>
+  <p class="header-tagline fade-up delay-2">Dinner and a movie — the way it was always meant to be.</p>
+</header>
+
+<div class="anchor-notice">Seat-side service available · Ask your server about tonight's specials and film pairings</div>
+
+<nav class="cat-nav" aria-label="Menu categories">
+  <div class="cat-nav-inner">
+    <button class="cat-btn active" onclick="goTo('combos')">The Experience</button>
+    <button class="cat-btn" onclick="goTo('popcorn')">Popcorn</button>
+    <button class="cat-btn" onclick="goTo('starters')">Starters</button>
+    <button class="cat-btn" onclick="goTo('wings')">Wings</button>
+    <button class="cat-btn" onclick="goTo('burgers')">Burgers</button>
+    <button class="cat-btn" onclick="goTo('crepes')">Crêpe Bar</button>
+    <button class="cat-btn" onclick="goTo('handhelds')">Handhelds</button>
+    <button class="cat-btn" onclick="goTo('salads')">Salads</button>
+    <button class="cat-btn" onclick="goTo('kids')">Kids</button>
+    <button class="cat-btn" onclick="goTo('desserts')">Desserts</button>
+    <button class="cat-btn" onclick="goTo('drinks')">Bar</button>
+  </div>
+</nav>
+
+<main class="page">
+
+<section class="section fade-up" id="combos">
+  <div class="section-label"><h2>The Full Experience</h2><span class="section-sub">Best value · dinner + movie in one</span></div>
+  <div class="combo-grid">
+    <div class="combo hero">
+      <div class="combo-eyebrow">★ Best Seller</div>
+      <div class="combo-name">Lighthouse VIP Combo</div>
+      <div class="combo-desc">Signature burger · crispy fries · fountain drink · small popcorn</div>
+      <div class="combo-footer"><div class="combo-price">28</div><div class="combo-save">Ordered<br>all night long</div></div>
+    </div>
+    <div class="combo">
+      <div class="combo-eyebrow">Most Popular · Date Night</div>
+      <div class="combo-name">Black &amp; Gold Date Night</div>
+      <div class="combo-desc">Starter to share · two entrées · one dessert to share</div>
+      <div class="combo-footer"><div class="combo-price">65</div><div class="combo-save">The<br>luxury pick</div></div>
+    </div>
+  </div>
+  <div class="combo-grid-bottom">
+    <div class="combo">
+      <div class="combo-eyebrow">New · Cinema Box</div>
+      <div class="combo-name">Cinema Box</div>
+      <div class="combo-desc">Burger or chicken · fries · popcorn · dessert bite. The ultimate movie box.</div>
+      <div class="combo-footer"><div class="combo-price">32</div><div class="combo-save">Share or<br>go solo</div></div>
+    </div>
+    <div class="combo">
+      <div class="combo-eyebrow">Families · Groups</div>
+      <div class="combo-name">Family Movie Feast</div>
+      <div class="combo-desc">Large pizza · giant popcorn · two kids' meals · pitcher soda</div>
+      <div class="combo-footer"><div class="combo-price">72</div><div class="combo-save">Feeds the<br>whole row</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="popcorn">
+  <div class="section-label"><h2>Popcorn</h2><span class="section-sub">House-made · always fresh</span></div>
+  <div class="pop-row">
+    <div class="pop-card"><div class="pop-sz">Small</div><div class="pop-pr">6</div><div class="pop-note">Butter or sea salt</div></div>
+    <div class="pop-card"><div class="pop-sz">Medium</div><div class="pop-pr">8</div><div class="pop-note">Butter or sea salt</div></div>
+    <div class="pop-card best-val"><div class="pop-sz">Large</div><div class="pop-pr">10</div><div class="pop-note">Only $2 more than M</div></div>
+  </div>
+  <p style="font-size:.95rem;color:var(--text-d);text-align:center;margin-top:.85rem;font-style:italic">Karma Popcorn Bundle · pay-what-you-can · ask your server</p>
+  <div class="upsell"><i class="upsell-icon">🍿</i><div class="upsell-body"><div class="upsell-hed">Add popcorn to <strong>any order for just $6</strong> — the easiest upgrade in the house</div><div class="upsell-tag">Just ask your server</div></div></div>
+</section>
+
+<section class="section" id="starters">
+  <div class="section-label"><h2>Starters &amp; Sharables</h2></div>
+  <div class="items">
+    <div class="item featured">
+      <div class="item-body"><div class="badges"><span class="badge b-gold">★ Best Seller</span></div><div class="item-name">Garlic Parmesan Fries</div><div class="item-desc">Hand-cut, tossed in roasted garlic butter, parmesan and herbs. Truffle aioli on the side.</div><div class="item-social">Ordered with nearly every burger tonight</div></div><div class="item-price">13</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">Monterey Bay Clam Chowder</div><div class="item-desc">Creamy, smoky, made with real clams and Monterey bacon.</div><div class="item-mod">Upgrade to sourdough bread bowl +$4</div></div><div class="item-price">13</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">Crispy Calamari Basket</div><div class="item-desc">Lightly breaded, fried golden. Lemon, house tartar and spicy remoulade.</div></div><div class="item-price">16</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">Loaded Nacho Platter</div><div class="item-desc">House chips, cheese pull, pico de gallo, jalapeños, sour cream. Built to share.</div><div class="item-mod">Add chicken or beef +$4</div></div><div class="item-price">18</div>
+    </div>
+  </div>
+  <div class="upsell"><i class="upsell-icon">🍺</i><div class="upsell-body"><div class="upsell-hed">Starters taste better with a <strong>Local Draft</strong> or the <strong>Gold Rush Sangria</strong></div><div class="upsell-tag">See the bar section below · 21+</div></div></div>
+</section>
+
+<section class="section" id="wings">
+  <div class="section-label"><h2>Lighthouse Wings</h2><span class="section-sub">Crispy · sauced to order · made to share</span></div>
+  <div class="items">
+    <div class="item featured">
+      <div class="item-body"><div class="badges"><span class="badge b-gold">★ Best Seller</span></div><div class="item-name">Buffalo Wings</div><div class="item-desc">Classic buffalo sauce, fried golden and crispy. Ranch or blue cheese on the side.</div><div class="item-social">The one everyone orders first</div></div><div class="item-price">16</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">Honey BBQ Wings</div><div class="item-desc">Sweet and smoky house barbecue glaze. Sticky in the best way.</div><div class="item-pair">✦ Pairs with: <span>Local Draft Beer · $10–14</span></div></div><div class="item-price">16</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="badges"><span class="badge b-ltd">Heat Warning</span></div><div class="item-name">Mango Habanero Wings</div><div class="item-desc">Spicy-sweet mango habanero sauce — fruity up front, serious heat behind it.</div><div class="item-pair">✦ Cool down with: <span>House Lemonade · $5</span></div></div><div class="item-price">16</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="burgers">
+  <div class="section-label"><h2>Cinema Burgers</h2><span class="section-sub">⅓ lb on toasted brioche · fries or side salad</span></div>
+  <p style="font-size:.9rem;color:var(--text-d);margin-bottom:1.1rem;font-style:italic">GF bun &amp; vegetarian patty available on request.</p>
+  <div class="items">
+    <div class="item">
+      <div class="item-body"><div class="item-name">Lighthouse Signature Burger</div><div class="item-desc">Cheddar, lettuce, tomato, caramelized onion, house sauce, pickle spear.</div><div class="item-pair">✦ Pairs with: <span>Gold Rush Sangria · $15</span></div></div><div class="item-price">20</div>
+    </div>
+    <div class="item featured">
+      <div class="item-body"><div class="badges"><span class="badge b-gold">★ Most Ordered</span></div><div class="item-name">Black &amp; Gold Truffle Burger</div><div class="item-desc">Swiss, caramelized onions, house truffle aioli, crispy onion strings on brioche.</div><div class="item-pair">✦ Pairs with: <span>Lighthouse Sunset Spritz · $16</span></div><div class="item-social">Our top-selling burger every weekend</div></div><div class="item-price">24</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">Monterey BBQ Bacon Burger</div><div class="item-desc">Applewood bacon, smoked gouda, house BBQ, fried onion strings.</div></div><div class="item-price">23</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="badges"><span class="badge b-veg">Veg</span></div><div class="item-name">Veggie Première Burger</div><div class="item-desc">Plant-based patty, fresh avocado, tomato jam, baby greens.</div></div><div class="item-price">21</div>
+    </div>
+  </div>
+  <div class="upsell"><i class="upsell-icon">✦</i><div class="upsell-body"><div class="upsell-hed">Add fries + drink + popcorn to <strong>any burger — only $8 more</strong> → becomes the VIP Combo at $28</div><div class="upsell-tag">Most guests upgrade · ask your server</div></div></div>
+</section>
+
+<section class="section" id="crepes">
+  <div class="section-label"><h2>The Crêpe Bar</h2><span class="section-sub">Lighthouse Cinema exclusive · handcrafted in Monterey</span></div>
+  <div class="crepe-provenance"><div class="crepe-provenance-mark">✦</div><div class="crepe-provenance-text">Handcrafted exclusively for us by <strong>Manasiri Crêpe</strong> — Monterey's finest crêperie at 321 Alvarado St. Made fresh, brought to your seat. You cannot get these anywhere else in Pacific Grove.</div></div>
+  <div class="crepe-sub-label">Savory Crêpes</div>
+  <div class="items" style="margin-bottom:1.4rem">
+    <div class="item featured">
+      <div class="item-body"><div class="badges"><span class="badge b-pop">Chef's Pick</span><span class="badge b-ltd">Limited Nightly</span></div><div class="item-name">The Director's Cut</div><div class="item-desc">Monterey jack, wilted spinach, artichoke hearts and sun-dried tomatoes. The crêpe that gets reordered.</div><div class="item-social">Sells out most nights — order early</div></div><div class="item-price">17</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">The Leading Role</div><div class="item-desc">Cold-smoked salmon, cream cheese, green onions, tomatoes and capers.</div><div class="item-pair">✦ Pairs with: <span>Sparkling wine · $14–18</span></div></div><div class="item-price">18</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">The Golden Hour</div><div class="item-desc">Fresh avocado, black beans, house salsa and sour cream.</div></div><div class="item-price">17</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="badges"><span class="badge b-veg">Veg</span></div><div class="item-name">The Intermission</div><div class="item-desc">Melted cheese and fresh spinach. Classic. Perfect. Simple.</div></div><div class="item-price">16</div>
+    </div>
+  </div>
+  <div class="crepe-sub-label">Sweet Crêpes</div>
+  <div class="items">
+    <div class="item featured">
+      <div class="item-body"><div class="badges"><span class="badge b-gold">★ Signature</span></div><div class="item-name">The Headliner</div><div class="item-desc">Peanut butter, Ghirardelli chocolate chips, fresh whipped cream. The one everyone talks about.</div><div class="item-social">Our most-ordered dessert · ordered all night</div></div><div class="item-price">16</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="badges"><span class="badge b-pop">Most Popular</span></div><div class="item-name">The Standing Ovation</div><div class="item-desc">Nutella, fresh banana, strawberries and whipped cream. Deserves a second bow.</div></div><div class="item-price">17</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">The Feature Presentation</div><div class="item-desc">Ghirardelli chocolate chips with fresh strawberries. Rich, seasonal, cinematic.</div></div><div class="item-price">16</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">The Opening Night</div><div class="item-desc">Cinnamon, cane sugar and butter with whipped cream. The classic that never goes out of style.</div></div><div class="item-price">15</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">The Encore</div><div class="item-desc">Nutella with fresh strawberries. Always worth coming back for.</div></div><div class="item-price">15</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">The Auteur</div><div class="item-desc">Pistachio butter, pistachio crumbles. Distinct. Refined. Limited run.</div><div class="item-pair">✦ Pairs with: <span>Lighthouse Sunset Spritz · $16</span></div></div><div class="item-price">14</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="handhelds">
+  <div class="section-label"><h2>Handhelds &amp; Pizza</h2></div>
+  <div class="items">
+    <div class="item"><div class="item-body"><div class="item-name">Buttermilk Chicken Sandwich</div><div class="item-desc">Crispy fried chicken, pickles, slaw, spicy mayo on toasted brioche.</div></div><div class="item-price">19</div></div>
+    <div class="item"><div class="item-body"><div class="badges"><span class="badge b-veg">Veg</span></div><div class="item-name">Margherita Flatbread</div><div class="item-desc">San Marzano tomato sauce, fresh mozzarella, basil and olive oil.</div></div><div class="item-price">17</div></div>
+    <div class="item"><div class="item-body"><div class="item-name">Pepperoni Lover's Pizza</div><div class="item-desc">Stone-baked 12″, loaded with pepperoni and cheese. Built for sharing.</div><div class="item-mod">Extra cheese +$3 · Extra meat topping +$4</div></div><div class="item-price">22</div></div>
+  </div>
+</section>
+
+<section class="section" id="salads">
+  <div class="section-label"><h2>Soups &amp; Salads</h2></div>
+  <div class="items">
+    <div class="item"><div class="item-body"><div class="item-name">Caesar on the Red Carpet</div><div class="item-desc">Romaine, parmesan, garlic croutons, creamy Caesar dressing.</div><div class="item-mod">Add grilled chicken or shrimp +$6</div></div><div class="item-price">17</div></div>
+    <div class="item"><div class="item-body"><div class="badges"><span class="badge b-veg">Veg</span>&nbsp;<span class="badge b-new">GF</span></div><div class="item-name">Harvest Power Bowl</div><div class="item-desc">Mixed greens, quinoa, roasted seasonal vegetables, feta, seeds, citrus vinaigrette.</div><div class="item-mod">Add protein +$6</div></div><div class="item-price">19</div></div>
+  </div>
+</section>
+
+<section class="section" id="kids">
+  <div class="section-label"><h2>Young Movie Fans</h2><span class="section-sub">12 &amp; under</span></div>
+  <div class="items">
+    <div class="item"><div class="item-body"><div class="item-name">Kids' Slider Pair</div><div class="item-desc">Two cheeseburger sliders with fries or fruit and a kids' drink.</div></div><div class="item-price">12</div></div>
+    <div class="item"><div class="item-body"><div class="item-name">Chicken Tenders Basket</div><div class="item-desc">Crispy tenders, fries and dipping sauce.</div></div><div class="item-price">12</div></div>
+    <div class="item"><div class="item-body"><div class="item-name">Kids' Cheese Pizza</div><div class="item-desc">Personal-size cheese pizza and kids' drink.</div></div><div class="item-price">11</div></div>
+  </div>
+</section>
+
+<section class="section" id="desserts">
+  <div class="section-label"><h2>Sweet Endings</h2></div>
+  <div class="items">
+    <div class="item featured">
+      <div class="item-body"><div class="badges"><span class="badge b-gold">★ Best Seller</span></div><div class="item-name">Warm Brownie Sundae</div><div class="item-desc">House brownie, vanilla ice cream, rich chocolate sauce, whipped cream. The one that gets shared — and reordered.</div></div><div class="item-price">12</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="badges"><span class="badge b-ltd">Rotating</span></div><div class="item-name">Cheesecake Feature</div><div class="item-desc">Chef's rotating cheesecake with seasonal sauce. Ask your server for tonight's flavor.</div></div><div class="item-price">12</div>
+    </div>
+    <div class="item">
+      <div class="item-body"><div class="item-name">Ice Cream Trio</div><div class="item-desc">Three mini scoops — ask for tonight's flavors.</div></div><div class="item-price">10</div>
+    </div>
+  </div>
+  <p style="font-size:.95rem;color:var(--text-d);text-align:center;margin-top:.9rem;font-style:italic">Also see The Crêpe Bar above — sweet crêpes are our most popular dessert</p>
+</section>
+
+<section class="section" id="drinks">
+  <div class="section-label"><h2>Bar &amp; Drinks</h2><span class="section-sub">21+ for all alcohol · ID required</span></div>
+  <div class="drink-grid">
+    <div>
+      <div class="drink-col-head">Non-Alcoholic</div>
+      <div class="items">
+        <div class="item"><div class="item-body"><div class="item-name">Bottomless Fountain Soda</div><div class="item-desc">Coke, Diet, Sprite &amp; more</div></div><div class="item-price">6</div></div>
+        <div class="item"><div class="item-body"><div class="item-name">House Lemonade or Iced Tea</div></div><div class="item-price">5</div></div>
+        <div class="item"><div class="item-body"><div class="item-name">Illy Coffee</div><div class="item-desc">Premium Italian roast · espresso, drip or café au lait</div></div><div class="item-price">5</div></div>
+        <div class="item"><div class="item-body"><div class="item-name">Hot Chocolate</div></div><div class="item-price">5</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="drink-col-head">Beer &amp; Wine · 21+</div>
+      <div class="items">
+        <div class="item"><div class="item-body"><div class="item-name">Local Draft Beer</div><div class="item-desc">Rotating Monterey County taps</div></div><div class="item-price">10–14</div></div>
+        <div class="item"><div class="item-body"><div class="item-name">Wine by the Glass</div><div class="item-desc">Red, white and sparkling</div></div><div class="item-price">14–18</div></div>
+      </div>
+      <div class="drink-col-head" style="margin-top:1.25rem">Signature · 21+</div>
+      <div class="items">
+        <div class="item"><div class="item-body"><div class="badges"><span class="badge b-pop">Most Ordered</span></div><div class="item-name">Lighthouse Sunset Spritz</div><div class="item-desc">Wine-based, citrus, bubbles, touch of berry.</div></div><div class="item-price">16</div></div>
+        <div class="item"><div class="item-body"><div class="item-name">Gold Rush Sangria</div><div class="item-desc">House sangria, fresh fruit, served over ice.</div></div><div class="item-price">15</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>
+    <strong>Lighthouse Cinema · Pacific Grove</strong><br>
+    680 Lighthouse Ave · (831) 717-3124 · lighthousepgcinema.com<br>
+    Thu–Sun · Seat-side service available during all showtimes<br><br>
+    GF bun &amp; vegetarian options available on request · Consuming undercooked meats may increase risk of foodborne illness<br>
+    Menu items and prices subject to availability
+  </p>
+</footer>
+
+</main>
+
+<div class="sticky-bar">
+  <div class="sticky-bar-left"><strong>Your server is here to help</strong>Questions on food, allergies or custom orders — just ask</div>
+  <button class="print-btn" onclick="window.print()">Print Menu</button>
+</div>
+
+<script>
+function goTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+(function(){
+  const buttons=document.querySelectorAll('.cat-btn');
+  const ids=['combos','popcorn','starters','wings','burgers','crepes','handhelds','salads','kids','desserts','drinks'];
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const i=ids.indexOf(e.target.id);if(i>-1){buttons.forEach(b=>b.classList.remove('active'));buttons[i]&&buttons[i].classList.add('active');buttons[i]&&buttons[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'})}}})},{rootMargin:'-20% 0px -70% 0px'});
+  ids.forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el)});
+})();
+</script>
+</body>
+</html>
