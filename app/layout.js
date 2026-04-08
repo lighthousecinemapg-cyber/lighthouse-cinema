@@ -2,7 +2,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'Lighthouse Cinema | Pacific Grove',
-  description: 'Book events, screenings, and experiences at Lighthouse Cinema â Pacific Grove\'s premier entertainment destination.',
+  description: 'Book events, screenings, and experiences at Lighthouse Cinema — Pacific Grove\'s premier entertainment destination.',
   icons: { icon: '/favicon.ico' },
 };
 
@@ -59,6 +59,10 @@ export default function RootLayout({ children }) {
               <a href="https://instagram.com/lighthousecinemas4" target="_blank" rel="noopener noreferrer" style={{ margin: '0 8px' }}>Instagram</a>
               &middot;
               <a href="https://tiktok.com/@lighthousecinema" target="_blank" rel="noopener noreferrer" style={{ margin: '0 8px' }}>TikTok</a>
+              &middot;
+              <a href="https://youtube.com/@lighthousecinema" target="_blank" rel="noopener noreferrer" style={{ margin: '0 8px' }}>YouTube</a>
+              &middot;
+              <a href="https://nextdoor.com" target="_blank" rel="noopener noreferrer" style={{ margin: '0 8px' }}>Nextdoor</a>
             </p>
           </div>
         </footer>
