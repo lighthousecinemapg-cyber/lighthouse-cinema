@@ -1,4 +1,5 @@
 import './globals.css';
+import Script from 'next/script';
 
 export const metadata = {
   title: 'Lighthouse Cinema | Pacific Grove',
@@ -22,17 +23,17 @@ export default function RootLayout({ children }) {
 
         <header className="site-header">
           <div className="header-inner">
-            <a href="/" className="site-logo">
-              Lighthouse <span>Cinema</span>
+            <a href="/" className="logo">
+              <em>Lighthouse</em> Cinema
             </a>
-            <nav className="header-nav" aria-label="Main navigation">
+            <nav className="main-nav" aria-label="Main navigation">
               <a href="/events">Events</a>
-              <a href="/menu.html">Menu</a>
+              <a href="/menu">Menu</a>
               <a href="/private-events">Private Events</a>
               <a href="/vip">VIP Club</a>
               <a href="/contact">Contact</a>
               <a href="/checkout" aria-label="Cart">Cart</a>
-              <button type="button" onClick={() => { if (typeof window !== "undefined" && window.Tawk_API) window.Tawk_API.maximize(); else window.location.href="/contact"; }} className="btn btn-gold btn-sm">Message Us</button>
+              <a href="/contact" className="btn btn-gold btn-sm">Message Us</a>
             </nav>
           </div>
         </header>
@@ -42,59 +43,52 @@ export default function RootLayout({ children }) {
         </main>
 
         <footer className="site-footer">
-          <div className="container">
-            <p style={{ color: 'var(--gold)', fontFamily: 'Playfair Display, serif', fontSize: '1.1rem', marginBottom: '8px' }}>
-              Lighthouse Cinema
-            </p>
-            <p>525 Lighthouse Ave, Pacific Grove, CA 93950</p>
-            <p>(831) 717-3124 &middot; lighthousecinemapg@gmail.com</p>
-            <p style={{ marginTop: '16px' }}>
-              <a href="https://facebook.com/lighthousecinema4" target="_blank" rel="noopener noreferrer" style={{ margin: '0 8px' }}>Facebook</a>
-              &middot;
-              <a href="https://instagram.com/lighthousecinemas4" target="_blank" rel="noopener noreferrer" style={{ margin: '0 8px' }}>Instagram</a>
-              &middot;
-              <a href="https://tiktok.com/@lighthousecinema" target="_blank" rel="noopener noreferrer" style={{ margin: '0 8px' }}>TikTok</a>
-              &middot;
-              <a href="https://youtube.com/@lighthousecinema" target="_blank" rel="noopener noreferrer" style={{ margin: '0 8px' }}>YouTube</a>
-              &middot;
-              <a href="https://nextdoor.com" target="_blank" rel="noopener noreferrer" style={{ margin: '0 8px' }}>Nextdoor</a>
-            </p>
+          <div className="footer-inner">
+            <p>&copy; {new Date().getFullYear()} Lighthouse Cinema, Pacific Grove. All rights reserved.</p>
           </div>
         </footer>
 
-        {/* Sticky mobile Book Now CTA */}
-        <a href="/events" className="mobile-sticky-cta" aria-label="Book Now">🎬 Book Now</a>
+        <div className="mobile-sticky-cta">
+          <a href="/events" className="btn btn-gold">Book Now</a>
+        </div>
 
-        {/* UserWay accessibility widget — small icon, no auto-open */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(d){var s=d.createElement("script");
-              s.setAttribute("data-position","4");
-              s.setAttribute("data-size","small");
-              s.setAttribute("data-account","LIGHTHOUSEPG");
-              s.setAttribute("src","https://cdn.userway.org/widget.js");
-              (d.body||d.head).appendChild(s);})(document);
-            `,
-          }}
+        <Script
+          src="https://cdn.userway.org/widget.js"
+          data-account="LIGHTHOUSEPG"
+          data-size="small"
+          data-position="4"
+          strategy="afterInteractive"
         />
 
-        {/* Tawk.to Live Chat */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-              (function(){
-                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-                s1.async=true;
-                s1.src='https://embed.tawk.to/69d218ee5b6b4c1c37f3d6ec/1jleb2p15';
-                s1.charset='UTF-8';
-                s1.setAttribute('crossorigin','*');
-                s0.parentNode.insertBefore(s1,s0);
-              })();
-            `,
-          }}
-        />
+        <Script id="tawk-to" strategy="afterInteractive">
+          {`
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+              s1.async=true;
+              s1.src='https://embed.tawk.to/69d218ee5b6b4c1c37f3d6ec/1jleb2p15';
+              s1.charset='UTF-8';
+              s1.setAttribute('crossorigin','*');
+              s0.parentNode.insertBefore(s1,s0);
+            })();
+          `}
+        </Script>
+
+        <Script id="tawk-msg-handler" strategy="afterInteractive">
+          {`
+            document.addEventListener('click', function(e) {
+              var link = e.target.closest('.btn-tawk-open');
+              if (link) {
+                e.preventDefault();
+                if (window.Tawk_API && window.Tawk_API.maximize) {
+                  window.Tawk_API.maximize();
+                } else {
+                  window.location.href = '/contact';
+                }
+              }
+            });
+          `}
+        </Script>
       </body>
     </html>
   );
