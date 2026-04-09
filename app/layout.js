@@ -26,18 +26,13 @@ export default function RootLayout({ children }) {
               Lighthouse <span>Cinema</span>
             </a>
             <nav className="header-nav" aria-label="Main navigation">
-              <a href="/">Events</a>
-              <a href="/checkout">Cart</a>
-              <a href="/admin">Admin</a>
-              <a href="/admin/gbp">GBP AI</a>
-              <a
-                href="https://messages.squareup.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-gold btn-sm"
-              >
-                Message Us
-              </a>
+              <a href="/events">Events</a>
+              <a href="/menu.html">Menu</a>
+              <a href="/private-events">Private Events</a>
+              <a href="/vip">VIP Club</a>
+              <a href="/contact">Contact</a>
+              <a href="/checkout" aria-label="Cart">Cart</a>
+              <a href="/contact" className="btn btn-gold btn-sm">Message Us</a>
             </nav>
           </div>
         </header>
@@ -66,6 +61,23 @@ export default function RootLayout({ children }) {
             </p>
           </div>
         </footer>
+
+        {/* Sticky mobile Book Now CTA */}
+        <a href="/events" className="mobile-sticky-cta" aria-label="Book Now">🎬 Book Now</a>
+
+        {/* UserWay accessibility widget — small icon, no auto-open */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(d){var s=d.createElement("script");
+              s.setAttribute("data-position","4");
+              s.setAttribute("data-size","small");
+              s.setAttribute("data-account","LIGHTHOUSEPG");
+              s.setAttribute("src","https://cdn.userway.org/widget.js");
+              (d.body||d.head).appendChild(s);})(document);
+            `,
+          }}
+        />
 
         {/* Tawk.to Live Chat */}
         <script
