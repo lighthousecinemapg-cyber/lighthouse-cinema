@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
               <a href="/vip">VIP Club</a>
               <a href="/contact">Contact</a>
               <a href="/checkout" aria-label="Cart">Cart</a>
-              <button type="button" onClick={() => { if (typeof window !== \"undefined\" && window.Tawk_API) window.Tawk_API.maximize(); else window.location.href=\"/contact\"; }} className="btn btn-gold btn-sm">Message Us</button>
+              <button type="button" onClick={() => { if (typeof window !== "undefined" && window.Tawk_API) window.Tawk_API.maximize(); else window.location.href="/contact"; }} className="btn btn-gold btn-sm">Message Us</button>
             </nav>
           </div>
         </header>
