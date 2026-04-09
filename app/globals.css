@@ -447,3 +447,28 @@ th {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* ============ MOBILE STICKY BOOK NOW CTA ============ */
+.mobile-sticky-cta { display: none; }
+@media (max-width: 760px) {
+  .header-nav a:not(.btn) { display: none; }
+  main { padding-bottom: 96px; }
+  .mobile-sticky-cta {
+    display: block;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, #d4af37, #b8941f);
+    color: #0a0a0a !important;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 16px;
+    text-decoration: none;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+    z-index: 9999;
+    letter-spacing: 0.5px;
+  }
+  .mobile-sticky-cta:hover { background: linear-gradient(180deg, #e8bf47, #c8a424); }
+}
