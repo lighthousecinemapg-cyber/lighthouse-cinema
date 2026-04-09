@@ -227,7 +227,7 @@ export default function HomePage() {
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0 0', borderTop: '1px solid var(--dark-border)' }}>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                          {event.totalSeats - event.bookedSeats} seats left
+                          🔥 Selling Fast
                         </span>
                         <span className="btn btn-gold btn-sm" style={{ pointerEvents: 'none' }}>
                           Book Now &rarr;
