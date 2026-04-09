@@ -3,7 +3,7 @@ import Script from 'next/script';
 
 export const metadata = {
   title: 'Lighthouse Cinema | Pacific Grove',
-  description: 'Book events, screenings, and experiences at Lighthouse Cinema — Pacific Grove\'s premier entertainment destination.',
+  description: 'Book events, screenings, and experiences at Lighthouse Cinema â Pacific Grove\'s premier entertainment destination.',
   icons: { icon: '/favicon.ico' },
 };
 
@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
               <a href="/vip">VIP Club</a>
               <a href="/contact">Contact</a>
               <a href="/checkout" aria-label="Cart">Cart</a>
-              <a href="/contact" className="btn btn-gold btn-sm">Message Us</a>
+              <a href="/contact" className="btn btn-gold btn-sm btn-tawk-open">Message Us</a>
             </nav>
           </div>
         </header>
