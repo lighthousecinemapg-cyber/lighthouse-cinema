@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
               <a href="/vip">VIP Club</a>
               <a href="/contact">Contact</a>
               <a href="/checkout">Cart</a>
-              <a href="sms:+18317173124" className="btn btn-gold btn-sm">Message Us</a>
+              <a href="sms:+18334414049" className="btn btn-gold btn-sm">Message Us</a>
             </nav>
           </div>
         </header>
@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
 
         {/* Floating Text Us button - messages go to Square Messages via SMS */}
         <a
-          href="sms:+18317173124"
+          href="sms:+18334414049"
           className="square-msg-fab"
           aria-label="Text us on your phone"
           style={{
