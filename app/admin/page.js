@@ -208,12 +208,12 @@ export default function AdminPage() {
                       <div>{b.customerName}</div>
                       <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{b.customerEmail}</div>
                     </td>
-                    <td>{b.lineItems?.[0]?.eventTitle || 'â'}</td>
-                    <td>{b.lineItems?.reduce((s, l) => s + l.quantity, 0) || 'â'}</td>
+                    <td>{b.lineItems?.[0]?.eventTitle || '—'}</td>
+                    <td>{b.lineItems?.reduce((s, l) => s + l.quantity, 0) || '—'}</td>
                     <td>${b.grandTotal?.toFixed(2)}</td>
                     <td style={{ color: 'var(--success)' }}>${b.depositAmount?.toFixed(2)}</td>
                     <td style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                      {b.createdAt ? new Date(b.createdAt).toLocaleDateString() : 'â'}
+                      {b.createdAt ? new Date(b.createdAt).toLocaleDateString() : '—'}
                     </td>
                   </tr>
                 ))}
