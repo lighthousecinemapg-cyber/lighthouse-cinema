@@ -6,7 +6,7 @@ export const metadata = {
   description: 'Weekly events, special nights, and private screenings at Lighthouse Cinema, Pacific Grove.',
 };
 
-/* Ã¢ÂÂÃ¢ÂÂ helpers Ã¢ÂÂÃ¢ÂÂ */
+/* helpers */
 function fmtDay(d) {
   return new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
 }
@@ -17,7 +17,7 @@ function fmtTime(t) {
   return `${hr}:${m.toString().padStart(2, '0')} ${ampm}`;
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ styles Ã¢ÂÂÃ¢ÂÂ */
+/* styles */
 const gold = '#D4AF37';
 const cream = '#F0E9D7';
 const dark = '#0a0a0a';
@@ -31,7 +31,7 @@ const sectionTitle = { fontSize: 32, fontWeight: 800, color: '#fff', margin: '0 
 export default async function EventsPage() {
   const events = await getEventsAsync();
 
-  /* Ã¢ÂÂÃ¢ÂÂ group Now Playing showtimes by title Ã¢ÂÂÃ¢ÂÂ */
+  /* group Now Playing showtimes by title */
   const npRaw = events.filter(e => e.description?.includes('NOW SHOWING'));
   const npMap = {};
   npRaw.forEach(e => {
@@ -40,7 +40,7 @@ export default async function EventsPage() {
   });
   const nowPlaying = Object.values(npMap);
 
-  /* Ã¢ÂÂÃ¢ÂÂ group showtimes by day Ã¢ÂÂÃ¢ÂÂ */
+  /* group showtimes by day */
   function groupByDay(showtimes) {
     const map = {};
     showtimes.forEach(s => {
@@ -50,7 +50,7 @@ export default async function EventsPage() {
     return Object.entries(map);
   }
 
-  /* Ã¢ÂÂÃ¢ÂÂ weekly & special Ã¢ÂÂÃ¢ÂÂ */
+  /* weekly & special */
   const weekly = events.filter(e => e.category === 'weekly');
   const special = events.filter(e => e.category !== 'weekly' && !e.description?.includes('NOW SHOWING'));
 
@@ -59,7 +59,7 @@ export default async function EventsPage() {
 
       {/* HERO */}
       <section style={{ padding: '80px 24px 48px', textAlign: 'center', background: `radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 60%), ${dark}`, borderBottom: '1px solid #1a1a1a' }}>
-        <div style={sectionHead}>Lighthouse Cinema ÃÂ· Pacific Grove</div>
+        <div style={sectionHead}>Lighthouse Cinema  Pacific Grove</div>
         <h1 style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 900, color: '#fff', margin: '12px 0 16px', fontFamily: "'Playfair Display', serif", lineHeight: 1.1 }}>
           What&apos;s <span style={{ color: gold }}>On</span>
         </h1>
@@ -128,7 +128,7 @@ export default async function EventsPage() {
                       <span style={{ fontSize: 22, fontWeight: 800, color: gold }}>${movie.ticketPrice}</span>
                       <Link href={`/events/${movie.showtimes[0].id}`} style={goldBtn}>Book Now</Link>
                       {movie.trailerUrl && (
-                        <a href={movie.trailerUrl} target="_blank" rel="noopener noreferrer" style={ghostBtn}>Ã¢ÂÂ¶ Trailer</a>
+                        <a href={movie.trailerUrl} target="_blank" rel="noopener noreferrer" style={ghostBtn}> Trailer</a>
                       )}
                     </div>
                   </div>
@@ -154,7 +154,7 @@ export default async function EventsPage() {
                 </div>
                 <div style={{ padding: '16px 24px 24px', display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
                   <p style={{ fontSize: 13, color: '#999', lineHeight: 1.6, margin: 0 }}>{e.description}</p>
-                  <div style={{ fontSize: 13, color: '#777', marginTop: 4 }}>Ã¢ÂÂ° {fmtTime(e.time)}</div>
+                  <div style={{ fontSize: 13, color: '#777', marginTop: 4 }}> {fmtTime(e.time)}</div>
                   <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 16 }}>
                     <span style={{ fontSize: 18, fontWeight: 700, color: gold }}>
                       {e.ticketPrice === 0 ? 'FREE' : `$${e.ticketPrice}`}
@@ -184,7 +184,7 @@ export default async function EventsPage() {
                       </div>
                     ) : (
                       <div style={{ background: 'linear-gradient(135deg, #1a1a1a, #2a1f0a)', height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontSize: 48, opacity: 0.5 }}>Ã°ÂÂÂ­</span>
+                        <span style={{ fontSize: 48, opacity: 0.5 }}></span>
                       </div>
                     )}
                     <div style={{ padding: '20px 24px 24px', display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
