@@ -16,8 +16,9 @@ const HYPE = ['🔥 Almost Sold Out', '⭐ Most Popular', '🎟 This Weekend', '
 
 export default function EventsPage() {
   const events = getEvents();
+  const nowPlaying = events.filter(e => e.description && e.description.includes('NOW SHOWING'));
   const weekly = events.filter(e => e.category === 'weekly');
-  const special = events.filter(e => e.category !== 'weekly');
+  const special = events.filter(e => e.category !== 'weekly' && !(e.description && e.description.includes('NOW SHOWING')));
 
   return (
     <main style={{ background: '#0a0a0a', color: '#f5e9c8', minHeight: '100vh', padding: '32px 20px 120px' }}>
@@ -26,11 +27,22 @@ export default function EventsPage() {
         <h1 style={{ fontSize: 42, margin: '12px 0 8px', color: '#d4af37' }}>What&apos;s On</h1>
         <p style={{ opacity: 0.8, marginBottom: 32 }}>Book in under 10 seconds. Luxury cinema, Pacific Grove.</p>
 
-        <h2 style={{ color: '#d4af37', marginTop: 32 }}>This Week</h2>
+        {nowPlaying.length > 0 && (
+          <>
+            <h2 style={{ color: '#d4af37', marginTop: 32, fontSize: 28 }}>🎬 Now Playing</h2>
+            <Grid events={nowPlaying} />
+          </>
+        )}
+
+        <h2 style={{ color: '#d4af37', marginTop: 48 }}>This Week</h2>
         <Grid events={weekly} />
 
-        <h2 style={{ color: '#d4af37', marginTop: 48 }}>Special Events</h2>
-        <Grid events={special} />
+        {special.length > 0 && (
+          <>
+            <h2 style={{ color: '#d4af37', marginTop: 48 }}>Special Events</h2>
+            <Grid events={special} />
+          </>
+        )}
       </div>
     </main>
   );
