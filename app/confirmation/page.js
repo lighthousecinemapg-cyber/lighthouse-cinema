@@ -66,15 +66,15 @@ export default function ConfirmationPage() {
               <tbody>
                 <tr>
                   <td style={{ padding: '8px 0', color: 'var(--gold)', fontWeight: '600', width: '40%' }}>Event</td>
-                  <td style={{ padding: '8px 0' }}>{firstItem?.eventTitle || 'â'}</td>
+                  <td style={{ padding: '8px 0' }}>{firstItem?.eventTitle || '—'}</td>
                 </tr>
                 <tr>
                   <td style={{ padding: '8px 0', color: 'var(--gold)', fontWeight: '600' }}>Tickets</td>
-                  <td style={{ padding: '8px 0' }}>{firstItem?.quantity || 'â'}</td>
+                  <td style={{ padding: '8px 0' }}>{firstItem?.quantity || '—'}</td>
                 </tr>
                 <tr>
                   <td style={{ padding: '8px 0', color: 'var(--gold)', fontWeight: '600' }}>Package</td>
-                  <td style={{ padding: '8px 0' }}>{firstItem?.packageName || 'â'}</td>
+                  <td style={{ padding: '8px 0' }}>{firstItem?.packageName || '—'}</td>
                 </tr>
                 <tr>
                   <td style={{ padding: '8px 0', color: 'var(--gold)', fontWeight: '600' }}>Customer</td>
