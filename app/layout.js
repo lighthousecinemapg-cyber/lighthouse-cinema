@@ -3,7 +3,7 @@ import Script from 'next/script';
 
 export const metadata = {
   title: 'Lighthouse Cinema | Pacific Grove',
-  description: 'Book events, screenings, and experiences at Lighthouse Cinema â Pacific Grove\'s premier entertainment destination.',
+  description: 'Book events, screenings, and experiences at Lighthouse Cinema \u2014 Pacific Grove\'s premier entertainment destination.',
   icons: { icon: '/favicon.ico' },
 };
 
@@ -24,16 +24,17 @@ export default function RootLayout({ children }) {
         <header className="site-header">
           <div className="header-inner">
             <a href="/" className="site-logo">
-              <em>Lighthouse</em> Cinema
+              <span className="logo-light">Lighthouse</span>{' '}
+              <span className="logo-cinema">Cinema</span>
             </a>
-            <nav className="header-nav" aria-label="Main navigation">
+            <nav className="main-nav">
               <a href="/events">Events</a>
               <a href="/menu">Menu</a>
               <a href="/private-events">Private Events</a>
               <a href="/vip">VIP Club</a>
               <a href="/contact">Contact</a>
-              <a href="/checkout" aria-label="Cart">Cart</a>
-              <a href="/contact" className="btn btn-gold btn-sm btn-tawk-open">Message Us</a>
+              <a href="/checkout">Cart</a>
+              <a href="sms:+18317173124" className="btn btn-gold btn-sm">Message Us</a>
             </nav>
           </div>
         </header>
@@ -60,35 +61,25 @@ export default function RootLayout({ children }) {
           strategy="afterInteractive"
         />
 
-        <Script id="tawk-to" strategy="afterInteractive">
-          {`
-            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-            (function(){
-              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-              s1.async=true;
-              s1.src='https://embed.tawk.to/69d218ee5b6b4c1c37f3d6ec/1jleb2p15';
-              s1.charset='UTF-8';
-              s1.setAttribute('crossorigin','*');
-              s0.parentNode.insertBefore(s1,s0);
-            })();
-          `}
-        </Script>
-
-        <Script id="tawk-msg-handler" strategy="afterInteractive">
-          {`
-            document.addEventListener('click', function(e) {
-              var link = e.target.closest('.btn-tawk-open');
-              if (link) {
-                e.preventDefault();
-                if (window.Tawk_API && window.Tawk_API.maximize) {
-                  window.Tawk_API.maximize();
-                } else {
-                  window.location.href = '/contact';
-                }
-              }
-            });
-          `}
-        </Script>
+        {/* Floating Text Us button - messages go to Square Messages via SMS */}
+        <a
+          href="sms:+18317173124"
+          className="square-msg-fab"
+          aria-label="Text us on your phone"
+          style={{
+            position: 'fixed', bottom: 24, right: 24, zIndex: 9999,
+            width: 60, height: 60, borderRadius: '50%',
+            background: '#d4af37', color: '#0a0a0a',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+            textDecoration: 'none', fontSize: 28,
+            transition: 'transform 0.2s, box-shadow 0.2s',
+          }}
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </a>
       </body>
     </html>
   );
