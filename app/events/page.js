@@ -44,7 +44,7 @@ function Grid({ events }) {
           background: '#141414', border: '1px solid #2a2a2a', borderRadius: 16,
           overflow: 'hidden', display: 'flex', flexDirection: 'column',
         }}>
-          {e.image ? (
+          {e.image && e.image.startsWith('http') ? (
             <div style={{ height: 200, overflow: 'hidden', position: 'relative' }}>
               <img
                 src={e.image}
