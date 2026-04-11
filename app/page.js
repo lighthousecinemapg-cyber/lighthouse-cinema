@@ -165,7 +165,7 @@ export default function HomePage() {
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#now-playing" style={goldBtn}>Now Playing</a>
             <Link href="/events" style={darkBtn}>All Events</Link>
-            <Link href="/contact" style={darkBtn}>Message Us</Link>
+            <a href="sms:+18317173124" style={darkBtn}>Message Us</a>
           </div>
         </div>
       </section>
