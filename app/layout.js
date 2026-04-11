@@ -23,10 +23,10 @@ export default function RootLayout({ children }) {
 
         <header className="site-header">
           <div className="header-inner">
-            <a href="/" className="logo">
+            <a href="/" className="site-logo">
               <em>Lighthouse</em> Cinema
             </a>
-            <nav className="main-nav" aria-label="Main navigation">
+            <nav className="header-nav" aria-label="Main navigation">
               <a href="/events">Events</a>
               <a href="/menu">Menu</a>
               <a href="/private-events">Private Events</a>
