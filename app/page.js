@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ style constants Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ style constants ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
 const gold = '#D4AF37';
 const cream = '#F0E9D7';
 const dark = '#0a0a0a';
@@ -134,7 +134,7 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ 1. HERO Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ 1. HERO ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <section style={{
         position: 'relative', minHeight: '75vh',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -147,7 +147,7 @@ export default function HomePage() {
 
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '100px 20px 80px' }}>
           <div style={{ fontSize: '0.8rem', letterSpacing: 5, color: gold, marginBottom: 20, textTransform: 'uppercase' }}>
-            Pacific Grove ÃÂ· Since 1987
+            Pacific Grove ÃÂÃÂ· Since 1987
           </div>
           <h1 style={{
             fontSize: 'clamp(2.6rem, 5.5vw, 4.2rem)',
@@ -165,12 +165,12 @@ export default function HomePage() {
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#now-playing" style={goldBtn}>Now Playing</a>
             <Link href="/events" style={darkBtn}>All Events</Link>
-            <a href="sms:+18317173124" style={darkBtn}>Message Us</a>
+            <a href="sms:+18334414049" style={darkBtn}>Message Us</a>
           </div>
         </div>
       </section>
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ 2. NOW PLAYING Ã¢ÂÂ Project Hail Mary Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ 2. NOW PLAYING ÃÂ¢ÃÂÃÂ Project Hail Mary ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <section id="now-playing" style={{
         padding: '80px 0 88px', background: dark,
         borderTop: '1px solid rgba(212,175,55,0.12)',
@@ -226,10 +226,10 @@ export default function HomePage() {
 
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <button onClick={() => setTrailerOpen('m08TxIsFTRI')} style={goldBtn}>
-                  Ã°ÂÂÂ¥ Watch Trailer
+                  ÃÂ°ÃÂÃÂÃÂ¥ Watch Trailer
                 </button>
                 <Link href="/events" style={darkBtn}>
-                  Ã°ÂÂÂ Book Now
+                  ÃÂ°ÃÂÃÂÃÂ Book Now
                 </Link>
               </div>
             </div>
@@ -280,7 +280,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ 3. DOCUMENTARY Ã¢ÂÂ Zorba the Greek Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ 3. DOCUMENTARY ÃÂ¢ÃÂÃÂ Zorba the Greek ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <section id="documentaries" style={{
         padding: '80px 0 88px', background: '#0c0c0c',
         borderTop: '1px solid rgba(212,175,55,0.10)',
@@ -340,10 +340,10 @@ export default function HomePage() {
 
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <button onClick={() => setTrailerOpen('xrArjp14SeU')} style={goldBtn}>
-                  Ã°ÂÂÂ¥ Watch Trailer
+                  ÃÂ°ÃÂÃÂÃÂ¥ Watch Trailer
                 </button>
                 <Link href="/events" style={darkBtn}>
-                  Ã°ÂÂÂ Book Now
+                  ÃÂ°ÃÂÃÂÃÂ Book Now
                 </Link>
               </div>
             </div>
@@ -351,7 +351,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ 4. THIS WEEK Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ 4. THIS WEEK ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <section style={{ padding: '72px 0', background: dark, borderTop: '1px solid rgba(212,175,55,0.10)' }}>
         <div className="container">
           <h2 style={{ fontSize: '2rem', marginBottom: 8, textAlign: 'center', fontFamily: "'Playfair Display', serif" }}>
@@ -362,10 +362,10 @@ export default function HomePage() {
           </p>
           <div className="grid grid-4" style={{ gap: 14 }}>
             {[
-              { day: 'THURSDAY', emoji: 'Ã°ÂÂÂ²', name: 'Bingo Night', time: '7 PM' },
-              { day: 'FRIDAY', emoji: 'Ã°ÂÂÂ¤', name: 'Karaoke', time: '7:30 PM' },
-              { day: 'SATURDAY', emoji: 'Ã°ÂÂÂ', name: 'Salsa Night', time: '8 PM' },
-              { day: 'SUNDAY', emoji: 'Ã°ÂÂÂ³', name: 'Brunch + Movie', time: '11 AM' },
+              { day: 'THURSDAY', emoji: 'ÃÂ°ÃÂÃÂÃÂ²', name: 'Bingo Night', time: '7 PM' },
+              { day: 'FRIDAY', emoji: 'ÃÂ°ÃÂÃÂÃÂ¤', name: 'Karaoke', time: '7:30 PM' },
+              { day: 'SATURDAY', emoji: 'ÃÂ°ÃÂÃÂÃÂ', name: 'Salsa Night', time: '8 PM' },
+              { day: 'SUNDAY', emoji: 'ÃÂ°ÃÂÃÂÃÂ³', name: 'Brunch + Movie', time: '11 AM' },
             ].map(item => (
               <div key={item.day} style={{
                 textAlign: 'center', padding: '24px 14px',
@@ -382,7 +382,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ 5. ALL EVENTS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ 5. ALL EVENTS ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <section id="events" style={{ padding: '72px 0 32px', textAlign: 'center', background: '#0c0c0c', borderTop: '1px solid rgba(212,175,55,0.08)' }}>
         <div className="container">
           <h2 style={{ fontSize: '2.2rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>
@@ -421,7 +421,7 @@ export default function HomePage() {
                       borderBottom: '1px solid var(--dark-border)', position: 'relative',
                     }}>
                       <span style={{ fontSize: '3rem' }}>
-                        {event.category === 'weekly' ? 'Ã°ÂÂÂ­' : event.category === 'screening' ? 'Ã°ÂÂÂ¬' : 'Ã¢ÂÂ¨'}
+                        {event.category === 'weekly' ? 'ÃÂ°ÃÂÃÂÃÂ­' : event.category === 'screening' ? 'ÃÂ°ÃÂÃÂÃÂ¬' : 'ÃÂ¢ÃÂÃÂ¨'}
                       </span>
                       <span className="badge badge-gold" style={{ position: 'absolute', top: 12, right: 12 }}>{event.category}</span>
                     </div>
@@ -431,7 +431,7 @@ export default function HomePage() {
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                         <div>
                           <div style={{ fontSize: '0.85rem', color: gold, fontWeight: 600 }}>{formatDate(event.date)}</div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} ÃÂ· {event.venue}</div>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} ÃÂÃÂ· {event.venue}</div>
                         </div>
                         <div style={{ textAlign: 'right' }}>
                           <div style={{ fontSize: '1.4rem', fontWeight: 700, color: gold, fontFamily: "'Playfair Display', serif" }}>${event.ticketPrice}</div>
@@ -440,7 +440,7 @@ export default function HomePage() {
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0 0', borderTop: '1px solid var(--dark-border)' }}>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Selling Fast</span>
-                        <span className="btn btn-gold btn-sm" style={{ pointerEvents: 'none' }}>Book Now Ã¢ÂÂ</span>
+                        <span className="btn btn-gold btn-sm" style={{ pointerEvents: 'none' }}>Book Now ÃÂ¢ÃÂÃÂ</span>
                       </div>
                     </div>
                   </div>
@@ -451,7 +451,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ 6. COMMUNITY NIGHTS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ 6. COMMUNITY NIGHTS ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <section style={{ padding: '72px 0', background: '#0f0f0f', borderTop: '1px solid rgba(212,175,55,0.10)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <div style={{ fontSize: '0.8rem', letterSpacing: 3, color: gold, marginBottom: 12, textTransform: 'uppercase' }}>Free & For Everyone</div>
@@ -461,17 +461,17 @@ export default function HomePage() {
           </p>
           <div className="grid grid-3" style={{ textAlign: 'left' }}>
             <div className="card" style={{ padding: 28 }}>
-              <div style={{ fontSize: '2rem', marginBottom: 12 }}>Ã°ÂÂÂ¨</div>
+              <div style={{ fontSize: '2rem', marginBottom: 12 }}>ÃÂ°ÃÂÃÂÃÂ¨</div>
               <h3 style={{ fontSize: '1.2rem', marginBottom: 8 }}>Drink & Draw</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Artists of every skill level welcome. Bring a sketchbook, order a drink, make something new. Free, weekly.</p>
             </div>
             <div className="card" style={{ padding: 28 }}>
-              <div style={{ fontSize: '2rem', marginBottom: 12 }}>Ã°ÂÂÂ²</div>
+              <div style={{ fontSize: '2rem', marginBottom: 12 }}>ÃÂ°ÃÂÃÂÃÂ²</div>
               <h3 style={{ fontSize: '1.2rem', marginBottom: 8 }}>Tabletop Night</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Drop-in tabletop and board games hosted in the lounge. All you need is your imagination. Free, weekly.</p>
             </div>
             <div className="card" style={{ padding: 28 }}>
-              <div style={{ fontSize: '2rem', marginBottom: 12 }}>Ã°ÂÂÂ</div>
+              <div style={{ fontSize: '2rem', marginBottom: 12 }}>ÃÂ°ÃÂÃÂÃÂ</div>
               <h3 style={{ fontSize: '1.2rem', marginBottom: 8 }}>Karma Screenings</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Pay what you want. 20% of proceeds go to a local non-profit partner each month. Good films, good cause.</p>
             </div>
@@ -479,7 +479,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ 7. ABOUT Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ 7. ABOUT ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <section style={{ padding: '80px 0', background: dark }}>
         <div className="container" style={{ maxWidth: 820, textAlign: 'center' }}>
           <div style={{ fontSize: '0.8rem', letterSpacing: 3, color: gold, marginBottom: 12, textTransform: 'uppercase' }}>About Us</div>
@@ -487,7 +487,7 @@ export default function HomePage() {
           <p style={{ color: 'rgba(240,233,215,0.65)', fontSize: '1.05rem', lineHeight: 1.75, marginBottom: 16 }}>
             Lighthouse Cinema has been a beloved staple of Pacific Grove since July 1987,
             when brothers John and Sal Enea opened its doors. For nearly four decades it has
-            been more than a movie theater Ã¢ÂÂ a place where first dates happen, friendships
+            been more than a movie theater ÃÂ¢ÃÂÃÂ a place where first dates happen, friendships
             grow, and families share the magic of the big screen.
           </p>
           <p style={{ color: 'rgba(240,233,215,0.65)', fontSize: '1.05rem', lineHeight: 1.75, marginBottom: 24 }}>
@@ -501,7 +501,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ 8. VIP Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ 8. VIP ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <section style={{ padding: '60px 0', background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1505 100%)', borderTop: '1px solid rgba(212,175,55,0.15)' }}>
         <div className="container" style={{ textAlign: 'center', maxWidth: 680 }}>
           <h2 style={{ fontSize: '1.8rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>
@@ -510,23 +510,23 @@ export default function HomePage() {
           <p style={{ color: 'rgba(240,233,215,0.55)', marginBottom: 24 }}>
             Text <strong style={{ color: gold }}>JOIN</strong> to <strong style={{ color: gold }}>(831) 747-4470</strong> for showtimes, new events, and <strong>10% off</strong> your next visit.
           </p>
-          <a href="sms:+18317474470?body=JOIN" style={goldBtn}>Text JOIN Ã¢ÂÂ</a>
+          <a href="sms:+18317474470?body=JOIN" style={goldBtn}>Text JOIN ÃÂ¢ÃÂÃÂ</a>
         </div>
       </section>
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ 9. MARQUEE Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ 9. MARQUEE ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-          PROJECT HAIL MARY Ã¢ÂÂ NOW PLAYING &nbsp;ÃÂ·&nbsp;
-          ZORBA THE GREEK DAILY 4PM &nbsp;ÃÂ·&nbsp;
-          BINGO THURSDAYS 7PM &nbsp;ÃÂ·&nbsp;
-          KARAOKE FRIDAYS 7:30PM &nbsp;ÃÂ·&nbsp;
-          SALSA SATURDAYS 8PM &nbsp;ÃÂ·&nbsp;
+          PROJECT HAIL MARY ÃÂ¢ÃÂÃÂ NOW PLAYING &nbsp;ÃÂÃÂ·&nbsp;
+          ZORBA THE GREEK DAILY 4PM &nbsp;ÃÂÃÂ·&nbsp;
+          BINGO THURSDAYS 7PM &nbsp;ÃÂÃÂ·&nbsp;
+          KARAOKE FRIDAYS 7:30PM &nbsp;ÃÂÃÂ·&nbsp;
+          SALSA SATURDAYS 8PM &nbsp;ÃÂÃÂ·&nbsp;
           BAR & GRILL OPEN
         </div>
       </section>
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ 10. CONTACT Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ 10. CONTACT ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <section style={{ padding: '72px 0', background: '#0c0c0c', borderTop: '1px solid rgba(212,175,55,0.10)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <h2 style={{ fontSize: '2rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>
@@ -537,26 +537,26 @@ export default function HomePage() {
           </p>
           <div className="grid grid-3" style={{ textAlign: 'left', marginBottom: 32 }}>
             <div className="card" style={{ padding: 24 }}>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: 8 }}>Ã¢ÂÂ¡ Fast answers</h3>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: 8 }}>ÃÂ¢ÃÂÃÂ¡ Fast answers</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Ask about showtimes, seating, special menus, or upcoming events.</p>
             </div>
             <div className="card" style={{ padding: 24 }}>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: 8 }}>Ã°ÂÂÂ§ Direct contact</h3>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: 8 }}>ÃÂ°ÃÂÃÂÃÂ§ Direct contact</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Your message goes straight to Lighthouse Cinema, not a third party.</p>
             </div>
             <div className="card" style={{ padding: 24 }}>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: 8 }}>Ã°ÂÂÂ± Simple & convenient</h3>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: 8 }}>ÃÂ°ÃÂÃÂÃÂ± Simple & convenient</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Text us anytime, or call during business hours for immediate help.</p>
             </div>
           </div>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="sms:+18317173124" style={goldBtn}>Text the Cinema</a>
-            <a href="tel:+18317173124" style={darkBtn}>Call the Cinema</a>
+            <a href="sms:+18334414049" style={goldBtn}>Text the Cinema</a>
+            <a href="tel:+18334414049" style={darkBtn}>Call the Cinema</a>
           </div>
         </div>
       </section>
 
-      {/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ RESPONSIVE Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
+      {/* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ RESPONSIVE ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */}
       <style>{`h
         @media (max-width: 768px) {
           #now-playing > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
