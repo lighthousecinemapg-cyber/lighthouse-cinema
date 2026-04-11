@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
 const TAX_RATE = 0.0925;
-const SERVICE_FEE_RATE = 0.18;
 const DEPOSIT_RATE = 0.20;
 
 export default function CheckoutPage() {
@@ -55,13 +54,12 @@ export default function CheckoutPage() {
     for (const item of cart) {
       subtotal += item.ticketPrice * item.quantity;
     }
-    const serviceFee = Math.round(subtotal * SERVICE_FEE_RATE * 100) / 100;
-    const taxableAmount = subtotal + serviceFee;
+    const taxableAmount = subtotal;
     const salesTax = Math.round(taxableAmount * TAX_RATE * 100) / 100;
-    const grandTotal = Math.round((subtotal + serviceFee + salesTax) * 100) / 100;
+    const grandTotal = Math.round((subtotal + salesTax) * 100) / 100;
     const deposit = Math.round(grandTotal * DEPOSIT_RATE * 100) / 100;
     const remaining = Math.round((grandTotal - deposit) * 100) / 100;
-    return { subtotal, serviceFee, salesTax, grandTotal, deposit, remaining };
+    return { subtotal, salesTax, grandTotal, deposit, remaining };
   }
 
   function removeItem(index) {
@@ -320,11 +318,7 @@ export default function CheckoutPage() {
                   <span style={{ color: 'var(--text-secondary)' }}>Subtotal</span>
                   <span>${pricing.subtotal.toFixed(2)}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginBottom: '6px' }}>
-                  <span style={{ color: 'var(--text-secondary)' }}>Service Fee (18%)</span>
-                  <span>${pricing.serviceFee.toFixed(2)}</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginBottom: '6px' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginBottom: '6px' }}>
                   <span style={{ color: 'var(--text-secondary)' }}>Sales Tax (9.25%)</span>
                   <span>${pricing.salesTax.toFixed(2)}</span>
                 </div>
