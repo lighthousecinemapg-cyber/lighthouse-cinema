@@ -30,7 +30,7 @@ export default function ContactPage() {
       <div style={{ maxWidth: 560, margin: '0 auto' }}>
         <h1 style={{ color: '#d4af37', fontSize: 40, marginBottom: 8 }}>Contact Us</h1>
         <p style={{ opacity: 0.8, marginBottom: 24 }}>
-          Questions, private events, group bookings — send us a message and we'll reply within a few hours.
+          Questions, private events, group bookings â send us a message and we'll reply within a few hours.
         </p>
         <form onSubmit={onSubmit} style={{ display: 'grid', gap: 14 }}>
           <Field name="name" label="Name" required />
@@ -43,13 +43,13 @@ export default function ContactPage() {
           <button disabled={sending} type="submit" style={{
             background: '#d4af37', color: '#0a0a0a', border: 0, padding: '16px',
             borderRadius: 999, fontWeight: 800, fontSize: 16, cursor: 'pointer',
-          }}>{sending ? 'Sending…' : 'Send Message'}</button>
+          }}>{sending ? 'Sendingâ¦' : 'Send Message'}</button>
         </form>
-        {status === 'ok' && <p style={{ color: '#7ed957', marginTop: 16 }}>Thanks — message received. We'll reply shortly.</p>}
-        {status === 'err' && <p style={{ color: '#ff6b6b', marginTop: 16 }}>Something went wrong. Call us at (831) 717-3124.</p>}
+        {status === 'ok' && <p style={{ color: '#7ed957', marginTop: 16 }}>Thanks â message received. We'll reply shortly.</p>}
+        {status === 'err' && <p style={{ color: '#ff6b6b', marginTop: 16 }}>Something went wrong. Call us at (833) 441-4049.</p>}
         <p style={{ marginTop: 32, opacity: 0.7, fontSize: 14 }}>
-          📞 (831) 717-3124 · ✉️ lighthousecinemapg@gmail.com<br />
-          📍 525 Lighthouse Ave, Pacific Grove, CA 93950
+          ð (833) 441-4049 Â· âï¸ lighthousecinemapg@gmail.com<br />
+          ð 525 Lighthouse Ave, Pacific Grove, CA 93950
         </p>
       </div>
     </main>
