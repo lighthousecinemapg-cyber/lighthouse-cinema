@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
               <span className="logo-light">Lighthouse</span>{' '}
               <span className="logo-cinema">Cinema</span>
             </a>
-            <nav className="main-nav">
+            <nav className="header-nav">
               <a href="/events">Events</a>
               <a href="/menu">Menu</a>
               <a href="/private-events">Private Events</a>
