@@ -237,7 +237,103 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* BUY MOVIE TICKETS */}
+      
+      {/* COMING SOON — The Devil Wears Prada 2 */}
+      <section id="coming-soon" style={{
+        padding: '80px 0 88px',
+        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
+        borderTop: '1px solid rgba(212,175,55,0.12)',
+      }}>
+        <div className="container">
+          <div style={{ fontSize: '0.75rem', letterSpacing: 4, color: gold, textTransform: 'uppercase', textAlign: 'center', marginBottom: 6 }}>
+            Coming Soon
+          </div>
+          <h2 style={{ fontSize: '2.4rem', textAlign: 'center', marginBottom: 48, fontFamily: "'Playfair Display', serif", color: cream }}>
+            The Devil Wears Prada 2
+          </h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(240px, 380px) 1fr',
+            gap: 48,
+            maxWidth: 1020,
+            margin: '0 auto',
+            alignItems: 'start',
+          }}>
+            <div style={{
+              borderRadius: 14,
+              overflow: 'hidden',
+              border: '2px solid rgba(212,175,55,0.2)',
+              background: '#111',
+              boxShadow: '0 12px 48px rgba(0,0,0,0.6)',
+              position: 'relative',
+            }}>
+              <img
+                src="https://image.tmdb.org/t/p/w500/p35IoKfBtJDNiWJMO8ZEtIMZSfW.jpg"
+                alt="The Devil Wears Prada 2 Movie Poster"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+                loading="lazy"
+              />
+              <div style={{
+                position: 'absolute',
+                top: 14,
+                left: 14,
+                background: 'rgba(212,175,55,0.95)',
+                color: '#0a0a0a',
+                padding: '6px 14px',
+                borderRadius: 6,
+                fontSize: '0.75rem',
+                fontWeight: 800,
+                letterSpacing: 1,
+                textTransform: 'uppercase',
+              }}>
+                April 30
+              </div>
+            </div>
+            <div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 18 }}>
+                <span style={badgeStyle}>PG-13</span>
+                <span style={badgeStyle}>Comedy</span>
+                <span style={badgeStyle}>Drama</span>
+                <span style={badgeStyle}>Sequel</span>
+              </div>
+              <p style={{
+                color: 'rgba(240,233,215,0.72)',
+                fontSize: '1.05rem',
+                lineHeight: 1.75,
+                marginBottom: 24,
+              }}>
+                Meryl Streep, Anne Hathaway, Emily Blunt, and Stanley Tucci return to the fashionable streets of New York City and the sleek offices of Runway Magazine. When Miranda Priestly faces a declining print empire, she recruits a now-seasoned Andy Sachs to help save everything she built.
+              </p>
+              <div style={{
+                background: 'rgba(212,175,55,0.07)',
+                borderRadius: 10,
+                padding: '16px 20px',
+                marginBottom: 32,
+                border: '1px solid rgba(212,175,55,0.12)',
+                display: 'inline-flex',
+                flexDirection: 'column',
+                gap: 4,
+              }}>
+                <span style={{ color: gold, fontWeight: 700, fontSize: '1.05rem' }}>
+                  Opens April 30
+                </span>
+                <span style={{ color: 'rgba(240,233,215,0.55)', fontSize: '0.85rem' }}>
+                  Showtimes announced soon
+                </span>
+              </div>
+              <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+                <button onClick={() => setTrailerOpen('R57Y4v5OmzM')} style={goldBtn}>
+                  Watch Trailer
+                </button>
+                <a href="sms:+18334414049?body=Prada2" style={darkBtn}>
+                  Notify Me
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+\n      {/* BUY MOVIE TICKETS */}
       <section id="buy-tickets" style={{
         padding: '80px 20px', background: '#0a0a0a', textAlign: 'center',
       }}>
@@ -631,7 +727,7 @@ export default function HomePage() {
       {/*  RESPONSIVE  */}
       <style>{`h
         @media (max-width: 768px) {
-          #now-playing > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
+          #now-playing > div > div:nth-child(2) { grid-template-columns: 1fr !important; }\n          #coming-soon > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
           #documentaries > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
         }
       `}</style>
