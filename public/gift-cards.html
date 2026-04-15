@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gift Cards | Lighthouse Cinema â Pacific Grove</title>
+  <meta name="description" content="Give the gift of cinema. Buy digital gift cards for Lighthouse Cinema, Pacific Grove." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Square Web Payments SDK -->
+  <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --gold: #D4AF37;
+      --gold-light: #e8d48b;
+      --cream: #F0E9D7;
+      --dark-surface: #141414;
+      --dark-card: #1a1a1a;
+      --border: #2a2a2a;
+      --text-muted: #999;
+      --success: #4CAF50;
+      --error: #f44336;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* Nav */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { color: var(--cream); text-decoration: none; font-size: 0.9rem; opacity: 0.8; transition: 0.2s; }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--black); padding: 0.5rem 1.2rem;
+      border-radius: 20px; font-weight: 600; font-size: 0.85rem;
+      text-decoration: none; opacity: 1 !important;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      background: radial-gradient(ellipse at center, rgba(212,175,55,0.06) 0%, transparent 70%);
+    }
+    .hero-emoji { font-size: 3rem; margin-bottom: 1rem; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero p { color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 1.05rem; line-height: 1.6; }
+
+    /* Tabs */
+    .tabs {
+      display: flex; justify-content: center; gap: 0; margin: 2rem auto; max-width: 400px;
+      border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+    }
+    .tab-btn {
+      flex: 1; padding: 0.75rem; text-align: center; background: var(--dark-card);
+      color: var(--text-muted); border: none; cursor: pointer; font-size: 0.9rem; font-weight: 500;
+      transition: 0.2s;
+    }
+    .tab-btn.active { background: var(--gold); color: var(--black); font-weight: 600; }
+
+    /* Content */
+    .content { max-width: 560px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* âââ BUY TAB âââââââââââââââââââââââââââââââ */
+    .amount-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.5rem;
+    }
+    .amount-option {
+      background: var(--dark-card); border: 2px solid var(--border); border-radius: 10px;
+      padding: 1.2rem 0.5rem; text-align: center; cursor: pointer; transition: 0.2s;
+    }
+    .amount-option:hover { border-color: var(--gold); }
+    .amount-option.selected { border-color: var(--gold); background: rgba(212,175,55,0.08); }
+    .amount-option .value { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--gold); }
+    .amount-option .label { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+    .custom-amount {
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;
+    }
+    .custom-amount span { color: var(--gold); font-size: 1.3rem; font-weight: 600; }
+    .custom-amount input {
+      flex: 1; background: var(--dark-card); border: 1px solid var(--border); color: var(--cream);
+      padding: 0.75rem; border-radius: 8px; font-size: 1rem;
+    }
+    .custom-amount input:focus { outline: none; border-color: var(--gold); }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label { font-size: 0.85rem; color: var(--text-muted); }
+    .form-group input, .form-group textarea {
+      background: var(--dark-card); border: 1px solid var(--border); color: var(--cream);
+      padding: 0.75rem; border-radius: 8px; font-size: 0.95rem; font-family: inherit;
+    }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    .section-label {
+      font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold);
+      margin: 1.5rem 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+    }
+
+    #buy-card-container {
+      min-height: 90px; background: var(--dark-card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1rem; margin-bottom: 1rem;
+    }
+
+    .btn-primary {
+      width: 100%; background: var(--gold); color: var(--black);
+      font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
+      padding: 1rem; border: none; border-radius: 10px; cursor: pointer; transition: 0.3s;
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--gold-light); transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(212,175,55,0.3);
+    }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* âââ CHECK BALANCE TAB ââââââââââââââââââââ */
+    .balance-form { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+    .balance-form input { flex: 1; }
+    .balance-form button {
+      background: var(--gold); color: var(--black); border: none;
+      padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer;
+    }
+    .balance-result {
+      background: var(--dark-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 2rem; text-align: center; display: none;
+    }
+    .balance-result.visible { display: block; }
+    .balance-amount {
+      font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin: 0.5rem 0;
+    }
+    .balance-state { color: var(--text-muted); font-size: 0.85rem; }
+
+    /* Status */
+    .status { padding: 0.75rem; border-radius: 8px; font-size: 0.9rem; margin: 1rem 0; display: none; }
+    .status.success { display: block; background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3); color: var(--success); }
+    .status.error { display: block; background: rgba(244,67,54,0.1); border: 1px solid rgba(244,67,54,0.3); color: var(--error); }
+
+    /* Success */
+    .gift-success { display: none; text-align: center; padding: 2rem 0; }
+    .gift-success.visible { display: block; }
+    .gift-success .card-visual {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border: 2px solid var(--gold); border-radius: 16px;
+      padding: 2rem; max-width: 360px; margin: 0 auto 1.5rem; position: relative; overflow: hidden;
+    }
+    .gift-success .card-visual::before {
+      content: ''; position: absolute; top: -50%; right: -50%; width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+    }
+    .gift-success .card-brand {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 1rem;
+    }
+    .gift-success .card-number { font-family: monospace; font-size: 1.1rem; letter-spacing: 2px; margin: 1rem 0; color: var(--cream); }
+    .gift-success .card-amount { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); }
+    .gift-success p { color: var(--text-muted); margin: 0.5rem 0; }
+
+    footer {
+      text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Lighthouse Cinema</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/events">Events</a>
+      <a href="/loyalty.html">Rewards</a>
+      <a href="/gift-cards.html" class="nav-cta">ð Gift Cards</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-emoji">ð¬</div>
+    <h1>Give the Gift of <em>Cinema.</em></h1>
+    <p>A digital gift card for Lighthouse Cinema â perfect for birthdays, thank-yous, or just because.</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('buy')">Buy a Gift Card</button>
+    <button class="tab-btn" onclick="switchTab('balance')">Check Balance</button>
+  </div>
+
+  <div class="content">
+
+    <!-- âââ BUY TAB ââââââââââââââââââââââââââââ -->
+    <div class="tab-content active" id="tab-buy">
+      <div class="amount-grid">
+        <div class="amount-option" onclick="selectAmount(1500)">
+          <div class="value">$15</div>
+          <div class="label">A snack run</div>
+        </div>
+        <div class="amount-option selected" onclick="selectAmount(2500)">
+          <div class="value">$25</div>
+          <div class="label">A movie night</div>
+        </div>
+        <div class="amount-option" onclick="selectAmount(5000)">
+          <div class="value">$50</div>
+          <div class="label">Date night</div>
+        </div>
+        <div class="amount-option" onclick="selectAmount(7500)">
+          <div class="value">$75</div>
+          <div class="label">Family outing</div>
+        </div>
+        <div class="amount-option" onclick="selectAmount(10000)">
+          <div class="value">$100</div>
+          <div class="label">VIP experience</div>
+        </div>
+        <div class="amount-option" onclick="selectAmount(0)">
+          <div class="value">Custom</div>
+          <div class="label">Your choice</div>
+        </div>
+      </div>
+
+      <div class="custom-amount" id="custom-amount" style="display: none;">
+        <span>$</span>
+        <input type="number" id="customAmountInput" placeholder="Enter amount (min $5)" min="5" max="500"
+               oninput="updateCustomAmount()" />
+      </div>
+
+      <div class="section-label">Recipient Details</div>
+      <div class="form-group">
+        <label>Recipient's Name</label>
+        <input type="text" id="recipientName" placeholder="Who's this for?" />
+      </div>
+      <div class="form-group">
+        <label>Your Email (for confirmation)</label>
+        <input type="email" id="buyerEmail" placeholder="your@email.com" required />
+      </div>
+      <div class="form-group">
+        <label>Gift Message (optional)</label>
+        <textarea id="giftMessage" placeholder="Enjoy a night at the movies!"></textarea>
+      </div>
+
+      <div class="section-label">Payment</div>
+      <div id="buy-card-container"></div>
+      <div id="buy-status" class="status"></div>
+
+      <button class="btn-primary" id="buy-button" disabled onclick="purchaseGiftCard()">
+        Purchase Gift Card â $25.00
+      </button>
+
+      <!-- Success -->
+      <div class="gift-success" id="gift-success">
+        <div class="card-visual">
+          <div class="card-brand">Lighthouse Cinema</div>
+          <div class="card-number" id="success-gan">â¢â¢â¢â¢ â¢â¢â¢â¢ â¢â¢â¢â¢ â¢â¢â¢â¢</div>
+          <div class="card-amount" id="success-amount">$25.00</div>
+        </div>
+        <h3 style="color: var(--cream); margin-bottom: 0.5rem;">Gift Card Created!</h3>
+        <p>A confirmation has been sent to your email.</p>
+        <p>Share the card number above with your recipient.</p>
+        <br />
+        <a href="/" style="color: var(--gold);">â Back to Lighthouse Cinema</a>
+      </div>
+    </div>
+
+    <!-- âââ BALANCE TAB ââââââââââââââââââââââââ -->
+    <div class="tab-content" id="tab-balance">
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Enter your gift card number to check the remaining balance.
+      </p>
+      <div class="balance-form">
+        <input type="text" id="balanceGan" placeholder="Gift card number" />
+        <button onclick="checkGiftCardBalance()">Check</button>
+      </div>
+      <div id="balance-status" class="status"></div>
+      <div class="balance-result" id="balance-result">
+        <p style="color: var(--text-muted); font-size: 0.85rem;">REMAINING BALANCE</p>
+        <div class="balance-amount" id="balance-amount">$0.00</div>
+        <div class="balance-state" id="balance-state">Active</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Powered by <a href="https://squareup.com" target="_blank">Square</a> Â· Lighthouse Cinema, Pacific Grove CA</p>
+  </footer>
+
+  <script>
+    const SQUARE_APP_ID = 'sandbox-sq0idb-LGLq0aIqSJ2s3YwlWjkwvw';
+    const SQUARE_LOCATION_ID = 'LHKQ2AZNEP4VZ';
+
+    let buyCard;
+    let selectedAmountCents = 2500;
+
+    // Tabs
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach((b, i) => {
+        b.classList.toggle('active', (tab === 'buy' && i === 0) || (tab === 'balance' && i === 1));
+      });
+      document.getElementById('tab-buy').classList.toggle('active', tab === 'buy');
+      document.getElementById('tab-balance').classList.toggle('active', tab === 'balance');
+    }
+
+    // Amount selection
+    function selectAmount(cents) {
+      document.querySelectorAll('.amount-option').forEach(el => el.classList.remove('selected'));
+      event.currentTarget.classList.add('selected');
+
+      const customEl = document.getElementById('custom-amount');
+      if (cents === 0) {
+        customEl.style.display = 'flex';
+        document.getElementById('customAmountInput').focus();
+        updateCustomAmount();
+      } else {
+        customEl.style.display = 'none';
+        selectedAmountCents = cents;
+        updateBuyButton();
+      }
+    }
+
+    function updateCustomAmount() {
+      const val = parseFloat(document.getElementById('customAmountInput').value);
+      selectedAmountCents = isNaN(val) ? 0 : Math.round(val * 100);
+      updateBuyButton();
+    }
+
+    function updateBuyButton() {
+      const btn = document.getElementById('buy-button');
+      if (selectedAmountCents >= 500) {
+        btn.textContent = `Purchase Gift Card â $${(selectedAmountCents / 100).toFixed(2)}`;
+        btn.disabled = !buyCard;
+      } else {
+        btn.textContent = 'Select an amount ($5 minimum)';
+        btn.disabled = true;
+      }
+    }
+
+    // Init Square
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!window.Square) return;
+      try {
+        const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID);
+        buyCard = await payments.card();
+        await buyCard.attach('#buy-card-container');
+        updateBuyButton();
+      } catch (err) {
+        console.error('Square init error:', err);
+      }
+    });
+
+    // Purchase
+    async function purchaseGiftCard() {
+      const btn = document.getElementById('buy-button');
+      const statusEl = document.getElementById('buy-status');
+
+      if (selectedAmountCents < 500) {
+        showStatus('buy-status', 'Minimum gift card amount is $5.00.', 'error');
+        return;
+      }
+
+      const email = document.getElementById('buyerEmail').value.trim();
+      if (!email) {
+        showStatus('buy-status', 'Please enter your email.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+      hideStatus('buy-status');
+
+      try {
+        const result = await buyCard.tokenize();
+        if (result.status !== 'OK') {
+          throw new Error(result.errors?.[0]?.message || 'Card validation failed.');
+        }
+
+        const response = await fetch('/api/square/gift-cards', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amountCents: selectedAmountCents,
+            sourceId: result.token,
+            buyerEmail: email,
+            recipientName: document.getElementById('recipientName').value.trim(),
+            message: document.getElementById('giftMessage').value.trim(),
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.error || 'Purchase failed.');
+        }
+
+        // Show success
+        const gan = data.giftCard.gan;
+        document.getElementById('success-gan').textContent =
+          gan.replace(/(.{4})/g, '$1 ').trim();
+        document.getElementById('success-amount').textContent = data.giftCard.balance;
+
+        document.getElementById('gift-success').classList.add('visible');
+        // Hide the form
+        document.querySelectorAll('#tab-buy > :not(.gift-success)').forEach(el => el.style.display = 'none');
+
+      } catch (err) {
+        showStatus('buy-status', err.message, 'error');
+        btn.disabled = false;
+        updateBuyButton();
+      }
+    }
+
+    // Check balance
+    async function checkGiftCardBalance() {
+      const gan = document.getElementById('balanceGan').value.trim();
+      if (!gan) { showStatus('balance-status', 'Enter a gift card number.', 'error'); return; }
+
+      hideStatus('balance-status');
+      document.getElementById('balance-result').classList.remove('visible');
+
+      try {
+        const response = await fetch(`/api/square/gift-cards?gan=${encodeURIComponent(gan)}`);
+        const data = await response.json();
+
+        if (!data.found) {
+          showStatus('balance-status', data.message || 'Card not found.', 'error');
+          return;
+        }
+
+        document.getElementById('balance-amount').textContent = data.balance;
+        document.getElementById('balance-state').textContent =
+          data.state === 'ACTIVE' ? 'â Active' : data.state;
+        document.getElementById('balance-result').classList.add('visible');
+
+      } catch (err) {
+        showStatus('balance-status', 'Error checking balance.', 'error');
+      }
+    }
+
+    function showStatus(id, msg, type) {
+      const el = document.getElementById(id);
+      el.textContent = msg;
+      el.className = `status ${type}`;
+    }
+    function hideStatus(id) {
+      document.getElementById(id).className = 'status';
+    }
+  </script>
+</body>
+</html>
