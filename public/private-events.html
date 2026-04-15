@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Events | Lighthouse Cinema — Pacific Grove</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════ RESET & BASE ═══════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--dark:#111;--card:#151515;--card-hover:#1a1a1a;
+  --gold:#D4AF37;--gold-light:#e8cc6a;--gold-dim:rgba(212,175,55,.35);--gold-glow:rgba(212,175,55,.15);
+  --cream:#F0E9D7;--cream80:rgba(240,233,215,.8);--cream60:rgba(240,233,215,.6);
+  --cream40:rgba(240,233,215,.4);--cream20:rgba(240,233,215,.2);
+  --red:#e74c3c;--green:#27ae60;
+  --radius:16px;--radius-sm:12px;
+  --font-display:'Playfair Display',serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --max-w:1140px;
+  --header-h:68px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-h)}
+body{background:var(--black);color:var(--cream);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;outline:none;background:none;color:inherit}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 28px}
+
+/* ═══════════ SCROLL REVEAL ═══════════ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ═══════════ PARTICLES (subtle gold) ═══════════ */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.4}
+
+/* ═══════════════════ HEADER ═══════════════════ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(10,10,10,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(212,175,55,.08);
+  padding:0 28px;height:var(--header-h);display:flex;align-items:center;
+  transition:background .3s,box-shadow .3s;
+}
+header.scrolled{background:rgba(10,10,10,.96);box-shadow:0 4px 30px rgba(0,0,0,.4)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--font-display);font-size:1.3rem;color:var(--cream);letter-spacing:.5px;white-space:nowrap;transition:color .2s}
+.logo:hover{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:.85rem;color:var(--cream60);transition:color .2s;position:relative}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--gold);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  background:linear-gradient(135deg,var(--gold),#c9a230);
+  color:var(--black)!important;font-weight:700;font-size:.8rem!important;
+  padding:10px 24px;border-radius:50px;letter-spacing:.5px;
+  transition:all .25s;box-shadow:0 2px 12px rgba(212,175,55,.2);
+}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,175,55,.4);background:linear-gradient(135deg,var(--gold-light),var(--gold))}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border-radius:8px;transition:background .2s}
+.hamburger:hover{background:rgba(255,255,255,.05)}
+.hamburger span{width:22px;height:2px;background:var(--cream);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none}
+
+/* ═══════════════════ HERO ═══════════════════ */
+.hero{
+  min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:calc(var(--header-h) + 48px) 28px 80px;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 35%,rgba(212,175,55,.07) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 70%,rgba(212,175,55,.03) 0%,transparent 70%),
+    linear-gradient(180deg,var(--black) 0%,#0d0a05 50%,var(--black) 100%);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle at 30% 50%,rgba(212,175,55,.04) 0%,transparent 50%);
+  animation:heroGlow 10s ease-in-out infinite alternate;
+}
+.hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:120px;
+  background:linear-gradient(transparent,var(--black));
+}
+@keyframes heroGlow{0%{transform:translate(0,0) scale(1)}100%{transform:translate(5%,3%) scale(1.05)}}
+.hero-content{position:relative;z-index:2;max-width:740px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.7rem;letter-spacing:4px;color:var(--gold);
+  text-transform:uppercase;margin-bottom:20px;
+  border:1px solid var(--gold-dim);padding:8px 24px;border-radius:50px;
+  animation:badgePulse 3s ease-in-out infinite;
+}
+@keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,.1)}50%{box-shadow:0 0 0 8px rgba(212,175,55,0)}}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:dotPulse 2s infinite}
+@keyframes dotPulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{
+  font-family:var(--font-display);font-size:clamp(2.6rem,6.5vw,4.2rem);
+  font-weight:800;line-height:1.08;margin-bottom:24px;
+  animation:heroFade .8s ease-out;
+}
+@keyframes heroFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.hero h1 em{font-style:italic;color:var(--gold);position:relative}
+.hero p{
+  font-size:clamp(1rem,2.5vw,1.15rem);color:var(--cream60);margin-bottom:44px;
+  max-width:520px;margin-left:auto;margin-right:auto;
+  animation:heroFade .8s ease-out .2s both;
+}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;animation:heroFade .8s ease-out .4s both}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:15px 34px;border-radius:50px;font-weight:600;font-size:.9rem;
+  cursor:pointer;transition:all .25s ease;position:relative;overflow:hidden;
+}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),#c9a230);color:var(--black);
+  box-shadow:0 4px 20px rgba(212,175,55,.25);
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(212,175,55,.4)}
+.btn-gold:active{transform:translateY(0);box-shadow:0 2px 12px rgba(212,175,55,.3)}
+.btn-gold .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.3);transform:scale(0);animation:ripple .6s linear}
+@keyframes ripple{to{transform:scale(4);opacity:0}}
+.btn-outline{border:1.5px solid var(--gold-dim);color:var(--cream)}
+.btn-outline:hover{border-color:var(--gold);background:rgba(212,175,55,.08);transform:translateY(-2px)}
+.btn-ghost{color:var(--gold);padding:15px 22px;position:relative}
+.btn-ghost::after{content:'';position:absolute;bottom:12px;left:22px;right:22px;height:1px;background:var(--gold);opacity:.4;transition:opacity .2s}
+.btn-ghost:hover::after{opacity:1}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
+
+/* ═══════════ SOCIAL PROOF STRIP ═══════════ */
+.social-proof{
+  padding:32px 0;border-bottom:1px solid rgba(212,175,55,.06);
+  text-align:center;position:relative;z-index:1;
+}
+.proof-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.proof-stat{text-align:center}
+.proof-num{font-family:var(--font-display);font-size:1.8rem;font-weight:800;color:var(--gold)}
+.proof-label{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--cream40);margin-top:2px}
+
+/* ═══════════════════ SECTION TITLES ═══════════════════ */
+.section-label{font-size:.7rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:10px}
+.section-title{
+  font-family:var(--font-display);font-size:clamp(1.9rem,4.5vw,2.8rem);
+  text-align:center;margin-bottom:16px;font-weight:700;line-height:1.15;
+}
+.section-sub{text-align:center;color:var(--cream60);max-width:540px;margin:0 auto 52px;font-size:.95rem;line-height:1.7}
+
+/* ═══════════════════ BOOKING FLOW ═══════════════════ */
+#booking{padding:100px 0 120px;background:linear-gradient(180deg,var(--black) 0%,#0d0a05 40%,#0d0a05 60%,var(--black) 100%);border-top:1px solid rgba(212,175,55,.06);position:relative;z-index:1}
+
+/* Step indicator */
+.steps-indicator{
+  display:flex;justify-content:center;gap:0;margin-bottom:56px;position:relative;
+  max-width:560px;margin-left:auto;margin-right:auto;
+}
+.step-dot{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;cursor:pointer}
+.step-dot::before{
+  content:'';position:absolute;top:18px;left:50%;width:100%;height:2px;
+  background:rgba(212,175,55,.1);z-index:0;transition:background .4s;
+}
+.step-dot.done::before{background:rgba(212,175,55,.4)}
+.step-dot:last-child::before{display:none}
+.step-num{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--dark);border:2px solid rgba(212,175,55,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:700;color:var(--cream40);
+  position:relative;z-index:1;transition:all .4s cubic-bezier(.22,1,.36,1);
+}
+.step-dot.active .step-num{background:var(--gold);color:var(--black);border-color:var(--gold);box-shadow:0 0 24px rgba(212,175,55,.35);transform:scale(1.1)}
+.step-dot.done .step-num{background:rgba(212,175,55,.12);border-color:var(--gold);color:var(--gold)}
+.step-label{font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream40);margin-top:10px;transition:color .3s;font-weight:500}
+.step-dot.active .step-label{color:var(--gold);font-weight:600}
+.step-dot.done .step-label{color:var(--cream60)}
+
+/* Step panels */
+.step-panel{display:none;animation:fadeUp .5s cubic-bezier(.22,1,.36,1)}
+.step-panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* Validation toast */
+.toast{
+  position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);
+  background:var(--red);color:#fff;padding:12px 28px;border-radius:50px;
+  font-size:.85rem;font-weight:600;z-index:2000;opacity:0;
+  transition:all .35s cubic-bezier(.22,1,.36,1);pointer-events:none;
+  box-shadow:0 8px 32px rgba(231,76,60,.3);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Package cards */
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-bottom:36px}
+.pkg-card{
+  background:var(--card);border:1.5px solid rgba(212,175,55,.08);border-radius:var(--radius);
+  padding:30px 20px;text-align:center;cursor:pointer;transition:all .3s cubic-bezier(.22,1,.36,1);
+  position:relative;overflow:hidden;
+}
+.pkg-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(212,175,55,.06) 0%,transparent 70%);
+  opacity:0;transition:opacity .3s;
+}
+.pkg-card:hover::before{opacity:1}
+.pkg-card:hover{border-color:rgba(212,175,55,.25);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.pkg-card.selected{border-color:var(--gold);background:rgba(212,175,55,.05);box-shadow:0 0 30px rgba(212,175,55,.1)}
+.pkg-card.selected::after{
+  content:'✓';position:absolute;top:12px;right:14px;
+  width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--black);
+  display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;
+  animation:checkPop .3s cubic-bezier(.22,1,.36,1);
+}
+@keyframes checkPop{from{transform:scale(0)}to{transform:scale(1)}}
+.pkg-icon{font-size:2.4rem;margin-bottom:14px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3))}
+.pkg-name{font-family:var(--font-display);font-size:1.05rem;margin-bottom:6px;color:var(--cream)}
+.pkg-price{color:var(--gold);font-weight:700;font-size:1rem;margin-bottom:10px}
+.pkg-desc{font-size:.73rem;color:var(--cream40);line-height:1.6}
+.pkg-popular{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--black);font-size:.6rem;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;padding:4px 16px;border-radius:0 0 8px 8px;
+}
+
+/* Form fields */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.form-group{display:flex;flex-direction:column;gap:7px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream60);font-weight:500}
+.form-group input,.form-group select,.form-group textarea{
+  background:var(--card);border:1.5px solid rgba(212,175,55,.12);border-radius:var(--radius-sm);
+  padding:15px 18px;color:var(--cream);font-size:.9rem;transition:all .25s;
+}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--cream20)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.08)}
+.form-group input.error,.form-group select.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(231,76,60,.1)}
+.form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23D4AF37' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center}
+.form-group select option{background:var(--dark);color:var(--cream)}
+.form-group textarea{resize:vertical;min-height:110px}
+
+/* Add-ons */
+.addon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-bottom:28px}
+.addon-card{
+  display:flex;align-items:center;gap:14px;
+  background:var(--card);border:1.5px solid rgba(212,175,55,.08);border-radius:var(--radius-sm);
+  padding:16px 18px;cursor:pointer;transition:all .25s;user-select:none;
+}
+.addon-card:hover{border-color:rgba(212,175,55,.2);background:var(--card-hover)}
+.addon-card.selected{border-color:var(--gold);background:rgba(212,175,55,.05)}
+.addon-check{
+  width:24px;height:24px;border-radius:7px;border:2px solid rgba(212,175,55,.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;
+}
+.addon-card.selected .addon-check{background:var(--gold);border-color:var(--gold);transform:scale(1.05)}
+.addon-card.selected .addon-check::after{content:'✓';color:var(--black);font-size:.7rem;font-weight:800}
+.addon-info{flex:1}
+.addon-name{font-size:.85rem;font-weight:600;color:var(--cream)}
+.addon-price{font-size:.73rem;color:var(--gold);margin-top:2px}
+
+/* Menu selector */
+.menu-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:28px}
+.menu-option{
+  background:var(--card);border:1.5px solid rgba(212,175,55,.08);border-radius:var(--radius-sm);
+  padding:20px 16px;text-align:center;cursor:pointer;transition:all .25s;
+}
+.menu-option:hover{border-color:rgba(212,175,55,.2);background:var(--card-hover)}
+.menu-option.selected{border-color:var(--gold);background:rgba(212,175,55,.05)}
+.menu-option h4{font-size:.88rem;color:var(--cream);margin-bottom:6px;font-weight:600}
+.menu-option p{font-size:.7rem;color:var(--cream40);line-height:1.5}
+.menu-option .mprice{color:var(--gold);font-weight:700;font-size:.88rem;margin-top:8px}
+
+/* Summary */
+.summary-box{
+  background:var(--card);border:1.5px solid rgba(212,175,55,.15);border-radius:var(--radius);
+  padding:40px 36px;max-width:580px;margin:0 auto;
+  box-shadow:0 16px 60px rgba(0,0,0,.3);
+}
+.summary-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(212,175,55,.06);font-size:.88rem}
+.summary-row:last-of-type{border-bottom:none}
+.summary-row .label{color:var(--cream60)}
+.summary-row .value{font-weight:600;color:var(--cream);text-align:right;max-width:60%}
+.summary-total{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:24px;padding-top:24px;border-top:2px solid var(--gold);
+}
+.summary-total .label{font-size:1.05rem;color:var(--cream);font-weight:600}
+.summary-total .value{font-family:var(--font-display);font-size:2rem;color:var(--gold);font-weight:800}
+.summary-deposit{text-align:center;margin-top:14px;font-size:.78rem;color:var(--cream40)}
+
+/* Live price ticker */
+.live-price{
+  position:fixed;bottom:0;left:0;right:0;z-index:800;
+  background:rgba(10,10,10,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid rgba(212,175,55,.15);
+  padding:14px 28px;display:none;align-items:center;justify-content:center;gap:28px;
+  transform:translateY(100%);transition:transform .4s cubic-bezier(.22,1,.36,1);
+}
+.live-price.visible{display:flex;transform:translateY(0)}
+.live-price .lp-label{font-size:.72rem;color:var(--cream60);text-transform:uppercase;letter-spacing:2px;font-weight:500}
+.live-price .lp-amount{font-family:var(--font-display);font-size:1.5rem;color:var(--gold);font-weight:700}
+.live-price .btn{padding:10px 28px;font-size:.82rem}
+
+/* Nav buttons */
+.step-nav{display:flex;justify-content:center;gap:16px;margin-top:44px}
+
+/* ═══════════════════ FEATURES STRIP ═══════════════════ */
+.features-strip{
+  padding:64px 0;border-top:1px solid rgba(212,175,55,.06);border-bottom:1px solid rgba(212,175,55,.06);
+  position:relative;z-index:1;
+}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;text-align:center}
+.feature-item{padding:8px}
+.feature-icon{font-size:1.6rem;margin-bottom:10px}
+.feature-title{font-size:.82rem;font-weight:700;color:var(--cream);margin-bottom:4px}
+.feature-desc{font-size:.72rem;color:var(--cream40);line-height:1.5}
+
+/* ═══════════════════ MAKE AN OFFER ═══════════════════ */
+#offer{
+  padding:100px 0 120px;
+  background:linear-gradient(180deg,var(--black),#100d04 50%,var(--black));
+  border-top:1px solid rgba(212,175,55,.06);position:relative;z-index:1;
+}
+.offer-wrapper{max-width:620px;margin:0 auto}
+.offer-success{
+  display:none;text-align:center;padding:56px 24px;
+  animation:fadeUp .5s cubic-bezier(.22,1,.36,1);
+}
+.offer-success .check-circle{
+  width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(212,175,55,.05));
+  border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 24px;
+  font-size:2rem;animation:checkPop .5s cubic-bezier(.22,1,.36,1) .2s both;
+}
+.offer-success h3{font-family:var(--font-display);font-size:1.7rem;margin-bottom:10px}
+.offer-success p{color:var(--cream60);font-size:.95rem}
+
+/* ═══════════════════ URGENCY ═══════════════════ */
+#urgency{
+  padding:60px 28px;text-align:center;position:relative;z-index:1;
+  background:linear-gradient(135deg,rgba(212,175,55,.05),rgba(212,175,55,.02));
+  border-top:1px solid rgba(212,175,55,.08);border-bottom:1px solid rgba(212,175,55,.08);
+}
+.urgency-inner{max-width:580px;margin:0 auto}
+.urgency-icon{font-size:1.6rem;margin-bottom:12px}
+.urgency-text{
+  font-family:var(--font-display);font-size:clamp(1rem,2.5vw,1.3rem);
+  color:var(--cream);line-height:1.6;
+}
+.urgency-text strong{color:var(--gold)}
+
+/* ═══════════════════ TRUST / QUOTE ═══════════════════ */
+#trust{padding:88px 0;text-align:center;border-top:1px solid rgba(212,175,55,.04);position:relative;z-index:1}
+.quote-block{max-width:640px;margin:0 auto}
+.quote-mark{font-family:var(--font-display);font-size:5rem;color:var(--gold);line-height:.6;margin-bottom:8px;opacity:.4}
+.quote-text{font-family:var(--font-display);font-size:clamp(1.2rem,3vw,1.65rem);font-style:italic;line-height:1.55;margin-bottom:20px;color:var(--cream)}
+.quote-author{font-size:.85rem;color:var(--gold);letter-spacing:2px;font-weight:500}
+
+/* ═══════════════════ FOOTER ═══════════════════ */
+footer{padding:56px 28px;text-align:center;border-top:1px solid rgba(212,175,55,.05);position:relative;z-index:1}
+footer p{font-size:.8rem;color:var(--cream40);line-height:1.8}
+footer a{color:var(--gold);transition:opacity .2s}
+footer a:hover{opacity:.8}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-top:12px;flex-wrap:wrap}
+
+/* ═══════════════════ STICKY MOBILE CTA ═══════════════════ */
+.sticky-cta{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;
+  background:rgba(10,10,10,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid rgba(212,175,55,.15);
+  padding:14px 20px;
+}
+.sticky-cta .btn{width:100%;justify-content:center;padding:16px;font-size:1rem}
+
+/* ═══════════════════ CONFETTI ═══════════════════ */
+.confetti-piece{position:fixed;z-index:9999;pointer-events:none;animation:confettiFall linear forwards}
+@keyframes confettiFall{
+  0%{transform:translateY(0) rotate(0deg);opacity:1}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+}
+
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
+@media(max-width:900px){
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{
+    position:fixed;top:var(--header-h);left:0;right:0;bottom:0;z-index:999;
+    background:rgba(10,10,10,.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    flex-direction:column;align-items:center;justify-content:center;gap:28px;
+    transform:translateY(-10px);opacity:0;transition:all .3s;pointer-events:none;
+  }
+  .mobile-menu.open{display:flex;transform:translateY(0);opacity:1;pointer-events:all}
+  .mobile-menu a{font-size:1.15rem;color:var(--cream);padding:8px 0}
+  .form-grid{grid-template-columns:1fr}
+  .pkg-grid{grid-template-columns:1fr 1fr}
+  .addon-grid{grid-template-columns:1fr}
+  .menu-selector{grid-template-columns:1fr 1fr}
+  .steps-indicator{padding:0 12px}
+  .step-label{font-size:.55rem;letter-spacing:1px}
+  .sticky-cta{display:block}
+  .live-price{bottom:62px}
+  .summary-box{padding:28px 22px}
+  .hero{min-height:auto;padding:calc(var(--header-h) + 40px) 20px 64px}
+  .proof-stats{gap:28px}
+  .features-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+}
+@media(max-width:480px){
+  .pkg-grid{grid-template-columns:1fr}
+  .menu-selector{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;justify-content:center}
+  .proof-stats{flex-direction:column;gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ TOAST ═══════════ -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header id="header">
+  <div class="nav-inner">
+    <a href="https://www.lighthousepgcinema.com/" class="logo">Lighthouse Cinema</a>
+    <nav class="nav-links">
+      <a href="https://www.lighthousepgcinema.com/">Home</a>
+      <a href="https://www.lighthousepgcinema.com/#events">Events</a>
+      <a href="https://www.lighthousepgcinema.com/#menu">Menu</a>
+      <a href="#offer">Make an Offer</a>
+      <a href="#booking" class="nav-cta">Private Events</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://www.lighthousepgcinema.com/" onclick="toggleMobile()">Home</a>
+  <a href="https://www.lighthousepgcinema.com/#events" onclick="toggleMobile()">Events</a>
+  <a href="#booking" onclick="toggleMobile()">Book Your Event</a>
+  <a href="#offer" onclick="toggleMobile()">Make an Offer</a>
+  <a href="#booking" class="btn btn-gold" onclick="toggleMobile()" style="margin-top:8px">Private Events</a>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <span class="hero-badge"><span class="dot"></span> Now Booking</span>
+    <h1>A Private Theater.<br><em>Just for You.</em></h1>
+    <p>Birthdays. Date nights. Private screenings. Community events. Simple. Fun. Unforgettable.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn btn-gold" onclick="addRipple(event)">Book Your Event</a>
+      <a href="#booking" class="btn btn-outline">See Packages</a>
+      <a href="#offer" class="btn btn-ghost">Make an Offer</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SOCIAL PROOF ═══════════ -->
+<section class="social-proof reveal">
+  <div class="container">
+    <div class="proof-stats">
+      <div class="proof-stat">
+        <div class="proof-num" data-count="500">0+</div>
+        <div class="proof-label">Events Hosted</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-num" data-count="4">0</div>
+        <div class="proof-label">Private Auditoriums</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-num" data-count="450">0</div>
+        <div class="proof-label">Total Seats</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-num">Since 1987</div>
+        <div class="proof-label">Pacific Grove Icon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FEATURES ═══════════ -->
+<section class="features-strip">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-item reveal reveal-delay-1">
+        <div class="feature-icon">🎥</div>
+        <div class="feature-title">Any Movie</div>
+        <div class="feature-desc">Pick any film — new release, classic, or bring your own</div>
+      </div>
+      <div class="feature-item reveal reveal-delay-2">
+        <div class="feature-icon">🍽️</div>
+        <div class="feature-title">Full Catering</div>
+        <div class="feature-desc">From pizza to chef's tasting menus with wine pairings</div>
+      </div>
+      <div class="feature-item reveal reveal-delay-3">
+        <div class="feature-icon">🎭</div>
+        <div class="feature-title">Custom Decor</div>
+        <div class="feature-desc">Red carpets, photo booths, themed decorations — your vision</div>
+      </div>
+      <div class="feature-item reveal reveal-delay-1">
+        <div class="feature-icon">💳</div>
+        <div class="feature-title">Instant Booking</div>
+        <div class="feature-desc">Book online in 60 seconds with a 50% deposit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BOOKING FLOW ═══════════ -->
+<section id="booking">
+  <div class="container">
+    <div class="section-label reveal">Booking</div>
+    <h2 class="section-title reveal">Book Your Private Event</h2>
+    <p class="section-sub reveal">Choose your experience, customize every detail, and lock in your date — all in under 60 seconds.</p>
+
+    <!-- Step indicator -->
+    <div class="steps-indicator reveal">
+      <div class="step-dot active" data-step="1" onclick="goToStep(1)">
+        <div class="step-num">1</div>
+        <div class="step-label">Experience</div>
+      </div>
+      <div class="step-dot" data-step="2" onclick="goToStep(2)">
+        <div class="step-num">2</div>
+        <div class="step-label">Details</div>
+      </div>
+      <div class="step-dot" data-step="3" onclick="goToStep(3)">
+        <div class="step-num">3</div>
+        <div class="step-label">Customize</div>
+      </div>
+      <div class="step-dot" data-step="4" onclick="goToStep(4)">
+        <div class="step-num">4</div>
+        <div class="step-label">Summary</div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Choose Experience -->
+    <div class="step-panel active" id="step1">
+      <div class="pkg-grid">
+        <div class="pkg-card" onclick="selectPackage(this,'kids',549)">
+          <div class="pkg-icon">🎉</div>
+          <div class="pkg-name">Kids Birthday Party</div>
+          <div class="pkg-price">From $549</div>
+          <div class="pkg-desc">Private auditorium, decorations, movie of choice, popcorn &amp; drinks for up to 30 kids</div>
+        </div>
+        <div class="pkg-card" onclick="selectPackage(this,'screening',495)">
+          <div class="pkg-popular">Most Popular</div>
+          <div class="pkg-icon">🍿</div>
+          <div class="pkg-name">Private Screening</div>
+          <div class="pkg-price">From $495</div>
+          <div class="pkg-desc">Pick any movie, bring your crew, enjoy a theater all to yourselves</div>
+        </div>
+        <div class="pkg-card" onclick="selectPackage(this,'date',85)">
+          <div class="pkg-icon">❤️</div>
+          <div class="pkg-name">Date Night</div>
+          <div class="pkg-price">$85</div>
+          <div class="pkg-desc">Reserved premium seats, popcorn, drinks, and a movie — intimate and unforgettable</div>
+        </div>
+        <div class="pkg-card" onclick="selectPackage(this,'community',1295)">
+          <div class="pkg-icon">🎬</div>
+          <div class="pkg-name">Community Event</div>
+          <div class="pkg-price">From $1,295</div>
+          <div class="pkg-desc">Fundraisers, reunions, company events — full AV, seating, and catering</div>
+        </div>
+        <div class="pkg-card" onclick="selectPackage(this,'buyout',9500)">
+          <div class="pkg-icon">🏆</div>
+          <div class="pkg-name">Full Venue Buyout</div>
+          <div class="pkg-price">From $9,500</div>
+          <div class="pkg-desc">All 4 auditoriums, lobby, concessions — the entire cinema is yours</div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn btn-gold" onclick="nextStep()" id="step1Next">Choose &amp; Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Select Details -->
+    <div class="step-panel" id="step2">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="eventDate">Event Date *</label>
+          <input type="date" id="eventDate" required onchange="clearError(this);updateSummary()">
+        </div>
+        <div class="form-group">
+          <label for="eventTime">Time Slot *</label>
+          <select id="eventTime" required onchange="clearError(this);updateSummary()">
+            <option value="">Select a time</option>
+            <option value="10:00 AM">10:00 AM — Morning</option>
+            <option value="12:00 PM">12:00 PM — Afternoon</option>
+            <option value="2:00 PM">2:00 PM — Afternoon</option>
+            <option value="4:00 PM">4:00 PM — Late Afternoon</option>
+            <option value="6:00 PM">6:00 PM — Evening</option>
+            <option value="8:00 PM">8:00 PM — Night</option>
+            <option value="10:00 PM">10:00 PM — Late Night</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="guestCount">Number of Guests *</label>
+          <input type="number" id="guestCount" min="1" max="500" placeholder="e.g. 30" required oninput="clearError(this);updateSummary()">
+        </div>
+        <div class="form-group">
+          <label for="auditorium">Auditorium *</label>
+          <select id="auditorium" required onchange="clearError(this);updateSummary()">
+            <option value="">Choose auditorium</option>
+            <option value="A">Auditorium A — 85 seats</option>
+            <option value="B">Auditorium B — 120 seats</option>
+            <option value="C">Auditorium C — 95 seats</option>
+            <option value="D">Auditorium D — 150 seats</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label for="contactName">Your Name *</label>
+          <input type="text" id="contactName" placeholder="Jane Doe" required oninput="clearError(this)">
+        </div>
+        <div class="form-group">
+          <label for="contactEmail">Email *</label>
+          <input type="email" id="contactEmail" placeholder="you@email.com" required oninput="clearError(this)">
+        </div>
+        <div class="form-group">
+          <label for="contactPhone">Phone *</label>
+          <input type="tel" id="contactPhone" placeholder="(831) 555-0123" required oninput="clearError(this)">
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn btn-outline" onclick="prevStep()">← Back</button>
+        <button class="btn btn-gold" onclick="nextStep()">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Customize Experience -->
+    <div class="step-panel" id="step3">
+      <h3 style="font-family:var(--font-display);font-size:1.25rem;margin-bottom:8px;color:var(--cream)">Dinner Menu</h3>
+      <p style="font-size:.8rem;color:var(--cream40);margin-bottom:18px">Optional — add a catered dinner to your event</p>
+      <div class="menu-selector">
+        <div class="menu-option selected" onclick="selectMenu(this,'none',0)">
+          <h4>No Dinner</h4>
+          <p>Concessions only</p>
+          <div class="mprice">Included</div>
+        </div>
+        <div class="menu-option" onclick="selectMenu(this,'menu1',25)">
+          <h4>Classic Menu</h4>
+          <p>Pizza, wings, salad, drinks</p>
+          <div class="mprice">$25 / guest</div>
+        </div>
+        <div class="menu-option" onclick="selectMenu(this,'menu2',45)">
+          <h4>Premium Menu</h4>
+          <p>Steak sliders, pasta, dessert bar</p>
+          <div class="mprice">$45 / guest</div>
+        </div>
+        <div class="menu-option" onclick="selectMenu(this,'menu3',65)">
+          <h4>Luxe Menu</h4>
+          <p>Chef's tasting, wine, full service</p>
+          <div class="mprice">$65 / guest</div>
+        </div>
+      </div>
+
+      <h3 style="font-family:var(--font-display);font-size:1.25rem;margin:36px 0 8px;color:var(--cream)">Add-Ons</h3>
+      <p style="font-size:.8rem;color:var(--cream40);margin-bottom:18px">Make it extra special</p>
+      <div class="addon-grid">
+        <div class="addon-card" onclick="toggleAddon(this,'carpet',250)">
+          <div class="addon-check"></div>
+          <div class="addon-info"><div class="addon-name">🔴 Red Carpet Entrance</div><div class="addon-price">+$250</div></div>
+        </div>
+        <div class="addon-card" onclick="toggleAddon(this,'photo',350)">
+          <div class="addon-check"></div>
+          <div class="addon-info"><div class="addon-name">📸 Photo Booth</div><div class="addon-price">+$350</div></div>
+        </div>
+        <div class="addon-card" onclick="toggleAddon(this,'hour',200)">
+          <div class="addon-check"></div>
+          <div class="addon-info"><div class="addon-name">⏱️ Extra Hour</div><div class="addon-price">+$200</div></div>
+        </div>
+        <div class="addon-card" onclick="toggleAddon(this,'bar',500)">
+          <div class="addon-check"></div>
+          <div class="addon-info"><div class="addon-name">🍸 Open Bar</div><div class="addon-price">+$500</div></div>
+        </div>
+        <div class="addon-card" onclick="toggleAddon(this,'pizza',150)">
+          <div class="addon-check"></div>
+          <div class="addon-info"><div class="addon-name">🍕 Pizza Party Pack</div><div class="addon-price">+$150</div></div>
+        </div>
+        <div class="addon-card" onclick="toggleAddon(this,'dessert',200)">
+          <div class="addon-check"></div>
+          <div class="addon-info"><div class="addon-name">🧁 Dessert Table</div><div class="addon-price">+$200</div></div>
+        </div>
+      </div>
+
+      <div class="step-nav">
+        <button class="btn btn-outline" onclick="prevStep()">← Back</button>
+        <button class="btn btn-gold" onclick="nextStep()">View Summary →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Summary -->
+    <div class="step-panel" id="step4">
+      <div class="summary-box">
+        <h3 style="font-family:var(--font-display);font-size:1.5rem;text-align:center;margin-bottom:28px;color:var(--cream)">Your Event Summary</h3>
+        <div id="summaryContent"></div>
+        <div class="summary-total">
+          <span class="label">Estimated Total</span>
+          <span class="value" id="summaryTotal">$0</span>
+        </div>
+        <div class="summary-deposit" id="depositNote"></div>
+        <div style="margin-top:32px;text-align:center">
+          <a href="https://square.link/u/vnaJZFbY" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="font-size:1.05rem;padding:18px 52px" onclick="launchConfetti()">
+            Reserve Your Date →
+          </a>
+        </div>
+        <p style="text-align:center;margin-top:14px;font-size:.75rem;color:var(--cream40)">Lock your date in 60 seconds — 50% deposit secures your booking</p>
+      </div>
+      <div style="text-align:center;margin-top:20px">
+        <a href="#offer" style="color:var(--gold);font-size:.85rem;text-decoration:underline;text-underline-offset:4px">Have a budget? Make an offer instead</a>
+      </div>
+      <div class="step-nav" style="margin-top:20px">
+        <button class="btn btn-outline" onclick="prevStep()">← Edit Details</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Live price bar -->
+<div class="live-price" id="livePrice">
+  <span class="lp-label">Est. Total</span>
+  <span class="lp-amount" id="lpAmount">$0</span>
+  <a href="javascript:void(0)" class="btn btn-gold" onclick="goToStep(4)">Reserve →</a>
+</div>
+
+<!-- ═══════════ URGENCY ═══════════ -->
+<section id="urgency" class="reveal">
+  <div class="urgency-inner">
+    <div class="urgency-icon">⚡</div>
+    <p class="urgency-text"><strong>Small theater. Limited dates.</strong> Most weekends book out 2–3 weeks in advance. Don't wait — grab yours now.</p>
+  </div>
+</section>
+
+<!-- ═══════════ MAKE AN OFFER ═══════════ -->
+<section id="offer">
+  <div class="container">
+    <div class="section-label reveal">Flexible Pricing</div>
+    <h2 class="section-title reveal">Not Sure About the Price?</h2>
+    <p class="section-sub reveal">If you have a budget in mind, send it to us. We'll do our best to make it work. No pressure, no judgment.</p>
+    <div class="offer-wrapper reveal">
+      <form id="offerForm" onsubmit="submitOffer(event)" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="offerName">Your Name *</label>
+            <input type="text" id="offerName" required placeholder="Jane Doe" oninput="clearError(this)">
+          </div>
+          <div class="form-group">
+            <label for="offerPhone">Phone *</label>
+            <input type="tel" id="offerPhone" required placeholder="(831) 555-0123" oninput="clearError(this)">
+          </div>
+          <div class="form-group full">
+            <label for="offerEmail">Email *</label>
+            <input type="email" id="offerEmail" required placeholder="you@email.com" oninput="clearError(this)">
+          </div>
+          <div class="form-group">
+            <label for="offerEvent">Event Type *</label>
+            <select id="offerEvent" required onchange="clearError(this)">
+              <option value="">Select event</option>
+              <option value="Kids Birthday">Kids Birthday Party</option>
+              <option value="Private Screening">Private Screening</option>
+              <option value="Date Night">Date Night</option>
+              <option value="Community Event">Community Event</option>
+              <option value="Full Venue Buyout">Full Venue Buyout</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="offerGuests">Number of Guests</label>
+            <input type="number" id="offerGuests" min="1" placeholder="e.g. 50">
+          </div>
+          <div class="form-group full">
+            <label for="offerBudget">Your Budget *</label>
+            <input type="text" id="offerBudget" required placeholder="e.g. $300 — be honest, we'll work with you" oninput="clearError(this)">
+          </div>
+          <div class="form-group full">
+            <label for="offerMessage">Anything Else?</label>
+            <textarea id="offerMessage" placeholder="Tell us about your vision, date preferences, special requests..."></textarea>
+          </div>
+          <div class="form-group full" style="margin-top:8px">
+            <button type="submit" class="btn btn-gold" id="offerSubmitBtn" style="width:100%;justify-content:center;padding:18px;font-size:1rem">
+              Send My Offer →
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="offer-success" id="offerSuccess">
+        <div class="check-circle">✓</div>
+        <h3>Offer Sent!</h3>
+        <p>We'll get back to you within 24 hours.<br>Check your email and phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TRUST ═══════════ -->
+<section id="trust" class="reveal">
+  <div class="container">
+    <div class="quote-block">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">This place is for the community. If you come once, you'll understand.</p>
+      <p class="quote-author">— Dr. Adeeb</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <p style="font-family:var(--font-display);font-size:1.1rem;color:var(--cream);margin-bottom:8px">Lighthouse Cinema</p>
+  <p>525 Lighthouse Ave, Pacific Grove, CA 93950</p>
+  <div class="footer-links">
+    <a href="https://www.lighthousepgcinema.com/">Main Site</a>
+    <a href="#booking">Book Event</a>
+    <a href="#offer">Make an Offer</a>
+  </div>
+</footer>
+
+<!-- ═══════════ STICKY MOBILE CTA ═══════════ -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#booking" class="btn btn-gold" onclick="addRipple(event)">Book Your Event →</a>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════════ */
+const S = {
+  step: 1, maxStep: 1,
+  pkg: null, pkgName: '', basePrice: 0,
+  date: '', time: '', guests: 0, auditorium: '',
+  name: '', email: '', phone: '',
+  menu: 'none', menuPrice: 0, menuName: 'No Dinner',
+  addons: {},
+};
+
+const ADDON_NAMES = {carpet:'Red Carpet Entrance',photo:'Photo Booth',hour:'Extra Hour',bar:'Open Bar',pizza:'Pizza Party Pack',dessert:'Dessert Table'};
+const PKG_NAMES = {kids:'Kids Birthday Party',screening:'Private Screening',date:'Date Night',community:'Community Event',buyout:'Full Venue Buyout'};
+
+/* ═══════════ TOAST ═══════════ */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function clearError(el) { el.classList.remove('error'); }
+
+/* ═══════════ STEP NAVIGATION ═══════════ */
+function goToStep(n) {
+  if (n < 1 || n > 4) return;
+  // Validate before moving forward
+  if (n > S.step && !validateStep(S.step)) return;
+  S.step = n;
+  if (n > S.maxStep) S.maxStep = n;
+
+  document.querySelectorAll('.step-panel').forEach((p, i) => p.classList.toggle('active', i === n - 1));
+  document.querySelectorAll('.step-dot').forEach((d, i) => {
+    d.classList.remove('active','done');
+    if (i + 1 === n) d.classList.add('active');
+    else if (i + 1 < n) d.classList.add('done');
+  });
+
+  if (n === 4) updateSummary();
+  updateLivePrice();
+
+  // Smooth scroll to booking
+  const booking = document.getElementById('booking');
+  const top = booking.getBoundingClientRect().top + window.scrollY - 80;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+function nextStep() { goToStep(S.step + 1); }
+function prevStep() { goToStep(S.step - 1); }
+
+/* ═══════════ VALIDATION ═══════════ */
+function validateStep(step) {
+  if (step === 1) {
+    if (!S.pkg) { showToast('Please select an experience to continue'); return false; }
+    return true;
+  }
+  if (step === 2) {
+    const fields = [
+      { id: 'eventDate', msg: 'Please select a date' },
+      { id: 'eventTime', msg: 'Please select a time slot' },
+      { id: 'guestCount', msg: 'Please enter number of guests' },
+      { id: 'auditorium', msg: 'Please choose an auditorium' },
+      { id: 'contactName', msg: 'Please enter your name' },
+      { id: 'contactEmail', msg: 'Please enter your email' },
+      { id: 'contactPhone', msg: 'Please enter your phone' },
+    ];
+    for (const f of fields) {
+      const el = document.getElementById(f.id);
+      if (!el.value.trim()) {
+        el.classList.add('error');
+        el.focus();
+        showToast(f.msg);
+        return false;
+      }
+    }
+    // Email validation
+    const email = document.getElementById('contactEmail');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      email.classList.add('error');
+      email.focus();
+      showToast('Please enter a valid email address');
+      return false;
+    }
+    // Save to state
+    S.date = document.getElementById('eventDate').value;
+    S.time = document.getElementById('eventTime').value;
+    S.guests = parseInt(document.getElementById('guestCount').value) || 0;
+    S.auditorium = document.getElementById('auditorium').value;
+    S.name = document.getElementById('contactName').value;
+    S.email = document.getElementById('contactEmail').value;
+    S.phone = document.getElementById('contactPhone').value;
+    return true;
+  }
+  return true;
+}
+
+/* ═══════════ PACKAGE SELECTION ═══════════ */
+function selectPackage(el, pkg, price) {
+  document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  S.pkg = pkg;
+  S.pkgName = PKG_NAMES[pkg] || pkg;
+  S.basePrice = price;
+  updateLivePrice();
+}
+
+/* ═══════════ MENU SELECTION ═══════════ */
+function selectMenu(el, menu, price) {
+  document.querySelectorAll('.menu-option').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  S.menu = menu;
+  S.menuPrice = price;
+  S.menuName = el.querySelector('h4').textContent;
+  updateLivePrice();
+}
+
+/* ═══════════ ADDON TOGGLE ═══════════ */
+function toggleAddon(el, key, price) {
+  el.classList.toggle('selected');
+  if (S.addons[key]) delete S.addons[key];
+  else S.addons[key] = price;
+  updateLivePrice();
+}
+
+/* ═══════════ CALCULATE TOTAL ═══════════ */
+function calcTotal() {
+  let total = S.basePrice;
+  const guests = parseInt(document.getElementById('guestCount')?.value) || S.guests || 0;
+  S.guests = guests;
+  if (S.menuPrice > 0 && guests > 0) total += S.menuPrice * guests;
+  Object.values(S.addons).forEach(p => total += p);
+  return total;
+}
+
+/* ═══════════ LIVE PRICE ═══════════ */
+function updateLivePrice() {
+  const total = calcTotal();
+  const bar = document.getElementById('livePrice');
+  const amt = document.getElementById('lpAmount');
+  animateValue(amt, total);
+  if (S.basePrice > 0 && S.step < 4) {
+    bar.classList.add('visible');
+  } else {
+    bar.classList.remove('visible');
+  }
+}
+
+function animateValue(el, target) {
+  el.textContent = '$' + target.toLocaleString();
+}
+
+/* ═══════════ SUMMARY ═══════════ */
+function updateSummary() {
+  S.date = document.getElementById('eventDate')?.value || S.date;
+  S.time = document.getElementById('eventTime')?.value || S.time;
+  S.guests = parseInt(document.getElementById('guestCount')?.value) || S.guests;
+  S.auditorium = document.getElementById('auditorium')?.value || S.auditorium;
+  S.name = document.getElementById('contactName')?.value || S.name;
+  S.email = document.getElementById('contactEmail')?.value || S.email;
+  S.phone = document.getElementById('contactPhone')?.value || S.phone;
+
+  const total = calcTotal();
+  const deposit = Math.ceil(total * 0.5);
+
+  let html = '';
+  html += row('Experience', S.pkgName || '—');
+  html += row('Date', S.date ? formatDate(S.date) : '—');
+  html += row('Time', S.time || '—');
+  html += row('Guests', S.guests || '—');
+  html += row('Auditorium', S.auditorium ? 'Auditorium ' + S.auditorium : '—');
+  html += row('Contact', S.name || '—');
+  html += row('Dinner', S.menuName);
+
+  const addonList = Object.keys(S.addons).map(k => ADDON_NAMES[k]).join(', ');
+  if (addonList) html += row('Add-Ons', addonList);
+
+  document.getElementById('summaryContent').innerHTML = html;
+  document.getElementById('summaryTotal').textContent = '$' + total.toLocaleString();
+  document.getElementById('depositNote').textContent = '50% deposit to reserve: $' + deposit.toLocaleString();
+  updateLivePrice();
+}
+
+function row(l, v) {
+  return '<div class="summary-row"><span class="label">' + l + '</span><span class="value">' + v + '</span></div>';
+}
+function formatDate(d) {
+  const dt = new Date(d + 'T00:00:00');
+  return dt.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+/* ═══════════ OFFER FORM ═══════════ */
+function submitOffer(e) {
+  e.preventDefault();
+  // Validate required fields
+  const required = ['offerName','offerPhone','offerEmail','offerEvent','offerBudget'];
+  for (const id of required) {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.classList.add('error');
+      el.focus();
+      showToast('Please fill in all required fields');
+      return;
+    }
+  }
+  const emailEl = document.getElementById('offerEmail');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+    emailEl.classList.add('error');
+    emailEl.focus();
+    showToast('Please enter a valid email address');
+    return;
+  }
+
+  const data = {
+    name: document.getElementById('offerName').value,
+    phone: document.getElementById('offerPhone').value,
+    email: document.getElementById('offerEmail').value,
+    event: document.getElementById('offerEvent').value,
+    guests: document.getElementById('offerGuests').value,
+    budget: document.getElementById('offerBudget').value,
+    message: document.getElementById('offerMessage').value,
+  };
+
+  // Send via SMS
+  const body = [
+    'New Offer from ' + data.name,
+    'Phone: ' + data.phone,
+    'Email: ' + data.email,
+    'Event: ' + data.event,
+    'Guests: ' + data.guests,
+    'Budget: ' + data.budget,
+    'Message: ' + data.message,
+  ].join('\n');
+
+  window.open('sms:+18334414049?body=' + encodeURIComponent(body), '_blank');
+
+  document.getElementById('offerForm').style.display = 'none';
+  document.getElementById('offerSuccess').style.display = 'block';
+  launchConfetti();
+}
+
+/* ═══════════ MOBILE MENU ═══════════ */
+function toggleMobile() {
+  const m = document.getElementById('mobileMenu');
+  const isOpen = m.classList.contains('open');
+  m.style.display = 'flex';
+  requestAnimationFrame(() => {
+    m.classList.toggle('open');
+  });
+  const spans = document.querySelectorAll('.hamburger span');
+  if (!isOpen) {
+    spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+    document.body.style.overflow = 'hidden';
+  } else {
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+    document.body.style.overflow = '';
+    setTimeout(() => { if (!m.classList.contains('open')) m.style.display = ''; }, 300);
+  }
+}
+
+/* ═══════════ HEADER SCROLL ═══════════ */
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  header.classList.toggle('scrolled', window.scrollY > 60);
+
+  // Hide sticky CTA when in booking section
+  const booking = document.getElementById('booking');
+  const stickyCta = document.getElementById('stickyCta');
+  if (booking && stickyCta) {
+    const rect = booking.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      stickyCta.style.transform = 'translateY(100%)';
+    } else {
+      stickyCta.style.transform = '';
+    }
+  }
+}, { passive: true });
+
+/* ═══════════ SCROLL REVEAL ═══════════ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ═══════════ COUNTER ANIMATION ═══════════ */
+function animateCounters() {
+  document.querySelectorAll('.proof-num[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    const duration = 1500;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(eased * target);
+      el.textContent = current.toLocaleString() + (target >= 100 ? '+' : '');
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounters();
+      counterObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+const proofSection = document.querySelector('.social-proof');
+if (proofSection) counterObserver.observe(proofSection);
+
+/* ═══════════ RIPPLE EFFECT ═══════════ */
+function addRipple(e) {
+  const btn = e.currentTarget;
+  const ripple = document.createElement('span');
+  ripple.classList.add('ripple');
+  const rect = btn.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+  ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+  btn.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
+}
+
+/* ═══════════ CONFETTI ═══════════ */
+function launchConfetti() {
+  const colors = ['#D4AF37','#F0E9D7','#e8cc6a','#c9a230','#fff'];
+  for (let i = 0; i < 50; i++) {
+    const el = document.createElement('div');
+    el.classList.add('confetti-piece');
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.top = '-10px';
+    el.style.width = (Math.random() * 8 + 4) + 'px';
+    el.style.height = (Math.random() * 8 + 4) + 'px';
+    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    el.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+    el.style.animationDelay = (Math.random() * 0.5) + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+  }
+}
+
+/* ═══════════ INIT ═══════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Set min date to today
+  const dateInput = document.getElementById('eventDate');
+  if (dateInput) {
+    dateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
+  }
+
+  // Default menu to "No Dinner"
+  S.menu = 'none';
+  S.menuPrice = 0;
+  S.menuName = 'No Dinner';
+});
+</script>
+</body>
+</html>
