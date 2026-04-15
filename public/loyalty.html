@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rewards | Lighthouse Cinema â Pacific Grove</title>
+  <meta name="description" content="Earn points on every purchase. Redeem for free tickets, concessions, and more at Lighthouse Cinema." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --gold: #D4AF37;
+      --gold-light: #e8d48b;
+      --cream: #F0E9D7;
+      --dark-surface: #141414;
+      --dark-card: #1a1a1a;
+      --border: #2a2a2a;
+      --text-muted: #999;
+      --success: #4CAF50;
+      --error: #f44336;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { color: var(--cream); text-decoration: none; font-size: 0.9rem; opacity: 0.8; transition: 0.2s; }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--black); padding: 0.5rem 1.2rem;
+      border-radius: 20px; font-weight: 600; font-size: 0.85rem; text-decoration: none; opacity: 1 !important;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center; padding: 4rem 1.5rem 2rem;
+      background: radial-gradient(ellipse at center, rgba(212,175,55,0.06) 0%, transparent 70%);
+    }
+    .hero-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 0.75rem; }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero p { color: var(--text-muted); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+    /* How it works */
+    .how-it-works {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      max-width: 800px; margin: 3rem auto; padding: 0 1.5rem;
+    }
+    @media (max-width: 600px) { .how-it-works { grid-template-columns: 1fr; } }
+    .step {
+      background: var(--dark-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.5rem; text-align: center;
+    }
+    .step-number {
+      background: var(--gold); color: var(--black); width: 32px; height: 32px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem; margin: 0 auto 0.75rem;
+    }
+    .step h3 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 0.4rem; color: var(--gold); }
+    .step p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* Lookup section */
+    .lookup-section {
+      max-width: 480px; margin: 2rem auto 3rem; padding: 0 1.5rem;
+    }
+    .lookup-card {
+      background: var(--dark-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 2rem; text-align: center;
+    }
+    .lookup-card h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem;
+    }
+    .lookup-card .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .lookup-form { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .lookup-form input {
+      flex: 1; background: var(--dark-surface); border: 1px solid var(--border);
+      color: var(--cream); padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.95rem;
+    }
+    .lookup-form input:focus { outline: none; border-color: var(--gold); }
+    .lookup-form button {
+      background: var(--gold); color: var(--black); border: none; padding: 0.75rem 1.5rem;
+      border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.95rem;
+    }
+
+    .or-divider {
+      display: flex; align-items: center; gap: 1rem; margin: 1rem 0;
+      color: var(--text-muted); font-size: 0.8rem;
+    }
+    .or-divider::before, .or-divider::after {
+      content: ''; flex: 1; border-top: 1px solid var(--border);
+    }
+
+    .enroll-btn {
+      width: 100%; background: transparent; border: 2px solid var(--gold); color: var(--gold);
+      padding: 0.75rem; border-radius: 8px; font-weight: 600; cursor: pointer;
+      font-size: 0.95rem; transition: 0.2s;
+    }
+    .enroll-btn:hover { background: rgba(212,175,55,0.1); }
+
+    /* Dashboard */
+    .dashboard {
+      display: none; max-width: 600px; margin: 0 auto; padding: 0 1.5rem 3rem;
+    }
+    .dashboard.visible { display: block; }
+
+    .points-card {
+      background: linear-gradient(135deg, var(--dark-card), #222);
+      border: 2px solid var(--gold); border-radius: 16px;
+      padding: 2rem; text-align: center; margin-bottom: 2rem;
+      position: relative; overflow: hidden;
+    }
+    .points-card::before {
+      content: ''; position: absolute; top: -60%; right: -30%; width: 80%; height: 120%;
+      background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+    }
+    .points-label { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+    .points-value {
+      font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--gold);
+      margin: 0.5rem 0; position: relative;
+    }
+    .points-name { color: var(--cream); font-size: 1rem; }
+    .lifetime-points { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.75rem; }
+
+    /* Rewards */
+    .rewards-section h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .reward-tier {
+      background: var(--dark-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.25rem; display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.75rem; transition: 0.2s;
+    }
+    .reward-tier.available { border-color: var(--gold); }
+    .reward-info h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .reward-info .cost { color: var(--text-muted); font-size: 0.8rem; }
+    .reward-btn {
+      background: var(--gold); color: var(--black); border: none; padding: 0.5rem 1.2rem;
+      border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer;
+    }
+    .reward-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* History */
+    .history-section { margin-top: 2rem; }
+    .history-section h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .history-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.75rem 0; border-bottom: 1px solid var(--border);
+    }
+    .history-type { font-size: 0.85rem; }
+    .history-points { font-weight: 600; }
+    .history-points.earned { color: var(--success); }
+    .history-points.redeemed { color: var(--gold); }
+    .history-date { color: var(--text-muted); font-size: 0.75rem; }
+
+    .status { padding: 0.75rem; border-radius: 8px; font-size: 0.9rem; margin: 1rem 0; display: none; }
+    .status.success { display: block; background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3); color: var(--success); }
+    .status.error { display: block; background: rgba(244,67,54,0.1); border: 1px solid rgba(244,67,54,0.3); color: var(--error); }
+
+    footer {
+      text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Lighthouse Cinema</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/events">Events</a>
+      <a href="/gift-cards.html">Gift Cards</a>
+      <a href="/loyalty.html" class="nav-cta">â­ Rewards</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon">â­</div>
+    <h1>Lighthouse <em>Rewards</em></h1>
+    <p>Earn points on every purchase â tickets, concessions, events. Redeem for free movies, snacks, and exclusive experiences.</p>
+  </div>
+
+  <!-- How it works -->
+  <div class="how-it-works">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Sign Up</h3>
+      <p>Join with just your phone number. It takes 5 seconds.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Earn Points</h3>
+      <p>1 point for every dollar spent on tickets, food, and events.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Redeem Rewards</h3>
+      <p>Cash in your points for free tickets, popcorn, or VIP perks.</p>
+    </div>
+  </div>
+
+  <!-- Lookup / Enroll -->
+  <div class="lookup-section" id="lookup-section">
+    <div class="lookup-card">
+      <h2>Check Your Rewards</h2>
+      <p class="subtitle">Enter your phone number to see your points balance.</p>
+      <div class="lookup-form">
+        <input type="tel" id="phoneInput" placeholder="(831) 555-1234" />
+        <button onclick="lookupLoyalty()">Look Up</button>
+      </div>
+      <div class="or-divider">or</div>
+      <button class="enroll-btn" onclick="enrollLoyalty()">Join the Rewards Program</button>
+      <div id="lookup-status" class="status"></div>
+    </div>
+  </div>
+
+  <!-- Dashboard (shown after lookup) -->
+  <div class="dashboard" id="dashboard">
+    <div class="points-card">
+      <div class="points-label">Your Balance</div>
+      <div class="points-value" id="points-balance">0</div>
+      <div class="points-name" id="points-name">Points</div>
+      <div class="lifetime-points">Lifetime: <span id="lifetime-points">0</span> points earned</div>
+    </div>
+
+    <div class="rewards-section" id="rewards-section">
+      <h3>Available Rewards</h3>
+      <div id="reward-tiers">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <div class="history-section">
+      <h3>Recent Activity</h3>
+      <div id="history-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Powered by <a href="https://squareup.com" target="_blank">Square Loyalty</a> Â· Lighthouse Cinema, Pacific Grove CA</p>
+  </footer>
+
+  <script>
+    let currentAccount = null;
+
+    async function lookupLoyalty() {
+      const phone = document.getElementById('phoneInput').value.trim();
+      if (!phone) {
+        showStatus('lookup-status', 'Please enter your phone number.', 'error');
+        return;
+      }
+
+      hideStatus('lookup-status');
+
+      try {
+        const response = await fetch(`/api/square/loyalty?phone=${encodeURIComponent(phone)}`);
+        const data = await response.json();
+
+        if (!data.success) {
+          showStatus('lookup-status', data.error || 'Lookup failed.', 'error');
+          return;
+        }
+
+        if (!data.account) {
+          showStatus('lookup-status', data.message || 'No account found. Join below!', 'error');
+          return;
+        }
+
+        showDashboard(data);
+
+      } catch (err) {
+        showStatus('lookup-status', 'Something went wrong. Please try again.', 'error');
+      }
+    }
+
+    async function enrollLoyalty() {
+      const phone = document.getElementById('phoneInput').value.trim();
+      if (!phone) {
+        showStatus('lookup-status', 'Enter your phone number first, then click Join.', 'error');
+        return;
+      }
+
+      hideStatus('lookup-status');
+
+      try {
+        const response = await fetch('/api/square/loyalty', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone }),
+        });
+
+        const data = await response.json();
+
+        if (!data.success) {
+          showStatus('lookup-status', data.error || 'Enrollment failed.', 'error');
+          return;
+        }
+
+        if (data.alreadyEnrolled) {
+          showStatus('lookup-status', 'You\'re already enrolled! Loading your dashboard...', 'success');
+          setTimeout(() => lookupLoyalty(), 1000);
+          return;
+        }
+
+        showStatus('lookup-status', 'Welcome to Lighthouse Rewards! ð', 'success');
+        setTimeout(() => lookupLoyalty(), 1500);
+
+      } catch (err) {
+        showStatus('lookup-status', 'Enrollment failed. Please try again.', 'error');
+      }
+    }
+
+    function showDashboard(data) {
+      currentAccount = data.account;
+
+      // Hide lookup, show dashboard
+      document.getElementById('lookup-section').style.display = 'none';
+      const dashboard = document.getElementById('dashboard');
+      dashboard.classList.add('visible');
+
+      // Points
+      document.getElementById('points-balance').textContent = data.account.balance.toLocaleString();
+      document.getElementById('lifetime-points').textContent = data.account.lifetimePoints.toLocaleString();
+
+      if (data.program) {
+        document.getElementById('points-name').textContent = data.program.namePlural || 'Points';
+      }
+
+      // Reward tiers
+      const tiersContainer = document.getElementById('reward-tiers');
+      if (data.program?.rewardTiers?.length) {
+        tiersContainer.innerHTML = data.program.rewardTiers.map(tier => {
+          const canRedeem = data.account.balance >= tier.points;
+          let rewardDesc = tier.name;
+          if (tier.percentOff) rewardDesc += ` (${tier.percentOff}% off)`;
+          if (tier.amountOff) rewardDesc += ` ($${(tier.amountOff / 100).toFixed(2)} off)`;
+
+          return `
+            <div class="reward-tier ${canRedeem ? 'available' : ''}">
+              <div class="reward-info">
+                <h4>${rewardDesc}</h4>
+                <span class="cost">${tier.points} points</span>
+              </div>
+              <button class="reward-btn" ${canRedeem ? '' : 'disabled'}
+                      onclick="redeemReward('${tier.id}', '${data.account.id}')">
+                ${canRedeem ? 'Redeem' : 'Not enough points'}
+              </button>
+            </div>
+          `;
+        }).join('');
+      } else {
+        tiersContainer.innerHTML = '<p style="color: var(--text-muted);">Reward tiers will appear here once configured.</p>';
+      }
+
+      // History
+      const historyContainer = document.getElementById('history-list');
+      if (data.events?.length) {
+        historyContainer.innerHTML = data.events.map(event => {
+          const isEarned = event.type.includes('ACCUMULATE');
+          const date = new Date(event.createdAt).toLocaleDateString('en-US', {
+            month: 'short', day: 'numeric', year: 'numeric'
+          });
+          return `
+            <div class="history-item">
+              <div>
+                <div class="history-type">${isEarned ? 'Points earned' : 'Reward redeemed'}</div>
+                <div class="history-date">${date}</div>
+              </div>
+              <span class="history-points ${isEarned ? 'earned' : 'redeemed'}">
+                ${isEarned ? '+' : '-'}${event.points}
+              </span>
+            </div>
+          `;
+        }).join('');
+      } else {
+        historyContainer.innerHTML = '<p style="color: var(--text-muted); padding: 1rem 0;">No activity yet. Make a purchase to start earning!</p>';
+      }
+    }
+
+    async function redeemReward(tierId, accountId) {
+      if (!confirm('Redeem this reward? Points will be deducted from your balance.')) return;
+
+      try {
+        const response = await fetch('/api/square/loyalty', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'redeem',
+            phone: document.getElementById('phoneInput').value.trim(),
+            rewardTierId: tierId,
+            accountId: accountId,
+          }),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+          alert('Reward redeemed! ð Show this to the box office.');
+          lookupLoyalty(); // Refresh dashboard
+        } else {
+          alert(data.error || 'Redemption failed.');
+        }
+      } catch (err) {
+        alert('Something went wrong. Please try again.');
+      }
+    }
+
+    function showStatus(id, msg, type) {
+      const el = document.getElementById(id);
+      el.textContent = msg;
+      el.className = `status ${type}`;
+    }
+    function hideStatus(id) {
+      document.getElementById(id).className = 'status';
+    }
+  </script>
+</body>
+</html>
