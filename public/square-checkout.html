@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | Lighthouse Cinema â Pacific Grove</title>
+  <meta name="description" content="Secure checkout for Lighthouse Cinema tickets, events, and concessions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Square Web Payments SDK -->
+  <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --gold: #D4AF37;
+      --gold-light: #e8d48b;
+      --cream: #F0E9D7;
+      --dark-surface: #141414;
+      --dark-card: #1a1a1a;
+      --border: #2a2a2a;
+      --text-muted: #999;
+      --success: #4CAF50;
+      --error: #f44336;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* âââ NAV ââââââââââââââââââââââââââââââââââââââ */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-secure {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--success);
+      font-size: 0.8rem;
+    }
+
+    /* âââ LAYOUT âââââââââââââââââââââââââââââââââââ */
+    .checkout-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .checkout-wrapper { grid-template-columns: 1fr; }
+    }
+
+    /* âââ ORDER SUMMARY ââââââââââââââââââââââââââââ */
+    .order-summary {
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 80px;
+    }
+    .order-summary h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .order-items { display: flex; flex-direction: column; gap: 0.75rem; }
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+    .order-item-name { font-size: 0.9rem; }
+    .order-item-qty { color: var(--text-muted); font-size: 0.8rem; }
+    .order-item-price { color: var(--gold); font-weight: 500; }
+    .order-divider { border: none; border-top: 1px solid var(--border); margin: 0.75rem 0; }
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      padding: 0.25rem 0;
+    }
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      margin-top: 0.5rem;
+    }
+    .order-total .amount { color: var(--gold); font-size: 1.3rem; }
+
+    /* âââ GIFT CARD APPLY ââââââââââââââââââââââââââ */
+    .gift-card-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .gift-card-toggle {
+      color: var(--gold);
+      font-size: 0.85rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-decoration: underline;
+    }
+    .gift-card-form {
+      display: none;
+      margin-top: 0.75rem;
+      gap: 0.5rem;
+    }
+    .gift-card-form.open { display: flex; }
+    .gift-card-form input {
+      flex: 1;
+      background: var(--dark-surface);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    .gift-card-form button {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    /* âââ PAYMENT FORM âââââââââââââââââââââââââââââ */
+    .payment-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .payment-section h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--cream);
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .form-group input {
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Square Card Container */
+    #card-container {
+      min-height: 90px;
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    /* Loyalty opt-in */
+    .loyalty-opt-in {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02));
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .loyalty-opt-in input[type="checkbox"] {
+      accent-color: var(--gold);
+      width: 18px;
+      height: 18px;
+    }
+    .loyalty-opt-in label {
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .loyalty-opt-in .points-badge {
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+    }
+
+    /* Pay Button */
+    #pay-button {
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+    #pay-button:hover:not(:disabled) {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    }
+    #pay-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    #pay-button .spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(10,10,10,0.3);
+      border-top: 2px solid var(--black);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto;
+    }
+    #pay-button.loading .btn-text { display: none; }
+    #pay-button.loading .spinner { display: block; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Status Messages */
+    .status-message {
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .status-message.success {
+      display: block;
+      background: rgba(76, 175, 80, 0.1);
+      border: 1px solid rgba(76, 175, 80, 0.3);
+      color: var(--success);
+    }
+    .status-message.error {
+      display: block;
+      background: rgba(244, 67, 54, 0.1);
+      border: 1px solid rgba(244, 67, 54, 0.3);
+      color: var(--error);
+    }
+
+    /* Success screen */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+    .success-screen.visible { display: block; }
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+    }
+    .success-screen h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .success-screen p { color: var(--text-muted); margin-bottom: 1rem; }
+    .success-screen a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Lighthouse Cinema</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/events">Events</a>
+      <a href="/gift-cards.html">Gift Cards</a>
+      <span class="nav-secure">ð Secure Checkout</span>
+    </div>
+  </nav>
+
+  <!-- âââ CHECKOUT FORM âââââââââââââââââââââââââââ -->
+  <div class="checkout-wrapper" id="checkout-form">
+    <div class="payment-section">
+      <h1>Checkout</h1>
+
+      <!-- Contact Info -->
+      <h3 class="section-title">Your Information</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" placeholder="Jane" required />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" placeholder="Doe" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="jane@example.com" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone (for loyalty rewards)</label>
+        <input type="tel" id="phone" placeholder="(831) 555-1234" />
+      </div>
+
+      <!-- Payment -->
+      <h3 class="section-title">Payment</h3>
+      <div id="card-container"></div>
+      <div id="payment-status" class="status-message"></div>
+
+      <!-- Loyalty -->
+      <div class="loyalty-opt-in">
+        <input type="checkbox" id="loyaltyOptIn" checked />
+        <label for="loyaltyOptIn">
+          Earn rewards on this purchase
+          <span class="points-badge">EARN POINTS</span>
+        </label>
+      </div>
+
+      <!-- Pay -->
+      <button id="pay-button" disabled>
+        <span class="btn-text">Pay Now</span>
+        <div class="spinner"></div>
+      </button>
+    </div>
+
+    <!-- Order Summary Sidebar -->
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div class="order-items" id="order-items">
+        <!-- Populated by JS -->
+        <div class="order-item">
+          <div>
+            <div class="order-item-name">Loading...</div>
+          </div>
+        </div>
+      </div>
+      <hr class="order-divider" />
+      <div class="order-row">
+        <span>Subtotal</span>
+        <span id="subtotal">$0.00</span>
+      </div>
+      <div class="order-row">
+        <span>Tax</span>
+        <span id="tax">$0.00</span>
+      </div>
+      <div class="order-row" id="gift-card-discount-row" style="display: none;">
+        <span>Gift Card</span>
+        <span id="gift-card-discount" style="color: var(--success);">-$0.00</span>
+      </div>
+      <div class="order-total">
+        <span>Total</span>
+        <span class="amount" id="total">$0.00</span>
+      </div>
+
+      <!-- Gift Card -->
+      <div class="gift-card-section">
+        <button class="gift-card-toggle" onclick="toggleGiftCard()">Have a gift card?</button>
+        <div class="gift-card-form" id="gift-card-form">
+          <input type="text" id="giftCardNumber" placeholder="Gift card number" />
+          <button onclick="applyGiftCard()">Apply</button>
+        </div>
+        <div id="gift-card-status" style="font-size: 0.8rem; margin-top: 0.5rem;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- âââ SUCCESS SCREEN ââââââââââââââââââââââââââ -->
+  <div class="success-screen" id="success-screen">
+    <div class="success-icon">â</div>
+    <h2>Payment Confirmed!</h2>
+    <p>Thank you for your purchase. A confirmation email is on its way.</p>
+    <p id="receipt-link"></p>
+    <p id="loyalty-earned" style="color: var(--gold); margin-top: 1rem;"></p>
+    <br />
+    <a href="/">â Back to Lighthouse Cinema</a>
+  </div>
+
+  <footer>
+    <p>Powered by <a href="https://squareup.com" target="_blank">Square</a> Â· Lighthouse Cinema, Pacific Grove CA</p>
+    <p style="margin-top: 0.5rem;">Payments are encrypted and processed securely.</p>
+  </footer>
+
+  <script>
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    // CONFIGURATION
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    const SQUARE_APP_ID = 'sandbox-sq0idb-LGLq0aIqSJ2s3YwlWjkwvw';     // Replace with env var in production
+    const SQUARE_LOCATION_ID = 'LHKQ2AZNEP4VZ';  // Replace with env var in production
+
+    let card;
+    let appliedGiftCard = null;
+
+    // âââ Order state (populated from URL params or cart) âââ
+    const ORDER = {
+      items: [],
+      subtotalCents: 0,
+      taxRate: 0.0925, // 9.25% Monterey County
+      taxCents: 0,
+      giftCardDiscountCents: 0,
+      totalCents: 0,
+    };
+
+
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    // INIT
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    document.addEventListener('DOMContentLoaded', async () => {
+      loadOrderFromParams();
+      renderOrderSummary();
+      await initSquarePayments();
+    });
+
+
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    // LOAD ORDER
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    function loadOrderFromParams() {
+      const params = new URLSearchParams(window.location.search);
+
+      // Support ?items=name:priceCents:qty,name:priceCents:qty
+      const itemsParam = params.get('items');
+      if (itemsParam) {
+        ORDER.items = itemsParam.split(',').map(item => {
+          const [name, priceCents, qty] = item.split(':');
+          return {
+            name: decodeURIComponent(name),
+            priceCents: parseInt(priceCents) || 0,
+            qty: parseInt(qty) || 1,
+          };
+        });
+      }
+
+      // Or simple: ?item=Movie+Ticket&amount=1500&qty=2
+      if (!ORDER.items.length) {
+        const itemName = params.get('item') || 'Movie Ticket';
+        const amount = parseInt(params.get('amount') || '1500');
+        const qty = parseInt(params.get('qty') || '1');
+        ORDER.items = [{ name: itemName, priceCents: amount, qty }];
+      }
+
+      // Calculate totals
+      ORDER.subtotalCents = ORDER.items.reduce((sum, i) => sum + i.priceCents * i.qty, 0);
+      ORDER.taxCents = Math.round(ORDER.subtotalCents * ORDER.taxRate);
+      ORDER.totalCents = ORDER.subtotalCents + ORDER.taxCents;
+    }
+
+
+    function renderOrderSummary() {
+      const container = document.getElementById('order-items');
+      container.innerHTML = ORDER.items.map(item => `
+        <div class="order-item">
+          <div>
+            <div class="order-item-name">${item.name}</div>
+            <div class="order-item-qty">Qty: ${item.qty}</div>
+          </div>
+          <span class="order-item-price">$${((item.priceCents * item.qty) / 100).toFixed(2)}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('subtotal').textContent = `$${(ORDER.subtotalCents / 100).toFixed(2)}`;
+      document.getElementById('tax').textContent = `$${(ORDER.taxCents / 100).toFixed(2)}`;
+      updateTotal();
+    }
+
+
+    function updateTotal() {
+      const chargeAmount = ORDER.subtotalCents + ORDER.taxCents - ORDER.giftCardDiscountCents;
+      ORDER.totalCents = Math.max(0, chargeAmount);
+
+      document.getElementById('total').textContent = `$${(ORDER.totalCents / 100).toFixed(2)}`;
+
+      const btn = document.getElementById('pay-button');
+      btn.querySelector('.btn-text').textContent = ORDER.totalCents > 0
+        ? `Pay $${(ORDER.totalCents / 100).toFixed(2)}`
+        : 'Complete Order (Covered by Gift Card)';
+    }
+
+
+    // âââââââââââââââââââââââââââââââââââââââââââââââââ
+    // SQUARE WEB PAYMENTS SDK
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    async function initSquarePayments() {
+      if (!window.Square) {
+        showStatus('Square payments SDK failed to load.', 'error');
+        return;
+      }
+
+      try {
+        const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID);
+
+        // Initialize card payment method
+        card = await payments.card();
+        await card.attach('#card-container');
+
+        document.getElementById('pay-button').disabled = false;
+        document.getElementById('pay-button').addEventListener('click', handlePayment);
+
+      } catch (err) {
+        console.error('Square init error:', err);
+        showStatus('Failed to initialize payment form. Please refresh.', 'error');
+      }
+    }
+
+
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    // PAYMENT HANDLER
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    async function handlePayment() {
+      const btn = document.getElementById('pay-button');
+
+      // Validate form
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      if (!firstName || !email) {
+        showStatus('Please fill in your name and email.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.classList.add('loading');
+      hideStatus();
+
+      try {
+        // If gift card covers the full amount, skip card payment
+        if (ORDER.totalCents === 0 && appliedGiftCard) {
+          await completeOrder({ firstName, lastName, email, phone, paymentId: 'gift-card-only' });
+          return;
+        }
+
+        // Tokenize the card
+        const result = await card.tokenize();
+
+        if (result.status !== 'OK') {
+          const errorMsg = result.errors?.map(e => e.message).join(', ') || 'Card validation failed.';
+          showStatus(errorMsg, 'error');
+          btn.disabled = false;
+          btn.classList.remove('loading');
+          return;
+        }
+
+        // Send to our API
+        const response = await fetch('/api/square/payments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sourceId: result.token,
+            amountCents: ORDER.totalCents,
+            note: `Lighthouse Cinema â ${ORDER.items.map(i => i.name).join(', ')}`,
+            referenceId: `web_${Date.now()}`,
+            customer: { firstName, lastName, email, phone },
+            earnLoyaltyPoints: document.getElementById('loyaltyOptIn').checked,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.error || 'Payment failed.');
+        }
+
+        await completeOrder({
+          firstName,
+          lastName,
+          email,
+          phone,
+          paymentId: data.payment.id,
+          receiptUrl: data.payment.receiptUrl,
+          loyalty: data.loyalty,
+        });
+
+      } catch (err) {
+        console.error('Payment error:', err);
+        showStatus(err.message || 'Payment failed. Please try again.', 'error');
+        btn.disabled = false;
+        btn.classList.remove('loading');
+      }
+    }
+
+
+    async function completeOrder({ firstName, receiptUrl, loyalty }) {
+      // Show success screen
+      document.getElementById('checkout-form').style.display = 'none';
+      const successScreen = document.getElementById('success-screen');
+      successScreen.classList.add('visible');
+
+      if (receiptUrl) {
+        document.getElementById('receipt-link').innerHTML =
+          `<a href="${receiptUrl}" target="_blank">View your receipt â</a>`;
+      }
+
+      if (loyalty?.pointsEarned) {
+        document.getElementById('loyalty-earned').textContent =
+          `ð¬ You earned ${loyalty.pointsEarned} reward points on this purchase!`;
+      }
+    }
+
+
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    // GIFT CARD
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    function toggleGiftCard() {
+      document.getElementById('gift-card-form').classList.toggle('open');
+    }
+
+    async function applyGiftCard() {
+      const gan = document.getElementById('giftCardNumber').value.trim();
+      const statusEl = document.getElementById('gift-card-status');
+
+      if (!gan) { statusEl.textContent = 'Enter a card number.'; return; }
+
+      statusEl.textContent = 'Checking...';
+      statusEl.style.color = 'var(--text-muted)';
+
+      try {
+        const response = await fetch(`/api/square/gift-cards?gan=${encodeURIComponent(gan)}`);
+        const data = await response.json();
+
+        if (!data.found) {
+          statusEl.textContent = data.message || 'Card not found.';
+          statusEl.style.color = 'var(--error)';
+          return;
+        }
+
+        if (data.balanceCents <= 0) {
+          statusEl.textContent = 'This gift card has no remaining balance.';
+          statusEl.style.color = 'var(--error)';
+          return;
+        }
+
+        // Apply the gift card
+        appliedGiftCard = data;
+        const applyAmount = Math.min(data.balanceCents, ORDER.subtotalCents + ORDER.taxCents);
+        ORDER.giftCardDiscountCents = applyAmount;
+
+        document.getElementById('gift-card-discount-row').style.display = 'flex';
+        document.getElementById('gift-card-discount').textContent = `-$${(applyAmount / 100).toFixed(2)}`;
+
+        statusEl.innerHTML = `â Gift card applied! Balance: ${data.balance}`;
+        statusEl.style.color = 'var(--success)';
+
+        updateTotal();
+
+      } catch (err) {
+        statusEl.textContent = 'Error checking gift card.';
+        statusEl.style.color = 'var(--error)';
+      }
+    }
+
+
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    // HELPERS
+    // âââââââââââââââââââââââââââââââââââââââââââââââââââ
+    function showStatus(message, type) {
+      const el = document.getElementById('payment-status');
+      el.textContent = message;
+      el.className = `status-message ${type}`;
+    }
+
+    function hideStatus() {
+      document.getElementById('payment-status').className = 'status-message';
+    }
+  </script>
+</body>
+</html>
