@@ -38,7 +38,7 @@ export default function EventDetailPage() {
       time: event.time,
       packageId: pkg.id,
       packageName: pkg.name,
-      unitPrice: pkg.price,
+      ticketPrice: pkg.price,
       quantity,
     };
     try { sessionStorage.setItem('lh_cart', JSON.stringify([item])); } catch {}
