@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan Your Event | Lighthouse Cinema — Pacific Grove</title>
+  <meta name="description" content="Book birthdays, private parties, and community events at Lighthouse Cinema. We'll text you back within minutes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --gold: #D4AF37;
+      --gold-light: #e8d48b;
+      --cream: #F0E9D7;
+      --dark-surface: #141414;
+      --dark-card: #1a1a1a;
+      --border: #2a2a2a;
+      --text-muted: #999;
+      --success: #4CAF50;
+      --error: #f44336;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { color: var(--cream); text-decoration: none; font-size: 0.9rem; opacity: 0.8; }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    .hero {
+      text-align: center; padding: 3.5rem 1.5rem 1.5rem;
+      background: radial-gradient(ellipse at center, rgba(212,175,55,0.08) 0%, transparent 70%);
+    }
+    .hero-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 0.75rem; }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero p { color: var(--text-muted); max-width: 560px; margin: 0 auto; line-height: 1.6; }
+
+    .urgency {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.3);
+      color: var(--gold);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+    .pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    .form-wrapper {
+      max-width: 560px; margin: 2rem auto 3rem; padding: 0 1.5rem;
+    }
+    .form-card {
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .field { margin-bottom: 1.25rem; }
+    .field label {
+      display: block; font-size: 0.85rem; font-weight: 500;
+      margin-bottom: 0.4rem; color: var(--cream);
+    }
+    .field label .req { color: var(--gold); }
+
+    .field input, .field select, .field textarea {
+      width: 100%;
+      background: var(--dark-surface);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    .field textarea { resize: vertical; min-height: 90px; }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none; border-color: var(--gold);
+    }
+
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 480px) { .row-2 { grid-template-columns: 1fr; gap: 0; } .row-2 .field { margin-bottom: 1.25rem; } }
+
+    /* Honeypot (hidden from humans) */
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover:not(:disabled) { background: var(--gold-light); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .sms-btn {
+      display: block; width: 100%;
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      padding: 0.85rem;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: 0.75rem;
+      transition: 0.2s;
+    }
+    .sms-btn:hover { background: rgba(212,175,55,0.1); }
+
+    .divider {
+      display: flex; align-items: center; gap: 1rem;
+      color: var(--text-muted); font-size: 0.8rem;
+      margin: 1.25rem 0 0.25rem;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; border-top: 1px solid var(--border);
+    }
+
+    .status { padding: 0.75rem; border-radius: 8px; font-size: 0.9rem; margin-top: 1rem; display: none; }
+    .status.success { display: block; background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3); color: var(--success); }
+    .status.error { display: block; background: rgba(244,67,54,0.1); border: 1px solid rgba(244,67,54,0.3); color: var(--error); }
+
+    /* Success state */
+    .success-screen {
+      display: none; text-align: center; padding: 2rem 1rem;
+    }
+    .success-screen.visible { display: block; }
+    .form-card.hidden { display: none; }
+    .success-icon { font-size: 4rem; margin-bottom: 1rem; }
+    .success-screen h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 0.75rem; }
+    .success-screen p { color: var(--cream); line-height: 1.6; max-width: 440px; margin: 0 auto 1.5rem; }
+    .success-screen .sub { color: var(--text-muted); font-size: 0.9rem; }
+
+    footer {
+      text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Lighthouse Cinema</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/events">Events</a>
+      <a href="/gift-cards.html">Gift Cards</a>
+      <a href="/loyalty.html">Rewards</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-icon">🎬</div>
+    <h1>Plan Your <em>Private Event</em></h1>
+    <p>Birthdays, private screenings, corporate events, and community nights — we've got you. Tell us what you're planning and we'll text you right back.</p>
+    <div class="urgency">
+      <span class="pulse"></span>
+      Dates fill fast — we'll text you within minutes.
+    </div>
+  </div>
+
+  <div class="form-wrapper">
+    <div class="form-card" id="form-card">
+      <form id="event-form" autocomplete="on" novalidate>
+        <!-- Honeypot -->
+        <div class="hp">
+          <label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <div class="field">
+          <label for="name">Full Name <span class="req">*</span></label>
+          <input type="text" id="name" name="name" required placeholder="Jane Doe" />
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label for="phone">Phone <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" required placeholder="(831) 555-1234" />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="eventType">Event Type <span class="req">*</span></label>
+          <select id="eventType" name="eventType" required>
+            <option value="">Select an event type...</option>
+            <option>Birthday</option>
+            <option>Private Party</option>
+            <option>Corporate Event</option>
+            <option>Community Event</option>
+          </select>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label for="eventDate">Event Date <span class="req">*</span></label>
+            <input type="date" id="eventDate" name="eventDate" required />
+          </div>
+          <div class="field">
+            <label for="guests">Number of Guests <span class="req">*</span></label>
+            <input type="number" id="guests" name="guests" min="1" max="500" required placeholder="25" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="budget">Budget (optional)</label>
+          <input type="text" id="budget" name="budget" placeholder="$500 – $2,000" />
+        </div>
+
+        <div class="field">
+          <label for="message">Message / Special Requests</label>
+          <textarea id="message" name="message" placeholder="Tell us about your event, theme, movie preferences, catering needs..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Submit Event Request</button>
+        <div class="divider">or</div>
+        <a href="sms:+18315551234?&body=Hi%20Lighthouse!%20I'd%20like%20to%20plan%20an%20event." class="sms-btn">💬 Text Us Instead Now</a>
+
+        <div id="status" class="status"></div>
+      </form>
+    </div>
+
+    <div class="success-screen" id="success">
+      <div class="success-icon">✅</div>
+      <h2>Thank You!</h2>
+      <p>We received your request. We'll text you shortly to finalize your event.</p>
+      <p class="sub">Check your phone in the next few minutes — we reply fast.</p>
+      <a href="/" class="sms-btn" style="margin-top: 2rem;">← Back to Home</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>Lighthouse Cinema · Pacific Grove, CA · <a href="/">lighthousecinemapg.com</a></p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('event-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const statusEl = document.getElementById('status');
+    const formCard = document.getElementById('form-card');
+    const successScreen = document.getElementById('success');
+
+    function showStatus(msg, type) {
+      statusEl.textContent = msg;
+      statusEl.className = `status ${type}`;
+    }
+    function clearStatus() { statusEl.className = 'status'; statusEl.textContent = ''; }
+
+    function validPhone(p) {
+      // Strip non-digits and require 10-15 digits
+      const digits = p.replace(/\D/g, '');
+      return digits.length >= 10 && digits.length <= 15;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearStatus();
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      // Honeypot check
+      if (data.website) return; // silent fail on bots
+
+      // Phone validation
+      if (!validPhone(data.phone)) {
+        showStatus('Please enter a valid phone number (at least 10 digits).', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const res = await fetch('/api/events', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const result = await res.json();
+
+        if (!res.ok || !result.success) {
+          throw new Error(result.error || 'Submission failed.');
+        }
+
+        formCard.classList.add('hidden');
+        successScreen.classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        showStatus(err.message || 'Something went wrong. Please try again or text us directly.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Event Request';
+      }
+    });
+  </script>
+</body>
+</html>
