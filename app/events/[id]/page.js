@@ -62,7 +62,6 @@ export default function EventDetailPage() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 380px', gap: 32, marginTop: 20 }} className="event-grid">
           <section>
-            <span style={{ fontSize: 11, color: '#d4af37', letterSpacing: 1 }}>🔥 SELLING FAST</span>
             <h1 style={{ fontSize: 40, margin: '8px 0 12px', color: '#f5e9c8' }}>{event.title}</h1>
             <div style={{ opacity: 0.85, marginBottom: 16 }}>
               📅 {formatDate(event.date)} · ⏰ {formatTime(event.time)} · 📍 {event.venue}
