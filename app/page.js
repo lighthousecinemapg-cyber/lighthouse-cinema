@@ -147,7 +147,7 @@ export default function HomePage() {
 
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '100px 20px 80px' }}>
           <div style={{ fontSize: '0.8rem', letterSpacing: 5, color: gold, marginBottom: 20, textTransform: 'uppercase' }}>
-            Pacific Grove · Since 1987
+            Pacific Grove Â· Since 1987
           </div>
           <h1 style={{
             fontSize: 'clamp(2.6rem, 5.5vw, 4.2rem)',
@@ -240,7 +240,7 @@ export default function HomePage() {
       </section>
 
       
-      {/* COMING SOON — The Devil Wears Prada 2 */}
+      {/* COMING SOON â The Devil Wears Prada 2 */}
       <section id="coming-soon" style={{
         padding: '80px 0 88px',
         background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
@@ -651,7 +651,7 @@ export default function HomePage() {
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                         <div>
                           <div style={{ fontSize: '0.85rem', color: gold, fontWeight: 600 }}>{formatDate(event.date)}</div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} · {event.venue}</div>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} Â· {event.venue}</div>
                         </div>
                         <div style={{ textAlign: 'right' }}>
                           <div style={{ fontSize: '1.4rem', fontWeight: 700, color: gold, fontFamily: "'Playfair Display', serif" }}>${event.ticketPrice}</div>
@@ -737,11 +737,11 @@ export default function HomePage() {
       {/*  9. MARQUEE  */}
       <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-          PROJECT HAIL MARY  NOW PLAYING &nbsp;·&nbsp;
-          ZORBA THE GREEK DAILY 4PM &nbsp;·&nbsp;
-          BINGO THURSDAYS 7PM &nbsp;·&nbsp;
-          KARAOKE FRIDAYS 7:30PM &nbsp;·&nbsp;
-          SALSA SATURDAYS 8PM &nbsp;·&nbsp;
+          PROJECT HAIL MARY  NOW PLAYING &nbsp;Â·&nbsp;
+          ZORBA THE GREEK DAILY 4PM &nbsp;Â·&nbsp;
+          BINGO THURSDAYS 7PM &nbsp;Â·&nbsp;
+          KARAOKE FRIDAYS 7:30PM &nbsp;Â·&nbsp;
+          SALSA SATURDAYS 8PM &nbsp;Â·&nbsp;
           BAR & GRILL OPEN
         </div>
       </section>
@@ -771,7 +771,8 @@ export default function HomePage() {
           </div>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="sms:+18334414049" style={goldBtn}>Text the Cinema</a>
-            <a href="tel:+18334414049" style={darkBtn}>Call the Cinema</a>
+            <a href="tel:+18317173124" style={darkBtn}>Call the Cinema (831) 717-3124</a>
+            <a href="tel:+18317173124" style={{...darkBtn, border: '1px solid #D4AF37', color: '#D4AF37'}}>Call Manager Direct</a>
           </div>
         </div>
       </section>
