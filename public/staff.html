@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff | Lighthouse Cinema</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #1a1a2e; color: #eee; min-height: 100vh; }
+.login-wrap { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+.login-box { background: #16213e; padding: 40px; border-radius: 12px; text-align: center; width: 340px; }
+.login-box h1 { color: #e94560; margin-bottom: 8px; font-size: 24px; }
+.login-box p { color: #999; margin-bottom: 24px; font-size: 14px; }
+.login-box input { width: 100%; padding: 12px 16px; border: 2px solid #333; border-radius: 8px; background: #0f3460; color: #fff; font-size: 16px; text-align: center; letter-spacing: 4px; }
+.login-box input:focus { outline: none; border-color: #e94560; }
+.login-box button { width: 100%; padding: 12px; margin-top: 16px; background: #e94560; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: 600; }
+.login-box button:hover { background: #c73650; }
+.login-box .error { color: #e94560; margin-top: 12px; font-size: 14px; display: none; }
+.app { display: none; }
+header { background: #16213e; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e94560; }
+header h1 { color: #e94560; font-size: 20px; }
+header .right { display: flex; gap: 12px; align-items: center; }
+header button { padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; font-size: 14px; font-weight: 600; }
+.btn-add { background: #e94560; color: #fff; }
+.btn-add:hover { background: #c73650; }
+.btn-logout { background: #333; color: #ccc; }
+.btn-logout:hover { background: #444; }
+.btn-back { background: #0f3460; color: #fff; }
+.tabs { display: flex; gap: 0; background: #16213e; padding: 0 24px; }
+.tab { padding: 12px 20px; cursor: pointer; color: #999; font-weight: 600; border-bottom: 3px solid transparent; }
+.tab.active { color: #e94560; border-bottom-color: #e94560; }
+.tab:hover { color: #fff; }
+main { padding: 24px; max-width: 1000px; margin: 0 auto; }
+.events-list { display: flex; flex-direction: column; gap: 12px; }
+.event-card { background: #16213e; border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+.event-card .info h3 { font-size: 16px; margin-bottom: 4px; }
+.event-card .info .meta { color: #999; font-size: 13px; }
+.event-card .meta span { margin-right: 12px; }
+.event-card .actions { display: flex; gap: 8px; }
+.event-card .actions button { padding: 6px 14px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; }
+.btn-edit { background: #0f3460; color: #fff; }
+.btn-edit:hover { background: #1a4a8a; }
+.btn-del { background: #333; color: #e94560; }
+.btn-del:hover { background: #444; }
+.today-section { margin-bottom: 32px; }
+.today-section h2 { color: #e94560; margin-bottom: 16px; font-size: 18px; }
+.no-events { color: #666; font-style: italic; padding: 20px; }
+.form-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; }
+.form-overlay.show { display: flex; }
+.form-box { background: #16213e; padding: 32px; border-radius: 12px; width: 440px; max-height: 90vh; overflow-y: auto; }
+.form-box h2 { color: #e94560; margin-bottom: 20px; }
+.form-box label { display: block; color: #999; font-size: 13px; margin-bottom: 4px; margin-top: 12px; }
+.form-box input, .form-box select, .form-box textarea { width: 100%; padding: 10px 12px; border: 2px solid #333; border-radius: 6px; background: #0f3460; color: #fff; font-size: 14px; }
+.form-box textarea { height: 80px; resize: vertical; }
+.form-box input:focus, .form-box select:focus, .form-box textarea:focus { outline: none; border-color: #e94560; }
+.form-btns { display: flex; gap: 12px; margin-top: 24px; }
+.form-btns button { flex: 1; padding: 10px; border-radius: 6px; border: none; cursor: pointer; font-size: 14px; font-weight: 600; }
+.btn-save { background: #e94560; color: #fff; }
+.btn-cancel { background: #333; color: #ccc; }
+.toast { position: fixed; bottom: 24px; right: 24px; background: #27ae60; color: #fff; padding: 12px 24px; border-radius: 8px; font-weight: 600; display: none; z-index: 200; }
+.toast.error { background: #e94560; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+.badge-today { background: #27ae60; color: #fff; }
+.badge-soon { background: #f39c12; color: #fff; }
+.badge-past { background: #555; color: #999; }
+</style>
+</head>
+<body>
+<!-- LOGIN -->
+<div class="login-wrap" id="loginScreen">
+  <div class="login-box">
+    <h1>Lighthouse Cinema</h1>
+    <p>Staff Portal</p>
+    <input type="password" id="codeInput" placeholder="Enter staff code" maxlength="20">
+    <button onclick="tryLogin()">Sign In</button>
+    <div class="error" id="loginError">Wrong code. Try again.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="appScreen">
+  <header>
+    <h1>Lighthouse Staff</h1>
+    <div class="right">
+      <button class="btn-add" onclick="showAddForm()">+ Add Event</button>
+      <button class="btn-logout" onclick="logout()">Log Out</button>
+    </div>
+  </header>
+  <div class="tabs">
+    <div class="tab active" data-tab="today" onclick="switchTab('today')">Today</div>
+    <div class="tab" data-tab="upcoming" onclick="switchTab('upcoming')">Upcoming</div>
+    <div class="tab" data-tab="all" onclick="switchTab('all')">All Events</div>
+  </div>
+  <main id="content"></main>
+</div>
+
+<!-- ADD/EDIT FORM -->
+<div class="form-overlay" id="formOverlay">
+  <div class="form-box">
+    <h2 id="formTitle">Add Event</h2>
+    <input type="hidden" id="formId">
+    <label>Event Name</label>
+    <input type="text" id="formName" placeholder="e.g. Bingo Night">
+    <label>Date</label>
+    <input type="date" id="formDate">
+    <label>Time</label>
+    <input type="time" id="formTime">
+    <label>Description</label>
+    <textarea id="formDesc" placeholder="Short description..."></textarea>
+    <label>Category</label>
+    <select id="formCat">
+      <option value="movie">Movie</option>
+      <option value="live-entertainment">Live Entertainment</option>
+      <option value="community">Community</option>
+      <option value="private">Private Event</option>
+    </select>
+    <label>Ticket Price ($)</label>
+    <input type="number" id="formPrice" placeholder="0" min="0">
+    <label>Booking/Ticket URL</label>
+    <input type="url" id="formUrl" placeholder="https://square.link/...">
+    <div class="form-btns">
+      <button class="btn-cancel" onclick="closeForm()">Cancel</button>
+      <button class="btn-save" onclick="saveEvent()">Save Event</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CODE = 'lighthouse2026';
+const API = '/api/events';
+let events = [];
+let staffCode = '';
+let currentTab = 'today';
+
+// LOGIN
+function tryLogin() {
+  const input = document.getElementById('codeInput');
+  const code = input.value.trim();
+  if (code === CODE) {
+    staffCode = code;
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('appScreen').style.display = 'block';
+    loadEvents();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    input.value = '';
+    input.focus();
+  }
+}
+document.getElementById('codeInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') tryLogin();
+});
+
+function logout() {
+  staffCode = '';
+  document.getElementById('appScreen').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('codeInput').value = '';
+  document.getElementById('loginError').style.display = 'none';
+}
+
+// EVENTS
+async function loadEvents() {
+  try {
+    const resp = await fetch(API);
+    const data = await resp.json();
+    events = (data.events || []).sort((a, b) => {
+      const da = a.date + (a.time || ''); 
+      const db = b.date + (b.time || '');
+      return da.localeCompare(db);
+    });
+    renderTab();
+  } catch (err) {
+    showToast('Could not load events', true);
+  }
+}
+
+function renderTab() {
+  const el = document.getElementById('content');
+  const today = new Date().toISOString().split('T')[0];
+  
+  let filtered = events;
+  if (currentTab === 'today') {
+    filtered = events.filter(e => e.date === today);
+    if (filtered.length === 0) {
+      el.innerHTML = '<div class="today-section"><h2>Today\'s Schedule</h2><p class="no-events">No events scheduled for today.</p></div>' + renderUpcoming(events, today);
+      return;
+    }
+    el.innerHTML = '<div class="today-section"><h2>Today\'s Schedule</h2>' + renderCards(filtered) + '</div>';
+    return;
+  }
+  if (currentTab === 'upcoming') {
+    filtered = events.filter(e => e.date >= today);
+  }
+  el.innerHTML = renderCards(filtered);
+}
+
+function renderUpcoming(allEvents, today) {
+  const upcoming = allEvents.filter(e => e.date > today).slice(0, 5);
+  if (upcoming.length === 0) return '';
+  return '<div class="today-section"><h2>Coming Up Next</h2>' + renderCards(upcoming) + '</div>';
+}
+
+function renderCards(list) {
+  if (list.length === 0) return '<p class="no-events">No events found.</p>';
+  const today = new Date().toISOString().split('T')[0];
+  return '<div class="events-list">' + list.map(e => {
+    const d = new Date(e.date + 'T12:00:00');
+    const dayName = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    const badge = e.date === today ? '<span class="badge badge-today">TODAY</span>' : 
+                  e.date < today ? '<span class="badge badge-past">PAST</span>' :
+                  e.date <= addDays(today, 3) ? '<span class="badge badge-soon">SOON</span>' : '';
+    const price = e.ticketPrice > 0 ? '$' + e.ticketPrice : 'FREE';
+    return '<div class="event-card"><div class="info"><h3>' + badge + ' ' + (e.title || 'Untitled') + '</h3><div class="meta"><span>' + dayName + '</span><span>' + (e.time || '') + '</span><span>' + price + '</span><span>' + (e.category || '') + '</span></div></div><div class="actions"><button class="btn-edit" onclick="editEvent(\'' + e.id + '\')">Edit</button><button class="btn-del" onclick="delEvent(\'' + e.id + '\')">Delete</button></div></div>';
+  }).join('') + '</div>';
+}
+
+function addDays(dateStr, n) {
+  const d = new Date(dateStr);
+  d.setDate(d.getDate() + n);
+  return d.toISOString().split('T')[0];
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  renderTab();
+}
+
+// ADD / EDIT
+function showAddForm() {
+  document.getElementById('formTitle').textContent = 'Add Event';
+  document.getElementById('formId').value = '';
+  document.getElementById('formName').value = '';
+  document.getElementById('formDate').value = '';
+  document.getElementById('formTime').value = '';
+  document.getElementById('formDesc').value = '';
+  document.getElementById('formCat').value = 'live-entertainment';
+  document.getElementById('formPrice').value = '';
+  document.getElementById('formUrl').value = '';
+  document.getElementById('formOverlay').classList.add('show');
+}
+
+function editEvent(id) {
+  const e = events.find(ev => ev.id === id);
+  if (!e) return;
+  document.getElementById('formTitle').textContent = 'Edit Event';
+  document.getElementById('formId').value = e.id;
+  document.getElementById('formName').value = e.title || '';
+  document.getElementById('formDate').value = e.date || '';
+  document.getElementById('formTime').value = e.time || '';
+  document.getElementById('formDesc').value = e.description || '';
+  document.getElementById('formCat').value = e.category || 'live-entertainment';
+  document.getElementById('formPrice').value = e.ticketPrice || 0;
+  document.getElementById('formUrl').value = e.ticketUrl || e.bookingUrl || '';
+  document.getElementById('formOverlay').classList.add('show');
+}
+
+function closeForm() {
+  document.getElementById('formOverlay').classList.remove('show');
+}
+
+async function saveEvent() {
+  const id = document.getElementById('formId').value;
+  const eventData = {
+    id: id || 'evt-' + Date.now(),
+    title: document.getElementById('formName').value,
+    date: document.getElementById('formDate').value,
+    time: document.getElementById('formTime').value,
+    description: document.getElementById('formDesc').value,
+    category: document.getElementById('formCat').value,
+    venue: 'Lighthouse Cinema',
+    ticketPrice: parseInt(document.getElementById('formPrice').value) || 0,
+    bookingUrl: document.getElementById('formUrl').value || 'https://square.link/u/gufiSzi1'
+  };
+  
+  if (!eventData.title || !eventData.date) {
+    showToast('Please fill in name and date', true);
+    return;
+  }
+
+  try {
+    const method = id ? 'PUT' : 'POST';
+    const resp = await fetch(API, {
+      method: method,
+      headers: { 'Content-Type': 'application/json', 'x-staff-code': staffCode },
+      body: JSON.stringify(eventData)
+    });
+    if (resp.ok) {
+      showToast(id ? 'Event updated!' : 'Event added!');
+      closeForm();
+      loadEvents();
+    } else {
+      const err = await resp.json();
+      showToast(err.error || 'Failed to save', true);
+    }
+  } catch (err) {
+    showToast('Network error', true);
+  }
+}
+
+async function delEvent(id) {
+  const e = events.find(ev => ev.id === id);
+  if (!confirm('Delete "' + (e ? e.title : id) + '"?')) return;
+  try {
+    const resp = await fetch(API + '?id=' + id, {
+      method: 'DELETE',
+      headers: { 'x-staff-code': staffCode }
+    });
+    if (resp.ok) {
+      showToast('Event deleted');
+      loadEvents();
+    } else {
+      showToast('Failed to delete', true);
+    }
+  } catch (err) {
+    showToast('Network error', true);
+  }
+}
+
+function showToast(msg, isError) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isError ? ' error' : '');
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 3000);
+}
+</script>
+</body>
+</html>
