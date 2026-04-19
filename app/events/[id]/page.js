@@ -30,19 +30,17 @@ export default function EventDetailPage() {
   }
 
   function bookNow() {
-    const pkg = PACKAGES.find(p => p.id === selectedPkg);
-    const item = {
-      eventId: event.id,
-      eventTitle: event.title,
-      date: event.date,
-      time: event.time,
-      packageId: pkg.id,
-      packageName: pkg.name,
-      ticketPrice: pkg.price,
-      quantity,
-    };
-    try { sessionStorage.setItem('lh_cart', JSON.stringify([item])); } catch {}
-    router.push('/checkout');
+    // If the event has a specific Square payment link, use it
+    if (event.ticketUrl) {
+      window.open(event.ticketUrl, '_blank');
+      return;
+    }
+    if (event.bookingUrl) {
+      window.open(event.bookingUrl, '_blank');
+      return;
+    }
+    // Default: redirect to general movie ticket Square link
+    window.open('https://square.link/u/gufiSzi1', '_blank');
   }
 
   if (loading) return <div style={{ padding: 120, textAlign: 'center', color: '#d4af37' }}>Loading…</div>;
