@@ -1,4 +1,5 @@
 import './globals.css';
+import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
 
 export const metadata = {
@@ -82,7 +83,8 @@ export default function RootLayout({ children }) {
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
         </a>
-      </body>
+      <Analytics />
+        </body>
     </html>
   );
 }
