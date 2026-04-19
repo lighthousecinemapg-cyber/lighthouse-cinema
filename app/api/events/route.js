@@ -1,3 +1,53 @@
+import { getEvents, createEvent, updateEvent, deleteEvent } from '@/lib/events-db';
+
+const STAFF_CODE = 'lighthouse2026';
+
+function checkStaff(request) {
+  const code = request.headers.get('x-staff-code');
+  return code === STAFF_CODE;
+}
+
+// GET /api/events - return all events
+export async function GET() {
+  try {
+    const events = getEvents();
+    return Response.json({ events });
+  } catch (error) {
+    return Response.json({ error: 'Failed to fetch events' }, { status: 500 });
+  }
+}
+
+// PUT /api/events - update an event (staff only)
+export async function PUT(request) {
+  if (!checkStaff(request)) {
+    return Response.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  try {
+    const body = await request.json();
+    const updated = updateEvent(body.id, body);
+    if (!updated) return Response.json({ error: 'Event not found' }, { status: 404 });
+    return Response.json({ event: updated });
+  } catch (error) {
+    return Response.json({ error: 'Failed to update' }, { status: 500 });
+  }
+}
+
+// DELETE /api/events?id=xxx - delete an event (staff only)
+export async function DELETE(request) {
+  if (!checkStaff(request)) {
+    return Response.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+    const deleted = deleteEvent(id);
+    if (!deleted) return Response.json({ error: 'Event not found' }, { status: 404 });
+    return Response.json({ success: true });
+  } catch (error) {
+    return Response.json({ error: 'Failed to delete' }, { status: 500 });
+  }
+}
+
 // /app/api/events/route.js — Event Request Handler
 //
 // Receives event request form submissions, then:
