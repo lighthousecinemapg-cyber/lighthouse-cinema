@@ -47,7 +47,9 @@ export default function RootLayout({ children }) {
           <div className="footer-inner">
             <p>&copy; {new Date().getFullYear()} Lighthouse Cinema, Pacific Grove. All rights reserved.</p>
           </div>
-        </footer>
+        
+            <a href="/staff.html" style={{color: '#666', fontSize: '12px', textDecoration: 'none'}}>Staff Portal</a>
+          </footer>
 
         <div className="mobile-sticky-cta">
           <a href="/events" className="btn btn-gold">Book Now</a>
