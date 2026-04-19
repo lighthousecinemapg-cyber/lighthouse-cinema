@@ -69,6 +69,35 @@ export default function HomePage() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const [signupName, setSignupName] = useState('');
+  const [signupEmail, setSignupEmail] = useState('');
+  const [signupPhone, setSignupPhone] = useState('');
+  const [signupStatus, setSignupStatus] = useState(null);
+  const [signupLoading, setSignupLoading] = useState(false);
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    setSignupLoading(true);
+    setSignupStatus(null);
+    try {
+      const res = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: signupName, email: signupEmail, phone: signupPhone }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSignupStatus('success');
+        setSignupName(''); setSignupEmail(''); setSignupPhone('');
+      } else {
+        setSignupStatus('error');
+      }
+    } catch {
+      setSignupStatus('error');
+    }
+    setSignupLoading(false);
+  };
+
 
   useEffect(() => {
     fetch('/api/events')
@@ -147,7 +176,7 @@ export default function HomePage() {
 
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '100px 20px 80px' }}>
           <div style={{ fontSize: '0.8rem', letterSpacing: 5, color: gold, marginBottom: 20, textTransform: 'uppercase' }}>
-            Pacific Grove ÃÂ· Since 1987
+            Pacific Grove ÃÂÃÂ· Since 1987
           </div>
           <h1 style={{
             fontSize: 'clamp(2.6rem, 5.5vw, 4.2rem)',
@@ -240,7 +269,7 @@ export default function HomePage() {
       </section>
 
       
-      {/* COMING SOON Ã¢ÂÂ The Devil Wears Prada 2 */}
+      {/* COMING SOON ÃÂ¢ÃÂÃÂ The Devil Wears Prada 2 */}
       <section id="coming-soon" style={{
         padding: '80px 0 88px',
         background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
@@ -720,7 +749,7 @@ export default function HomePage() {
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                         <div>
                           <div style={{ fontSize: '0.85rem', color: gold, fontWeight: 600 }}>{formatDate(event.date)}</div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} ÃÂ· {event.venue}</div>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} ÃÂÃÂ· {event.venue}</div>
                         </div>
                         <div style={{ textAlign: 'right' }}>
                           <div style={{ fontSize: '1.4rem', fontWeight: 700, color: gold, fontFamily: "'Playfair Display', serif" }}>${event.ticketPrice}</div>
@@ -806,11 +835,11 @@ export default function HomePage() {
       {/*  9. MARQUEE  */}
       <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-          PROJECT HAIL MARY  NOW PLAYING &nbsp;ÃÂ·&nbsp;
-          THE GODFATHER ★ STARTS APR 26 &nbsp;&nbsp; ZORBA THE GREEK DAILY 4PM &nbsp;ÃÂ·&nbsp;
-          BINGO THURSDAYS 7PM &nbsp;ÃÂ·&nbsp;
-          KARAOKE FRIDAYS 7:30PM &nbsp;ÃÂ·&nbsp;
-          SALSA SATURDAYS 8PM &nbsp;ÃÂ·&nbsp;
+          PROJECT HAIL MARY  NOW PLAYING &nbsp;ÃÂÃÂ·&nbsp;
+          THE GODFATHER â STARTS APR 26 &nbsp;&nbsp; ZORBA THE GREEK DAILY 4PM &nbsp;ÃÂÃÂ·&nbsp;
+          BINGO THURSDAYS 7PM &nbsp;ÃÂÃÂ·&nbsp;
+          KARAOKE FRIDAYS 7:30PM &nbsp;ÃÂÃÂ·&nbsp;
+          SALSA SATURDAYS 8PM &nbsp;ÃÂÃÂ·&nbsp;
           BAR & GRILL OPEN
         </div>
       </section>
@@ -843,6 +872,27 @@ export default function HomePage() {
             <a href="tel:+18317173124" style={darkBtn}>Call the Cinema (831) 717-3124</a>
             <a href="tel:+18317173124" style={{...darkBtn, border: '1px solid #D4AF37', color: '#D4AF37'}}>Call Manager Direct</a>
           </div>
+        </div>
+      </section>
+
+      {/* JOIN THE LIGHTHOUSE FAMILY */}
+      <section style={{padding: "80px 20px", background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)", textAlign: "center"}}>
+        <div style={{maxWidth: 600, margin: "0 auto"}}>
+          <h2 style={{fontFamily: "Playfair Display, serif", fontSize: "2.2rem", color: "#D4AF37", marginBottom: 10}}>Join the Lighthouse Family</h2>
+          <p style={{color: "#ccc", fontSize: "1.1rem", marginBottom: 30}}>Get event updates, exclusive offers, and community news delivered to your inbox.</p>
+          {signupStatus === "success" ? (
+            <div style={{background: "rgba(212,175,55,0.15)", border: "1px solid #D4AF37", borderRadius: 12, padding: "30px 20px"}}>
+              <p style={{color: "#D4AF37", fontSize: "1.4rem", fontFamily: "Playfair Display, serif", margin: 0}}>You&apos;re in. Welcome to the family.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSignup} style={{display: "flex", flexDirection: "column", gap: 14}}>
+              <input type="text" placeholder="Your Name" required value={signupName} onChange={e => setSignupName(e.target.value)} style={{padding: "14px 18px", borderRadius: 8, border: "1px solid #333", background: "#0a0a1a", color: "#fff", fontSize: "1rem"}} />
+              <input type="email" placeholder="Email Address" required value={signupEmail} onChange={e => setSignupEmail(e.target.value)} style={{padding: "14px 18px", borderRadius: 8, border: "1px solid #333", background: "#0a0a1a", color: "#fff", fontSize: "1rem"}} />
+              <input type="tel" placeholder="Phone (optional)" value={signupPhone} onChange={e => setSignupPhone(e.target.value)} style={{padding: "14px 18px", borderRadius: 8, border: "1px solid #333", background: "#0a0a1a", color: "#fff", fontSize: "1rem"}} />
+              <button type="submit" disabled={signupLoading} style={{padding: "16px", borderRadius: 8, border: "none", background: "#D4AF37", color: "#1a1a2e", fontSize: "1.1rem", fontWeight: "bold", cursor: "pointer", marginTop: 6}}>{signupLoading ? "Joining..." : "Join the Lighthouse Family"}</button>
+              {signupStatus === "error" && <p style={{color: "#ff6b6b", margin: 0}}>Something went wrong. Please try again.</p>}
+            </form>
+          )}
         </div>
       </section>
 
