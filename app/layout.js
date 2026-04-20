@@ -20,6 +20,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <div style={{background: "linear-gradient(90deg, #b91c1c, #dc2626)", color: "#fff", textAlign: "center", padding: "14px 20px", fontSize: "16px", fontWeight: "bold", letterSpacing: "0.5px", position: "relative", zIndex: 9999}}>
+          NOTICE: Lighthouse Cinema is CLOSED Monday, April 21 & Tuesday, April 22. We reopen Wednesday, April 23 at 12:30 PM. See you then!
+        </div>
         <a href="#main" className="skip-nav">Skip to main content</a>
 
         <header className="site-header">
