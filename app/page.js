@@ -248,6 +248,8 @@ export default function HomePage() {
                 Showtimes This Week
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 36 }}>
+                              <ShowtimeRow day="Monday" times={['CLOSED']} />
+                              <ShowtimeRow day="Tuesday" times={['CLOSED']} />
                 <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM']} />
                 <ShowtimeRow day="Thursday" times={['3:00 PM', '7:00 PM']} />
                 <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
