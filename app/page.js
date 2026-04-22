@@ -177,7 +177,7 @@ export default function HomePage() {
 
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '100px 20px 80px' }}>
           <div style={{ fontSize: '0.8rem', letterSpacing: 5, color: gold, marginBottom: 20, textTransform: 'uppercase' }}>
-            Pacific Grove ÃÂÃÂ· Since 1987
+                        Pacific Grove &middot; Since 1987
           </div>
           <h1 style={{
             fontSize: 'clamp(2.6rem, 5.5vw, 4.2rem)',
