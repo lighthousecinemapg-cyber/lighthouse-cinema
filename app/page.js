@@ -799,6 +799,14 @@ export default function HomePage() {
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Pay what you want. 20% of proceeds go to a local non-profit partner each month. Good films, good cause.</p>
             </div>
           </div>
+
+                  <div className="card" style={{ padding: 28 }}>
+                          <div style={{ fontSize: '2rem', marginBottom: 12 }}>&#x1F3CD;&#xFE0F;</div>
+                          <h3 style={{ fontSize: '1.2rem', marginBottom: 8 }}>Motorcycle Movie of the Month</h3>
+                          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: 8 }}>Presented by <span style={{ color: gold }}>Big Sur Motorcycle Adventure Tours</span></p>
+                          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: 12 }}>Free private screening every month. Doors open at 11:00 AM, showtime at 11:30 AM.</p>
+                          <div style={{ fontSize: '0.8rem', color: gold, lineHeight: 1.8 }}>May 17 &middot; Jun 7 &middot; Jul 12 &middot; Aug 2 &middot; Sep 6 &middot; Oct 18 &middot; Nov 8</div>
+              </div>
         </div>
       </section>
 
