@@ -255,6 +255,9 @@ export default function HomePage() {
                 <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
                 <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
                 <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
+                                <p style={{ color: 'rgba(240,233,215,0.5)', fontSize: '0.78rem', marginTop: 14, lineHeight: 1.9 }}>
+                                  <span style={{ color: gold }}>Cinema Hours:</span> Mon-Tue Closed · Wed 12-7 PM · Thu 12-10 PM · Fri-Sat 12 PM-12 AM · Sun 11 AM-7 PM
+                  </p>
               </div>
 
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
