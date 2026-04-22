@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { dailyMessages } from './daily-messages';
 
 /*  style constants  */
 const gold = '#D4AF37';
@@ -198,6 +199,27 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+{/* DAILY MESSAGE FROM DR. ADEEB */}
+      <section style={{
+                padding: '48px 24px',
+                background: dark,
+                textAlign: 'center',
+                borderTop: '1px solid rgba(212,175,55,0.12)',
+                borderBottom: '1px solid rgba(212,175,55,0.12)',
+      }}>
+        <div style={{ maxWidth: 700, margin: '0 auto' }}>
+          <p style={{ color: gold, fontSize: '0.85rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 16 }}>
+            A Message from Dr. Adeeb
+              </p>
+          <p style={{ color: cream, fontSize: '1.15rem', lineHeight: 1.8, fontStyle: 'italic', marginBottom: 20 }}>
+            &ldquo;{dailyMessages[(new Date().getDate() - 1) % dailyMessages.length]}&rdquo;
+</p>
+          <p style={{ color: 'rgba(212,175,55,0.7)', fontSize: '0.85rem' }}>
+            &mdash; Dr. Ayman Adeeb, Owner
+  </p>
+  </div>
+  </section>
 
       {/*  2. NOW PLAYING  Project Hail Mary  */}
       <section id="now-playing" style={{
