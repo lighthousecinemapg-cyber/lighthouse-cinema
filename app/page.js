@@ -400,7 +400,7 @@ export default function HomePage() {
       }}>
         <div className="container">
           <div style={{ fontSize: '0.75rem', letterSpacing: 4, color: gold, textTransform: 'uppercase', textAlign: 'center', marginBottom: 8 }}>
-            Starting Sunday, April 26
+            April Only
           </div>
           <h2 style={{ fontSize: '2.4rem', textAlign: 'center', marginBottom: 48, fontFamily: "'Playfair Display', serif" }}>
             The Godfather
@@ -432,16 +432,11 @@ export default function HomePage() {
               </p>
               <p style={{ color: gold, fontWeight: 600, marginBottom: 8 }}>Tickets: $15 Adult | $12 Senior</p>
               <h3 style={{ color: gold, fontSize: '0.85rem', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 14, fontWeight: 700 }}>
-                Showtimes Starting April 26
+                Showtimes
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 36 }}>
-                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Monday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Tuesday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM']} />
-                <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM']} />
-                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                <ShowtimeRow day="Saturday" times={['7:30 PM']} />
+                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
               </div>
               <a href="/events" style={{
                 display: 'inline-block',
