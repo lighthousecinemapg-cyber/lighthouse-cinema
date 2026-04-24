@@ -273,7 +273,7 @@ export default function HomePage() {
                               <ShowtimeRow day="Monday" times={['CLOSED']} />
                               <ShowtimeRow day="Tuesday" times={['CLOSED']} />
                 <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM']} />
-                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM']} />
+                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
                 <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
                 <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
                 <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
