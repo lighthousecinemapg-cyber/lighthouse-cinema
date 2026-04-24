@@ -438,7 +438,7 @@ export default function HomePage() {
                 <ShowtimeRow day="Saturday" times={['7:30 PM']} />
                 <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
               </div>
-              <a href="/events" style={{
+              <a href="https://square.link/u/SavdaJY2" target="_blank" rel="noopener noreferrer" style={{
                 display: 'inline-block',
                 background: 'linear-gradient(135deg, #D4AF37, #F5D76E)',
                 color: '#0a0a0a',
