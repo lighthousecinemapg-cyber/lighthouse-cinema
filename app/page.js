@@ -344,7 +344,7 @@ export default function HomePage() {
                 letterSpacing: 1,
                 textTransform: 'uppercase',
               }}>
-                April 30
+                May 1
               </div>
             </div>
             <div>
@@ -373,7 +373,7 @@ export default function HomePage() {
                 gap: 4,
               }}>
                 <span style={{ color: gold, fontWeight: 700, fontSize: '1.05rem' }}>
-                  Opens April 30
+                  Opens May 1
                 </span>
                 <span style={{ color: 'rgba(240,233,215,0.55)', fontSize: '0.85rem' }}>
                   Showtimes announced soon
