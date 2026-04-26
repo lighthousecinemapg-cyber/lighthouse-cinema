@@ -393,12 +393,12 @@ export default function HomePage() {
                 <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
               </div>
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                <button onClick={() => setTrailerOpen('R57Y4v5OmzM')} style={goldBtn}>
+                <a href="https://square.link/u/jHqfrqTh" target="_blank" rel="noopener noreferrer" style={goldBtn}>
+                  Book Tickets
+                </a>
+                <button onClick={() => setTrailerOpen('R57Y4v5OmzM')} style={darkBtn}>
                   Watch Trailer
                 </button>
-                <a href="sms:+18334414049?body=Prada2" style={darkBtn}>
-                  Notify Me
-                </a>
               </div>
             </div>
           </div>
