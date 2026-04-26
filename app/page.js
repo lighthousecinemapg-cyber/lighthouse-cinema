@@ -164,6 +164,23 @@ export default function HomePage() {
         </div>
       )}
 
+      {/* ANNOUNCEMENT BANNER */}
+      <a href="https://square.link/u/1uppuNv7" target="_blank" rel="noopener noreferrer" style={{
+        display: 'block',
+        background: 'linear-gradient(90deg, #D4AF37 0%, #c9a42e 50%, #D4AF37 100%)',
+        textAlign: 'center',
+        padding: '12px 20px',
+        textDecoration: 'none',
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+        boxShadow: '0 2px 12px rgba(212,175,55,0.3)',
+      }}>
+        <span style={{ color: '#0a0a0a', fontWeight: 700, fontSize: '1rem', letterSpacing: 1 }}>
+          ✨ Get Your Tickets Now ✨
+        </span>
+      </a>
+
       {/*  1. HERO  */}
       <section style={{
         position: 'relative', minHeight: '75vh',
