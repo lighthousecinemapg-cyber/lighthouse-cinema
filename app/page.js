@@ -344,7 +344,7 @@ export default function HomePage() {
                 letterSpacing: 1,
                 textTransform: 'uppercase',
               }}>
-                May 1
+                APR 30
               </div>
             </div>
             <div>
@@ -404,7 +404,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-\n      
+
       {/* THE GODFATHER - STARTING APR 26 */}
       <section id="the-godfather" style={{
         padding: '80px 0 88px',
