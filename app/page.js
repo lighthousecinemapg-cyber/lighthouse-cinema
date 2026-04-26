@@ -373,11 +373,24 @@ export default function HomePage() {
                 gap: 4,
               }}>
                 <span style={{ color: gold, fontWeight: 700, fontSize: '1.05rem' }}>
-                  Opens May 1
+                  Opens April 30
                 </span>
                 <span style={{ color: 'rgba(240,233,215,0.55)', fontSize: '0.85rem' }}>
-                  Showtimes announced soon
+                  Starting Thursday, April 30
                 </span>
+              </div>
+              <div style={{
+                background: 'rgba(212,175,55,0.05)',
+                borderRadius: 12,
+                padding: '18px 22px',
+                marginBottom: 28,
+                border: '1px solid rgba(212,175,55,0.10)',
+              }}>
+                <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
+                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
               </div>
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <button onClick={() => setTrailerOpen('R57Y4v5OmzM')} style={goldBtn}>
