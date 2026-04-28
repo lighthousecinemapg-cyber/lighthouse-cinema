@@ -328,7 +328,7 @@ export default function HomePage() {
               <div style={{ ...badgeStyle, position: 'absolute', top: 16, left: 16, zIndex: 2, textTransform: 'uppercase' }}>
                 MAY 8
               </div>
-              <img src="https://image.tmdb.org/t/p/w500/xYCKqOOU3MZNLP8zUDcLiW2PRBS.jpg" alt="The Cheap Detective" style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(212,175,55,0.18)' }} />
+              <img src="https://img.youtube.com/vi/MfdMuvXhfjI/maxresdefault.jpg" alt="The Cheap Detective" style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(212,175,55,0.18)' }} />
             </div>
             <div style={{ flex: '1 1 380px', minWidth: 280 }}>
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 20 }}>
