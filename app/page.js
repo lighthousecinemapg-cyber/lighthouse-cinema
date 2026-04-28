@@ -287,10 +287,11 @@ export default function HomePage() {
                 Showtimes — Now through May 7
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 36 }}>
-                              <ShowtimeRow day="Thursday" times={['1:30 PM', '4:30 PM', '7:15 PM']} />
-                              <ShowtimeRow day="Friday" times={['1:30 PM', '4:30 PM', '7:30 PM']} />
-                              <ShowtimeRow day="Saturday" times={['1:30 PM', '4:30 PM', '7:30 PM']} />
-                              <ShowtimeRow day="Sunday" times={['1:30 PM', '4:30 PM']} />
+                              <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                              <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                              <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                              <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                              <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
                                 <p style={{ color: 'rgba(240,233,215,0.5)', fontSize: '0.78rem', marginTop: 14, lineHeight: 1.9 }}>
                                   <span style={{ color: gold }}>Playing through May 7</span> · Thu–Sun · Wed 12-7 PM · Thu 12-10 PM · Fri-Sat 12 PM-12 AM · Sun 11 AM-7 PM
                   </p>
@@ -345,10 +346,11 @@ export default function HomePage() {
               </div>
               <div style={{ background: 'rgba(212,175,55,0.06)', borderRadius: 14, padding: '20px 24px', marginBottom: 28, border: '1px solid rgba(212,175,55,0.12)' }}>
                 <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
-                <ShowtimeRow day="Thursday" times={['1:30 PM', '4:30 PM', '7:15 PM']} />
-                <ShowtimeRow day="Friday" times={['1:30 PM', '4:30 PM', '7:30 PM']} />
-                <ShowtimeRow day="Saturday" times={['1:30 PM', '4:30 PM', '7:30 PM']} />
-                <ShowtimeRow day="Sunday" times={['1:30 PM', '4:30 PM']} />
+                <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
               </div>
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={goldBtn}>
@@ -455,10 +457,9 @@ export default function HomePage() {
               }}>
                 <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
                 <ShowtimeRow day="Thursday" times={['4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
-              </div>
+                <ShowtimeRow day="Friday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']} />
+                <ShowtimeRow day="Saturday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']} />
+                <ShowtimeRow day="Sunday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']} />
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={goldBtn}>
                   Book Tickets
