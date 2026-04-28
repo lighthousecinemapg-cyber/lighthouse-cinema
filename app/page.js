@@ -471,6 +471,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* THE GODFATHER - STARTING APR 26 */}
@@ -554,19 +555,6 @@ export default function HomePage() {
             flex: '1 1 280px', maxWidth: 320, background: '#111', border: '1px solid rgba(212,175,55,0.25)',
             borderRadius: 16, padding: '36px 28px', textAlign: 'center',
           }}>
-            <h3 style={{ color: gold, fontSize: '1.3rem', marginBottom: 4 }}>Standard Ticket</h3>
-            <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Any regular showing</p>
-            <p style={{ fontSize: '2.4rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$12</p>
-            <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>+ tax at checkout</p>
-            <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
-              display: 'inline-block', background: gold, color: '#0a0a0a', padding: '14px 36px',
-              borderRadius: 999, fontWeight: 700, fontSize: '1rem', textDecoration: 'none',
-            }}>Buy Now</a>
-          </div>
-          <div style={{
-            flex: '1 1 280px', maxWidth: 320, background: '#111', border: '1px solid rgba(212,175,55,0.25)',
-            borderRadius: 16, padding: '36px 28px', textAlign: 'center',
-          }}>
             <h3 style={{ color: gold, fontSize: '1.3rem', marginBottom: 4 }}>Matinee Ticket</h3>
             <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Showings before 5 PM</p>
             <p style={{ fontSize: '2.4rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$10</p>
@@ -588,31 +576,6 @@ export default function HomePage() {
             <h3 style={{ color: gold, fontSize: '1.3rem', marginBottom: 4 }}>New Release Ticket</h3>
             <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Premium & new release films</p>
             <p style={{ fontSize: '2.4rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$15</p>
-            <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>+ tax at checkout</p>
-            <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
-              display: 'inline-block',
-              background: 'transparent',
-              color: gold,
-              border: '2px solid #d4af37',
-              padding: '12px 36px',
-              borderRadius: 999,
-              fontWeight: 700,
-              fontSize: '1rem',
-              textDecoration: 'none',
-            }}>Buy Now</a>
-          </div>
-          <div style={{
-            flex: '1 1 280px',
-            maxWidth: 320,
-            background: '#111',
-            border: '1px solid rgba(212,175,55,0.25)',
-            borderRadius: 16,
-            padding: '36px 28px',
-            textAlign: 'center',
-          }}>
-            <h3 style={{ color: gold, fontSize: '1.3rem', marginBottom: 4 }}>Kids & Seniors</h3>
-            <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Ages under 12 or over 65</p>
-            <p style={{ fontSize: '2.4rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$12</p>
             <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>+ tax at checkout</p>
             <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
               display: 'inline-block',
