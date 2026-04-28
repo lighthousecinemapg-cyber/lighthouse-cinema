@@ -1,6 +1,7 @@
 import './globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
+import PayItForward from './PayItForward';
 
 export const metadata = {
   title: 'Lighthouse Cinema | Pacific Grove',
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
         <main id="main">
           {children}
         </main>
+          <PayItForward />
 
         <footer className="site-footer">
           <div className="footer-inner">
