@@ -284,18 +284,15 @@ export default function HomePage() {
               </p>
 
               <h3 style={{ color: gold, fontSize: '0.85rem', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 14, fontWeight: 700 }}>
-                Showtimes This Week
+                Showtimes — Now through May 7
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 36 }}>
-                              <ShowtimeRow day="Monday" times={['CLOSED']} />
-                              <ShowtimeRow day="Tuesday" times={['CLOSED']} />
-                <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM']} />
-                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
+                              <ShowtimeRow day="Thursday" times={['1:30 PM', '4:30 PM', '7:15 PM']} />
+                              <ShowtimeRow day="Friday" times={['1:30 PM', '4:30 PM', '7:30 PM']} />
+                              <ShowtimeRow day="Saturday" times={['1:30 PM', '4:30 PM', '7:30 PM']} />
+                              <ShowtimeRow day="Sunday" times={['1:30 PM', '4:30 PM']} />
                                 <p style={{ color: 'rgba(240,233,215,0.5)', fontSize: '0.78rem', marginTop: 14, lineHeight: 1.9 }}>
-                                  <span style={{ color: gold }}>Cinema Hours:</span> Mon-Tue Closed · Wed 12-7 PM · Thu 12-10 PM · Fri-Sat 12 PM-12 AM · Sun 11 AM-7 PM
+                                  <span style={{ color: gold }}>Playing through May 7</span> · Thu–Sun · Wed 12-7 PM · Thu 12-10 PM · Fri-Sat 12 PM-12 AM · Sun 11 AM-7 PM
                   </p>
               </div>
 
@@ -312,6 +309,59 @@ export default function HomePage() {
         </div>
       </section>
 
+
+      {/* THE CHEAP DETECTIVE - Starting May 8 */}
+      <section id="cheap-detective" style={{
+        padding: '80px 0 88px',
+        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
+        borderTop: '1px solid rgba(212,175,55,0.12)',
+      }}>
+        <div className="section-container" style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
+          <p style={{ textAlign: 'center', color: gold, letterSpacing: 6, fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>
+            COMING SOON
+          </p>
+          <h2 style={{ textAlign: 'center', fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3.2rem)', color: cream, marginBottom: 40, fontWeight: 400 }}>
+            The Cheap Detective
+          </h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 48, justifyContent: 'center', alignItems: 'flex-start' }}>
+            <div style={{ flex: '0 1 420px', position: 'relative' }}>
+              <div style={{ ...badgeStyle, position: 'absolute', top: 16, left: 16, zIndex: 2, textTransform: 'uppercase' }}>
+                MAY 8
+              </div>
+              <img src="https://image.tmdb.org/t/p/w500/xYCKqOOU3MZNLP8zUDcLiW2PRBS.jpg" alt="The Cheap Detective" style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(212,175,55,0.18)' }} />
+            </div>
+            <div style={{ flex: '1 1 380px', minWidth: 280 }}>
+              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 20 }}>
+                {['PG', 'Comedy', 'Mystery', '1978'].map(tag => (
+                  <span key={tag} style={badgeStyle}>{tag}</span>
+                ))}
+              </div>
+              <p style={{ color: 'rgba(240,233,215,0.85)', fontSize: '1.05rem', lineHeight: 1.8, marginBottom: 28, fontFamily: "'Inter', sans-serif" }}>
+                Peter Falk stars as Lou Peckinpaugh, a bumbling private eye caught up in a web of murder, mystery, and hilarious misunderstandings. A loving parody of classic detective films, featuring an all-star cast including Ann-Margret, Eileen Brennan, and Dom DeLuise.
+              </p>
+              <div style={{ background: 'rgba(212,175,55,0.08)', borderRadius: 14, padding: '20px 24px', marginBottom: 24, border: '1px solid rgba(212,175,55,0.15)' }}>
+                <p style={{ color: gold, fontWeight: 700, fontSize: '1.05rem', marginBottom: 4 }}>Opens May 8</p>
+                <p style={{ color: 'rgba(240,233,215,0.6)', fontSize: '0.9rem' }}>Starting Thursday, May 8</p>
+              </div>
+              <div style={{ background: 'rgba(212,175,55,0.06)', borderRadius: 14, padding: '20px 24px', marginBottom: 28, border: '1px solid rgba(212,175,55,0.12)' }}>
+                <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
+                <ShowtimeRow day="Thursday" times={['1:30 PM', '4:30 PM', '7:15 PM']} />
+                <ShowtimeRow day="Friday" times={['1:30 PM', '4:30 PM', '7:30 PM']} />
+                <ShowtimeRow day="Saturday" times={['1:30 PM', '4:30 PM', '7:30 PM']} />
+                <ShowtimeRow day="Sunday" times={['1:30 PM', '4:30 PM']} />
+              </div>
+              <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+                <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={goldBtn}>
+                  Book Tickets
+                </a>
+                <button onClick={() => setTrailerOpen('MfdMuvXhfjI')} style={darkBtn}>
+                  Watch Trailer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       
       {/* COMING SOON ÃÂ¢ÃÂÃÂ The Devil Wears Prada 2 */}
       <section id="coming-soon" style={{
@@ -410,7 +460,7 @@ export default function HomePage() {
                 <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
               </div>
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                <a href="https://square.link/u/jHqfrqTh" target="_blank" rel="noopener noreferrer" style={goldBtn}>
+                <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={goldBtn}>
                   Book Tickets
                 </a>
                 <button onClick={() => setTrailerOpen('R57Y4v5OmzM')} style={darkBtn}>
@@ -468,7 +518,7 @@ export default function HomePage() {
                 <ShowtimeRow day="Saturday" times={['7:30 PM']} />
                 <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
               </div>
-              <a href="https://square.link/u/SavdaJY2" target="_blank" rel="noopener noreferrer" style={{
+              <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
                 display: 'inline-block',
                 background: 'linear-gradient(135deg, #D4AF37, #F5D76E)',
                 color: '#0a0a0a',
@@ -507,7 +557,7 @@ export default function HomePage() {
             <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Any regular showing</p>
             <p style={{ fontSize: '2.4rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$12</p>
             <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>+ tax at checkout</p>
-            <a href="https://square.link/u/gufiSzi1" target="_blank" rel="noopener noreferrer" style={{
+            <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
               display: 'inline-block', background: gold, color: '#0a0a0a', padding: '14px 36px',
               borderRadius: 999, fontWeight: 700, fontSize: '1rem', textDecoration: 'none',
             }}>Buy Now</a>
@@ -520,7 +570,7 @@ export default function HomePage() {
             <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Showings before 5 PM</p>
             <p style={{ fontSize: '2.4rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$10</p>
             <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>+ tax at checkout</p>
-            <a href="https://square.link/u/Dh7gFIJZ" target="_blank" rel="noopener noreferrer" style={{
+            <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
               display: 'inline-block', background: 'transparent', color: gold, border: '2px solid #d4af37',
               padding: '12px 36px', borderRadius: 999, fontWeight: 700, fontSize: '1rem', textDecoration: 'none',
             }}>Buy Now</a>
@@ -538,7 +588,7 @@ export default function HomePage() {
             <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Premium & new release films</p>
             <p style={{ fontSize: '2.4rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$15</p>
             <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>+ tax at checkout</p>
-            <a href="https://square.link/u/g5J4h3TT" target="_blank" rel="noopener noreferrer" style={{
+            <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
               display: 'inline-block',
               background: 'transparent',
               color: gold,
@@ -563,7 +613,7 @@ export default function HomePage() {
             <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Ages under 12 or over 65</p>
             <p style={{ fontSize: '2.4rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$12</p>
             <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>+ tax at checkout</p>
-            <a href="https://square.link/u/q1sXMUZA" target="_blank" rel="noopener noreferrer" style={{
+            <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
               display: 'inline-block',
               background: 'transparent',
               color: gold,
