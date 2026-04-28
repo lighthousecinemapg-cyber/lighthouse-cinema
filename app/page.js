@@ -404,7 +404,7 @@ export default function HomePage() {
                 border: '1px solid rgba(212,175,55,0.10)',
               }}>
                 <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
-                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                <ShowtimeRow day="Thursday" times={['4:00 PM', '7:00 PM']} />
                 <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
                 <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
                 <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
@@ -574,78 +574,6 @@ export default function HomePage() {
               fontSize: '1rem',
               textDecoration: 'none',
             }}>Buy Now</a>
-          </div>
-        </div>
-      </section>
-
-      {/* MURDER MYSTERY EVENT */}
-      <section id="murder-mystery" style={{
-        padding: '80px 20px',
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%)',
-        textAlign: 'center',
-        borderTop: '1px solid rgba(212,175,55,0.15)',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-          background: 'radial-gradient(ellipse at center, rgba(212,175,55,0.04) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }} />
-        <p style={{ color: '#cc3333', letterSpacing: 4, fontSize: '0.75rem', fontWeight: 700, marginBottom: 8, textTransform: 'uppercase', position: 'relative' }}>
-          Lighthouse Cinema Presents
-        </p>
-        <h2 style={{
-          fontSize: 'clamp(2rem, 5vw, 3.2rem)',
-          marginBottom: 4,
-          color: cream,
-          fontFamily: "'Playfair Display', serif",
-          position: 'relative',
-        }}>
-          The Director&apos;s Cut <span style={{ color: '#cc3333', fontStyle: 'italic' }}>Killer</span>
-        </h2>
-        <p style={{ color: gold, fontSize: '1.1rem', letterSpacing: 2, marginBottom: 24, fontWeight: 600, position: 'relative' }}>
-          A MURDER MYSTERY EXPERIENCE
-        </p>
-        <p style={{ color: 'rgba(245,233,200,0.6)', maxWidth: 520, margin: '0 auto 8px', fontSize: '1.05rem', position: 'relative' }}>
-          Do you have what it takes to solve the crime?
-        </p>
-        <p style={{ color: gold, fontSize: '1.15rem', fontWeight: 700, marginBottom: 32, position: 'relative' }}>
-          April 24 &nbsp;|&nbsp; Doors Open 6:00 PM
-        </p>
-        <div style={{
-          display: 'flex', flexWrap: 'wrap', gap: 24, justifyContent: 'center', maxWidth: 720, margin: '0 auto', position: 'relative',
-        }}>
-          <div style={{
-            flex: '1 1 280px', maxWidth: 330, background: 'rgba(17,17,17,0.9)',
-            border: '2px solid rgba(212,175,55,0.4)',
-            borderRadius: 16, padding: '36px 28px', textAlign: 'center',
-            boxShadow: '0 0 30px rgba(212,175,55,0.08)',
-          }}>
-            <p style={{ color: '#cc3333', fontSize: '0.7rem', letterSpacing: 3, fontWeight: 700, marginBottom: 8 }}>PREMIUM</p>
-            <h3 style={{ color: gold, fontSize: '1.4rem', marginBottom: 4 }}>VIP Experience</h3>
-            <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Exclusive Roles &bull; Priority Seating</p>
-            <p style={{ fontSize: '2.6rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$75</p>
-            <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>per person</p>
-            <a href="https://square.link/u/EzQg9ZNY" target="_blank" rel="noopener noreferrer" style={{
-              display: 'inline-block', background: gold, color: '#0a0a0a', padding: '14px 36px',
-              borderRadius: 999, fontWeight: 700, fontSize: '1rem', textDecoration: 'none',
-            }}>Get VIP Tickets</a>
-          </div>
-          <div style={{
-            flex: '1 1 280px', maxWidth: 330, background: 'rgba(17,17,17,0.9)',
-            border: '1px solid rgba(212,175,55,0.2)',
-            borderRadius: 16, padding: '36px 28px', textAlign: 'center',
-          }}>
-            <p style={{ color: 'rgba(245,233,200,0.4)', fontSize: '0.7rem', letterSpacing: 3, fontWeight: 700, marginBottom: 8 }}>STANDARD</p>
-            <h3 style={{ color: gold, fontSize: '1.4rem', marginBottom: 4 }}>General Admission</h3>
-            <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Join the Mystery</p>
-            <p style={{ fontSize: '2.6rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$45</p>
-            <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>per person</p>
-            <a href="https://square.link/u/r7ovZSJ6" target="_blank" rel="noopener noreferrer" style={{
-              display: 'inline-block', background: 'transparent', color: gold, border: '2px solid #d4af37',
-              padding: '12px 36px', borderRadius: 999, fontWeight: 700, fontSize: '1rem', textDecoration: 'none',
-            }}>Get Tickets</a>
           </div>
         </div>
       </section>
