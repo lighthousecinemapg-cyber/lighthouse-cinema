@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { dailyMessages } from './daily-messages';
+import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from './showtime-config';
 
 /*  style constants  */
 const gold = '#D4AF37';
@@ -41,27 +42,52 @@ const darkBtn = {
   border: '1.5px solid rgba(212,175,55,0.35)',
 };
 
-function ShowtimeRow({ day, times }) {
+function ShowtimeRow({ day, times, movie }) {
   return (
     <div style={{
-      display: 'flex', alignItems: 'center', gap: 16,
-      padding: '10px 16px',
-      background: 'rgba(212,175,55,0.04)',
-      borderRadius: 8,
-      border: '1px solid rgba(212,175,55,0.1)',
+      display: 'flex', alignItems: 'center', gap: 16, padding: '10px 16px',
+      background: 'rgba(212,175,55,0.04)', borderRadius: 8,
+      border: '1px solid rgba(212,175,55,0.1)', flexWrap: 'wrap',
     }}>
-      <span style={{ color: gold, fontWeight: 700, minWidth: 90, fontSize: '0.95rem' }}>
-        {day}
-      </span>
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      <span style={{ color: gold, fontWeight: 700, minWidth: 90, fontSize: '0.95rem' }}>{day}</span>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', flex: 1 }}>
         {times.map(t => (
-          <span key={t} style={{
-            background: 'rgba(212,175,55,0.12)', color: cream,
-            padding: '5px 14px', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600,
-          }}>{t}</span>
+          movie ? (
+            <a key={t} href={getTicketLink(movie, t)} target="_blank" rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                background: 'rgba(212,175,55,0.12)', color: cream,
+                padding: '5px 14px', borderRadius: 6, fontSize: '0.9rem',
+                fontWeight: 600, textDecoration: 'none', cursor: 'pointer',
+                border: '1px solid transparent',
+              }}
+              title={"Buy ticket for " + t}>
+              {t} <span style={{ fontSize: '0.7rem', opacity: 0.7 }}>🎟️</span>
+            </a>
+          ) : (
+            <span key={t} style={{
+              background: 'rgba(212,175,55,0.12)', color: cream,
+              padding: '5px 14px', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600,
+            }}>{t}</span>
+          )
         ))}
       </div>
     </div>
+  );
+}
+
+function PayItForwardMini() {
+  return (
+    <a href={SQUARE_LINKS.payItForward} target="_blank" rel="noopener noreferrer"
+      style={{
+        display: 'inline-flex', alignItems: 'center', gap: 6,
+        background: 'rgba(212,175,55,0.06)', color: gold,
+        padding: '8px 16px', borderRadius: 8, fontSize: '0.82rem',
+        fontWeight: 600, textDecoration: 'none',
+        border: '1px dashed rgba(212,175,55,0.3)', marginTop: 8,
+      }}>
+      💛 Pay It Forward — Buy a ticket for someone who needs a night out
+    </a>
   );
 }
 
@@ -284,20 +310,22 @@ export default function HomePage() {
               </p>
 
               <h3 style={{ color: gold, fontSize: '0.85rem', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 14, fontWeight: 700 }}>
-                Showtimes — Now through May 7
+                Showtimes — Now through May 8
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 36 }}>
-                              <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                              <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                              <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                              <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                              <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                              <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[0]}/>
+                              <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[0]}/>
+                              <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[0]}/>
+                              <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[0]}/>
+                              <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[0]}/>
                                 <p style={{ color: 'rgba(240,233,215,0.5)', fontSize: '0.78rem', marginTop: 14, lineHeight: 1.9 }}>
-                                  <span style={{ color: gold }}>Playing through May 7</span> · Thu–Sun · Wed 12-7 PM · Thu 12-10 PM · Fri-Sat 12 PM-12 AM · Sun 11 AM-7 PM
+                                  <span style={{ color: gold }}>Playing through May 8</span> · Thu–Sun · Wed 12-7 PM · Thu 12-10 PM · Fri-Sat 12 PM-12 AM · Sun 11 AM-7 PM
                   </p>
               </div>
 
-              <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+                            <PayItForwardMini />
+
+<div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <button onClick={() => setTrailerOpen('m08TxIsFTRI')} style={goldBtn}>
                    Watch Trailer
                 </button>
@@ -346,13 +374,15 @@ export default function HomePage() {
               </div>
               <div style={{ background: 'rgba(212,175,55,0.06)', borderRadius: 14, padding: '20px 24px', marginBottom: 28, border: '1px solid rgba(212,175,55,0.12)' }}>
                 <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
-                <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']} />
+                <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[1]}/>
+                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[1]}/>
+                <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[1]}/>
+                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[1]}/>
+                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[1]}/>
               </div>
-              <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+                            <PayItForwardMini />
+
+<div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={goldBtn}>
                   Book Tickets
                 </a>
@@ -456,11 +486,13 @@ export default function HomePage() {
                 border: '1px solid rgba(212,175,55,0.10)',
               }}>
                 <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
-                <ShowtimeRow day="Thursday" times={['4:00 PM', '7:00 PM']} />
-                <ShowtimeRow day="Friday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']} />
-                <ShowtimeRow day="Saturday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']} />
-                <ShowtimeRow day="Sunday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']} />
-              <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+                <ShowtimeRow day="Thursday" times={['4:00 PM', '7:00 PM']}  movie={movies[2]}/>
+                <ShowtimeRow day="Friday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
+                <ShowtimeRow day="Saturday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
+                <ShowtimeRow day="Sunday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
+                            <PayItForwardMini />
+
+<div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={goldBtn}>
                   Book Tickets
                 </a>
@@ -517,8 +549,8 @@ export default function HomePage() {
                 Showtimes
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 36 }}>
-                <ShowtimeRow day="Saturday" times={['7:30 PM']} />
-                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']} />
+                <ShowtimeRow day="Saturday" times={['7:30 PM']}  movie={movies[3]}/>
+                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']}  movie={movies[3]}/>
               </div>
               <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
                 display: 'inline-block',
@@ -650,7 +682,9 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+                            <PayItForwardMini />
+
+<div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <button onClick={() => setTrailerOpen('xrArjp14SeU')} style={goldBtn}>
                    Watch Trailer
                 </button>
