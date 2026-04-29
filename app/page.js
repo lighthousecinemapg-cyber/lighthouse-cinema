@@ -264,8 +264,161 @@ export default function HomePage() {
   </div>
   </section>
 
-      {/*  2. NOW PLAYING  Project Hail Mary  */}
+      {/* DAILY SCHEDULE - What's Playing Today */}
+      <section id="daily-schedule" style={{
+        padding: '48px 0 56px', background: dark,
+        borderTop: '1px solid rgba(212,175,55,0.12)',
+        borderBottom: '1px solid rgba(212,175,55,0.12)',
+      }}>
+        <div className="container" style={{ maxWidth: 900, margin: '0 auto', padding: '0 24px' }}>
+          <h2 style={{ textAlign: 'center', fontSize: '1.8rem', fontFamily: "'Playfair Display', serif", color: cream, marginBottom: 8 }}>
+            What&apos;s <span style={{ color: gold }}>Playing</span>
+          </h2>
+          <p style={{ textAlign: 'center', color: 'rgba(240,233,215,0.5)', fontSize: '0.9rem', marginBottom: 32 }}>
+            Tap any showtime to buy tickets instantly
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 12, textAlign: 'center' }}>
+            {['Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => {
+              const dayNum = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(day === 'Wed' ? 'Wed' : day === 'Thu' ? 'Thu' : day === 'Fri' ? 'Fri' : day === 'Sat' ? 'Sat' : 'Sun');
+              const isToday = new Date().getDay() === dayNum;
+              return (
+                <div key={day} style={{
+                  padding: '16px 8px', borderRadius: 12,
+                  background: isToday ? 'rgba(212,175,55,0.15)' : 'rgba(212,175,55,0.04)',
+                  border: isToday ? '2px solid rgba(212,175,55,0.5)' : '1px solid rgba(212,175,55,0.1)',
+                }}>
+                  <div style={{ color: isToday ? gold : 'rgba(240,233,215,0.6)', fontWeight: 700, fontSize: '0.85rem', marginBottom: 10, letterSpacing: 1 }}>
+                    {day.toUpperCase()} {isToday && '\u2022 TODAY'}
+                  </div>
+                  <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
+                    <div style={{ color: gold, fontWeight: 600, marginBottom: 2 }}>Devil Wears Prada 2</div>
+                    {day === 'Wed' ? null : day === 'Thu' ? <div>4 PM \u00B7 7 PM</div> : <div>12 \u00B7 2:30 \u00B7 5 \u00B7 7:30</div>}
+                    {day === 'Wed' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : null}
+                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Project Hail Mary</div>
+                    <div>1 PM \u00B7 4 PM \u00B7 7 PM</div>
+                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Zorba the Greek</div>
+                    <div>4 PM</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* COMING SOON ÃÂ¢ÃÂÃÂ The Devil Wears Prada 2 */}
       <section id="now-playing" style={{
+        padding: '80px 0 88px',
+        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
+        borderTop: '1px solid rgba(212,175,55,0.12)',
+      }}>
+        <div className="container">
+          <div style={{ fontSize: '0.75rem', letterSpacing: 4, color: gold, textTransform: 'uppercase', textAlign: 'center', marginBottom: 6 }}>
+            Now Playing
+          </div>
+          <h2 style={{ fontSize: '2.4rem', textAlign: 'center', marginBottom: 48, fontFamily: "'Playfair Display', serif", color: cream }}>
+            The Devil Wears Prada 2
+          </h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(240px, 380px) 1fr',
+            gap: 48,
+            maxWidth: 1020,
+            margin: '0 auto',
+            alignItems: 'start',
+          }}>
+            <div style={{
+              borderRadius: 14,
+              overflow: 'hidden',
+              border: '2px solid rgba(212,175,55,0.2)',
+              background: '#111',
+              boxShadow: '0 12px 48px rgba(0,0,0,0.6)',
+              position: 'relative',
+            }}>
+              <img
+                src="https://image.tmdb.org/t/p/w500/p35IoKfBtJDNiWJMO8ZEtIMZSfW.jpg"
+                alt="The Devil Wears Prada 2 Movie Poster"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+                loading="lazy"
+              />
+              <div style={{
+                position: 'absolute',
+                top: 14,
+                left: 14,
+                background: 'rgba(212,175,55,0.95)',
+                color: '#0a0a0a',
+                padding: '6px 14px',
+                borderRadius: 6,
+                fontSize: '0.75rem',
+                fontWeight: 800,
+                letterSpacing: 1,
+                textTransform: 'uppercase',
+              }}>
+                APR 30
+              </div>
+            </div>
+            <div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 18 }}>
+                <span style={badgeStyle}>PG-13</span>
+                <span style={badgeStyle}>Comedy</span>
+                <span style={badgeStyle}>Drama</span>
+                <span style={badgeStyle}>Sequel</span>
+              </div>
+              <p style={{
+                color: 'rgba(240,233,215,0.72)',
+                fontSize: '1.05rem',
+                lineHeight: 1.75,
+                marginBottom: 24,
+              }}>
+                Meryl Streep, Anne Hathaway, Emily Blunt, and Stanley Tucci return to the fashionable streets of New York City and the sleek offices of Runway Magazine. When Miranda Priestly faces a declining print empire, she recruits a now-seasoned Andy Sachs to help save everything she built.
+              </p>
+              <div style={{
+                background: 'rgba(212,175,55,0.07)',
+                borderRadius: 10,
+                padding: '16px 20px',
+                marginBottom: 32,
+                border: '1px solid rgba(212,175,55,0.12)',
+                display: 'inline-flex',
+                flexDirection: 'column',
+                gap: 4,
+              }}>
+                <span style={{ color: gold, fontWeight: 700, fontSize: '1.05rem' }}>
+                  Opens April 30
+                </span>
+                <span style={{ color: 'rgba(240,233,215,0.55)', fontSize: '0.85rem' }}>
+                  Starting Thursday, April 30
+                </span>
+              </div>
+              <div style={{
+                background: 'rgba(212,175,55,0.05)',
+                borderRadius: 12,
+                padding: '18px 22px',
+                marginBottom: 28,
+                border: '1px solid rgba(212,175,55,0.10)',
+              }}>
+                <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
+                <ShowtimeRow day="Thursday" times={['4:00 PM', '7:00 PM']}  movie={movies[2]}/>
+                <ShowtimeRow day="Friday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
+                <ShowtimeRow day="Saturday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
+                <ShowtimeRow day="Sunday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
+                            <PayItForwardMini />
+
+<div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+                <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={goldBtn}>
+                  Book Tickets
+                </a>
+                <button onClick={() => setTrailerOpen('R57Y4v5OmzM')} style={darkBtn}>
+                  Watch Trailer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      {/*  2. NOW PLAYING  Project Hail Mary  */}
+      <section id="project-hail-mary" style={{
         padding: '80px 0 88px', background: dark,
         borderTop: '1px solid rgba(212,175,55,0.12)',
       }}>
@@ -395,117 +548,6 @@ export default function HomePage() {
         </div>
       </section>
       
-      {/* COMING SOON ÃÂ¢ÃÂÃÂ The Devil Wears Prada 2 */}
-      <section id="coming-soon" style={{
-        padding: '80px 0 88px',
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
-        borderTop: '1px solid rgba(212,175,55,0.12)',
-      }}>
-        <div className="container">
-          <div style={{ fontSize: '0.75rem', letterSpacing: 4, color: gold, textTransform: 'uppercase', textAlign: 'center', marginBottom: 6 }}>
-            Coming Soon
-          </div>
-          <h2 style={{ fontSize: '2.4rem', textAlign: 'center', marginBottom: 48, fontFamily: "'Playfair Display', serif", color: cream }}>
-            The Devil Wears Prada 2
-          </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(240px, 380px) 1fr',
-            gap: 48,
-            maxWidth: 1020,
-            margin: '0 auto',
-            alignItems: 'start',
-          }}>
-            <div style={{
-              borderRadius: 14,
-              overflow: 'hidden',
-              border: '2px solid rgba(212,175,55,0.2)',
-              background: '#111',
-              boxShadow: '0 12px 48px rgba(0,0,0,0.6)',
-              position: 'relative',
-            }}>
-              <img
-                src="https://image.tmdb.org/t/p/w500/p35IoKfBtJDNiWJMO8ZEtIMZSfW.jpg"
-                alt="The Devil Wears Prada 2 Movie Poster"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-                loading="lazy"
-              />
-              <div style={{
-                position: 'absolute',
-                top: 14,
-                left: 14,
-                background: 'rgba(212,175,55,0.95)',
-                color: '#0a0a0a',
-                padding: '6px 14px',
-                borderRadius: 6,
-                fontSize: '0.75rem',
-                fontWeight: 800,
-                letterSpacing: 1,
-                textTransform: 'uppercase',
-              }}>
-                APR 30
-              </div>
-            </div>
-            <div>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 18 }}>
-                <span style={badgeStyle}>PG-13</span>
-                <span style={badgeStyle}>Comedy</span>
-                <span style={badgeStyle}>Drama</span>
-                <span style={badgeStyle}>Sequel</span>
-              </div>
-              <p style={{
-                color: 'rgba(240,233,215,0.72)',
-                fontSize: '1.05rem',
-                lineHeight: 1.75,
-                marginBottom: 24,
-              }}>
-                Meryl Streep, Anne Hathaway, Emily Blunt, and Stanley Tucci return to the fashionable streets of New York City and the sleek offices of Runway Magazine. When Miranda Priestly faces a declining print empire, she recruits a now-seasoned Andy Sachs to help save everything she built.
-              </p>
-              <div style={{
-                background: 'rgba(212,175,55,0.07)',
-                borderRadius: 10,
-                padding: '16px 20px',
-                marginBottom: 32,
-                border: '1px solid rgba(212,175,55,0.12)',
-                display: 'inline-flex',
-                flexDirection: 'column',
-                gap: 4,
-              }}>
-                <span style={{ color: gold, fontWeight: 700, fontSize: '1.05rem' }}>
-                  Opens April 30
-                </span>
-                <span style={{ color: 'rgba(240,233,215,0.55)', fontSize: '0.85rem' }}>
-                  Starting Thursday, April 30
-                </span>
-              </div>
-              <div style={{
-                background: 'rgba(212,175,55,0.05)',
-                borderRadius: 12,
-                padding: '18px 22px',
-                marginBottom: 28,
-                border: '1px solid rgba(212,175,55,0.10)',
-              }}>
-                <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
-                <ShowtimeRow day="Thursday" times={['4:00 PM', '7:00 PM']}  movie={movies[2]}/>
-                <ShowtimeRow day="Friday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
-                <ShowtimeRow day="Saturday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
-                <ShowtimeRow day="Sunday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
-                            <PayItForwardMini />
-
-<div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={goldBtn}>
-                  Book Tickets
-                </a>
-                <button onClick={() => setTrailerOpen('R57Y4v5OmzM')} style={darkBtn}>
-                  Watch Trailer
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </section>
-
       {/* THE GODFATHER - STARTING APR 26 */}
       <section id="the-godfather" style={{
         padding: '80px 0 88px',
