@@ -233,7 +233,7 @@ export default function HomePage() {
             color: 'rgba(240,233,215,0.65)', fontSize: '1.15rem',
             maxWidth: 640, margin: '0 auto 40px', lineHeight: 1.65,
           }}>
-            Movies, bingo, karaoke, salsa, comedy, and community nights.
+            Movies, karaoke, salsa, comedy, and community nights.
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#now-playing" style={goldBtn}>Now Playing</a>
@@ -626,19 +626,6 @@ export default function HomePage() {
           display: 'flex', flexWrap: 'wrap', gap: 24, justifyContent: 'center', maxWidth: 700, margin: '0 auto',
         }}>
           <div style={{
-            flex: '1 1 280px', maxWidth: 320, background: '#111', border: '1px solid rgba(212,175,55,0.25)',
-            borderRadius: 16, padding: '36px 28px', textAlign: 'center',
-          }}>
-            <h3 style={{ color: gold, fontSize: '1.3rem', marginBottom: 4 }}>Matinee Ticket</h3>
-            <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Showings before 5 PM</p>
-            <p style={{ fontSize: '2.4rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$10</p>
-            <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>+ tax at checkout</p>
-            <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
-              display: 'inline-block', background: 'transparent', color: gold, border: '2px solid #d4af37',
-              padding: '12px 36px', borderRadius: 999, fontWeight: 700, fontSize: '1rem', textDecoration: 'none',
-            }}>Buy Now</a>
-          </div>
-          <div style={{
             flex: '1 1 280px',
             maxWidth: 320,
             background: '#111',
@@ -750,7 +737,6 @@ export default function HomePage() {
           </p>
           <div className="grid grid-4" style={{ gap: 14 }}>
             {[
-              { day: 'THURSDAY', emoji: '', name: 'Bingo Night', time: '7 PM' },
               { day: 'FRIDAY', emoji: '', name: 'Karaoke', time: '7:30 PM' },
               { day: 'SATURDAY', emoji: '', name: 'Salsa Night', time: '8 PM' },
               { day: 'SUNDAY', emoji: '', name: 'Brunch + Movie', time: '11 AM' },
@@ -915,7 +901,6 @@ export default function HomePage() {
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
           PROJECT HAIL MARY  NOW PLAYING &nbsp;ÃÂÃÂ·&nbsp;
           THE GODFATHER â STARTS APR 26 &nbsp;&nbsp; ZORBA THE GREEK DAILY 4PM &nbsp;ÃÂÃÂ·&nbsp;
-          BINGO THURSDAYS 7PM &nbsp;ÃÂÃÂ·&nbsp;
           KARAOKE FRIDAYS 7:30PM &nbsp;ÃÂÃÂ·&nbsp;
           SALSA SATURDAYS 8PM &nbsp;ÃÂÃÂ·&nbsp;
           BAR & GRILL OPEN
