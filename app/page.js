@@ -1,32 +1,4 @@
-{/* MOVIE POSTER CAROUSEL - Cinemark Style */}
-      <section style={{ padding: '40px 0 20px', borderBottom: '1px solid rgba(212,175,55,0.15)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 20px' }}>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.8rem', marginBottom: 24, textAlign: 'center' }}>
-            <span style={{ color: gold }}>Now Showing</span> at Lighthouse
-          </h2>
-          <div style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 16, scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
-            {allVisibleMovies.map(movie => (
-              <div key={movie.slug} onClick={() => { const el = document.getElementById(movie.slug === 'devil-wears-prada-2' ? 'now-playing' : movie.slug === 'cheap-detective' ? 'coming-soon' : movie.slug); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} style={{ minWidth: 200, maxWidth: 200, scrollSnapAlign: 'start', cursor: 'pointer', borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(212,175,55,0.2)', background: '#111', transition: 'transform 0.2s, box-shadow 0.2s', flexShrink: 0 }}>
-                <div style={{ position: 'relative', height: 280 }}>
-                  <img src={movie.poster} alt={movie.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  {movie.trailerId && (
-                    <button onClick={(e) => { e.stopPropagation(); setTrailerOpen(movie.trailerId); }} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 50, height: 50, borderRadius: '50%', background: 'rgba(0,0,0,0.7)', border: '2px solid white', color: 'white', fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#9654;</button>
-                  )}
-                  {isComingSoon(movie) && (
-                    <span style={{ position: 'absolute', top: 8, left: 8, background: gold, color: '#000', padding: '3px 10px', borderRadius: 4, fontSize: '0.7rem', fontWeight: 700, letterSpacing: 1 }}>COMING SOON</span>
-                  )}
-                </div>
-                <div style={{ padding: '10px 12px' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: cream, marginBottom: 4 }}>{movie.title}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(240,233,215,0.5)' }}>{movie.rating} {movie.genre && '\u00B7 ' + movie.genre}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      'use client';
+'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { dailyMessages } from './daily-messages';
@@ -35,6 +7,7 @@ import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from
 /*  style constants  */
 const gold = '#D4AF37';
 const cream = '#F0E9D7';
+  const allVisibleMovies = movies.filter(m => m.active && (isMovieActive(m) || isComingSoon(m)));
 const dark = '#0a0a0a';
 
 const badgeStyle = {
@@ -291,6 +264,35 @@ export default function HomePage() {
   </p>
   </div>
   </section>
+
+
+      {/* MOVIE POSTER CAROUSEL - Cinemark Style */}
+      <section style={{ padding: '40px 0 20px', borderBottom: '1px solid rgba(212,175,55,0.15)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 20px' }}>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.8rem', marginBottom: 24, textAlign: 'center' }}>
+            <span style={{ color: gold }}>Now Showing</span> at Lighthouse
+          </h2>
+          <div style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 16, scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
+            {allVisibleMovies.map(movie => (
+              <div key={movie.slug} onClick={() => { const el = document.getElementById(movie.slug === 'devil-wears-prada-2' ? 'now-playing' : movie.slug === 'cheap-detective' ? 'coming-soon' : movie.slug); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} style={{ minWidth: 200, maxWidth: 200, scrollSnapAlign: 'start', cursor: 'pointer', borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(212,175,55,0.2)', background: '#111', transition: 'transform 0.2s, box-shadow 0.2s', flexShrink: 0 }}>
+                <div style={{ position: 'relative', height: 280 }}>
+                  <img src={movie.poster} alt={movie.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  {movie.trailerId && (
+                    <button onClick={(e) => { e.stopPropagation(); setTrailerOpen(movie.trailerId); }} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 50, height: 50, borderRadius: '50%', background: 'rgba(0,0,0,0.7)', border: '2px solid white', color: 'white', fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#9654;</button>
+                  )}
+                  {isComingSoon(movie) && (
+                    <span style={{ position: 'absolute', top: 8, left: 8, background: gold, color: '#000', padding: '3px 10px', borderRadius: 4, fontSize: '0.7rem', fontWeight: 700, letterSpacing: 1 }}>COMING SOON</span>
+                  )}
+                </div>
+                <div style={{ padding: '10px 12px' }}>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: cream, marginBottom: 4 }}>{movie.title}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(240,233,215,0.5)' }}>{movie.rating} {movie.genre && '\u00B7 ' + movie.genre}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* DAILY SCHEDULE - What's Playing Today */}
       <section id="daily-schedule" style={{
