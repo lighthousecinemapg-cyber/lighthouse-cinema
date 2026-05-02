@@ -133,6 +133,34 @@ export const movies = [
     ticketLinks: { default: 'https://square.link/u/pfGKjKqr' },
     displayNote: 'Daily at 4:00 PM | Main Auditorium',
   },
+  {
+    slug: 'grease',
+    title: 'Grease',
+    status: 'now-playing',
+    rating: 'PG',
+    runtime: '1h 50m',
+    genre: 'Musical / Romance',
+    trailerId: 'THd96gHV7Tg',
+    poster: '/posters/grease.jpg',
+    description: 'The 1978 classic! Sandy and Danny navigate the social pressures of Rydell High in this iconic musical featuring unforgettable songs and electrifying performances from John Travolta and Olivia Newton-John.',
+    showDates: [
+      { date: '2026-05-02', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-03', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+    ],
+  },
+  {
+    slug: 'sheep-detectives',
+    title: 'The Sheep Detectives',
+    status: 'coming-soon',
+    rating: 'PG',
+    runtime: '1h 43m',
+    genre: 'Comedy / Animation',
+    trailerId: 'pyZI5oM6hWk',
+    poster: '/posters/sheep-detectives.jpg',
+    description: 'When a mysterious crime wave hits the barnyard, an unlikely team of woolly investigators must crack the case. Featuring the voice of Hugh Jackman. 94% on Rotten Tomatoes.',
+    comingSoonDate: '2026-05-08',
+    showDates: [],
+  },
 ];
 
 /* Helper: get ticket link for a specific showtime */
