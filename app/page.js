@@ -292,10 +292,10 @@ export default function HomePage() {
                   </div>
                   <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
                     <div style={{ color: gold, fontWeight: 600, marginBottom: 2 }}>Devil Wears Prada 2</div>
-                    {day === 'Wed' ? null : day === 'Thu' ? <div>4 PM \u00B7 7 PM</div> : <div>12 \u00B7 2:30 \u00B7 5 \u00B7 7:30</div>}
+                    {day === 'Wed' ? null : day === 'Thu' ? <div>4 PM · 7 PM</div> : <div>12 · 2:30 · 5 · 7:30</div>}
                     {day === 'Wed' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : null}
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Project Hail Mary</div>
-                    <div>1 PM \u00B7 4 PM \u00B7 7 PM</div>
+                    <div>1 PM · 4 PM · 7 PM</div>
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Zorba the Greek</div>
                     <div>4 PM</div>
                   </div>
@@ -383,10 +383,10 @@ export default function HomePage() {
                 gap: 4,
               }}>
                 <span style={{ color: gold, fontWeight: 700, fontSize: '1.05rem' }}>
-                  Opens April 30
+                  Now Playing
                 </span>
                 <span style={{ color: 'rgba(240,233,215,0.55)', fontSize: '0.85rem' }}>
-                  Starting Thursday, April 30
+                  Now Playing
                 </span>
               </div>
               <div style={{
@@ -548,69 +548,6 @@ export default function HomePage() {
         </div>
       </section>
       
-      {/* THE GODFATHER - STARTING APR 26 */}
-      <section id="the-godfather" style={{
-        padding: '80px 0 88px',
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0805 50%, #0a0a0a 100%)',
-        borderTop: '1px solid rgba(212,175,55,0.12)',
-      }}>
-        <div className="container">
-          <div style={{ fontSize: '0.75rem', letterSpacing: 4, color: gold, textTransform: 'uppercase', textAlign: 'center', marginBottom: 8 }}>
-            April Only
-          </div>
-          <h2 style={{ fontSize: '2.4rem', textAlign: 'center', marginBottom: 48, fontFamily: "'Playfair Display', serif" }}>
-            The Godfather
-          </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(240px, 380px) 1fr',
-            gap: 48,
-            maxWidth: 1020,
-            margin: '0 auto',
-            alignItems: 'start',
-          }}>
-            <div style={{
-              borderRadius: 14,
-              overflow: 'hidden',
-              border: '2px solid rgba(212,175,55,0.25)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
-            }}>
-              <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" alt="The Godfather" style={{ width: '100%', display: 'block' }} />
-            </div>
-            <div>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
-                <span className="badge badge-gold">Classic</span>
-                <span className="badge" style={{ background: 'rgba(255,255,255,0.08)', color: cream }}>Rated R</span>
-                <span className="badge" style={{ background: 'rgba(255,255,255,0.08)', color: cream }}>2h 55m</span>
-              </div>
-              <p style={{ color: 'rgba(240,233,215,0.7)', lineHeight: 1.7, fontSize: '1.05rem', marginBottom: 24 }}>
-                Francis Ford Coppola&apos;s masterpiece returns to the big screen. The aging patriarch of an organized crime dynasty transfers control to his reluctant son. Starring Marlon Brando and Al Pacino. An offer you can&apos;t refuse.
-              </p>
-              <p style={{ color: gold, fontWeight: 600, marginBottom: 8 }}>Tickets: $15 Adult | $12 Senior</p>
-              <h3 style={{ color: gold, fontSize: '0.85rem', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 14, fontWeight: 700 }}>
-                Showtimes
-              </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 36 }}>
-                <ShowtimeRow day="Saturday" times={['7:30 PM']}  movie={movies[3]}/>
-                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM']}  movie={movies[3]}/>
-              </div>
-              <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
-                display: 'inline-block',
-                background: 'linear-gradient(135deg, #D4AF37, #F5D76E)',
-                color: '#0a0a0a',
-                padding: '14px 36px',
-                borderRadius: 50,
-                fontWeight: 700,
-                textDecoration: 'none',
-                fontSize: '1rem',
-              }}>
-                Book Tickets
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* BUY MOVIE TICKETS */}
       <section id="buy-tickets" style={{
         padding: '80px 20px', background: '#0a0a0a', textAlign: 'center',
@@ -900,7 +837,6 @@ export default function HomePage() {
       <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
           PROJECT HAIL MARY  NOW PLAYING &nbsp;ÃÂÃÂ·&nbsp;
-          THE GODFATHER â STARTS APR 26 &nbsp;&nbsp; ZORBA THE GREEK DAILY 4PM &nbsp;ÃÂÃÂ·&nbsp;
           KARAOKE FRIDAYS 7:30PM &nbsp;ÃÂÃÂ·&nbsp;
           SALSA SATURDAYS 8PM &nbsp;ÃÂÃÂ·&nbsp;
           BAR & GRILL OPEN
