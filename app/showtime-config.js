@@ -135,6 +135,7 @@ export const movies = [
   },
   {
     slug: 'grease',
+    active: true,
     title: 'Grease',
     status: 'now-playing',
     rating: 'PG',
@@ -150,6 +151,7 @@ export const movies = [
   },
   {
     slug: 'sheep-detectives',
+    active: true,
     title: 'The Sheep Detectives',
     status: 'coming-soon',
     rating: 'PG',
