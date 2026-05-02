@@ -2,6 +2,7 @@ import './globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
 import PayItForward from './PayItForward';
+import MobileNav from './MobileNav';
 
 export const metadata = {
   title: 'Lighthouse Cinema | Pacific Grove',
@@ -29,15 +30,7 @@ export default function RootLayout({ children }) {
               <span className="logo-light">Lighthouse</span>{' '}
               <span className="logo-cinema">Cinema</span>
             </a>
-            <nav className="header-nav">
-              <a href="/events">Events</a>
-              <a href="/menu">Menu</a>
-              <a href="/private-events">Private Events</a>
-              <a href="/vip">VIP Club</a>
-              <a href="/contact">Contact</a>
-              <a href="/checkout">Cart</a>
-              <a href="sms:+18334414049" className="btn btn-gold btn-sm">Message Us</a>
-            </nav>
+            <MobileNav />
           </div>
         </header>
 
