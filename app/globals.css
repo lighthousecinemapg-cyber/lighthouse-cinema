@@ -132,6 +132,107 @@ img {
   border-radius: 1px;
 }
 
+/* —— Hamburger Menu —— */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.hamburger-line.open:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger-line.open:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-line.open:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: #111;
+  border-left: 1px solid var(--dark-border);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  z-index: 1000;
+  animation: slideIn 0.3s ease;
+  overflow-y: auto;
+}
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--dark-border);
+}
+.mobile-menu-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.mobile-menu-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.mobile-menu-close:hover {
+  color: var(--gold);
+}
+.mobile-menu-link {
+  display: block;
+  padding: 16px 24px;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.2s, color 0.2s;
+}
+.mobile-menu-link:hover {
+  background: rgba(212,175,55,0.08);
+  color: var(--gold);
+}
+.mobile-menu-cta {
+  margin: 20px 24px;
+  text-align: center;
+  display: block;
+}
+
 /* ââ Buttons ââ */
 .btn {
   display: inline-flex;
@@ -452,7 +553,9 @@ th {
 /* ============ MOBILE STICKY BOOK NOW CTA ============ */
 .mobile-sticky-cta { display: none; }
 @media (max-width: 760px) {
-  .header-nav a:not(.btn) { display: none; }
+  .desktop-nav { display: none; }
+  .hamburger-btn { display: flex; }
+  .mobile-sticky-cta .btn { font-size: 1rem; }
   main { padding-bottom: 96px; }
   .mobile-sticky-cta {
     display: block;
