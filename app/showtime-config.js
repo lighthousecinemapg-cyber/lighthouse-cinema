@@ -51,7 +51,7 @@ export const movies = [
     slug: 'cheap-detective',
     title: 'The Cheap Detective',
     status: 'coming-soon',
-    active: true,
+    active: false,
     startDate: '2026-05-08',
     endDate: null,
     rating: 'PG',
@@ -118,7 +118,7 @@ export const movies = [
     slug: 'zorba-the-greek',
     title: 'Zorba the Greek',
     status: 'documentary',
-    active: true,
+    active: false,
     startDate: null,
     endDate: null,
     rating: 'NR',
@@ -138,6 +138,7 @@ export const movies = [
     active: true,
     title: 'Grease',
     status: 'now-playing',
+    ticketLinks: { default: 'https://square.link/u/ovzTqZKH' },
     rating: 'PG',
     runtime: '1h 50m',
     genre: 'Musical / Romance',
@@ -173,7 +174,8 @@ export function getTicketLink(movie, time) {
   if (period === 'PM' && hour !== 12) hour += 12;
   if (period === 'AM' && hour === 12) hour = 0;
   const key = hour + ':' + m;
-  return movie.ticketLinks[key] || movie.ticketLinks.default || SQUARE_LINKS.general;
+  if (!movie.ticketLinks) return SQUARE_LINKS.general;
+    return movie.ticketLinks[key] || movie.ticketLinks.default || SQUARE_LINKS.general;
 }
 
 /* Helper: is this movie currently showing? */
