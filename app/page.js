@@ -522,64 +522,6 @@ export default function HomePage() {
       </section>
 
 
-      {/* THE CHEAP DETECTIVE - Starting May 8 */}
-      <section id="cheap-detective" style={{
-        padding: '80px 0 88px',
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
-        borderTop: '1px solid rgba(212,175,55,0.12)',
-      }}>
-        <div className="section-container" style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
-          <p style={{ textAlign: 'center', color: gold, letterSpacing: 6, fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>
-            COMING SOON
-          </p>
-          <h2 style={{ textAlign: 'center', fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3.2rem)', color: cream, marginBottom: 40, fontWeight: 400 }}>
-            The Cheap Detective
-          </h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 48, justifyContent: 'center', alignItems: 'flex-start' }}>
-            <div style={{ flex: '0 1 420px', position: 'relative' }}>
-              <div style={{ ...badgeStyle, position: 'absolute', top: 16, left: 16, zIndex: 2, textTransform: 'uppercase' }}>
-                MAY 8
-              </div>
-              <img src="https://img.youtube.com/vi/MfdMuvXhfjI/maxresdefault.jpg" alt="The Cheap Detective" style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(212,175,55,0.18)' }} />
-            </div>
-            <div style={{ flex: '1 1 380px', minWidth: 280 }}>
-              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 20 }}>
-                {['PG', 'Comedy', 'Mystery', '1978'].map(tag => (
-                  <span key={tag} style={badgeStyle}>{tag}</span>
-                ))}
-              </div>
-              <p style={{ color: 'rgba(240,233,215,0.85)', fontSize: '1.05rem', lineHeight: 1.8, marginBottom: 28, fontFamily: "'Inter', sans-serif" }}>
-                Peter Falk stars as Lou Peckinpaugh, a bumbling private eye caught up in a web of murder, mystery, and hilarious misunderstandings. A loving parody of classic detective films, featuring an all-star cast including Ann-Margret, Eileen Brennan, and Dom DeLuise.
-              </p>
-              <div style={{ background: 'rgba(212,175,55,0.08)', borderRadius: 14, padding: '20px 24px', marginBottom: 24, border: '1px solid rgba(212,175,55,0.15)' }}>
-                <p style={{ color: gold, fontWeight: 700, fontSize: '1.05rem', marginBottom: 4 }}>Opens May 8</p>
-                <p style={{ color: 'rgba(240,233,215,0.6)', fontSize: '0.9rem' }}>Starting Thursday, May 8</p>
-              </div>
-              <div style={{ background: 'rgba(212,175,55,0.06)', borderRadius: 14, padding: '20px 24px', marginBottom: 28, border: '1px solid rgba(212,175,55,0.12)' }}>
-                <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
-                <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[1]}/>
-                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[1]}/>
-                <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[1]}/>
-                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[1]}/>
-                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[1]}/>
-              </div>
-                            <PayItForwardMini />
-
-<div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={goldBtn}>
-                  Book Tickets
-                </a>
-                <button onClick={() => setTrailerOpen('MfdMuvXhfjI')} style={darkBtn}>
-                  Watch Trailer
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* BUY MOVIE TICKETS */}
-      
       {/* ── GREASE ── */}
       <section id="grease" style={{
         padding: '80px 0 88px',
@@ -608,19 +550,19 @@ export default function HomePage() {
 
               <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid rgba(212,175,55,0.15)', borderRadius: 12, padding: '20px 24px' }}>
                 <h3 style={{ color: gold, fontSize: '1.1rem', fontFamily: "'Playfair Display', serif", marginBottom: 16, fontStyle: 'italic' }}>Showtimes</h3>
-                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'grease')} />
-                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'grease')} />
+                <ShowtimeRow day="Friday" times={['7:00 PM']}  movie={movies.find(m => m.slug === 'grease')} />
+                <ShowtimeRow day="Saturday" times={['7:00 PM']}  movie={movies.find(m => m.slug === 'grease')} />
               </div>
 
               <div style={{ marginTop: 20 }}>
-                <p style={{ color: gold, fontSize: '0.9rem', opacity: 0.8 }}>Playing May 2 & 3 only</p>
+                <p style={{ color: gold, fontSize: '0.9rem', opacity: 0.8 }}>Playing May 8 & 9 only</p>
               </div>
             </div>
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 48, flexWrap: 'wrap' }}>
             <button onClick={() => setTrailerOpen('THd96gHV7Tg')} style={{ padding: '14px 32px', background: 'transparent', border: `1px solid ${gold}`, color: gold, borderRadius: 8, cursor: 'pointer', fontSize: '1rem', fontFamily: "'Playfair Display', serif" }}>Watch Trailer</button>
-            <Link href="https://square.link/u/pfGKjKqr" style={{ padding: '14px 32px', background: gold, color: '#0a0a0a', borderRadius: 8, textDecoration: 'none', fontSize: '1rem', fontWeight: 600, fontFamily: "'Playfair Display', serif" }}>Book Now</Link>
+            <Link href="https://square.link/u/ovzTqZKH" style={{ padding: '14px 32px', background: gold, color: '#0a0a0a', borderRadius: 8, textDecoration: 'none', fontSize: '1rem', fontWeight: 600, fontFamily: "'Playfair Display', serif" }}>Book Now</Link>
           </div>
         </div>
       </section>
