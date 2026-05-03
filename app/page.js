@@ -579,6 +579,92 @@ export default function HomePage() {
       </section>
       
       {/* BUY MOVIE TICKETS */}
+      
+      {/* ── GREASE ── */}
+      <section id="grease" style={{
+        padding: '80px 0 88px',
+        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
+        borderTop: '1px solid rgba(212,175,55,0.12)',
+      }}>
+        <div className="section-container" style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
+          <p style={{ textAlign: 'center', color: gold, letterSpacing: 6, fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>NOW PLAYING</p>
+          <h2 style={{ textAlign: 'center', fontSize: 'clamp(2rem, 5vw, 3rem)', fontFamily: "'Playfair Display', serif", color: cream, marginBottom: 40, fontStyle: 'italic' }}>Grease</h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 1fr', gap: 48, alignItems: 'start' }}>
+            <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}>
+              <img src="https://img.youtube.com/vi/THd96gHV7Tg/maxresdefault.jpg" alt="Grease" style={{ width: '100%', display: 'block' }} />
+            </div>
+
+            <div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
+                <span style={badgeStyle}>PG</span>
+                <span style={badgeStyle}>Musical</span>
+                <span style={badgeStyle}>Romance</span>
+                <span style={badgeStyle}>1978</span>
+              </div>
+              <p style={{ color: cream, lineHeight: 1.7, fontSize: '1.05rem', marginBottom: 28, opacity: 0.92 }}>
+                The 1978 classic! Sandy and Danny navigate the social pressures of Rydell High in this iconic musical featuring unforgettable songs and electrifying performances from John Travolta and Olivia Newton-John.
+              </p>
+
+              <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid rgba(212,175,55,0.15)', borderRadius: 12, padding: '20px 24px' }}>
+                <h3 style={{ color: gold, fontSize: '1.1rem', fontFamily: "'Playfair Display', serif", marginBottom: 16, fontStyle: 'italic' }}>Showtimes</h3>
+                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'grease')} />
+                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'grease')} />
+              </div>
+
+              <div style={{ marginTop: 20 }}>
+                <p style={{ color: gold, fontSize: '0.9rem', opacity: 0.8 }}>Playing May 2 & 3 only</p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 48, flexWrap: 'wrap' }}>
+            <button onClick={() => setTrailerOpen('THd96gHV7Tg')} style={{ padding: '14px 32px', background: 'transparent', border: `1px solid ${gold}`, color: gold, borderRadius: 8, cursor: 'pointer', fontSize: '1rem', fontFamily: "'Playfair Display', serif" }}>Watch Trailer</button>
+            <Link href="https://square.link/u/pfGKjKqr" style={{ padding: '14px 32px', background: gold, color: '#0a0a0a', borderRadius: 8, textDecoration: 'none', fontSize: '1rem', fontWeight: 600, fontFamily: "'Playfair Display', serif" }}>Book Now</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── THE SHEEP DETECTIVES ── */}
+      <section id="sheep-detectives" style={{
+        padding: '80px 0 88px',
+        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
+        borderTop: '1px solid rgba(212,175,55,0.12)',
+      }}>
+        <div className="section-container" style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
+          <p style={{ textAlign: 'center', color: gold, letterSpacing: 6, fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>COMING SOON</p>
+          <h2 style={{ textAlign: 'center', fontSize: 'clamp(2rem, 5vw, 3rem)', fontFamily: "'Playfair Display', serif", color: cream, marginBottom: 40, fontStyle: 'italic' }}>The Sheep Detectives</h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 1fr', gap: 48, alignItems: 'start' }}>
+            <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}>
+              <div style={{ position: 'absolute', top: 16, left: 16, background: gold, color: '#0a0a0a', padding: '4px 14px', borderRadius: 6, fontWeight: 700, fontSize: '0.85rem', zIndex: 2 }}>MAY 8</div>
+              <img src="https://img.youtube.com/vi/pyZI5oM6hWk/maxresdefault.jpg" alt="The Sheep Detectives" style={{ width: '100%', display: 'block' }} />
+            </div>
+
+            <div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
+                <span style={badgeStyle}>PG</span>
+                <span style={badgeStyle}>Comedy</span>
+                <span style={badgeStyle}>Animation</span>
+              </div>
+              <p style={{ color: cream, lineHeight: 1.7, fontSize: '1.05rem', marginBottom: 28, opacity: 0.92 }}>
+                When a mysterious crime wave hits the barnyard, an unlikely team of woolly investigators must crack the case. Featuring the voice of Hugh Jackman. 94% on Rotten Tomatoes.
+              </p>
+
+              <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid rgba(212,175,55,0.15)', borderRadius: 12, padding: '20px 24px' }}>
+                <p style={{ color: gold, fontSize: '1.1rem', fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}>Opens May 8</p>
+                <p style={{ color: cream, opacity: 0.7, marginTop: 8 }}>Starting Thursday, May 8</p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 48, flexWrap: 'wrap' }}>
+            <button onClick={() => setTrailerOpen('pyZI5oM6hWk')} style={{ padding: '14px 32px', background: 'transparent', border: `1px solid ${gold}`, color: gold, borderRadius: 8, cursor: 'pointer', fontSize: '1rem', fontFamily: "'Playfair Display', serif" }}>Watch Trailer</button>
+            <Link href="https://square.link/u/pfGKjKqr" style={{ padding: '14px 32px', background: gold, color: '#0a0a0a', borderRadius: 8, textDecoration: 'none', fontSize: '1rem', fontWeight: 600, fontFamily: "'Playfair Display', serif" }}>Book Tickets</Link>
+          </div>
+        </div>
+      </section>
+
       <section id="buy-tickets" style={{
         padding: '80px 20px', background: '#0a0a0a', textAlign: 'center',
       }}>
