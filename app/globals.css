@@ -561,10 +561,18 @@ th {
   main { padding-bottom: 80px; }
 
   /* ── MOVIE SECTION GRIDS: stack poster above info ── */
+  #now-playing .container > div[style],
   #now-playing .section-container > div[style],
+  #project-hail-mary .container > div[style],
   #project-hail-mary .section-container > div[style],
   #grease .section-container > div[style],
   #sheep-detectives .section-container > div[style] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Universal: any two-col grid in movie sections stacks on mobile */
+  section[id] > div > div[style*="grid"] {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
   }
