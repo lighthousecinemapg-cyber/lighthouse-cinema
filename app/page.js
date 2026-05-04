@@ -326,8 +326,10 @@ export default function HomePage() {
                     {day === 'Wed' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : null}
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Project Hail Mary</div>
                     <div>1 PM · 4 PM · 7 PM</div>
-                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Zorba the Greek</div>
-                    <div>4 PM</div>
+                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Grease</div>
+                    {day === 'Fri' || day === 'Sat' ? <div>7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div>}
+                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>The Sheep Detectives</div>
+                    <div>1 PM · 4 PM · 7 PM</div>
                   </div>
                 </div>
               );
@@ -574,7 +576,7 @@ export default function HomePage() {
         borderTop: '1px solid rgba(212,175,55,0.12)',
       }}>
         <div className="section-container" style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
-          <p style={{ textAlign: 'center', color: gold, letterSpacing: 6, fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>COMING SOON</p>
+          <p style={{ textAlign: 'center', color: gold, letterSpacing: 6, fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>NOW PLAYING</p>
           <h2 style={{ textAlign: 'center', fontSize: 'clamp(2rem, 5vw, 3rem)', fontFamily: "'Playfair Display', serif", color: cream, marginBottom: 40, fontStyle: 'italic' }}>The Sheep Detectives</h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 1fr', gap: 48, alignItems: 'start' }}>
@@ -594,8 +596,11 @@ export default function HomePage() {
               </p>
 
               <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid rgba(212,175,55,0.15)', borderRadius: 12, padding: '20px 24px' }}>
-                <p style={{ color: gold, fontSize: '1.1rem', fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}>Opens May 8</p>
-                <p style={{ color: cream, opacity: 0.7, marginTop: 8 }}>Starting Thursday, May 8</p>
+                <p style={{ color: gold, fontSize: '1.1rem', fontFamily: '"Playfair Display", serif', fontWeight: 600, marginBottom: 12 }}>Playing May 8 & 9</p>
+                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'sheep-detectives')} />
+                <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'sheep-detectives')} />
+                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'sheep-detectives')} />
+                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'sheep-detectives')} />
               </div>
             </div>
           </div>
@@ -648,78 +653,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/*  3. DOCUMENTARY  Zorba the Greek  */}
-      <section id="documentaries" style={{
-        padding: '80px 0 88px', background: '#0c0c0c',
-        borderTop: '1px solid rgba(212,175,55,0.10)',
-      }}>
-        <div className="container">
-          <div style={{ fontSize: '0.75rem', letterSpacing: 4, color: gold, textTransform: 'uppercase', textAlign: 'center', marginBottom: 6 }}>
-            Documentary Feature
-          </div>
-          <h2 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: 48, fontFamily: "'Playfair Display', serif", color: cream }}>
-            Zorba the Greek
-          </h2>
-
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'minmax(200px, 320px) 1fr',
-            gap: 40, maxWidth: 920, margin: '0 auto', alignItems: 'start',
-          }}>
-            <div style={{
-              borderRadius: 14, overflow: 'hidden',
-              border: '2px solid rgba(212,175,55,0.18)',
-              background: '#111', boxShadow: '0 12px 48px rgba(0,0,0,0.5)',
-            }}>
-              <img
-                src="https://img.youtube.com/vi/xrArjp14SeU/maxresdefault.jpg"
-                alt="Zorba the Greek"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-                loading="lazy"
-              />
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 18 }}>
-                <span style={badgeStyle}>Classic</span>
-                <span style={badgeStyle}>1964</span>
-                <span style={badgeStyle}>Drama</span>
-                <span style={badgeStyle}>Anthony Quinn</span>
-              </div>
-
-              <p style={{ color: 'rgba(240,233,215,0.72)', fontSize: '1.05rem', lineHeight: 1.75, marginBottom: 24 }}>
-                Anthony Quinn delivers an unforgettable performance as the exuberant
-                Alexis Zorba, who teaches a reserved English writer how to embrace life
-                on the island of Crete. Winner of three Academy Awards.
-              </p>
-
-              <div style={{
-                background: 'rgba(212,175,55,0.07)', borderRadius: 10,
-                padding: '16px 20px', marginBottom: 32,
-                border: '1px solid rgba(212,175,55,0.12)',
-                display: 'inline-flex', flexDirection: 'column', gap: 4,
-              }}>
-                <span style={{ color: gold, fontWeight: 700, fontSize: '1.05rem' }}>
-                  Daily at 4:00 PM
-                </span>
-                <span style={{ color: 'rgba(240,233,215,0.55)', fontSize: '0.85rem' }}>
-                  Main Auditorium
-                </span>
-              </div>
-
-                            <PayItForwardMini />
-
-<div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                <button onClick={() => setTrailerOpen('xrArjp14SeU')} style={goldBtn}>
-                   Watch Trailer
-                </button>
-                <Link href="/events" style={darkBtn}>
-                   Book Now
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/*  4. THIS WEEK  */}
       <section style={{ padding: '72px 0', background: dark, borderTop: '1px solid rgba(212,175,55,0.10)' }}>
