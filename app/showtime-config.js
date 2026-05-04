@@ -154,7 +154,7 @@ export const movies = [
     slug: 'sheep-detectives',
     active: true,
     title: 'The Sheep Detectives',
-    status: 'coming-soon',
+    status: 'now-playing',
     rating: 'PG',
     runtime: '1h 43m',
     genre: 'Comedy / Animation',
@@ -162,7 +162,12 @@ export const movies = [
     poster: '/posters/sheep-detectives.jpg',
     description: 'When a mysterious crime wave hits the barnyard, an unlikely team of woolly investigators must crack the case. Featuring the voice of Hugh Jackman. 94% on Rotten Tomatoes.',
     comingSoonDate: '2026-05-08',
-    showDates: [],
+    showDates: [
+      { date: '2026-05-08', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-09', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-10', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-11', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+    ],
   },
 ];
 
