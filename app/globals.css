@@ -553,10 +553,97 @@ th {
 /* ============ MOBILE STICKY BOOK NOW CTA ============ */
 .mobile-sticky-cta { display: none; }
 @media (max-width: 760px) {
+  /* ── NAV ── */
   .desktop-nav { display: none; }
   .hamburger-btn { display: flex; }
-  .mobile-sticky-cta .btn { font-size: 1rem; }
-  main { padding-bottom: 96px; }
+
+  /* ── GLOBAL SPACING ── */
+  main { padding-bottom: 80px; }
+
+  /* ── MOVIE SECTION GRIDS: stack poster above info ── */
+  #now-playing .section-container > div[style],
+  #project-hail-mary .section-container > div[style],
+  #grease .section-container > div[style],
+  #sheep-detectives .section-container > div[style] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* ── SECTION PADDING: tighter on mobile ── */
+  section { padding: 48px 0 !important; }
+  section .section-container,
+  section > div[style] { padding: 0 16px !important; }
+
+  /* ── SHOWTIME BUTTONS: bigger tap targets ── */
+  section a[style*="padding"][style*="border-radius"],
+  section button[style*="padding"][style*="border-radius"] {
+    min-height: 48px !important;
+    font-size: 1rem !important;
+  }
+
+  /* ── DAILY SCHEDULE: horizontal scroll on small screens ── */
+  #daily-schedule > div > div > div[style*="grid"] {
+    display: flex !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 0 !important;
+    padding-bottom: 8px;
+  }
+  #daily-schedule > div > div > div[style*="grid"] > div {
+    min-width: 140px !important;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    padding: 12px !important;
+    border-right: 1px solid rgba(212,175,55,0.1);
+  }
+
+  /* ── HERO BUTTONS: full width stack ── */
+  section:first-of-type div[style*="flexWrap"] {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+  section:first-of-type div[style*="flexWrap"] > a,
+  section:first-of-type div[style*="flexWrap"] > button {
+    width: 100% !important;
+    max-width: 280px !important;
+    text-align: center !important;
+    padding: 14px 20px !important;
+    font-size: 1rem !important;
+  }
+
+  /* ── CAROUSEL CARDS: slightly smaller ── */
+  div[style*="overflow-x"] > div {
+    min-width: 260px !important;
+  }
+
+  /* ── MOVIE ACTION BUTTONS at bottom of sections ── */
+  section > div > div[style*="justifyContent"][style*="gap"] {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  section > div > div[style*="justifyContent"][style*="gap"] > a,
+  section > div > div[style*="justifyContent"][style*="gap"] > button {
+    width: 100% !important;
+    max-width: 320px !important;
+    text-align: center !important;
+    min-height: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ── POSTER IMAGES: full width, centered ── */
+  section div[style*="borderRadius"][style*="overflow"] {
+    max-width: 100% !important;
+  }
+  section img[style*="width"] {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ── STICKY BOTTOM CTA ── */
   .mobile-sticky-cta {
     display: block;
     position: fixed;
@@ -564,7 +651,7 @@ th {
     background: linear-gradient(180deg, #d4af37, #b8941f);
     color: #0a0a0a !important;
     text-align: center;
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-weight: 700;
     font-size: 1.1rem;
     padding: 16px;
@@ -574,4 +661,40 @@ th {
     letter-spacing: 0.5px;
   }
   .mobile-sticky-cta:hover { background: linear-gradient(180deg, #e8bf47, #c8a424); }
+
+  /* ── SHOWTIME ROW TABLE: better mobile layout ── */
+  table[style] {
+    width: 100% !important;
+  }
+  table td, table th {
+    padding: 8px 6px !important;
+    font-size: 0.9rem !important;
+  }
+  table td a {
+    padding: 10px 14px !important;
+    min-height: 44px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* ── TYPOGRAPHY: ensure readable on mobile ── */
+  h2 { font-size: clamp(1.5rem, 6vw, 2.2rem) !important; }
+  p { font-size: clamp(0.9rem, 3.5vw, 1rem) !important; }
+
+  /* ── PAY IT FORWARD BUTTON ── */
+  div[style*="position: fixed"][style*="right"] {
+    right: 8px !important;
+    bottom: 80px !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* ── FOOTER: stack columns ── */
+  footer div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+  }
+
+  /* ── HIDE CHAT WIDGET OVERLAP ── */
+  iframe[title*="chat"], div[class*="chat-widget"] {
+    bottom: 80px !important;
+  }
 }
