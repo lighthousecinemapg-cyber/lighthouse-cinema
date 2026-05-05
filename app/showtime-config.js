@@ -43,7 +43,7 @@ export const movies = [
       Saturday: ['1:00 PM', '4:00 PM', '7:00 PM'],
       Sunday: ['1:00 PM', '4:00 PM', '7:00 PM'],
     },
-    ticketLinks: { default: 'https://square.link/u/pfGKjKqr' },
+    ticketLinks: { default: 'https://square.link/u/35dAPUL4' },
     displayNote: 'Playing through May 8',
     hoursNote: 'Wed 12-7 PM | Thu 12-10 PM | Fri-Sat 12 PM-12 AM | Sun 11 AM-7 PM',
   },
