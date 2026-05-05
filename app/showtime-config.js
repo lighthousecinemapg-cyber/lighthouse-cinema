@@ -143,7 +143,7 @@ export const movies = [
     runtime: '1h 50m',
     genre: 'Musical / Romance',
     trailerId: 'THd96gHV7Tg',
-    poster: '/posters/grease.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/2rM7fQKpb7cs1Iq7IBqub9LFDzJ.jpg',
     description: 'The 1978 classic! Sandy and Danny navigate the social pressures of Rydell High in this iconic musical featuring unforgettable songs and electrifying performances from John Travolta and Olivia Newton-John.',
     showDates: [
       { date: '2026-05-02', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
@@ -159,7 +159,7 @@ export const movies = [
     runtime: '1h 43m',
     genre: 'Comedy / Animation',
     trailerId: 'pyZI5oM6hWk',
-    poster: '/posters/sheep-detectives.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/hTirV44jiLh6NqdiB6jtxPsDIoG.jpg',
     description: 'When a mysterious crime wave hits the barnyard, an unlikely team of woolly investigators must crack the case. Featuring the voice of Hugh Jackman. 94% on Rotten Tomatoes.',
     comingSoonDate: '2026-05-08',
     showDates: [
