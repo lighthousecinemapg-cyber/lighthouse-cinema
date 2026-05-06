@@ -200,8 +200,8 @@ export default async function EventsPage() {
                         <span style={{ fontSize: 20, fontWeight: 700, color: gold }}>
                           {e.ticketPrice === 0 ? 'FREE' : `$${e.ticketPrice}`}
                         </span>
-                        {e.bookingUrl ? (
-                          <a href={e.bookingUrl} target="_blank" rel="noopener noreferrer" style={goldBtn}>Book Tickets</a>
+                        {(e.bookingUrl || e.ticketUrl) ? (
+                          <a href={e.bookingUrl || e.ticketUrl} target="_blank" rel="noopener noreferrer" style={goldBtn}>Book Tickets</a>
                         ) : (
                           <Link href={`/events/${e.id}`} style={goldBtn}>Book Now</Link>
                         )}
