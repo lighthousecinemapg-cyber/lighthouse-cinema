@@ -1,4 +1,5 @@
 
+
 'use client';
 // Rebuild trigger v2
 import { useState, useEffect } from 'react';
@@ -823,6 +824,36 @@ export default function HomePage() {
             Text <strong style={{ color: gold }}>JOIN</strong> to <strong style={{ color: gold }}>(831) 747-4470</strong> for showtimes, new events, and <strong>10% off</strong> your next visit.
           </p>
           <a href="sms:+18317474470?body=JOIN" style={goldBtn}>Text JOIN </a>
+        </div>
+      </section>
+
+
+      {/* ART & EAST-MEETS-WEST FUSION CONCERT */}
+      <section id="art-fusion" style={{
+        padding: '80px 0',
+        background: 'linear-gradient(180deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%)',
+      }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+          <div style={{ display: 'inline-block', background: 'rgba(212,175,55,0.12)', padding: '4px 16px', borderRadius: 999, fontSize: '0.8rem', color: gold, fontWeight: 600, letterSpacing: 1, marginBottom: 16 }}>SPECIAL EVENT</div>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', color: cream, marginBottom: 8 }}>Art & East-Meets-West Fusion Concert</h2>
+          <p style={{ color: gold, fontSize: '1.1rem', fontWeight: 600, marginBottom: 24 }}>May 23, 2026 · 5:00 PM - 8:00 PM</p>
+          <p style={{ color: '#ccc', fontSize: '1rem', lineHeight: 1.7, maxWidth: 700, margin: '0 auto 32px' }}>
+            An evening of abstract art and fusion music at Lighthouse Cinema. Featuring artwork by <strong style={{color: cream}}>Shagufta Khan</strong> (Abstract Impressionist) and <strong style={{color: cream}}>Nate Stapleton</strong> (Abstract Artist), live performance by the <strong style={{color: cream}}>Echoes Eternal Collective</strong>, DJ sets by <strong style={{color: cream}}>The Guam Show</strong> (KHDC 90.9 FM), and a surprise pop-up sketch session by <strong style={{color: cream}}>Edge Lorenzo</strong>, Disney's veteran animator. Wine and light refreshments served.
+          </p>
+          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 24 }}>
+            <div style={{ background: 'rgba(212,175,55,0.08)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: 12, padding: '16px 24px' }}>
+              <div style={{ fontSize: '1.6rem', fontWeight: 700, color: gold, fontFamily: "'Playfair Display', serif" }}>$15</div>
+              <div style={{ fontSize: '0.8rem', color: '#999' }}>per person</div>
+            </div>
+          </div>
+          <a href="https://square.link/u/TREEYNkF" target="_blank" rel="noopener noreferrer" style={{
+            display: 'inline-block', background: gold, color: dark, padding: '14px 40px', borderRadius: 8,
+            fontWeight: 700, fontSize: '1rem', textDecoration: 'none', letterSpacing: 0.5,
+            transition: 'transform 0.2s, box-shadow 0.2s',
+          }}>
+            Buy Tickets
+          </a>
+          <p style={{ color: '#666', fontSize: '0.8rem', marginTop: 12 }}>525 Lighthouse Ave, Pacific Grove, CA 93950</p>
         </div>
       </section>
 
