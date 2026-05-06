@@ -338,7 +338,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* COMING SOON ÃÂ¢ÃÂÃÂ The Devil Wears Prada 2 */}
+      {/* COMING SOON — The Devil Wears Prada 2 */}
       <section id="now-playing" style={{
         padding: '80px 0 88px',
         background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
@@ -733,11 +733,11 @@ export default function HomePage() {
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                         <div>
                           <div style={{ fontSize: '0.85rem', color: gold, fontWeight: 600 }}>{formatDate(event.date)}</div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} ÃÂÃÂ· {event.venue}</div>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} · {event.venue}</div>
                         </div>
                         <div style={{ textAlign: 'right' }}>
-                          <div style={{ fontSize: '1.4rem', fontWeight: 700, color: gold, fontFamily: "'Playfair Display', serif" }}>${event.ticketPrice}</div>
-                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>per ticket</div>
+                          <div style={{ fontSize: '1.4rem', fontWeight: 700, color: gold, fontFamily: "'Playfair Display', serif" }}>{event.ticketPrice === 0 ? 'Free' : `$${event.ticketPrice}`}</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{event.ticketPrice === 0 ? 'admission' : 'per ticket'}</div>
                         </div>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0 0', borderTop: '1px solid var(--dark-border)' }}>
@@ -827,9 +827,9 @@ export default function HomePage() {
       {/*  9. MARQUEE  */}
       <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-          PROJECT HAIL MARY  NOW PLAYING &nbsp;ÃÂÃÂ·&nbsp;
-          KARAOKE FRIDAYS 7:30PM &nbsp;ÃÂÃÂ·&nbsp;
-          SALSA SATURDAYS 8PM &nbsp;ÃÂÃÂ·&nbsp;
+          PROJECT HAIL MARY  NOW PLAYING &nbsp;·&nbsp;
+          KARAOKE FRIDAYS 7:30PM &nbsp;·&nbsp;
+          SALSA SATURDAYS 8PM &nbsp;·&nbsp;
           BAR & GRILL OPEN
         </div>
       </section>
