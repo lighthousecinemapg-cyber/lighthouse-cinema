@@ -324,15 +324,14 @@ export default function HomePage() {
                   </div>
                   <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
                     <div style={{ color: gold, fontWeight: 600, marginBottom: 2 }}>Devil Wears Prada 2</div>
-                    {day === 'Wed' ? null : day === 'Thu' ? <div>4 PM · 7 PM</div> : <div>12 · 2:30 · 5 · 7:30</div>}
-                    {day === 'Wed' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : null}
+                    <div style={{ color: gold, fontWeight: 600, marginBottom: 2 }}>Devil Wears Prada 2</div>
+                    {day === 'Sat' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>—</div> : <div>12:30 · 2:30 · 5 · 7:30</div>}
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Project Hail Mary</div>
-                    <div>1 PM · 4 PM · 7 PM</div>
+                    {day === 'Wed' ? <div>4 · 7</div> : day === 'Thu' ? <div>1 · 4 · 7</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>—</div>}
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Grease</div>
-                    {day === 'Fri' || day === 'Sat' ? <div>7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div>}
+                    {day === 'Fri' || day === 'Sat' ? <div>7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>—</div>}
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>The Sheep Detectives</div>
-                    <div>1 PM · 4 PM · 7 PM</div>
-                  </div>
+                    {day === 'Wed' || day === 'Thu' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Starting Fri</div> : <div>1 · 4 · 7</div>}
                 </div>
               );
             })}
