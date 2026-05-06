@@ -1,4 +1,6 @@
+
 'use client';
+// Rebuild trigger v2
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { dailyMessages } from './daily-messages';
