@@ -324,14 +324,14 @@ export default function HomePage() {
                   </div>
                   <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
                     <div style={{ color: gold, fontWeight: 600, marginBottom: 2 }}>Devil Wears Prada 2</div>
-                    {day === 'Wed' ? null : day === 'Thu' ? <div>4 PM Â· 7 PM</div> : <div>12 Â· 2:30 Â· 5 Â· 7:30</div>}
+                    {day === 'Wed' ? null : day === 'Thu' ? <div>4 PM · 7 PM</div> : <div>12 · 2:30 · 5 · 7:30</div>}
                     {day === 'Wed' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : null}
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Project Hail Mary</div>
-                    <div>1 PM Â· 4 PM Â· 7 PM</div>
+                    <div>1 PM · 4 PM · 7 PM</div>
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Grease</div>
                     {day === 'Fri' || day === 'Sat' ? <div>7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div>}
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>The Sheep Detectives</div>
-                    <div>1 PM Â· 4 PM Â· 7 PM</div>
+                    <div>1 PM · 4 PM · 7 PM</div>
                   </div>
                 </div>
               );
@@ -419,7 +419,7 @@ export default function HomePage() {
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                         <div>
                           <div style={{ fontSize: '0.85rem', color: gold, fontWeight: 600 }}>{formatDate(event.date)}</div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} Â· {event.venue}</div>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} · {event.venue}</div>
                         </div>
                         <div style={{ textAlign: 'right' }}>
                           <div style={{ fontSize: '1.4rem', fontWeight: 700, color: gold, fontFamily: "'Playfair Display', serif" }}>{event.ticketPrice === 0 ? 'Free' : `$${event.ticketPrice}`}</div>
@@ -519,7 +519,7 @@ export default function HomePage() {
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
           <div style={{ display: 'inline-block', background: 'rgba(212,175,55,0.12)', padding: '4px 16px', borderRadius: 999, fontSize: '0.8rem', color: gold, fontWeight: 600, letterSpacing: 1, marginBottom: 16 }}>SPECIAL EVENT</div>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', color: cream, marginBottom: 8 }}>Art & East-Meets-West Fusion Concert</h2>
-          <p style={{ color: gold, fontSize: '1.1rem', fontWeight: 600, marginBottom: 24 }}>May 23, 2026 Â· 5:00 PM - 8:00 PM</p>
+          <p style={{ color: gold, fontSize: '1.1rem', fontWeight: 600, marginBottom: 24 }}>May 23, 2026 · 5:00 PM - 8:00 PM</p>
           <p style={{ color: '#ccc', fontSize: '1rem', lineHeight: 1.7, maxWidth: 700, margin: '0 auto 32px' }}>
             An evening of abstract art and fusion music at Lighthouse Cinema. Featuring artwork by <strong style={{color: cream}}>Shagufta Khan</strong> (Abstract Impressionist) and <strong style={{color: cream}}>Nate Stapleton</strong> (Abstract Artist), live performance by the <strong style={{color: cream}}>Echoes Eternal Collective</strong>, DJ sets by <strong style={{color: cream}}>The Guam Show</strong> (KHDC 90.9 FM), and a surprise pop-up sketch session by <strong style={{color: cream}}>Edge Lorenzo</strong>, Disney's veteran animator. Wine and light refreshments served.
           </p>
@@ -543,9 +543,9 @@ export default function HomePage() {
       {/*  9. MARQUEE  */}
       <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-          PROJECT HAIL MARY  NOW PLAYING &nbsp;Â·&nbsp;
-          KARAOKE FRIDAYS 7:30PM &nbsp;Â·&nbsp;
-          SALSA SATURDAYS 8PM &nbsp;Â·&nbsp;
+          PROJECT HAIL MARY  NOW PLAYING &nbsp;·&nbsp;
+          KARAOKE FRIDAYS 7:30PM &nbsp;·&nbsp;
+          SALSA SATURDAYS 8PM &nbsp;·&nbsp;
           BAR & GRILL OPEN
         </div>
       </section>
