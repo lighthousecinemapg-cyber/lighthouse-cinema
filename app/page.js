@@ -66,7 +66,7 @@ function ShowtimeRow({ day, times, movie }) {
                 border: '1px solid transparent',
               }}
               title={"Buy ticket for " + t}>
-              {t} <span style={{ fontSize: '0.7rem', opacity: 0.7 }}>🎟️</span>
+              {t} <span style={{ fontSize: '0.7rem', opacity: 0.7 }}>ðï¸</span>
             </a>
           ) : (
             <span key={t} style={{
@@ -90,7 +90,7 @@ function PayItForwardMini() {
         fontWeight: 600, textDecoration: 'none',
         border: '1px dashed rgba(212,175,55,0.3)', marginTop: 8,
       }}>
-      💛 Pay It Forward — Buy a ticket for someone who needs a night out
+      ð Pay It Forward â Buy a ticket for someone who needs a night out
     </a>
   );
 }
@@ -207,7 +207,7 @@ export default function HomePage() {
         boxShadow: '0 2px 12px rgba(212,175,55,0.3)',
       }}>
         <span style={{ color: '#0a0a0a', fontWeight: 700, fontSize: '1rem', letterSpacing: 1 }}>
-          ✨ Get Your Tickets Now ✨
+          â¨ Get Your Tickets Now â¨
         </span>
       </a>
 
@@ -242,7 +242,6 @@ export default function HomePage() {
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#now-playing" style={goldBtn}>Now Playing</a>
             <Link href="/events" style={darkBtn}>All Events</Link>
-            <a href="sms:+18334414049" style={darkBtn}>Message Us</a>
           </div>
         </div>
       </section>
@@ -325,14 +324,14 @@ export default function HomePage() {
                   </div>
                   <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
                     <div style={{ color: gold, fontWeight: 600, marginBottom: 2 }}>Devil Wears Prada 2</div>
-                    {day === 'Wed' ? null : day === 'Thu' ? <div>4 PM · 7 PM</div> : <div>12 · 2:30 · 5 · 7:30</div>}
+                    {day === 'Wed' ? null : day === 'Thu' ? <div>4 PM Â· 7 PM</div> : <div>12 Â· 2:30 Â· 5 Â· 7:30</div>}
                     {day === 'Wed' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : null}
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Project Hail Mary</div>
-                    <div>1 PM · 4 PM · 7 PM</div>
+                    <div>1 PM Â· 4 PM Â· 7 PM</div>
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>Grease</div>
                     {day === 'Fri' || day === 'Sat' ? <div>7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div>}
                     <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>The Sheep Detectives</div>
-                    <div>1 PM · 4 PM · 7 PM</div>
+                    <div>1 PM Â· 4 PM Â· 7 PM</div>
                   </div>
                 </div>
               );
@@ -340,322 +339,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* COMING SOON — The Devil Wears Prada 2 */}
-      <section id="now-playing" style={{
-        padding: '80px 0 88px',
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
-        borderTop: '1px solid rgba(212,175,55,0.12)',
-      }}>
-        <div className="container">
-          <div style={{ fontSize: '0.75rem', letterSpacing: 4, color: gold, textTransform: 'uppercase', textAlign: 'center', marginBottom: 6 }}>
-            Now Playing
-          </div>
-          <h2 style={{ fontSize: '2.4rem', textAlign: 'center', marginBottom: 48, fontFamily: "'Playfair Display', serif", color: cream }}>
-            The Devil Wears Prada 2
-          </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(240px, 380px) 1fr',
-            gap: 48,
-            maxWidth: 1020,
-            margin: '0 auto',
-            alignItems: 'start',
-          }}>
-            <div style={{
-              borderRadius: 14,
-              overflow: 'hidden',
-              border: '2px solid rgba(212,175,55,0.2)',
-              background: '#111',
-              boxShadow: '0 12px 48px rgba(0,0,0,0.6)',
-              position: 'relative',
-            }}>
-              <img
-                src="https://image.tmdb.org/t/p/w500/p35IoKfBtJDNiWJMO8ZEtIMZSfW.jpg"
-                alt="The Devil Wears Prada 2 Movie Poster"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-                loading="lazy"
-              />
-              <div style={{
-                position: 'absolute',
-                top: 14,
-                left: 14,
-                background: 'rgba(212,175,55,0.95)',
-                color: '#0a0a0a',
-                padding: '6px 14px',
-                borderRadius: 6,
-                fontSize: '0.75rem',
-                fontWeight: 800,
-                letterSpacing: 1,
-                textTransform: 'uppercase',
-              }}>
-                APR 30
-              </div>
-            </div>
-            <div>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 18 }}>
-                <span style={badgeStyle}>PG-13</span>
-                <span style={badgeStyle}>Comedy</span>
-                <span style={badgeStyle}>Drama</span>
-                <span style={badgeStyle}>Sequel</span>
-              </div>
-              <p style={{
-                color: 'rgba(240,233,215,0.72)',
-                fontSize: '1.05rem',
-                lineHeight: 1.75,
-                marginBottom: 24,
-              }}>
-                Meryl Streep, Anne Hathaway, Emily Blunt, and Stanley Tucci return to the fashionable streets of New York City and the sleek offices of Runway Magazine. When Miranda Priestly faces a declining print empire, she recruits a now-seasoned Andy Sachs to help save everything she built.
-              </p>
-              <div style={{
-                background: 'rgba(212,175,55,0.07)',
-                borderRadius: 10,
-                padding: '16px 20px',
-                marginBottom: 32,
-                border: '1px solid rgba(212,175,55,0.12)',
-                display: 'inline-flex',
-                flexDirection: 'column',
-                gap: 4,
-              }}>
-                <span style={{ color: gold, fontWeight: 700, fontSize: '1.05rem' }}>
-                  Now Playing
-                </span>
-                <span style={{ color: 'rgba(240,233,215,0.55)', fontSize: '0.85rem' }}>
-                  Now Playing
-                </span>
-              </div>
-              <div style={{
-                background: 'rgba(212,175,55,0.05)',
-                borderRadius: 12,
-                padding: '18px 22px',
-                marginBottom: 28,
-                border: '1px solid rgba(212,175,55,0.10)',
-              }}>
-                <h4 style={{ color: gold, fontSize: '1rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>Showtimes</h4>
-                <ShowtimeRow day="Thursday" times={['4:00 PM', '7:00 PM']}  movie={movies[2]}/>
-                <ShowtimeRow day="Friday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
-                <ShowtimeRow day="Saturday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
-                <ShowtimeRow day="Sunday" times={['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM']}  movie={movies[2]}/>
-                            <PayItForwardMini />
-
-<div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={goldBtn}>
-                  Book Tickets
-                </a>
-                <button onClick={() => setTrailerOpen('R57Y4v5OmzM')} style={darkBtn}>
-                  Watch Trailer
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </section>
-
-      {/*  2. NOW PLAYING  Project Hail Mary  */}
-      <section id="project-hail-mary" style={{
-        padding: '80px 0 88px', background: dark,
-        borderTop: '1px solid rgba(212,175,55,0.12)',
-      }}>
-        <div className="container">
-          <div style={{ fontSize: '0.75rem', letterSpacing: 4, color: gold, textTransform: 'uppercase', textAlign: 'center', marginBottom: 6 }}>
-            Now Playing
-          </div>
-          <h2 style={{ fontSize: '2.4rem', textAlign: 'center', marginBottom: 48, fontFamily: "'Playfair Display', serif", color: cream }}>
-            Project Hail Mary
-          </h2>
-
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'minmax(240px, 380px) 1fr',
-            gap: 48, maxWidth: 1020, margin: '0 auto', alignItems: 'start',
-          }}>
-            <div style={{
-              borderRadius: 14, overflow: 'hidden',
-              border: '2px solid rgba(212,175,55,0.2)',
-              background: '#111', boxShadow: '0 12px 48px rgba(0,0,0,0.6)',
-            }}>
-              <img
-                src="https://img.youtube.com/vi/m08TxIsFTRI/maxresdefault.jpg"
-                alt="Project Hail Mary"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-                loading="lazy"
-              />
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 18 }}>
-                <span style={badgeStyle}>PG-13</span>
-                <span style={badgeStyle}>2h 19m</span>
-                <span style={badgeStyle}>Sci-Fi</span>
-                <span style={badgeStyle}>94% Rotten Tomatoes</span>
-              </div>
-
-              <p style={{ color: 'rgba(240,233,215,0.72)', fontSize: '1.05rem', lineHeight: 1.75, marginBottom: 32 }}>
-                Ryan Gosling stars as a science teacher who wakes up alone on a spaceship
-                light-years from Earth with no memory of how he got there. As his memory
-                returns, he uncovers a mission to save humanity from extinction. Based on
-                Andy Weir's bestselling novel. Directed by Phil Lord & Christopher Miller.
-              </p>
-
-              <h3 style={{ color: gold, fontSize: '0.85rem', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 14, fontWeight: 700 }}>
-                Showtimes — Now through May 8
-              </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 36 }}>
-                              <ShowtimeRow day="Wednesday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[0]}/>
-                              <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[0]}/>
-                              <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[0]}/>
-                              <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[0]}/>
-                              <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']}  movie={movies[0]}/>
-                                <p style={{ color: 'rgba(240,233,215,0.5)', fontSize: '0.78rem', marginTop: 14, lineHeight: 1.9 }}>
-                                  <span style={{ color: gold }}>Playing through May 8</span> · Thu–Sun · Wed 12-7 PM · Thu 12-10 PM · Fri-Sat 12 PM-12 AM · Sun 11 AM-7 PM
-                  </p>
-              </div>
-
-                            <PayItForwardMini />
-
-<div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                <button onClick={() => setTrailerOpen('m08TxIsFTRI')} style={goldBtn}>
-                   Watch Trailer
-                </button>
-                <Link href="/events" style={darkBtn}>
-                   Book Now
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* ── GREASE ── */}
-      <section id="grease" style={{
-        padding: '80px 0 88px',
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
-        borderTop: '1px solid rgba(212,175,55,0.12)',
-      }}>
-        <div className="section-container" style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
-          <p style={{ textAlign: 'center', color: gold, letterSpacing: 6, fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>NOW PLAYING</p>
-          <h2 style={{ textAlign: 'center', fontSize: 'clamp(2rem, 5vw, 3rem)', fontFamily: "'Playfair Display', serif", color: cream, marginBottom: 40, fontStyle: 'italic' }}>Grease</h2>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 1fr', gap: 48, alignItems: 'start' }}>
-            <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}>
-              <img src="https://img.youtube.com/vi/THd96gHV7Tg/maxresdefault.jpg" alt="Grease" style={{ width: '100%', display: 'block' }} />
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
-                <span style={badgeStyle}>PG</span>
-                <span style={badgeStyle}>Musical</span>
-                <span style={badgeStyle}>Romance</span>
-                <span style={badgeStyle}>1978</span>
-              </div>
-              <p style={{ color: cream, lineHeight: 1.7, fontSize: '1.05rem', marginBottom: 28, opacity: 0.92 }}>
-                The 1978 classic! Sandy and Danny navigate the social pressures of Rydell High in this iconic musical featuring unforgettable songs and electrifying performances from John Travolta and Olivia Newton-John.
-              </p>
-
-              <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid rgba(212,175,55,0.15)', borderRadius: 12, padding: '20px 24px' }}>
-                <h3 style={{ color: gold, fontSize: '1.1rem', fontFamily: "'Playfair Display', serif", marginBottom: 16, fontStyle: 'italic' }}>Showtimes</h3>
-                <ShowtimeRow day="Friday" times={['7:00 PM']}  movie={movies.find(m => m.slug === 'grease')} />
-                <ShowtimeRow day="Saturday" times={['7:00 PM']}  movie={movies.find(m => m.slug === 'grease')} />
-              </div>
-
-              <div style={{ marginTop: 20 }}>
-                <p style={{ color: gold, fontSize: '0.9rem', opacity: 0.8 }}>Playing May 8 & 9 only</p>
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 48, flexWrap: 'wrap' }}>
-            <button onClick={() => setTrailerOpen('THd96gHV7Tg')} style={{ padding: '14px 32px', background: 'transparent', border: `1px solid ${gold}`, color: gold, borderRadius: 8, cursor: 'pointer', fontSize: '1rem', fontFamily: "'Playfair Display', serif" }}>Watch Trailer</button>
-            <Link href="https://square.link/u/ovzTqZKH" style={{ padding: '14px 32px', background: gold, color: '#0a0a0a', borderRadius: 8, textDecoration: 'none', fontSize: '1rem', fontWeight: 600, fontFamily: "'Playfair Display', serif" }}>Book Now</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── THE SHEEP DETECTIVES ── */}
-      <section id="sheep-detectives" style={{
-        padding: '80px 0 88px',
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #0d0a05 50%, #0a0a0a 100%)',
-        borderTop: '1px solid rgba(212,175,55,0.12)',
-      }}>
-        <div className="section-container" style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
-          <p style={{ textAlign: 'center', color: gold, letterSpacing: 6, fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>NOW PLAYING</p>
-          <h2 style={{ textAlign: 'center', fontSize: 'clamp(2rem, 5vw, 3rem)', fontFamily: "'Playfair Display', serif", color: cream, marginBottom: 40, fontStyle: 'italic' }}>The Sheep Detectives</h2>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 1fr', gap: 48, alignItems: 'start' }}>
-            <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}>
-              <div style={{ position: 'absolute', top: 16, left: 16, background: gold, color: '#0a0a0a', padding: '4px 14px', borderRadius: 6, fontWeight: 700, fontSize: '0.85rem', zIndex: 2 }}>MAY 8</div>
-              <img src="https://img.youtube.com/vi/pyZI5oM6hWk/maxresdefault.jpg" alt="The Sheep Detectives" style={{ width: '100%', display: 'block' }} />
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
-                <span style={badgeStyle}>PG</span>
-                <span style={badgeStyle}>Comedy</span>
-                <span style={badgeStyle}>Animation</span>
-              </div>
-              <p style={{ color: cream, lineHeight: 1.7, fontSize: '1.05rem', marginBottom: 28, opacity: 0.92 }}>
-                When a mysterious crime wave hits the barnyard, an unlikely team of woolly investigators must crack the case. Featuring the voice of Hugh Jackman. 94% on Rotten Tomatoes.
-              </p>
-
-              <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid rgba(212,175,55,0.15)', borderRadius: 12, padding: '20px 24px' }}>
-                <p style={{ color: gold, fontSize: '1.1rem', fontFamily: '"Playfair Display", serif', fontWeight: 600, marginBottom: 12 }}>Playing May 8 & 9</p>
-                <ShowtimeRow day="Thursday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'sheep-detectives')} />
-                <ShowtimeRow day="Friday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'sheep-detectives')} />
-                <ShowtimeRow day="Saturday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'sheep-detectives')} />
-                <ShowtimeRow day="Sunday" times={['1:00 PM', '4:00 PM', '7:00 PM']} movie={movies.find(m => m.slug === 'sheep-detectives')} />
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 48, flexWrap: 'wrap' }}>
-            <button onClick={() => setTrailerOpen('pyZI5oM6hWk')} style={{ padding: '14px 32px', background: 'transparent', border: `1px solid ${gold}`, color: gold, borderRadius: 8, cursor: 'pointer', fontSize: '1rem', fontFamily: "'Playfair Display', serif" }}>Watch Trailer</button>
-            <Link href="https://square.link/u/pfGKjKqr" style={{ padding: '14px 32px', background: gold, color: '#0a0a0a', borderRadius: 8, textDecoration: 'none', fontSize: '1rem', fontWeight: 600, fontFamily: "'Playfair Display', serif" }}>Book Tickets</Link>
-          </div>
-        </div>
-      </section>
-
-      <section id="buy-tickets" style={{
-        padding: '80px 20px', background: '#0a0a0a', textAlign: 'center',
-      }}>
-        <p style={{ color: gold, letterSpacing: 3, fontSize: '0.8rem', fontWeight: 600, marginBottom: 8 }}>TICKETS</p>
-        <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', marginBottom: 12, color: cream }}>
-          Buy <span style={{ color: gold }}>Movie Tickets</span>
-        </h2>
-        <p style={{ color: 'rgba(245,233,200,0.7)', maxWidth: 500, margin: '0 auto 40px', fontSize: '1.05rem' }}>
-          Skip the line. Grab your seats now and enjoy the show.
-        </p>
-        <div style={{
-          display: 'flex', flexWrap: 'wrap', gap: 24, justifyContent: 'center', maxWidth: 700, margin: '0 auto',
-        }}>
-          <div style={{
-            flex: '1 1 280px',
-            maxWidth: 320,
-            background: '#111',
-            border: '1px solid rgba(212,175,55,0.25)',
-            borderRadius: 16,
-            padding: '36px 28px',
-            textAlign: 'center',
-          }}>
-            <h3 style={{ color: gold, fontSize: '1.3rem', marginBottom: 4 }}>New Release Ticket</h3>
-            <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: 16 }}>Premium & new release films</p>
-            <p style={{ fontSize: '2.4rem', fontWeight: 800, color: cream, marginBottom: 4 }}>$15</p>
-            <p style={{ color: 'rgba(245,233,200,0.5)', fontSize: '0.75rem', marginBottom: 24 }}>+ tax at checkout</p>
-            <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{
-              display: 'inline-block',
-              background: 'transparent',
-              color: gold,
-              border: '2px solid #d4af37',
-              padding: '12px 36px',
-              borderRadius: 999,
-              fontWeight: 700,
-              fontSize: '1rem',
-              textDecoration: 'none',
-            }}>Buy Now</a>
-          </div>
-        </div>
-      </section>
-
 
       {/*  4. THIS WEEK  */}
       <section style={{ padding: '72px 0', background: dark, borderTop: '1px solid rgba(212,175,55,0.10)' }}>
@@ -736,7 +419,7 @@ export default function HomePage() {
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                         <div>
                           <div style={{ fontSize: '0.85rem', color: gold, fontWeight: 600 }}>{formatDate(event.date)}</div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} · {event.venue}</div>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} Â· {event.venue}</div>
                         </div>
                         <div style={{ textAlign: 'right' }}>
                           <div style={{ fontSize: '1.4rem', fontWeight: 700, color: gold, fontFamily: "'Playfair Display', serif" }}>{event.ticketPrice === 0 ? 'Free' : `$${event.ticketPrice}`}</div>
@@ -836,7 +519,7 @@ export default function HomePage() {
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
           <div style={{ display: 'inline-block', background: 'rgba(212,175,55,0.12)', padding: '4px 16px', borderRadius: 999, fontSize: '0.8rem', color: gold, fontWeight: 600, letterSpacing: 1, marginBottom: 16 }}>SPECIAL EVENT</div>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', color: cream, marginBottom: 8 }}>Art & East-Meets-West Fusion Concert</h2>
-          <p style={{ color: gold, fontSize: '1.1rem', fontWeight: 600, marginBottom: 24 }}>May 23, 2026 · 5:00 PM - 8:00 PM</p>
+          <p style={{ color: gold, fontSize: '1.1rem', fontWeight: 600, marginBottom: 24 }}>May 23, 2026 Â· 5:00 PM - 8:00 PM</p>
           <p style={{ color: '#ccc', fontSize: '1rem', lineHeight: 1.7, maxWidth: 700, margin: '0 auto 32px' }}>
             An evening of abstract art and fusion music at Lighthouse Cinema. Featuring artwork by <strong style={{color: cream}}>Shagufta Khan</strong> (Abstract Impressionist) and <strong style={{color: cream}}>Nate Stapleton</strong> (Abstract Artist), live performance by the <strong style={{color: cream}}>Echoes Eternal Collective</strong>, DJ sets by <strong style={{color: cream}}>The Guam Show</strong> (KHDC 90.9 FM), and a surprise pop-up sketch session by <strong style={{color: cream}}>Edge Lorenzo</strong>, Disney's veteran animator. Wine and light refreshments served.
           </p>
@@ -860,9 +543,9 @@ export default function HomePage() {
       {/*  9. MARQUEE  */}
       <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-          PROJECT HAIL MARY  NOW PLAYING &nbsp;·&nbsp;
-          KARAOKE FRIDAYS 7:30PM &nbsp;·&nbsp;
-          SALSA SATURDAYS 8PM &nbsp;·&nbsp;
+          PROJECT HAIL MARY  NOW PLAYING &nbsp;Â·&nbsp;
+          KARAOKE FRIDAYS 7:30PM &nbsp;Â·&nbsp;
+          SALSA SATURDAYS 8PM &nbsp;Â·&nbsp;
           BAR & GRILL OPEN
         </div>
       </section>
