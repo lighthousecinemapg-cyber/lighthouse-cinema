@@ -207,7 +207,7 @@ export default function HomePage() {
         boxShadow: '0 2px 12px rgba(212,175,55,0.3)',
       }}>
         <span style={{ color: '#0a0a0a', fontWeight: 700, fontSize: '1rem', letterSpacing: 1 }}>
-          â¨ Get Your Tickets Now â¨
+                    ✨ Get Your Tickets Now ✨
         </span>
       </a>
 
