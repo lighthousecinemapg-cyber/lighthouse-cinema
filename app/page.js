@@ -308,8 +308,8 @@ export default function HomePage() {
             Tap any showtime to buy tickets instantly
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 12, textAlign: 'center' }}>
-            {['Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => {
-              const dayNum = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(day === 'Wed' ? 'Wed' : day === 'Thu' ? 'Thu' : day === 'Fri' ? 'Fri' : day === 'Sat' ? 'Sat' : 'Sun');
+            {['Thu', 'Fri', 'Sat', 'Sun'].map(day => {
+              const dayNum = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(day === 'Thu' ? 'Thu' : day === 'Fri' ? 'Fri' : day === 'Sat' ? 'Sat' : 'Sun');
               const isToday = new Date().getDay() === dayNum;
               return (
                 <div key={day} style={{
@@ -322,11 +322,11 @@ export default function HomePage() {
                   </div>
                   <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
-                    {day === 'Sat' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : day === 'Fri' ? <div>12:30 · 2:30 · 5</div> : day === 'Sun' ? <div>12:30 · 2:30 · 5 · 7:30</div> : <div>2:30 · 5 · 7:30</div>}
+                    {day === 'Thu' ? <div>2:30 · 5 · 7:30</div> : <div>12:30 · 2:30 · 5 · 7:30</div>}
                     <a href="https://square.link/u/35dAPUL4" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Project Hail Mary</a>
-                    {day === 'Wed' ? <div>4 · 7 PM</div> : day === 'Thu' ? <div>1 · 4 · 7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Run ended</div>}
+                    {day === 'Thu' ? <div>4 · 7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div>}
                     <a href="https://square.link/u/ovzTqZKH" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Grease</a>
-                    {day === 'Fri' || day === 'Sat' ? <div>7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div>}
+                    <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div>
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
                     {day === 'Fri' || day === 'Sat' || day === 'Sun' ? <div>1 · 4 · 7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Starts Fri</div>}
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Mamma Mia!</a>
