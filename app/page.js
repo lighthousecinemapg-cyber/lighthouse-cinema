@@ -1,5 +1,3 @@
-
-
 'use client';
 // Rebuild trigger v2
 import { useState, useEffect } from 'react';
@@ -323,15 +321,16 @@ export default function HomePage() {
                     {day.toUpperCase()} {isToday && '\u2022 TODAY'}
                   </div>
                   <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
-                    <div style={{ color: gold, fontWeight: 600, marginBottom: 2, cursor: 'pointer' }} onClick={() => window.open(SQUARE_LINKS.general, '_blank')}>Devil Wears Prada 2</div>
-                    {day === 'Sat' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>&mdash;</div> : <div style={{ cursor: 'pointer' }} onClick={() => window.open(SQUARE_LINKS.general, '_blank')}>12:30 &middot; 2:30 &middot; 5 &middot; 7:30</div>}
-                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, cursor: 'pointer' }} onClick={() => window.open('https://square.link/u/35dAPUL4', '_blank')}>Project Hail Mary</div>
-                    {day === 'Wed' ? <div style={{ cursor: 'pointer' }} onClick={() => window.open('https://square.link/u/35dAPUL4', '_blank')}>4 &middot; 7</div> : day === 'Thu' ? <div style={{ cursor: 'pointer' }} onClick={() => window.open('https://square.link/u/35dAPUL4', '_blank')}>1 &middot; 4 &middot; 7</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>&mdash;</div>}
-                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, cursor: 'pointer' }} onClick={() => window.open('https://square.link/u/ovzTqZKH', '_blank')}>Grease</div>
-                    {day === 'Fri' || day === 'Sat' ? <div style={{ cursor: 'pointer' }} onClick={() => window.open('https://square.link/u/ovzTqZKH', '_blank')}>7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>&mdash;</div>}
-                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, cursor: 'pointer' }} onClick={() => window.open(SQUARE_LINKS.general, '_blank')}>The Sheep Detectives</div>
-                    {day === 'Wed' || day === 'Thu' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Starting Fri</div> : <div style={{ cursor: 'pointer' }} onClick={() => window.open(SQUARE_LINKS.general, '_blank')}>1 &middot; 4 &middot; 7</div>}
+                    <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
+                    {day === 'Sat' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : <div>12:30 · 2:30 · 5 · 7:30</div>}
+                    <a href="https://square.link/u/35dAPUL4" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Project Hail Mary</a>
+                    {day === 'Wed' ? <div>4 · 7 PM</div> : day === 'Thu' ? <div>1 · 4 · 7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Run ended</div>}
+                    <a href="https://square.link/u/ovzTqZKH" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Grease</a>
+                    {day === 'Fri' || day === 'Sat' ? <div>7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div>}
+                    <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
+                    {day === 'Fri' || day === 'Sat' || day === 'Sun' ? <div>1 · 4 · 7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Starts Fri</div>}
                   </div>
+                </div>
               );
             })}
           </div>
