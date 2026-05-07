@@ -86,7 +86,7 @@ export const movies = [
     trailerId: 'R57Y4v5OmzM',
     showtimes: {
       Thursday: ['4:00 PM', '7:00 PM'],
-      Friday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
+      Friday: ['12:30 PM', '2:30 PM', '5:00 PM'],
       Saturday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
       Sunday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
     },
@@ -195,6 +195,25 @@ export function isMovieActive(movie) {
 /* Helper: is this movie coming soon? */
 export function isComingSoon(movie) {
   if (!movie.active) return false;
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0  {
+    slug: 'mamma-mia',
+    active: true,
+    title: 'Mamma Mia!',
+    status: 'now-playing',
+    rating: 'PG-13',
+    runtime: '1h 48m',
+    genre: 'Musical / Romance',
+    trailerId: 'iCVpJ8x1Tnc',
+    poster: 'https://image.tmdb.org/t/p/w500/vHMz4G47lLkT5sqpEbAV9tOU6g.jpg',
+    description: 'Meryl Streep leads an all-star cast in this feel-good musical set on a Greek island. A young bride-to-be invites three men to her wedding, each of whom could be her father. Featuring the music of ABBA. Sing along Saturday!',
+    showDates: [
+      { date: '2026-05-08', times: ['7:00 PM'] },
+      { date: '2026-05-09', times: ['7:00 PM'] },
+    ],
+    ticketLinks: { default: 'https://square.link/u/pfGKjKqr' },
+    displayNote: 'Pay What You Can at the door',
+    priceNote: 'Sat: Sing-Along Edition!',
+  },
+];
   return movie.startDate && today < movie.startDate;
 }
