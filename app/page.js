@@ -322,16 +322,34 @@ export default function HomePage() {
                   <div style={{ color: isToday ? gold : 'rgba(240,233,215,0.6)', fontWeight: 700, fontSize: '0.85rem', marginBottom: 10, letterSpacing: 1 }}>
                     {day.toUpperCase()} {isToday && '\u2022 TODAY'}
                   </div>
-                      <div style={{ fontSize: '0.78rem', color: '#F0E9D7', lineHeight: 2 }}>
-                        <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener" style={{ color: '#D4AF37', fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
-                        {day === 'Sat' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>—</div> : <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener" style={{ display: 'block', color: '#F0E9D7', textDecoration: 'none' }}>12:30 · 2:30 · 5 · 7:30</a>}
-                        <a href="https://square.link/u/35dAPUL4" target="_blank" rel="noopener" style={{ color: '#D4AF37', fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Project Hail Mary</a>
-                        {day === 'Wed' ? <a href="https://square.link/u/35dAPUL4" target="_blank" rel="noopener" style={{ display: 'block', color: '#F0E9D7', textDecoration: 'none' }}>4 · 7</a> : day === 'Thu' ? <a href="https://square.link/u/35dAPUL4" target="_blank" rel="noopener" style={{ display: 'block', color: '#F0E9D7', textDecoration: 'none' }}>1 · 4 · 7</a> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>—</div>}
-                        <a href="https://square.link/u/ovzTqZKH" target="_blank" rel="noopener" style={{ color: '#D4AF37', fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Grease</a>
-                        {day === 'Fri' || day === 'Sat' ? <a href="https://square.link/u/ovzTqZKH" target="_blank" rel="noopener" style={{ display: 'block', color: '#F0E9D7', textDecoration: 'none' }}>7 PM</a> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>—</div>}
-                        <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener" style={{ color: '#D4AF37', fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
-                        {day === 'Wed' || day === 'Thu' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Starting Fri</div> : <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener" style={{ display: 'block', color: '#F0E9D7', textDecoration: 'none' }}>1 · 4 · 7</a>}
-                </div>
+                      <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
+                        <div style={{ color: gold, fontWeight: 600, marginBottom: 2 }}>
+                          <a href={SQUARE_LINKS.general} target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'none' }}>Devil Wears Prada 2</a>
+                        </div>
+                        {day === 'Sat'
+                          ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>{"\u2014"}</div>
+                          : <a href={SQUARE_LINKS.general} target="_blank" rel="noopener" style={{ display: 'block', color: cream, textDecoration: 'none' }}>12:30{" \u00B7 "}2:30{" \u00B7 "}5{" \u00B7 "}7:30</a>}
+                        <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>
+                          <a href={"https://square.link/u/35dAPUL4"} target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'none' }}>Project Hail Mary</a>
+                        </div>
+                        {day === 'Wed'
+                          ? <a href={"https://square.link/u/35dAPUL4"} target="_blank" rel="noopener" style={{ display: 'block', color: cream, textDecoration: 'none' }}>4{" \u00B7 "}7</a>
+                          : day === 'Thu'
+                          ? <a href={"https://square.link/u/35dAPUL4"} target="_blank" rel="noopener" style={{ display: 'block', color: cream, textDecoration: 'none' }}>1{" \u00B7 "}4{" \u00B7 "}7</a>
+                          : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>{"\u2014"}</div>}
+                        <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>
+                          <a href={"https://square.link/u/ovzTqZKH"} target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'none' }}>Grease</a>
+                        </div>
+                        {day === 'Fri' || day === 'Sat'
+                          ? <a href={"https://square.link/u/ovzTqZKH"} target="_blank" rel="noopener" style={{ display: 'block', color: cream, textDecoration: 'none' }}>7 PM</a>
+                          : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>{"\u2014"}</div>}
+                        <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>
+                          <a href={SQUARE_LINKS.general} target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'none' }}>The Sheep Detectives</a>
+                        </div>
+                        {day === 'Wed' || day === 'Thu'
+                          ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Starting Fri</div>
+                          : <a href={SQUARE_LINKS.general} target="_blank" rel="noopener" style={{ display: 'block', color: cream, textDecoration: 'none' }}>1{" \u00B7 "}4{" \u00B7 "}7</a>}
+                      </div>
               );
             })}
           </div>
