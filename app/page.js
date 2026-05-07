@@ -322,13 +322,15 @@ export default function HomePage() {
                   </div>
                   <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
-                    {day === 'Sat' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : <div>12:30 · 2:30 · 5 · 7:30</div>}
+                    {day === 'Sat' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : day === 'Fri' ? <div>12:30 · 2:30 · 5</div> : <div>12:30 · 2:30 · 5 · 7:30</div>}
                     <a href="https://square.link/u/35dAPUL4" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Project Hail Mary</a>
                     {day === 'Wed' ? <div>4 · 7 PM</div> : day === 'Thu' ? <div>1 · 4 · 7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Run ended</div>}
                     <a href="https://square.link/u/ovzTqZKH" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Grease</a>
                     {day === 'Fri' || day === 'Sat' ? <div>7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div>}
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
                     {day === 'Fri' || day === 'Sat' || day === 'Sun' ? <div>1 · 4 · 7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Starts Fri</div>}
+                    <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Mamma Mia!</a>
+                    {day === 'Fri' ? <div>7 PM</div> : day === 'Sat' ? <div>7 PM Sing-Along!</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Fri/Sat only</div>}
                   </div>
                 </div>
               );
