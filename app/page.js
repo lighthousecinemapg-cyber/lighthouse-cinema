@@ -7,7 +7,7 @@ import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from
 
 /*  style constants  */
 const gold = '#D4AF37';
-const cream = '#F0E9D7';h
+const cream = '#F0E9D7';
   const allVisibleMovies = movies.filter(m => m.active && (isMovieActive(m) || isComingSoon(m)));
 const dark = '#0a0a0a';
 
