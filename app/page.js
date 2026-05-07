@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { dailyMessages } from './daily-messages';
 import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from './showtime-config';
 
+  // Gift Card purchase link - update this with your Square gift card URL
+  const GIFT_CARD_LINK = 'https://square.link/u/REPLACE_WITH_GIFT_CARD_LINK';
+
 /*  style constants  */
 const gold = '#D4AF37';
 const cream = '#F0E9D7';
@@ -368,6 +371,57 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+        {/* ── Gift Cards Section ── */}
+        <section id="gift-cards" style={{
+          padding: '80px 20px',
+          textAlign: 'center',
+          background: 'linear-gradient(180deg, #0a0a0a 0%, #1a1206 50%, #0a0a0a 100%)',
+          borderTop: '1px solid rgba(212,175,55,0.2)',
+          borderBottom: '1px solid rgba(212,175,55,0.2)'
+        }}>
+          <div style={{ maxWidth: 700, margin: '0 auto' }}>
+            <p style={{ color: gold, fontSize: '0.9rem', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 12 }}>
+              Give the Gift of Movies
+            </p>
+            <h2 style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: 'clamp(2rem, 5vw, 3rem)',
+              color: cream,
+              fontWeight: 400,
+              marginBottom: 20,
+              lineHeight: 1.2
+            }}>
+              Lighthouse Cinema<br /><em style={{ color: gold }}>Gift Cards</em>
+            </h2>
+            <p style={{ color: 'rgba(240,233,215,0.7)', fontSize: '1.1rem', lineHeight: 1.7, marginBottom: 12 }}>
+              Movies. Cocktails. Popcorn. Community.
+            </p>
+            <p style={{ color: 'rgba(240,233,215,0.5)', fontSize: '1rem', lineHeight: 1.7, marginBottom: 40 }}>
+              Give someone a night they&apos;ll remember. Perfect for birthdays, date nights, holidays, or just because. Redeemable for movies, food, drinks, events, karaoke, and more.
+            </p>
+            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 30 }}>
+              <a href={GIFT_CARD_LINK} target="_blank" rel="noopener noreferrer" style={{
+                display: 'inline-block',
+                background: gold,
+                color: '#0a0a0a',
+                padding: '16px 40px',
+                borderRadius: 999,
+                fontSize: '1.1rem',
+                fontWeight: 700,
+                textDecoration: 'none',
+                letterSpacing: 1,
+                transition: 'transform 0.2s, box-shadow 0.2s',
+                boxShadow: '0 4px 20px rgba(212,175,55,0.3)'
+              }}>
+                Buy Gift Cards
+              </a>
+            </div>
+            <p style={{ color: 'rgba(240,233,215,0.35)', fontSize: '0.85rem' }}>
+              Digital gift cards delivered instantly by email. Any amount from $10.
+            </p>
+          </div>
+        </section>
 
       {/*  5. ALL EVENTS  */}
       <section id="events" style={{ padding: '72px 0 32px', textAlign: 'center', background: '#0c0c0c', borderTop: '1px solid rgba(212,175,55,0.08)' }}>
