@@ -178,7 +178,7 @@ export const movies = [
     runtime: '1h 48m',
     genre: 'Musical / Romance',
     trailerId: 'iCVpJ8x1Tnc',
-    poster: 'https://image.tmdb.org/t/p/w500/vHMz4G47lLkT5sqpEbAV9tOU6g.jpg',
+    poster: 'https://img.youtube.com/vi/iCVpJ8x1Tnc/maxresdefault.jpg',
     description: 'Meryl Streep leads an all-star cast in this feel-good musical set on a Greek island. A young bride-to-be invites three men to her wedding, each of whom could be her father. Featuring the music of ABBA. Sing along Saturday!',
     showDates: [
       { date: '2026-05-08', times: ['7:00 PM'] },
