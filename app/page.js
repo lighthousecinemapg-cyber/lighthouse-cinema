@@ -322,34 +322,16 @@ export default function HomePage() {
                   <div style={{ color: isToday ? gold : 'rgba(240,233,215,0.6)', fontWeight: 700, fontSize: '0.85rem', marginBottom: 10, letterSpacing: 1 }}>
                     {day.toUpperCase()} {isToday && '\u2022 TODAY'}
                   </div>
-                      <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
-                        <div style={{ color: gold, fontWeight: 600, marginBottom: 2 }}>
-                          <a href={SQUARE_LINKS.general} target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'none' }}>Devil Wears Prada 2</a>
-                        </div>
-                        {day === 'Sat'
-                          ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>{"\u2014"}</div>
-                          : <a href={SQUARE_LINKS.general} target="_blank" rel="noopener" style={{ display: 'block', color: cream, textDecoration: 'none' }}>12:30{" \u00B7 "}2:30{" \u00B7 "}5{" \u00B7 "}7:30</a>}
-                        <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>
-                          <a href={"https://square.link/u/35dAPUL4"} target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'none' }}>Project Hail Mary</a>
-                        </div>
-                        {day === 'Wed'
-                          ? <a href={"https://square.link/u/35dAPUL4"} target="_blank" rel="noopener" style={{ display: 'block', color: cream, textDecoration: 'none' }}>4{" \u00B7 "}7</a>
-                          : day === 'Thu'
-                          ? <a href={"https://square.link/u/35dAPUL4"} target="_blank" rel="noopener" style={{ display: 'block', color: cream, textDecoration: 'none' }}>1{" \u00B7 "}4{" \u00B7 "}7</a>
-                          : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>{"\u2014"}</div>}
-                        <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>
-                          <a href={"https://square.link/u/ovzTqZKH"} target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'none' }}>Grease</a>
-                        </div>
-                        {day === 'Fri' || day === 'Sat'
-                          ? <a href={"https://square.link/u/ovzTqZKH"} target="_blank" rel="noopener" style={{ display: 'block', color: cream, textDecoration: 'none' }}>7 PM</a>
-                          : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>{"\u2014"}</div>}
-                        <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2 }}>
-                          <a href={SQUARE_LINKS.general} target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'none' }}>The Sheep Detectives</a>
-                        </div>
-                        {day === 'Wed' || day === 'Thu'
-                          ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Starting Fri</div>
-                          : <a href={SQUARE_LINKS.general} target="_blank" rel="noopener" style={{ display: 'block', color: cream, textDecoration: 'none' }}>1{" \u00B7 "}4{" \u00B7 "}7</a>}
-                      </div>
+                  <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
+                    <div style={{ color: gold, fontWeight: 600, marginBottom: 2, cursor: 'pointer' }} onClick={() => window.open(SQUARE_LINKS.general, '_blank')}>Devil Wears Prada 2</div>
+                    {day === 'Sat' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>&mdash;</div> : <div style={{ cursor: 'pointer' }} onClick={() => window.open(SQUARE_LINKS.general, '_blank')}>12:30 &middot; 2:30 &middot; 5 &middot; 7:30</div>}
+                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, cursor: 'pointer' }} onClick={() => window.open('https://square.link/u/35dAPUL4', '_blank')}>Project Hail Mary</div>
+                    {day === 'Wed' ? <div style={{ cursor: 'pointer' }} onClick={() => window.open('https://square.link/u/35dAPUL4', '_blank')}>4 &middot; 7</div> : day === 'Thu' ? <div style={{ cursor: 'pointer' }} onClick={() => window.open('https://square.link/u/35dAPUL4', '_blank')}>1 &middot; 4 &middot; 7</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>&mdash;</div>}
+                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, cursor: 'pointer' }} onClick={() => window.open('https://square.link/u/ovzTqZKH', '_blank')}>Grease</div>
+                    {day === 'Fri' || day === 'Sat' ? <div style={{ cursor: 'pointer' }} onClick={() => window.open('https://square.link/u/ovzTqZKH', '_blank')}>7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>&mdash;</div>}
+                    <div style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, cursor: 'pointer' }} onClick={() => window.open(SQUARE_LINKS.general, '_blank')}>The Sheep Detectives</div>
+                    {day === 'Wed' || day === 'Thu' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Starting Fri</div> : <div style={{ cursor: 'pointer' }} onClick={() => window.open(SQUARE_LINKS.general, '_blank')}>1 &middot; 4 &middot; 7</div>}
+                  </div>
               );
             })}
           </div>
