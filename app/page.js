@@ -7,7 +7,7 @@ import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from
 
 /*  style constants  */
 const gold = '#D4AF37';
-const cream = '#F0E9D7';
+const cream = '#F0E9D7';h
   const allVisibleMovies = movies.filter(m => m.active && (isMovieActive(m) || isComingSoon(m)));
 const dark = '#0a0a0a';
 
@@ -322,7 +322,7 @@ export default function HomePage() {
                   </div>
                   <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
-                    {day === 'Sat' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : day === 'Fri' ? <div>12:30 · 2:30 · 5</div> : <div>12:30 · 2:30 · 5 · 7:30</div>}
+                    {day === 'Sat' ? <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Not showing</div> : day === 'Fri' ? <div>12:30 · 2:30 · 5</div> : day === 'Sun' ? <div>12:30 · 2:30 · 5 · 7:30</div> : <div>2:30 · 5 · 7:30</div>}
                     <a href="https://square.link/u/35dAPUL4" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Project Hail Mary</a>
                     {day === 'Wed' ? <div>4 · 7 PM</div> : day === 'Thu' ? <div>1 · 4 · 7 PM</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Run ended</div>}
                     <a href="https://square.link/u/ovzTqZKH" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Grease</a>
