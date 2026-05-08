@@ -327,8 +327,10 @@ export default function HomePage() {
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
                     {day === 'Thu' ? <div>2:30 · 5:00 · 7:30 PM</div> : <div>12:30 · 2:30 · 5:00 · 7:30 PM</div>}
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
-                    <div>1:00 · 4:00 · 7:00 PM</div>
-                    <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Mamma Mia!</a>
+                    <div>1:00 · 4:00 PM</div>
+                    <a href="https://square.link/u/35dAPUL4" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Project Hail Mary</a>
+                <div>7:00 PM</div>
+                <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Mamma Mia!</a>
                     {day === 'Fri' ? <div>7:00 PM</div> : day === 'Sat' ? <div>7:00 PM — Sing-Along!</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Fri & Sat evenings only</div>}
                   </div>
                 </div>
