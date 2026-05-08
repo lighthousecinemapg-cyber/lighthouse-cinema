@@ -197,7 +197,24 @@ export const movies = [
     ticketLinks: { default: 'https://square.link/u/pfGKjKqr' },
     displayNote: 'Pay What You Can at the door',
     priceNote: 'Sat: Sing-Along Edition!',
+  },  {
+    slug: 'rocky-horror-picture-show',
+    active: true,
+    title: 'The Rocky Horror Picture Show',
+    status: 'special-screening',
+    rating: 'R',
+    runtime: '1h 40m',
+    genre: 'Musical / Comedy / Horror',
+    trailerId: 'ldo_spDyLKc',
+    poster: 'https://image.tmdb.org/t/p/w500/3pyE6ZqDbuJi7zrNzzQzcKTWdmN.jpg',
+    description: 'The ultimate cult classic! Tim Curry stars as Dr. Frank-N-Furter in this wildly entertaining musical. Dress up, shout along, and experience the Time Warp at Lighthouse Cinema.',
+    showDates: [
+      { date: '2026-05-16', times: ['9:00 PM'] },
+    ],
+    ticketLinks: { default: 'https://square.link/u/pfGKjKqr' },
+    displayNote: 'Special Screening — Sat May 16',
   },
+
 ];
 
 /* Helper: get ticket link for a specific showtime */
