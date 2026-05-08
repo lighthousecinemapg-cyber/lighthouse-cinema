@@ -135,7 +135,7 @@ export const movies = [
   },
   {
     slug: 'grease',
-    active: true,
+    active: false,
     title: 'Grease',
     status: 'now-playing',
     ticketLinks: { default: 'https://square.link/u/ovzTqZKH' },
@@ -152,7 +152,7 @@ export const movies = [
   },
   {
     slug: 'sheep-detectives',
-    active: false,
+    active: true,
     title: 'The Sheep Detectives',
     status: 'now-playing',
     rating: 'PG',
