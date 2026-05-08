@@ -26,7 +26,7 @@ export const movies = [
     slug: 'project-hail-mary',
     title: 'Project Hail Mary',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-04-16',
     endDate: '2026-05-08',
     rating: 'PG-13',
@@ -152,7 +152,7 @@ export const movies = [
   },
   {
     slug: 'sheep-detectives',
-    active: true,
+    active: false,
     title: 'The Sheep Detectives',
     status: 'now-playing',
     rating: 'PG',
