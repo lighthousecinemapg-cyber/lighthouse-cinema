@@ -594,7 +594,7 @@ export default function HomePage() {
       {/*  9. MARQUEE  */}
       <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-          NOW SHOWING: DEVIL WEARS PRADA 2 · PROJECT HAIL MARY · SHEEP DETECTIVES · MAMMA MIA! &nbsp;·&nbsp;
+          NOW SHOWING: DEVIL WEARS PRADA 2 · PROJECT HAIL MARY · SHEEP DETECTIVES · MAMMA MIA! · ROCKY HORROR 5/16 &nbsp;·&nbsp;
           KARAOKE FRIDAYS 7:30 PM &nbsp;·&nbsp;
           SALSA SATURDAYS 8 PM &nbsp;·&nbsp;
           BAR & GRILL OPEN DAILY
