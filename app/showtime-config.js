@@ -86,9 +86,9 @@ export const movies = [
     showtimes: {
       Wednesday: ['2:30 PM', '5:00 PM', '7:30 PM'],
       Thursday: ['2:30 PM', '5:00 PM', '7:30 PM'],
-      Friday: ['12:30 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
-      Saturday: ['12:30 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
-      Sunday: ['12:30 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
+      Friday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
+      Saturday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
+      Sunday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
     },
     ticketLinks: { default: 'https://square.link/u/pfGKjKqr' },
     displayNote: 'Now Playing',
