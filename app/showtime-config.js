@@ -37,6 +37,7 @@ export const movies = [
     poster: 'https://image.tmdb.org/t/p/w500/yihdXomYb5kTeSivtFndMy5iDmf.jpg',
     trailerId: 'm08TxIsFTRI',
     showtimes: {
+      Wednesday: ['7:00 PM'],
       Thursday: ['7:00 PM'],
       Friday: ['7:00 PM'],
       Saturday: ['7:00 PM'],
@@ -88,7 +89,7 @@ export const movies = [
       Thursday: ['2:30 PM', '5:00 PM', '7:30 PM'],
       Friday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
       Saturday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
-      Sunday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
+      Sunday: ['2:30 PM', '5:00 PM', '7:30 PM'],
     },
     ticketLinks: { default: 'https://square.link/u/pfGKjKqr' },
     displayNote: 'Now Playing',
@@ -135,7 +136,7 @@ export const movies = [
   },
   {
     slug: 'grease',
-    active: false,
+    active: true,
     title: 'Grease',
     status: 'now-playing',
     ticketLinks: { default: 'https://square.link/u/ovzTqZKH' },
@@ -146,8 +147,8 @@ export const movies = [
     poster: 'https://image.tmdb.org/t/p/w500/2rM7fQKpb7cs1Iq7IBqub9LFDzJ.jpg',
     description: 'The 1978 classic! Sandy and Danny navigate the social pressures of Rydell High in this iconic musical featuring unforgettable songs and electrifying performances from John Travolta and Olivia Newton-John.',
     showDates: [
-      { date: '2026-05-02', times: ['1:00 PM', '4:00 PM'] },
-      { date: '2026-05-03', times: ['1:00 PM', '4:00 PM'] },
+      { date: '2026-05-15', times: ['7:00 PM'] },
+      { date: '2026-05-16', times: ['7:00 PM'] },
     ],
   },
   {
@@ -162,11 +163,11 @@ export const movies = [
     poster: 'https://image.tmdb.org/t/p/w500/hTirV44jiLh6NqdiB6jtxPsDIoG.jpg',
     description: 'When a mysterious crime wave hits the barnyard, an unlikely team of woolly investigators must crack the case. Featuring the voice of Hugh Jackman. 94% on Rotten Tomatoes.',
     showDates: [
-      { date: '2026-05-07', times: ['1:00 PM', '4:00 PM'] },
-      { date: '2026-05-08', times: ['1:00 PM', '4:00 PM'] },
-      { date: '2026-05-09', times: ['1:00 PM', '4:00 PM'] },
-      { date: '2026-05-10', times: ['1:00 PM', '4:00 PM'] },
-      { date: '2026-05-11', times: ['1:00 PM', '4:00 PM'] },
+      { date: '2026-05-13', times: ['1:00 PM', '4:00 PM'] },
+      { date: '2026-05-14', times: ['1:00 PM', '4:00 PM'] },
+      { date: '2026-05-15', times: ['1:00 PM', '4:00 PM'] },
+      { date: '2026-05-16', times: ['1:00 PM', '4:00 PM'] },
+      { date: '2026-05-17', times: ['1:00 PM', '4:00 PM'] },
     ],
   },
   {
@@ -183,8 +184,6 @@ export const movies = [
     showDates: [
         { date: '2026-05-08', times: ['7:00 PM'] },
         { date: '2026-05-09', times: ['7:00 PM'] },
-        { date: '2026-05-15', times: ['7:00 PM'] },
-        { date: '2026-05-16', times: ['7:00 PM'] },
         { date: '2026-05-22', times: ['7:00 PM'] },
         { date: '2026-05-23', times: ['7:00 PM'] },
         { date: '2026-05-29', times: ['7:00 PM'] },
@@ -199,7 +198,7 @@ export const movies = [
     priceNote: 'Sat: Sing-Along Edition!',
   },  {
     slug: 'rocky-horror-picture-show',
-    active: true,
+    active: false,
     title: 'The Rocky Horror Picture Show',
     status: 'special-screening',
     rating: 'R',
