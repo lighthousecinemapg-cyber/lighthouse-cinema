@@ -311,8 +311,8 @@ export default function HomePage() {
             This week's showtimes — tap any showtime to buy tickets
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 12, textAlign: 'center' }}>
-            {['Thu', 'Fri', 'Sat', 'Sun'].map(day => {
-              const dayNum = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(day === 'Thu' ? 'Thu' : day === 'Fri' ? 'Fri' : day === 'Sat' ? 'Sat' : 'Sun');
+            {['Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => {
+              const dayNum = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(day === 'Wed' ? 'Wed' : day === 'Thu' ? 'Thu' : day === 'Fri' ? 'Fri' : day === 'Sat' ? 'Sat' : 'Sun');
               const isToday = new Date().getDay() === dayNum;
               return (
                 <div key={day} style={{
@@ -321,16 +321,16 @@ export default function HomePage() {
                   border: isToday ? '2px solid rgba(212,175,55,0.5)' : '1px solid rgba(212,175,55,0.1)',
                 }}>
                   <div style={{ color: isToday ? gold : 'rgba(240,233,215,0.6)', fontWeight: 700, fontSize: '0.85rem', marginBottom: 10, letterSpacing: 1 }}>
-                    {day.toUpperCase()} {(() => { const t = new Date(); const m = {Thu:4,Fri:5,Sat:6,Sun:0}; const diff = (m[day]-t.getDay()+7)%7; const d = new Date(t); d.setDate(t.getDate()+diff); return (d.getMonth()+1)+'/'+d.getDate(); })()} {isToday && '\u2022 TODAY'}
+                    {day.toUpperCase()} {(() => { const t = new Date(); const m = {Wed:3,Thu:4,Fri:5,Sat:6,Sun:0}; const diff = (m[day]-t.getDay()+7)%7; const d = new Date(t); d.setDate(t.getDate()+diff); return (d.getMonth()+1)+'/'+d.getDate(); })()} {isToday && '\u2022 TODAY'}
                   </div>
                   <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
-                    {day === 'Thu' ? <div>2:30 · 5:00 · 7:30 PM</div> : <div>12:00 · 2:30 · 5:00 · 7:30 PM</div>}
+                    {(day === 'Wed' || day === 'Thu' || day === 'Sun') ? <div>2:30 · 5:00 · 7:30 PM</div> : <div>12:00 · 2:30 · 5:00 · 7:30 PM</div>}
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
                     <div>1:00 · 4:00 PM</div>
                     <a href="https://square.link/u/35dAPUL4" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Project Hail Mary</a>
                 <div>7:00 PM</div>
-                <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Mamma Mia!</a>
+                <a href="https://square.link/u/ovzTqZKH" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Grease</a>
                     {day === 'Fri' ? <div>7:00 PM</div> : day === 'Sat' ? <div>7:00 PM — Sing-Along!</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Fri & Sat evenings only</div>}
                   </div>
                 </div>
@@ -594,7 +594,7 @@ export default function HomePage() {
       {/*  9. MARQUEE  */}
       <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-          NOW SHOWING: DEVIL WEARS PRADA 2 · PROJECT HAIL MARY · SHEEP DETECTIVES · MAMMA MIA! · ROCKY HORROR 5/16 &nbsp;·&nbsp;
+          NOW SHOWING: DEVIL WEARS PRADA 2 · PROJECT HAIL MARY · SHEEP DETECTIVES · MAMMA MIA! · GREASE FRI & SAT 7PM &nbsp;·&nbsp;
           KARAOKE FRIDAYS 7:30 PM &nbsp;·&nbsp;
           SALSA SATURDAYS 8 PM &nbsp;·&nbsp;
           BAR & GRILL OPEN DAILY
