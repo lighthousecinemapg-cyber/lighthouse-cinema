@@ -507,4 +507,3 @@ export function isComingSoon(movie) {
 ];
   return movie.startDate && today < movie.startDate;
 }
-h
