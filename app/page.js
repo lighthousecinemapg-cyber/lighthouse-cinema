@@ -327,11 +327,7 @@ export default function HomePage() {
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
                     {(day === 'Wed' || day === 'Thu' || day === 'Sun') ? <div>2:30 · 5:00 · 7:30 PM</div> : <div>12:00 · 2:30 · 5:00 · 7:30 PM</div>}
                     <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
-                    <div>1:00 · 4:00 PM</div>
-                    <a href="https://square.link/u/35dAPUL4" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Project Hail Mary</a>
-                <div>7:00 PM</div>
-                <a href="https://square.link/u/ovzTqZKH" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Grease</a>
-                    {day === 'Fri' ? <div>7:00 PM</div> : day === 'Sat' ? <div>7:00 PM — Sing-Along!</div> : <div style={{ color: 'rgba(240,233,215,0.4)', fontStyle: 'italic' }}>Fri & Sat evenings only</div>}
+                    <div>1:00 · 4:00 · 7:00 PM</div>
                   </div>
                 </div>
               );
@@ -594,7 +590,7 @@ export default function HomePage() {
       {/*  9. MARQUEE  */}
       <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-          NOW SHOWING: DEVIL WEARS PRADA 2 · PROJECT HAIL MARY · SHEEP DETECTIVES · MAMMA MIA! · GREASE FRI & SAT 7PM &nbsp;·&nbsp;
+          NOW SHOWING: DEVIL WEARS PRADA 2 · SHEEP DETECTIVES · MAMMA MIA! &nbsp;·&nbsp;
           KARAOKE FRIDAYS 7:30 PM &nbsp;·&nbsp;
           SALSA SATURDAYS 8 PM &nbsp;·&nbsp;
           BAR & GRILL OPEN DAILY
