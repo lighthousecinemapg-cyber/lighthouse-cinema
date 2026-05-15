@@ -26,7 +26,7 @@ export const movies = [
     slug: 'project-hail-mary',
     title: 'Project Hail Mary',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-04-16',
     endDate: null,
     rating: 'PG-13',
@@ -136,7 +136,7 @@ export const movies = [
   },
   {
     slug: 'grease',
-    active: true,
+    active: false,
     title: 'Grease',
     status: 'now-playing',
     ticketLinks: { default: 'https://square.link/u/ovzTqZKH' },
@@ -163,11 +163,11 @@ export const movies = [
     poster: 'https://image.tmdb.org/t/p/w500/hTirV44jiLh6NqdiB6jtxPsDIoG.jpg',
     description: 'When a mysterious crime wave hits the barnyard, an unlikely team of woolly investigators must crack the case. Featuring the voice of Hugh Jackman. 94% on Rotten Tomatoes.',
     showDates: [
-      { date: '2026-05-13', times: ['1:00 PM', '4:00 PM'] },
-      { date: '2026-05-14', times: ['1:00 PM', '4:00 PM'] },
-      { date: '2026-05-15', times: ['1:00 PM', '4:00 PM'] },
-      { date: '2026-05-16', times: ['1:00 PM', '4:00 PM'] },
-      { date: '2026-05-17', times: ['1:00 PM', '4:00 PM'] },
+      { date: '2026-05-13', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-14', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-15', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-16', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-17', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
     ],
   },
   {
@@ -507,3 +507,4 @@ export function isComingSoon(movie) {
 ];
   return movie.startDate && today < movie.startDate;
 }
+h
