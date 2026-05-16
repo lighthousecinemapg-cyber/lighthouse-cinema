@@ -78,6 +78,17 @@ export default function RootLayout({ children }) {
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
         </a>
+
+                      {/* Social Media Links */}
+            <footer style={{ textAlign: 'center', padding: '20px 0 10px', borderTop: '1px solid #222' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', marginBottom: '8px' }}>
+                <a href="https://facebook.com/lighthousecinemapg" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{ color: '#888', textDecoration: 'none', fontSize: '14px' }}>Facebook</a>
+                <a href="https://instagram.com/lighthousecinemapg" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{ color: '#888', textDecoration: 'none', fontSize: '14px' }}>Instagram</a>
+                <a href="https://tiktok.com/@lighthousecinemapg" target="_blank" rel="noopener noreferrer" aria-label="TikTok" style={{ color: '#888', textDecoration: 'none', fontSize: '14px' }}>TikTok</a>
+                <a href="https://yelp.com/biz/lighthouse-cinema-pacific-grove" target="_blank" rel="noopener noreferrer" aria-label="Yelp" style={{ color: '#888', textDecoration: 'none', fontSize: '14px' }}>Yelp</a>
+                <a href="https://tripadvisor.com/Attraction_Review-g32767-d26702498-Reviews-Lighthouse_Cinemas-Pacific_Grove_Monterey_County_California.html" target="_blank" rel="noopener noreferrer" aria-label="TripAdvisor" style={{ color: '#888', textDecoration: 'none', fontSize: '14px' }}>TripAdvisor</a>
+              </div>
+            </footer>
       <Analytics />
         </body>
     </html>
