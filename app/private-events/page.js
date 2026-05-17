@@ -1,8 +1,6 @@
 'use client';
 import { useState } from 'react';
 
-export const metadata = undefined; // metadata moved to layout or handled separately
-
 /* ── DATA ────────────────────────────────────────────────────── */
 
 const packages = [
