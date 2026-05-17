@@ -220,7 +220,6 @@ export const movies = [
 
   // -- NEW UPCOMING MOVIES (added May 2026) --
 
-  {
       // I Love Boosters - Opens Friday May 22
     {
         slug: 'i-love-boosters',
