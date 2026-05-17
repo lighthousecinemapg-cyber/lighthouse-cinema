@@ -81,6 +81,7 @@ export const movies = [
     rating: 'PG-13',
     genre: 'Comedy',
     tags: ['Drama', 'Sequel'],
+        rottenTomatoes: '78%',
     description: 'Meryl Streep, Anne Hathaway, Emily Blunt, and Stanley Tucci return to the fashionable streets of New York City and the sleek offices of Runway Magazine. When Miranda Priestly faces a declining print empire, she recruits a now-seasoned Andy Sachs to help save everything she built.',
     poster: 'https://image.tmdb.org/t/p/w500/p35IoKfBtJDNiWJMO8ZEtIMZSfW.jpg',
     trailerId: 'R57Y4v5OmzM',
@@ -159,6 +160,7 @@ export const movies = [
     rating: 'PG',
     runtime: '1h 43m',
     genre: 'Comedy / Animation',
+        rottenTomatoes: '93%',
     trailerId: 'pyZI5oM6hWk',
     poster: 'https://image.tmdb.org/t/p/w500/hTirV44jiLh6NqdiB6jtxPsDIoG.jpg',
     description: 'When a mysterious crime wave hits the barnyard, an unlikely team of woolly investigators must crack the case. Featuring the voice of Hugh Jackman. 94% on Rotten Tomatoes.',
@@ -217,6 +219,34 @@ export const movies = [
 
 
   // -- NEW UPCOMING MOVIES (added May 2026) --
+
+  {
+      // I Love Boosters - Opens Friday May 22
+    {
+        slug: 'i-love-boosters',
+        title: 'I Love Boosters',
+        status: 'coming-soon',
+        active: true,
+        startDate: '2026-05-22',
+        endDate: null,
+        rating: 'R',
+        runtime: '1h 55m',
+        genre: 'Comedy / Sci-Fi / Crime',
+        rottenTomatoes: '97%',
+        description: 'A fearless crew of inventive young women turn shoplifting into a radical act of defiance against a cutthroat fashion maven. From Boots Riley, the mind behind Sorry to Bother You. Starring Keke Palmer, Demi Moore, and Don Cheadle.',
+        poster: 'https://image.tmdb.org/t/p/w500/vVp7AKgKRgowIEAlqfBgYqJZol5.jpg',
+        trailerId: 'tbZaW_cG_-Y',
+        showtimes: {
+                Friday: ['4:00 PM', '7:00 PM'],
+                Saturday: ['2:00 PM', '4:30 PM', '7:00 PM'],
+                Sunday: ['2:00 PM', '4:30 PM', '7:00 PM'],
+        },
+        ticketLinks: { default: 'https://square.link/u/pfGKjKqr' },
+        displayNote: 'Opens Friday May 22 — 97% on Rotten Tomatoes!',
+        hoursNote: 'Open Wed–Sun',
+  },
+
+    // -- NEW UPCOMING MOVIES (added May 2026) --
 
   {
     slug: 'in-the-grey',
