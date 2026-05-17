@@ -1,5 +1,5 @@
 // app/api/schedule/route.js - Centralized Schedule API
-import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from '../../../showtime-config';
+import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from '../../showtime-config';
 import { NextResponse } from 'next/server';
 
 export async function GET(request) {
@@ -11,6 +11,7 @@ export async function GET(request) {
   const dayOfWeek = today.toLocaleDateString('en-US', { weekday: 'long' });
 
   let filtered = movies.filter(m => m.active);
+
   if (filter === 'now-playing') filtered = filtered.filter(m => isMovieActive(m) && !isComingSoon(m));
   else if (filter === 'coming-soon') filtered = filtered.filter(m => isComingSoon(m));
   else if (filter === 'today') {
@@ -24,38 +25,60 @@ export async function GET(request) {
 
   const enriched = filtered.map(movie => {
     let todayShowtimes = [];
-    if (movie.showtimes && movie.showtimes[dayOfWeek]) todayShowtimes = movie.showtimes[dayOfWeek];
-    else if (movie.showDates) {
-      const e = movie.showDates.find(sd => sd.date === todayStr);
-      if (e) todayShowtimes = e.times;
+    if (movie.showtimes && movie.showtimes[dayOfWeek]) {
+      todayShowtimes = movie.showtimes[dayOfWeek];
+    } else if (movie.showDates) {
+      const todayEntry = movie.showDates.find(sd => sd.date === todayStr);
+      if (todayEntry) todayShowtimes = todayEntry.times;
     }
-    return { ...movie, todayShowtimes, ticketLinksForToday: todayShowtimes.map(t => ({ time: t, link: getTicketLink(movie, t) })) };
+    const ticketLinksForToday = todayShowtimes.map(time => ({
+      time,
+      link: getTicketLink(movie, time)
+    }));
+    return { ...movie, todayShowtimes, ticketLinksForToday };
   });
 
   if (format === 'social') {
     return NextResponse.json({
-      date: todayStr, dayOfWeek,
-      venue: { name: 'Lighthouse Cinema', address: '525 Lighthouse Ave, Pacific Grove, CA 93950', website: 'lighthousepgcinema.com' },
+      date: todayStr,
+      dayOfWeek,
+      venue: {
+        name: 'Lighthouse Cinema and Event Center',
+        address: '525 Lighthouse Ave, Pacific Grove, CA 93950',
+        website: 'lighthousepgcinema.com',
+      },
       movies: enriched.filter(m => m.todayShowtimes.length > 0).map(m => ({
-        title: m.title, rating: m.rating, runtime: m.runtime, genre: m.genre,
-        showtimes: m.todayShowtimes.join(' | '), poster: m.poster,
+        title: m.title,
+        rating: m.rating,
+        runtime: m.runtime,
+        genre: m.genre,
+        showtimes: m.todayShowtimes.join(' | '),
+        poster: m.poster,
         ticketLink: m.ticketLinks?.default || SQUARE_LINKS.general,
+        displayNote: m.displayNote,
       })),
       squareLinks: SQUARE_LINKS,
     });
   }
 
   if (format === 'gbp') {
-    const np = enriched.filter(m => m.todayShowtimes.length > 0);
+    const nowPlaying = enriched.filter(m => m.todayShowtimes.length > 0);
+    const postText = nowPlaying.map(m =>
+      m.title + ' \u2014 ' + m.todayShowtimes.join(', ')
+    ).join('\n');
     return NextResponse.json({
-      summary: 'Now showing: ' + np.map(m => m.title + ' at ' + m.todayShowtimes.join(', ')).join(' | '),
-      callToAction: 'BOOK', url: SQUARE_LINKS.general,
-      movies: np.map(m => ({ title: m.title, showtimes: m.todayShowtimes })),
+      summary: 'Now showing at Lighthouse Cinema:\n' + postText,
+      callToAction: 'BOOK',
+      url: SQUARE_LINKS.general,
+      movies: nowPlaying.map(m => ({ title: m.title, showtimes: m.todayShowtimes })),
     });
   }
 
   return NextResponse.json({
-    lastUpdated: new Date().toISOString(), date: todayStr, dayOfWeek, squareLinks: SQUARE_LINKS,
+    lastUpdated: new Date().toISOString(),
+    date: todayStr,
+    dayOfWeek,
+    squareLinks: SQUARE_LINKS,
     nowPlaying: enriched.filter(m => !isComingSoon(m)),
     comingSoon: enriched.filter(m => isComingSoon(m)),
     totalMovies: enriched.length,
