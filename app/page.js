@@ -349,8 +349,7 @@ export default function HomePage() {
             {[
               { day: 'FRIDAY', emoji: '', name: 'Karaoke', time: '7:30 PM' },
               { day: 'SATURDAY', emoji: '', name: 'Salsa Night', time: '8 PM' },
-              { day: 'SUNDAY', emoji: '', name: 'Brunch + Movie', time: '11 AM' },
-            ].map(item => (
+                          ].map(item => (
               <div key={item.day} style={{
                 textAlign: 'center', padding: '24px 14px',
                 background: 'rgba(212,175,55,0.04)', borderRadius: 12,
