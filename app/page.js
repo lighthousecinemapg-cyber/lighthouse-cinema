@@ -6,7 +6,7 @@ import { dailyMessages } from './daily-messages';
 import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from './showtime-config';
 
   // Gift Card purchase link - update this with your Square gift card URL
-  const GIFT_CARD_LINK = 'https://square.link/u/REPLACE_WITH_GIFT_CARD_LINK';
+  const GIFT_CARD_LINK = 'https://square.link/u/PicBQip5';
 
 /*  style constants  */
 const gold = '#D4AF37';
@@ -324,9 +324,9 @@ export default function HomePage() {
                     {day.toUpperCase()} {(() => { const t = new Date(); const m = {Wed:3,Thu:4,Fri:5,Sat:6,Sun:0}; const diff = (m[day]-t.getDay()+7)%7; const d = new Date(t); d.setDate(t.getDate()+diff); return (d.getMonth()+1)+'/'+d.getDate(); })()} {isToday && '\u2022 TODAY'}
                   </div>
                   <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
-                    <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
+                    <a href="https://square.link/u/lejOr2Wt" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
                     {(day === 'Wed' || day === 'Thu' || day === 'Sun') ? <div>2:30 · 5:00 · 7:30 PM</div> : <div>12:00 · 2:30 · 5:00 · 7:30 PM</div>}
-                    <a href="https://square.link/u/pfGKjKqr" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
+                    <a href="https://square.link/u/lejOr2Wt" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
                     <div>1:00 · 4:00 · 7:00 PM</div>
                   </div>
                 </div>
