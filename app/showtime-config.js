@@ -170,6 +170,11 @@ export const movies = [
       { date: '2026-05-15', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-05-16', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-05-17', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-20', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-21', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-22', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-23', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-24', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
     ],
   },
   {
@@ -236,9 +241,9 @@ export const movies = [
         poster: 'https://image.tmdb.org/t/p/w500/vVp7AKgKRgowIEAlqfBgYqJZol5.jpg',
         trailerId: 'tbZaW_cG_-Y',
         showtimes: {
-                Friday: ['4:00 PM', '7:00 PM'],
-                Saturday: ['2:00 PM', '4:30 PM', '7:00 PM'],
-                Sunday: ['2:00 PM', '4:30 PM', '7:00 PM'],
+                Friday: ['12:15 PM', '3:00 PM', '6:15 PM'],
+                Saturday: ['12:15 PM', '3:00 PM', '6:15 PM'],
+                Sunday: ['12:15 PM', '3:00 PM', '6:15 PM'],
         },
         ticketLinks: { default: 'https://square.link/u/zmrq8yCF' },
         displayNote: 'Opens Friday May 22 — 97% on Rotten Tomatoes!',
@@ -290,7 +295,7 @@ export const movies = [
     showtimes: {
       Wednesday: ['7:00 PM'],
       Thursday: ['7:00 PM'],
-      Friday: ['4:00 PM', '7:00 PM'],
+      Friday: ['12:30 PM', '3:30 PM', '6:30 PM'],
       Saturday: ['4:00 PM', '7:00 PM'],
       Sunday: ['4:00 PM', '7:00 PM'],
     },
