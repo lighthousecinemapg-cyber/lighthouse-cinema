@@ -328,9 +328,11 @@ export default function HomePage() {
                     {(day === 'Wed' || day === 'Thu' || day === 'Sun') ? <div>2:30 · 5:00 · 7:30 PM</div> : <div>12:00 · 2:30 · 5:00 · 7:30 PM</div>}
                     <a href="https://square.link/u/lejOr2Wt" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
                     <div>1:00 · 4:00 · 7:00 PM</div>
+                  {day !== 'Wed' && (<>
                   <a href="https://square.link/u/kdjFey9Y" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block' }}>
                     The Mandalorian & Grogu</a>
-                  {(day === 'Wed' || day === 'Thu') ? <div>7:00 PM</div> : (day === 'Fri') ? <div>12:30 · 3:30 · 6:30 PM</div> : <div>4:00 · 7:00 PM</div>}
+                  {day === 'Thu' ? <div>3:30 · 6:30 PM</div> : <div>12:30 · 3:30 · 6:30 PM</div>}
+                  </>)}
                   {(day === 'Fri' || day === 'Sat' || day === 'Sun') && (<>
                   <a href="https://square.link/u/zmrq8yCF" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block' }}>
                     I Love Boosters</a>
