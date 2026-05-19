@@ -298,6 +298,559 @@ export const movies = [
     poster: 'https://image.tmdb.org/t/p/w500/n5lgbGxEM35MvcRqJG3aqHKm3Gq.jpg',
     trailerId: '_pa1KLXuW0Y',
     showtimes: {
+      Thursday: ['3:30 PM', '6:30 PM'],
+      Friday: ['12:30 PM', '3:30 PM', '6:30 PM'],
+      Saturday: ['12:30 PM', '3:30 PM', '6:30 PM'],
+      Sunday: ['12:30 PM', '3:30 PM', '6:30 PM'],
+    },
+    showDates: [
+      { date: '2026-05-21', times: ['3:30 PM', '6:30 PM'] },
+      { date: '2026-05-22', times: ['12:30 PM', '3:30 PM', '6:30 PM'] },
+      { date: '2026-05-23', times: ['12:30 PM', '3:30 PM', '6:30 PM'] },
+      { date: '2026-05-24', times: ['12:30 PM', '3:30 PM', '6:30 PM'] },
+    ],
+    ticketLinks: { default: 'https://square.link/u/kdjFey9Y' },
+    displayNote: 'Star Wars on the big screen!',
+    hoursNote: 'Open Wed–Sun',
+  },
+
+  {
+    slug: 'the-breadwinner-2026',
+    title: 'The Breadwinner',
+    status: 'coming-soon',
+    active: true,
+    startDate: '2026-05-29',
+    endDate: null,
+    rating: 'PG',
+    runtime: '1h 45m',
+    genre: 'Comedy / Family',
+    rottenTomatoes: null,
+    description: 'After his wife lands a deal on Shark Tank, lifelong breadwinner Nate Wilcox has to fend for his family as a first-time stay-at-home dad.',
+    poster: 'https://image.tmdb.org/t/p/w500/4apG9Xk6HQvV48JKEjSUeiebju7.jpg',
+    trailerId: '19PLc6hpTvA',
+    showtimes: {
+      Wednesday: ['7:00 PM'],
+      Thursday: ['7:00 PM'],
+      Friday: ['4:00 PM', '7:00 PM'],
+      Saturday: ['4:00 PM', '7:00 PM'],
+      Sunday: ['4:00 PM', '7:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Starring Nate Bargatze and Mandy Moore',
+    hoursNote: 'Open Wed–Sun',
+  },
+
+  {
+    slug: 'disclosure-day',
+    title: 'Disclosure Day',
+    status: 'coming-soon',
+    active: true,
+    startDate: '2026-06-12',
+    endDate: null,
+    rating: 'PG-13',
+    runtime: '2h 15m',
+    genre: 'Sci-Fi / Thriller',
+    rottenTomatoes: null,
+    description: 'Steven Spielberg returns to sci-fi with a gripping thriller about what happens when humanity learns we are not alone.',
+    poster: 'https://image.tmdb.org/t/p/w500/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg',
+    trailerId: 'WsVBUTwlSlg',
+    showtimes: {
+      Wednesday: ['7:00 PM'],
+      Thursday: ['7:00 PM'],
+      Friday: ['4:00 PM', '7:00 PM'],
+      Saturday: ['4:00 PM', '7:00 PM'],
+      Sunday: ['4:00 PM', '7:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Directed by Steven Spielberg',
+    hoursNote: 'Open Wed–Sun',
+  },
+
+  {
+    slug: 'toy-story-5',
+    title: 'Toy Story 5',
+    status: 'coming-soon',
+    active: true,
+    startDate: '2026-06-19',
+    endDate: null,
+    rating: 'PG',
+    runtime: '1h 40m',
+    genre: 'Animation / Adventure / Comedy',
+    rottenTomatoes: null,
+    description: 'Bonnie receives a tablet and becomes obsessed, making the jobs of Buzz, Woody, Jessie, and the gang exponentially harder.',
+    poster: 'https://image.tmdb.org/t/p/w500/dWIAOC9EKFehGs3CYvDQih3hxaG.jpg',
+    trailerId: '-Ax3Zmd9S_o',
+    showtimes: {
+      Wednesday: ['7:00 PM'],
+      Thursday: ['7:00 PM'],
+      Friday: ['4:00 PM', '7:00 PM'],
+      Saturday: ['4:00 PM', '7:00 PM'],
+      Sunday: ['4:00 PM', '7:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Pixar is back!',
+    hoursNote: 'Open Wed–Sun',
+  },
+
+  {
+    slug: 'minions-and-monsters',
+    title: 'Minions & Monsters',
+    status: 'coming-soon',
+    active: true,
+    startDate: '2026-07-01',
+    endDate: null,
+    rating: 'PG',
+    runtime: '1h 35m',
+    genre: 'Animation / Adventure / Comedy',
+    rottenTomatoes: null,
+    description: 'The Minions conquer Hollywood, become movie stars, unleash monsters onto the world, and then band together to save the planet.',
+    poster: 'https://image.tmdb.org/t/p/w500/nz7i42yhLIJ4ve9JKgM6NthoLHO.jpg',
+    trailerId: 'VHQJ3rZKpak',
+    showtimes: {
+      Wednesday: ['7:00 PM'],
+      Thursday: ['7:00 PM'],
+      Friday: ['4:00 PM', '7:00 PM'],
+      Saturday: ['4:00 PM', '7:00 PM'],
+      Sunday: ['4:00 PM', '7:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'From Illumination',
+    hoursNote: 'Open Wed–Sun',
+  },
+
+  {
+    slug: 'moana-live-action',
+    title: 'Moana',
+    status: 'coming-soon',
+    active: true,
+    startDate: '2026-07-10',
+    endDate: null,
+    rating: 'PG',
+    runtime: '2h 05m',
+    genre: 'Action / Adventure / Fantasy',
+    rottenTomatoes: null,
+    description: 'The beloved Disney animated classic comes to life in this epic live-action adventure featuring Dwayne Johnson as Maui.',
+    poster: 'https://image.tmdb.org/t/p/w500/zKVgiv5qHCvCLT4A2ymJi5QeXDH.jpg',
+    trailerId: 'n7f6hlKsxxo',
+    showtimes: {
+      Wednesday: ['7:00 PM'],
+      Thursday: ['7:00 PM'],
+      Friday: ['4:00 PM', '7:00 PM'],
+      Saturday: ['4:00 PM', '7:00 PM'],
+      Sunday: ['4:00 PM', '7:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Disney Live-Action',
+    hoursNote: 'Open Wed–Sun',
+  },
+
+  {
+    slug: 'the-odyssey',
+    title: 'The Odyssey',
+    status: 'coming-soon',
+    active: true,
+    startDate: '2026-07-17',
+    endDate: null,
+    rating: 'PG-13',
+    runtime: '2h 40m',
+    genre: 'Action / Adventure / Fantasy',
+    rottenTomatoes: null,
+    description: 'Christopher Nolan brings Homers ancient epic to the big screen following Odysseus on his perilous journey home after the Trojan War.',
+    poster: 'https://image.tmdb.org/t/p/w500/2jzjE3OtXekGtn3vdRGXpyWrHe7.jpg',
+    trailerId: 'Mzw2ttJD2qQ',
+    showtimes: {
+      Wednesday: ['7:00 PM'],
+      Thursday: ['7:00 PM'],
+      Friday: ['4:00 PM', '7:00 PM'],
+      Saturday: ['4:00 PM', '7:00 PM'],
+      Sunday: ['4:00 PM', '7:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Directed by Christopher Nolan - IMAX 70mm',
+    hoursNote: 'Open Wed–Sun',
+  },
+
+  {
+    slug: 'spider-man-brand-new-day',
+    title: 'Spider-Man: Brand New Day',
+    status: 'coming-soon',
+    active: true,
+    startDate: '2026-07-31',
+    endDate: null,
+    rating: 'PG-13',
+    runtime: '2h 20m',
+    genre: 'Action / Adventure / Sci-Fi',
+    rottenTomatoes: null,
+    description: 'Four years after No Way Home, Peter Parker is a full-time Spider-Man in a New York that no longer knows his name.',
+    poster: 'https://image.tmdb.org/t/p/w500/yyB2VJEW3an2xCdcYCPQhn9QERR.jpg',
+    trailerId: '8TZMtslA3UY',
+    showtimes: {
+      Wednesday: ['7:00 PM'],
+      Thursday: ['7:00 PM'],
+      Friday: ['4:00 PM', '7:00 PM'],
+      Saturday: ['4:00 PM', '7:00 PM'],
+      Sunday: ['4:00 PM', '7:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Marvel MCU Phase Six',
+    hoursNote: 'Open Wed–Sun',
+  },
+
+  {
+    slug: 'paw-patrol-the-dino-movie',
+    title: 'PAW Patrol: The Dino Movie',
+    status: 'coming-soon',
+    active: true,
+    startDate: '2026-08-14',
+    endDate: null,
+    rating: 'G',
+    runtime: '1h 28m',
+    genre: 'Animation / Action / Adventure',
+    rottenTomatoes: null,
+    description: 'The PAW Patrol pups crash land on an uncharted tropical island filled with dinosaurs and must stop Mayor Humdinger from causing a volcanic eruption.',
+    poster: 'https://image.tmdb.org/t/p/w500/3US9zyWBUbLTASwNwMSuZ0fO6hC.jpg',
+    trailerId: 'aHw4PuLCUIc',
+    showtimes: {
+      Wednesday: ['7:00 PM'],
+      Thursday: ['7:00 PM'],
+      Friday: ['4:00 PM', '7:00 PM'],
+      Saturday: ['4:00 PM', '7:00 PM'],
+      Sunday: ['4:00 PM', '7:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Dinos + Pups = Summer fun!',
+    hoursNote: 'Open Wed–Sun',
+  },
+];
+
+/* Helper: get ticket link for a specific showtime */
+export function getTicketLink(movie, time) {
+  const [hm, period] = time.split(' ');
+  const [h, m] = hm.split(':');
+  let hour = parseInt(h);
+  if (period === 'PM' && hour !== 12) hour += 12;
+  if (period === 'AM' && hour === 12) hour = 0;
+  const key = hour + ':' + m;
+  if (!movie.ticketLinks) return SQUARE_LINKS.general;
+    return movie.ticketLinks[key] || movie.ticketLinks.default || SQUARE_LINKS.general;
+}
+
+/* Helper: is this movie currently showing? */
+export function isMovieActive(movie) {
+  if (!movie.active) return false;
+  const today = new Date().toISOString().split('T')[0];
+  if (movie.startDate && today < movie.startDate) return false;
+  if (movie.endDate && today > movie.endDate) return false;
+  return true;
+}
+
+/* Helper: is this movie coming soon? */
+export function isComingSoon(movie) {
+  if (!movie.active) return false;
+  const today = new Date().toISOString().split('T')[0
+];
+  return movie.startDate && today < movie.startDate;
+}
+/*  Lighthouse Cinema - Showtime & Ticket Config
+ *
+ *  SINGLE SOURCE OF TRUTH for every movie, showtime, and ticket link.
+ *  Change it here and the site updates automatically.
+ *
+ *  HOW TO ADD A NEW MOVIE:
+ *    1. Copy any movie block below
+ *    2. Fill in the fields
+ *    3. Set active: true -> it appears on the site
+ *    4. Set active: false -> it disappears (links preserved for reuse)
+ *
+ *  HOW TO SWAP IN PER-SHOWTIME SQUARE LINKS:
+ *    Replace the "default" link in ticketLinks with individual time keys:
+ *      ticketLinks: { "13:00": "https://square.link/u/XXXX", ... }
+ *    If a specific time has no link, the system falls back to "default".
+ */
+
+export const SQUARE_LINKS = {
+  general: 'https://square.link/u/lejOr2Wt',
+  payItForward: 'https://square.link/u/kNTJoYP4',
+  banner: 'https://square.link/u/1uppuNv7',
+};
+
+export const movies = [
+  {
+    slug: 'project-hail-mary',
+    title: 'Project Hail Mary',
+    status: 'now-playing',
+    active: false,
+    startDate: '2026-04-16',
+    endDate: null,
+    rating: 'PG-13',
+    runtime: '2h 37m',
+    genre: 'Sci-Fi',
+    rottenTomatoes: '94%',
+    description: 'Ryan Gosling stars as a science teacher who wakes up alone on a spaceship light-years from Earth with no memory of how he got there. As his memory returns, he uncovers a mission to save humanity from extinction. Based on Andy Weir\'s bestselling novel. Directed by Phil Lord & Christopher Miller.',
+    poster: 'https://image.tmdb.org/t/p/w500/yihdXomYb5kTeSivtFndMy5iDmf.jpg',
+    trailerId: 'm08TxIsFTRI',
+    showtimes: {
+      Wednesday: ['7:00 PM'],
+      Thursday: ['7:00 PM'],
+      Friday: ['7:00 PM'],
+      Saturday: ['7:00 PM'],
+      Sunday: ['7:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/35dAPUL4' },
+    displayNote: 'Now showing nightly at 7 PM',
+    hoursNote: 'Wed 12-7 PM | Thu 12-10 PM | Fri-Sat 12 PM-12 AM | Sun 11 AM-7 PM',
+  },
+  {
+    slug: 'cheap-detective',
+    title: 'The Cheap Detective',
+    status: 'coming-soon',
+    active: false,
+    startDate: '2026-05-08',
+    endDate: null,
+    rating: 'PG',
+    runtime: '1h 32m',
+    genre: 'Comedy',
+    tags: ['Mystery', '1978'],
+    description: 'Peter Falk stars as Lou Peckinpaugh, a bumbling private eye caught up in a web of murder, mystery, and hilarious misunderstandings. A loving parody of classic detective films, featuring an all-star cast including Ann-Margret, Eileen Brennan, and Dom DeLuise.',
+    poster: 'https://img.youtube.com/vi/MfdMuvXhfjI/maxresdefault.jpg',
+    trailerId: 'MfdMuvXhfjI',
+    showtimes: {
+      Wednesday: ['1:00 PM', '4:00 PM'],
+      Thursday: ['1:00 PM', '4:00 PM'],
+      Friday: ['1:00 PM', '4:00 PM'],
+      Saturday: ['1:00 PM', '4:00 PM'],
+      Sunday: ['1:00 PM', '4:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Starting Thursday, May 8',
+  },
+  {
+    slug: 'devil-wears-prada-2',
+    title: 'The Devil Wears Prada 2',
+    status: 'now-playing',
+    active: true,
+    startDate: '2026-04-30',
+    endDate: null,
+    rating: 'PG-13',
+    genre: 'Comedy',
+    tags: ['Drama', 'Sequel'],
+        rottenTomatoes: '78%',
+    description: 'Meryl Streep, Anne Hathaway, Emily Blunt, and Stanley Tucci return to the fashionable streets of New York City and the sleek offices of Runway Magazine. When Miranda Priestly faces a declining print empire, she recruits a now-seasoned Andy Sachs to help save everything she built.',
+    poster: 'https://image.tmdb.org/t/p/w500/p35IoKfBtJDNiWJMO8ZEtIMZSfW.jpg',
+    trailerId: 'R57Y4v5OmzM',
+    showtimes: {
+      Wednesday: ['2:30 PM', '5:00 PM', '7:30 PM'],
+      Thursday: ['2:30 PM', '5:00 PM', '7:30 PM'],
+      Friday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
+      Saturday: ['12:00 PM', '2:30 PM', '5:00 PM', '7:30 PM'],
+      Sunday: ['2:30 PM', '5:00 PM', '7:30 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Now Playing',
+  },
+  {
+    slug: 'the-godfather',
+    title: 'The Godfather',
+    status: 'classic',
+    active: false,
+    startDate: '2026-04-26',
+    endDate: '2026-04-30',
+    rating: 'R',
+    runtime: '2h 55m',
+    genre: 'Classic',
+    description: "Francis Ford Coppola's masterpiece returns to the big screen. The aging patriarch of an organized crime dynasty transfers control to his reluctant son. Starring Marlon Brando and Al Pacino. An offer you can't refuse.",
+    poster: 'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
+    trailerId: null,
+    showtimes: {
+      Saturday: ['7:30 PM'],
+      Sunday: ['1:00 PM', '4:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'April Only',
+    priceNote: 'Tickets: $15 Adult',
+  },
+  {
+    slug: 'zorba-the-greek',
+    title: 'Zorba the Greek',
+    status: 'documentary',
+    active: false,
+    startDate: null,
+    endDate: null,
+    rating: 'NR',
+    genre: 'Drama',
+    tags: ['Classic', '1964', 'Anthony Quinn'],
+    description: 'Anthony Quinn delivers an unforgettable performance as the exuberant Alexis Zorba, who teaches a reserved English writer how to embrace life on the island of Crete. Winner of three Academy Awards.',
+    poster: 'https://img.youtube.com/vi/xrArjp14SeU/maxresdefault.jpg',
+    trailerId: 'xrArjp14SeU',
+    showtimes: {
+      Daily: ['4:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Daily at 4:00 PM | Main Auditorium',
+  },
+  {
+    slug: 'grease',
+    active: false,
+    title: 'Grease',
+    status: 'now-playing',
+    ticketLinks: { default: 'https://square.link/u/ovzTqZKH' },
+    rating: 'PG',
+    runtime: '1h 50m',
+    genre: 'Musical / Romance',
+    trailerId: 'THd96gHV7Tg',
+    poster: 'https://image.tmdb.org/t/p/w500/2rM7fQKpb7cs1Iq7IBqub9LFDzJ.jpg',
+    description: 'The 1978 classic! Sandy and Danny navigate the social pressures of Rydell High in this iconic musical featuring unforgettable songs and electrifying performances from John Travolta and Olivia Newton-John.',
+    showDates: [
+      { date: '2026-05-15', times: ['7:00 PM'] },
+      { date: '2026-05-16', times: ['7:00 PM'] },
+    ],
+  },
+  {
+    slug: 'sheep-detectives',
+    active: true,
+    title: 'The Sheep Detectives',
+    status: 'now-playing',
+    rating: 'PG',
+    runtime: '1h 43m',
+    genre: 'Comedy / Animation',
+        rottenTomatoes: '93%',
+    trailerId: 'pyZI5oM6hWk',
+    poster: 'https://image.tmdb.org/t/p/w500/hTirV44jiLh6NqdiB6jtxPsDIoG.jpg',
+    description: 'When a mysterious crime wave hits the barnyard, an unlikely team of woolly investigators must crack the case. Featuring the voice of Hugh Jackman. 94% on Rotten Tomatoes.',
+    showDates: [
+      { date: '2026-05-13', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-14', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-15', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-16', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-17', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-20', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-21', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-22', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-23', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-05-24', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+    ],
+  },
+  {
+    slug: 'mamma-mia',
+    active: true,
+    title: 'Mamma Mia!',
+    status: 'now-playing',
+    rating: 'PG-13',
+    runtime: '1h 48m',
+    genre: 'Musical / Romance',
+    trailerId: 'iCVpJ8x1Tnc',
+    poster: 'https://img.youtube.com/vi/iCVpJ8x1Tnc/maxresdefault.jpg',
+    description: 'Meryl Streep leads an all-star cast in this feel-good musical set on a Greek island. A young bride-to-be invites three men to her wedding, each of whom could be her father. Featuring the music of ABBA. Sing along Saturday!',
+    showDates: [
+        { date: '2026-05-08', times: ['7:00 PM'] },
+        { date: '2026-05-09', times: ['7:00 PM'] },
+        { date: '2026-05-22', times: ['7:00 PM'] },
+        { date: '2026-05-23', times: ['7:00 PM'] },
+        { date: '2026-05-29', times: ['7:00 PM'] },
+        { date: '2026-05-30', times: ['7:00 PM'] },
+        { date: '2026-06-05', times: ['7:00 PM'] },
+        { date: '2026-06-06', times: ['7:00 PM'] },
+        { date: '2026-06-12', times: ['7:00 PM'] },
+        { date: '2026-06-13', times: ['7:00 PM'] },
+      ],
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Pay What You Can at the door',
+    priceNote: 'Sat: Sing-Along Edition!',
+  },  {
+    slug: 'rocky-horror-picture-show',
+    active: false,
+    title: 'The Rocky Horror Picture Show',
+    status: 'special-screening',
+    rating: 'R',
+    runtime: '1h 40m',
+    genre: 'Musical / Comedy / Horror',
+    trailerId: 'ldo_spDyLKc',
+    poster: 'https://image.tmdb.org/t/p/w500/3pyE6ZqDbuJi7zrNzzQzcKTWdmN.jpg',
+    description: 'The ultimate cult classic! Tim Curry stars as Dr. Frank-N-Furter in this wildly entertaining musical. Dress up, shout along, and experience the Time Warp at Lighthouse Cinema.',
+    showDates: [
+      { date: '2026-05-16', times: ['9:00 PM'] },
+    ],
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Special Screening â Sat May 16',
+  },
+
+
+
+  // -- NEW UPCOMING MOVIES (added May 2026) --
+
+      // I Love Boosters - Opens Friday May 22
+    {
+        slug: 'i-love-boosters',
+        title: 'I Love Boosters',
+        status: 'now-playing',
+        active: true,
+        startDate: '2026-05-18',
+        endDate: null,
+        rating: 'R',
+        runtime: '1h 55m',
+        genre: 'Comedy / Sci-Fi / Crime',
+        rottenTomatoes: '97%',
+        description: 'A fearless crew of inventive young women turn shoplifting into a radical act of defiance against a cutthroat fashion maven. From Boots Riley, the mind behind Sorry to Bother You. Starring Keke Palmer, Demi Moore, and Don Cheadle.',
+        poster: 'https://image.tmdb.org/t/p/w500/vVp7AKgKRgowIEAlqfBgYqJZol5.jpg',
+        trailerId: 'tbZaW_cG_-Y',
+        showtimes: {
+                Friday: ['12:15 PM', '3:00 PM', '6:15 PM'],
+                Saturday: ['12:15 PM', '3:00 PM', '6:15 PM'],
+                Sunday: ['12:15 PM', '3:00 PM', '6:15 PM'],
+        },
+      showDates: [
+        { date: '2026-05-22', times: ['12:15 PM', '3:00 PM', '6:15 PM'] },
+        { date: '2026-05-23', times: ['12:15 PM', '3:00 PM', '6:15 PM'] },
+        { date: '2026-05-24', times: ['12:15 PM', '3:00 PM', '6:15 PM'] },
+      ],
+        ticketLinks: { default: 'https://square.link/u/zmrq8yCF' },
+        displayNote: 'Opens Friday May 22 — 97% on Rotten Tomatoes!',
+        hoursNote: 'Open Wed–Sun',
+  },
+
+    // -- NEW UPCOMING MOVIES (added May 2026) --
+
+  {
+    slug: 'in-the-grey',
+    title: 'In the Grey',
+    status: 'coming-soon',
+    active: true,
+    startDate: '2026-05-15',
+    endDate: null,
+    rating: 'R',
+    runtime: '2h 01m',
+    genre: 'Action / Thriller',
+    rottenTomatoes: null,
+    description: 'A covert team of elite operatives is sent to recover a billion-dollar fortune stolen by a ruthless despot.',
+    poster: 'https://image.tmdb.org/t/p/w500/83YeicHJqiyGGH1QRbeQdtqegvW.jpg',
+    trailerId: '_t1eVpIFE1A',
+    showtimes: {
+      Wednesday: ['7:00 PM'],
+      Thursday: ['7:00 PM'],
+      Friday: ['4:00 PM', '7:00 PM'],
+      Saturday: ['4:00 PM', '7:00 PM'],
+      Sunday: ['4:00 PM', '7:00 PM'],
+    },
+    ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
+    displayNote: 'Directed by Guy Ritchie',
+    hoursNote: 'Open Wed–Sun',
+  },
+
+  {
+    slug: 'the-mandalorian-and-grogu',
+    title: 'The Mandalorian & Grogu',
+    status: 'now-playing',
+    active: true,
+    startDate: '2026-05-18',
+    endDate: null,
+    rating: 'PG-13',
+    runtime: '2h 12m',
+    genre: 'Action / Adventure / Sci-Fi',
+    rottenTomatoes: null,
+    description: 'Legendary bounty hunter Din Djarin and his young apprentice Grogu are enlisted to help protect the fledgling New Republic.',
+    poster: 'https://image.tmdb.org/t/p/w500/n5lgbGxEM35MvcRqJG3aqHKm3Gq.jpg',
+    trailerId: '_pa1KLXuW0Y',
+    showtimes: {
       Wednesday: ['7:00 PM'],
       Thursday: ['7:00 PM'],
       Friday: ['12:30 PM', '3:30 PM', '6:30 PM'],
