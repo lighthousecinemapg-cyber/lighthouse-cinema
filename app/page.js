@@ -7,7 +7,7 @@ import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from
 
   // Gift Card purchase link - update this with your Square gift card URL
   const GIFT_CARD_LINK = 'https://square.link/u/PicBQip5';
-
+ 
 /*  style constants  */
 const gold = '#D4AF37';
 const cream = '#F0E9D7';
