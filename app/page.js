@@ -239,7 +239,7 @@ export default function HomePage() {
                         {movie.title}
                       </div>
                       <div style={{ fontSize: '0.75rem', color: textMuted }}>
-                        {movie.rating} {movie.runtime && 'Â· ' + movie.runtime}
+                        {movie.rating} {movie.runtime && '\u00B7 ' + movie.runtime}
                       </div>
                     </div>
                   </div>
