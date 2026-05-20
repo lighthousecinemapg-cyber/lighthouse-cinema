@@ -238,7 +238,7 @@ export const movies = [
         genre: 'Comedy / Sci-Fi / Crime',
         rottenTomatoes: '97%',
         description: 'A fearless crew of inventive young women turn shoplifting into a radical act of defiance against a cutthroat fashion maven. From Boots Riley, the mind behind Sorry to Bother You. Starring Keke Palmer, Demi Moore, and Don Cheadle.',
-        poster: 'https://image.tmdb.org/t/p/w500/vVp7AKgKRgowIEAlqfBgYqJZol5.jpg',
+        poster: 'https://image.tmdb.org/t/p/w500/4pNKIUFy7tkZiBx0rnSmG9ysRy.jpg',
         trailerId: 'tbZaW_cG_-Y',
         showtimes: {
                 Friday: ['12:15 PM', '3:00 PM', '6:15 PM'],
@@ -791,7 +791,7 @@ export const movies = [
         genre: 'Comedy / Sci-Fi / Crime',
         rottenTomatoes: '97%',
         description: 'A fearless crew of inventive young women turn shoplifting into a radical act of defiance against a cutthroat fashion maven. From Boots Riley, the mind behind Sorry to Bother You. Starring Keke Palmer, Demi Moore, and Don Cheadle.',
-        poster: 'https://image.tmdb.org/t/p/w500/vVp7AKgKRgowIEAlqfBgYqJZol5.jpg',
+        poster: 'https://image.tmdb.org/t/p/w500/4pNKIUFy7tkZiBx0rnSmG9ysRy.jpg',
         trailerId: 'tbZaW_cG_-Y',
         showtimes: {
                 Friday: ['12:15 PM', '3:00 PM', '6:15 PM'],
@@ -1104,3 +1104,4 @@ export function isComingSoon(movie) {
 ];
   return movie.startDate && today < movie.startDate;
 }
+
