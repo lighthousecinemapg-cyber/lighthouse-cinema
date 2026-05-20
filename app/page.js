@@ -1,156 +1,61 @@
 'use client';
-// Rebuild trigger v2
+// Cinemark-style redesign
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { dailyMessages } from './daily-messages';
 import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from './showtime-config';
 
-  // Gift Card purchase link - update this with your Square gift card URL
-  const GIFT_CARD_LINK = 'https://square.link/u/PicBQip5';
- 
-/*  style constants  */
-const gold = '#D4AF37';
-const cream = '#F0E9D7';
-  const allVisibleMovies = movies.filter(m => m.active && (isMovieActive(m) || isComingSoon(m)));
-const dark = '#0a0a0a';
+const GIFT_CARD_LINK = 'https://square.link/u/PicBQip5';
 
-const badgeStyle = {
-  background: 'rgba(212,175,55,0.12)',
-  color: gold,
-  padding: '4px 12px',
-  borderRadius: 999,
-  fontSize: '0.8rem',
-  fontWeight: 600,
-  letterSpacing: 1,
-  border: '1px solid rgba(212,175,55,0.25)',
-};
+/* style constants */
+const red = '#CF2027';
+const redDark = '#A31920';
+const white = '#FFFFFF';
+const lightBg = '#F8F8F8';
+const dark = '#333333';
+const allVisibleMovies = movies.filter(m => m.active && (isMovieActive(m) || isComingSoon(m)));
 
-const goldBtn = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: 8,
-  background: gold,
-  color: dark,
-  padding: '13px 28px',
-  borderRadius: 999,
-  fontWeight: 700,
-  fontSize: '0.95rem',
-  textDecoration: 'none',
-  border: 'none',
-  cursor: 'pointer',
-};
-
-const darkBtn = {
-  ...goldBtn,
-  background: 'rgba(212,175,55,0.08)',
-  color: cream,
-  border: '1.5px solid rgba(212,175,55,0.35)',
-};
-
-function ShowtimeRow({ day, times, movie }) {
-  return (
-    <div style={{
-      display: 'flex', alignItems: 'center', gap: 16, padding: '10px 16px',
-      background: 'rgba(212,175,55,0.04)', borderRadius: 8,
-      border: '1px solid rgba(212,175,55,0.1)', flexWrap: 'wrap',
-    }}>
-      <span style={{ color: gold, fontWeight: 700, minWidth: 90, fontSize: '0.95rem' }}>{day}</span>
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', flex: 1 }}>
-        {times.map(t => (
-          movie ? (
-            <a key={t} href={getTicketLink(movie, t)} target="_blank" rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 6,
-                background: 'rgba(212,175,55,0.12)', color: cream,
-                padding: '5px 14px', borderRadius: 6, fontSize: '0.9rem',
-                fontWeight: 600, textDecoration: 'none', cursor: 'pointer',
-                border: '1px solid transparent',
-              }}
-              title={"Buy ticket for " + t}>
-              {t} <span style={{ fontSize: '0.7rem', opacity: 0.7 }}>ðï¸</span>
-            </a>
-          ) : (
-            <span key={t} style={{
-              background: 'rgba(212,175,55,0.12)', color: cream,
-              padding: '5px 14px', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600,
-            }}>{t}</span>
-          )
-        ))}
-      </div>
-    </div>
-  );
+/* Helper: get dates for the next 7 days */
+function getNextDays(count) {
+  const days = [];
+  const today = new Date();
+  for (let i = 0; i < count; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    days.push(d);
+  }
+  return days;
 }
 
-function PayItForwardMini() {
-  return (
-    <a href={SQUARE_LINKS.payItForward} target="_blank" rel="noopener noreferrer"
-      style={{
-        display: 'inline-flex', alignItems: 'center', gap: 6,
-        background: 'rgba(212,175,55,0.06)', color: gold,
-        padding: '8px 16px', borderRadius: 8, fontSize: '0.82rem',
-        fontWeight: 600, textDecoration: 'none',
-        border: '1px dashed rgba(212,175,55,0.3)', marginTop: 8,
-      }}>
-      ð Pay It Forward â Buy a ticket for someone who needs a night out
-    </a>
-  );
+function getDayName(date) {
+  return date.toLocaleDateString('en-US', { weekday: 'long' });
+}
+
+function getShortDay(date) {
+  return date.toLocaleDateString('en-US', { weekday: 'short' });
+}
+
+function getMonthDay(date) {
+  return (date.getMonth() + 1) + '/' + date.getDate();
+}
+
+/* Get showtimes for a specific day */
+function getMovieShowtimes(movie, dayName) {
+  if (!movie.showtimes) return [];
+  return movie.showtimes[dayName] || [];
 }
 
 export default function HomePage() {
   const [trailerOpen, setTrailerOpen] = useState(null);
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('all');
-  const [signupName, setSignupName] = useState('');
-  const [signupEmail, setSignupEmail] = useState('');
-  const [signupPhone, setSignupPhone] = useState('');
-  const [signupStatus, setSignupStatus] = useState(null);
-  const [signupLoading, setSignupLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(0);
+  const [activeTab, setActiveTab] = useState('movies');
+  const dates = getNextDays(10);
+  const selectedDay = getDayName(dates[selectedDate]);
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
-    setSignupLoading(true);
-    setSignupStatus(null);
-    try {
-      const res = await fetch('/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: signupName, email: signupEmail, phone: signupPhone }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setSignupStatus('success');
-        setSignupName(''); setSignupEmail(''); setSignupPhone('');
-      } else {
-        setSignupStatus('error');
-      }
-    } catch {
-      setSignupStatus('error');
-    }
-    setSignupLoading(false);
-  };
-
-
-  useEffect(() => {
-    fetch('/api/events')
-      .then(r => r.json())
-      .then(data => { setEvents(data.events || []); setLoading(false); })
-      .catch(() => setLoading(false));
-  }, []);
-
-  const categories = ['all', 'weekly', 'special', 'screening'];
-  const filtered = filter === 'all' ? events : events.filter(e => e.category === filter);
-
-  function formatDate(dateStr) {
-    return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', {
-      weekday: 'short', month: 'short', day: 'numeric',
-    });
-  }
-  function formatTime(timeStr) {
-    const [h, m] = timeStr.split(':');
-    const hour = parseInt(h);
-    return `${hour > 12 ? hour - 12 : hour}:${m} ${hour >= 12 ? 'PM' : 'AM'}`;
-  }
+  /* Filter movies that have showtimes on the selected day */
+  const moviesWithShowtimes = allVisibleMovies.filter(m => {
+    const times = getMovieShowtimes(m, selectedDay);
+    return times.length > 0;
+  });
 
   return (
     <div className="animate-in">
@@ -161,7 +66,7 @@ export default function HomePage() {
           onClick={() => setTrailerOpen(null)}
           style={{
             position: 'fixed', inset: 0, zIndex: 9999,
-            background: 'rgba(0,0,0,0.92)',
+            background: 'rgba(0,0,0,0.85)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             padding: 20,
           }}
@@ -169,14 +74,13 @@ export default function HomePage() {
           <div
             onClick={e => e.stopPropagation()}
             style={{
-              width: '100%', maxWidth: 920, aspectRatio: '16/9',
-              borderRadius: 12, overflow: 'hidden',
-              border: '2px solid rgba(212,175,55,0.4)',
+              width: '100%', maxWidth: 900, aspectRatio: '16/9',
+              borderRadius: 8, overflow: 'hidden',
               position: 'relative', background: '#000',
             }}
           >
             <iframe
-              src={`https://www.youtube.com/embed/${trailerOpen}?rel=0`}
+              src={'https://www.youtube.com/embed/' + trailerOpen + '?autoplay=1&rel=0'}
               style={{ width: '100%', height: '100%', border: 0 }}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -186,485 +90,596 @@ export default function HomePage() {
           <button
             onClick={() => setTrailerOpen(null)}
             style={{
-              position: 'fixed', top: 24, right: 32,
-              background: 'none', border: 'none', color: gold,
-              fontSize: 32, cursor: 'pointer', zIndex: 10000,
+              position: 'fixed', top: 20, right: 28,
+              background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff',
+              fontSize: 28, cursor: 'pointer', zIndex: 10000,
+              width: 44, height: 44, borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
             aria-label="Close trailer"
           >&times;</button>
         </div>
       )}
 
-      {/* ANNOUNCEMENT BANNER */}
-      <a href="https://square.link/u/1uppuNv7" target="_blank" rel="noopener noreferrer" style={{
-        display: 'block',
-        background: 'linear-gradient(90deg, #D4AF37 0%, #c9a42e 50%, #D4AF37 100%)',
-        textAlign: 'center',
-        padding: '12px 20px',
-        textDecoration: 'none',
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-        boxShadow: '0 2px 12px rgba(212,175,55,0.3)',
-      }}>
-        <span style={{ color: '#0a0a0a', fontWeight: 700, fontSize: '1rem', letterSpacing: 1 }}>
-                    ✨ Get Your Tickets Now ✨
-        </span>
-      </a>
-
-      {/*  1. HERO  */}
+      {/* THEATER HEADER */}
       <section style={{
-        position: 'relative', minHeight: '75vh',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        background: dark, overflow: 'hidden',
+        background: white,
+        padding: '32px 0 0',
+        borderBottom: '1px solid #e0e0e0',
       }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 80% 50% at 50% 20%, rgba(212,175,55,0.10) 0%, transparent 70%)' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 80% at 50% -10%, rgba(212,175,55,0.06) 0%, transparent 60%)' }} />
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.025, backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.08) 2px, rgba(255,255,255,0.08) 4px)' }} />
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to top, #0a0a0a, transparent)' }} />
-
-        <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '100px 20px 80px' }}>
-          <div style={{ fontSize: '0.8rem', letterSpacing: 5, color: gold, marginBottom: 20, textTransform: 'uppercase' }}>
-                        Pacific Grove &middot; Since 1987
-          </div>
-          <h1 style={{
-            fontSize: 'clamp(2.6rem, 5.5vw, 4.2rem)',
-            fontFamily: "'Playfair Display', serif",
-            color: cream, lineHeight: 1.08, marginBottom: 22, fontWeight: 700,
-          }}>
-            The <span style={{ color: gold }}>Crown Jewel</span> of the Peninsula
-          </h1>
-          <p style={{
-            color: 'rgba(240,233,215,0.65)', fontSize: '1.15rem',
-            maxWidth: 640, margin: '0 auto 40px', lineHeight: 1.65,
-          }}>
-            Movies, karaoke, salsa, comedy, and community nights.
-          </p>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="#now-playing" style={goldBtn}>Now Playing</a>
-            <Link href="/events" style={darkBtn}>All Events</Link>
-          </div>
-        </div>
-      </section>
-
-{/* DAILY MESSAGE FROM DR. ADEEB */}
-      <section style={{
-                padding: '48px 24px',
-                background: dark,
-                textAlign: 'center',
-                borderTop: '1px solid rgba(212,175,55,0.12)',
-                borderBottom: '1px solid rgba(212,175,55,0.12)',
-      }}>
-        <div style={{ maxWidth: 700, margin: '0 auto' }}>
-          <p style={{ color: gold, fontSize: '0.85rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 16 }}>
-            A Message from Dr. Adeeb
-              </p>
-          <p style={{ color: cream, fontSize: '1.15rem', lineHeight: 1.8, fontStyle: 'italic', marginBottom: 20 }}>
-            &ldquo;{dailyMessages[(new Date().getDate() - 1) % dailyMessages.length]}&rdquo;
-</p>
-          <p style={{ color: 'rgba(212,175,55,0.7)', fontSize: '0.85rem' }}>
-            &mdash; Dr. Ayman Adeeb, Owner
-  </p>
-  </div>
-  </section>
-
-
-      {/* MOVIE POSTER CAROUSEL - Cinemark Style */}
-      <section style={{ padding: '40px 0 20px', borderBottom: '1px solid rgba(212,175,55,0.15)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 20px' }}>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.8rem', marginBottom: 24, textAlign: 'center' }}>
-            <span style={{ color: gold }}>Now Showing</span> at Lighthouse
-          </h2>
-          <div style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 16, scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
-            {allVisibleMovies.map(movie => (
-              <div key={movie.slug} onClick={() => { const el = document.getElementById(movie.slug === 'devil-wears-prada-2' ? 'now-playing' : movie.slug === 'cheap-detective' ? 'coming-soon' : movie.slug); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} style={{ minWidth: 200, maxWidth: 200, scrollSnapAlign: 'start', cursor: 'pointer', borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(212,175,55,0.2)', background: '#111', transition: 'transform 0.2s, box-shadow 0.2s', flexShrink: 0 }}>
-                <div style={{ position: 'relative', height: 280 }}>
-                  <img src={movie.poster} alt={movie.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  {movie.trailerId && (
-                    <button onClick={(e) => { e.stopPropagation(); setTrailerOpen(movie.trailerId); }} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 50, height: 50, borderRadius: '50%', background: 'rgba(0,0,0,0.7)', border: '2px solid white', color: 'white', fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#9654;</button>
-                  )}
-                  {isComingSoon(movie) && (
-                    <span style={{ position: 'absolute', top: 8, left: 8, background: gold, color: '#000', padding: '3px 10px', borderRadius: 4, fontSize: '0.7rem', fontWeight: 700, letterSpacing: 1 }}>COMING SOON</span>
-                  )}
-                </div>
-                <div style={{ padding: '10px 12px' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: cream, marginBottom: 4 }}>{movie.title}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(240,233,215,0.5)' }}>{movie.rating} {movie.genre && '\u00B7 ' + movie.genre}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* DAILY SCHEDULE - What's Playing Today */}
-      <section id="daily-schedule" style={{
-        padding: '48px 0 56px', background: dark,
-        borderTop: '1px solid rgba(212,175,55,0.12)',
-        borderBottom: '1px solid rgba(212,175,55,0.12)',
-      }}>
-        <div className="container" style={{ maxWidth: 900, margin: '0 auto', padding: '0 24px' }}>
-          <h2 style={{ textAlign: 'center', fontSize: '1.8rem', fontFamily: "'Playfair Display', serif", color: cream, marginBottom: 8 }}>
-            What&apos;s <span style={{ color: gold }}>Playing</span>
-          </h2>
-          <p style={{ textAlign: 'center', color: 'rgba(240,233,215,0.5)', fontSize: '0.9rem', marginBottom: 32 }}>
-            This week's showtimes — tap any showtime to buy tickets
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 12, textAlign: 'center' }}>
-            {['Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => {
-              const dayNum = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(day === 'Wed' ? 'Wed' : day === 'Thu' ? 'Thu' : day === 'Fri' ? 'Fri' : day === 'Sat' ? 'Sat' : 'Sun');
-              const isToday = new Date().getDay() === dayNum;
-              return (
-                <div key={day} style={{
-                  padding: '16px 8px', borderRadius: 12,
-                  background: isToday ? 'rgba(212,175,55,0.15)' : 'rgba(212,175,55,0.04)',
-                  border: isToday ? '2px solid rgba(212,175,55,0.5)' : '1px solid rgba(212,175,55,0.1)',
-                }}>
-                  <div style={{ color: isToday ? gold : 'rgba(240,233,215,0.6)', fontWeight: 700, fontSize: '0.85rem', marginBottom: 10, letterSpacing: 1 }}>
-                    {day.toUpperCase()} {(() => { const t = new Date(); const m = {Wed:3,Thu:4,Fri:5,Sat:6,Sun:0}; const diff = (m[day]-t.getDay()+7)%7; const d = new Date(t); d.setDate(t.getDate()+diff); return (d.getMonth()+1)+'/'+d.getDate(); })()} {isToday && '\u2022 TODAY'}
-                  </div>
-                  <div style={{ fontSize: '0.78rem', color: cream, lineHeight: 2 }}>
-                    <a href="https://square.link/u/lejOr2Wt" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginBottom: 2, display: 'block', textDecoration: 'none' }}>Devil Wears Prada 2</a>
-                    {(day === 'Wed' || day === 'Thu' || day === 'Sun') ? <div>2:30 · 5:00 · 7:30 PM</div> : <div>12:00 · 2:30 · 5:00 · 7:30 PM</div>}
-                    <a href="https://square.link/u/lejOr2Wt" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block', textDecoration: 'none' }}>The Sheep Detectives</a>
-                    <div>1:00 · 4:00 · 7:00 PM</div>
-                  {day !== 'Wed' && (<>
-                  <a href="https://square.link/u/kdjFey9Y" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block' }}>
-                    The Mandalorian & Grogu</a>
-                  {day === 'Thu' ? <div>3:30 · 6:30 PM</div> : <div>12:30 · 3:30 · 6:30 PM</div>}
-                  </>)}
-                  {(day === 'Fri' || day === 'Sat' || day === 'Sun') && (<>
-                  <a href="https://square.link/u/zmrq8yCF" target="_blank" rel="noopener noreferrer" style={{ color: gold, fontWeight: 600, marginTop: 6, marginBottom: 2, display: 'block' }}>
-                    I Love Boosters</a>
-                  <div>12:15 · 3:00 · 6:15 PM</div>
-                  </>)}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/*  4. THIS WEEK  */}
-      <section style={{ padding: '72px 0', background: dark, borderTop: '1px solid rgba(212,175,55,0.10)' }}>
-        <div className="container">
-          <h2 style={{ fontSize: '2rem', marginBottom: 8, textAlign: 'center', fontFamily: "'Playfair Display', serif" }}>
-            This <span style={{ color: gold }}>Week</span>
-          </h2>
-          <p style={{ textAlign: 'center', color: 'rgba(240,233,215,0.55)', marginBottom: 40 }}>
-            Something happening every night
-          </p>
-          <div className="grid grid-4" style={{ gap: 14 }}>
-            {[
-              { day: 'FRIDAY', emoji: '', name: 'Karaoke', time: '7:30 PM' },
-              { day: 'SATURDAY', emoji: '', name: 'Salsa Night', time: '8 PM' },
-                          ].map(item => (
-              <div key={item.day} style={{
-                textAlign: 'center', padding: '24px 14px',
-                background: 'rgba(212,175,55,0.04)', borderRadius: 12,
-                border: '1px solid rgba(212,175,55,0.10)',
-              }}>
-                <div style={{ fontSize: '0.7rem', color: gold, letterSpacing: 2, marginBottom: 8 }}>{item.day}</div>
-                <div style={{ fontSize: '2rem', marginBottom: 8 }}>{item.emoji}</div>
-                <div style={{ fontWeight: 700, color: cream, marginBottom: 4 }}>{item.name}</div>
-                <div style={{ fontSize: '0.85rem', color: 'rgba(240,233,215,0.5)' }}>{item.time}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-        {/* ── Gift Cards Section ── */}
-        <section id="gift-cards" style={{
-          padding: '80px 20px',
-          textAlign: 'center',
-          background: 'linear-gradient(180deg, #0a0a0a 0%, #1a1206 50%, #0a0a0a 100%)',
-          borderTop: '1px solid rgba(212,175,55,0.2)',
-          borderBottom: '1px solid rgba(212,175,55,0.2)'
-        }}>
-          <div style={{ maxWidth: 700, margin: '0 auto' }}>
-            <p style={{ color: gold, fontSize: '0.9rem', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 12 }}>
-              Give the Gift of Movies
-            </p>
-            <h2 style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: 'clamp(2rem, 5vw, 3rem)',
-              color: cream,
-              fontWeight: 400,
-              marginBottom: 20,
-              lineHeight: 1.2
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ marginBottom: 20 }}>
+            <h1 style={{
+              fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
+              fontWeight: 700,
+              color: dark,
+              marginBottom: 6,
+              fontFamily: "'Playfair Display', serif",
             }}>
-              Lighthouse Cinema<br /><em style={{ color: gold }}>Gift Cards</em>
-            </h2>
-            <p style={{ color: 'rgba(240,233,215,0.7)', fontSize: '1.1rem', lineHeight: 1.7, marginBottom: 12 }}>
-              Movies. Cocktails. Popcorn. Community.
-            </p>
-            <p style={{ color: 'rgba(240,233,215,0.5)', fontSize: '1rem', lineHeight: 1.7, marginBottom: 40 }}>
-              Give someone a night they&apos;ll remember. Perfect for birthdays, date nights, holidays, or just because. Redeemable for movies, food, drinks, events, karaoke, and more.
-            </p>
-            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 30 }}>
-              <a href={GIFT_CARD_LINK} target="_blank" rel="noopener noreferrer" style={{
-                display: 'inline-block',
-                background: gold,
-                color: '#0a0a0a',
-                padding: '16px 40px',
-                borderRadius: 999,
-                fontSize: '1.1rem',
-                fontWeight: 700,
-                textDecoration: 'none',
-                letterSpacing: 1,
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                boxShadow: '0 4px 20px rgba(212,175,55,0.3)'
-              }}>
-                Buy Gift Cards
-              </a>
-            </div>
-            <p style={{ color: 'rgba(240,233,215,0.35)', fontSize: '0.85rem' }}>
-              Digital gift cards delivered instantly by email. Any amount from $10.
+              Lighthouse Cinema
+            </h1>
+            <p style={{ color: '#666', fontSize: '0.9rem' }}>
+              525 Lighthouse Ave, Pacific Grove, CA 93950 &nbsp;|&nbsp;
+              <a href="tel:+18317173124" style={{ color: red }}>(831) 717-3124</a>
             </p>
           </div>
-        </section>
 
-      {/*  5. ALL EVENTS  */}
-      <section id="events" style={{ padding: '72px 0 32px', textAlign: 'center', background: '#0c0c0c', borderTop: '1px solid rgba(212,175,55,0.08)' }}>
-        <div className="container">
-          <h2 style={{ fontSize: '2.2rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>
-            <span style={{ color: gold }}>Upcoming</span> Events
-          </h2>
-          <p style={{ color: 'rgba(240,233,215,0.55)', maxWidth: 600, margin: '0 auto 32px' }}>
-            Reserve your seat at Pacific Grove's most exciting venue.
-          </p>
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
-            {categories.map(cat => (
-              <button key={cat} onClick={() => setFilter(cat)} className={filter === cat ? 'btn btn-gold btn-sm' : 'btn btn-dark btn-sm'}>
-                {cat === 'all' ? 'All Events' : cat.charAt(0).toUpperCase() + cat.slice(1)}
+          {/* Tab Navigation */}
+          <div style={{ display: 'flex', gap: 0 }}>
+            {[
+              { key: 'movies', label: 'Now Playing' },
+              { key: 'events', label: 'Events & Shows' },
+              { key: 'about', label: 'About' },
+            ].map(tab => (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                style={{
+                  padding: '12px 24px',
+                  background: 'none',
+                  border: 'none',
+                  borderBottom: activeTab === tab.key ? '3px solid ' + red : '3px solid transparent',
+                  color: activeTab === tab.key ? red : '#666',
+                  fontWeight: activeTab === tab.key ? 700 : 500,
+                  fontSize: '0.95rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                }}
+              >
+                {tab.label}
               </button>
             ))}
           </div>
         </div>
       </section>
-      <section className="section" style={{ paddingTop: 32, background: '#0c0c0c' }}>
-        <div className="container">
-          {loading ? (
-            <div style={{ display: 'flex', justifyContent: 'center', padding: '80px 0' }}>
-              <div className="spinner" style={{ width: 40, height: 40 }}></div>
-            </div>
-          ) : filtered.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
-              <p style={{ fontSize: '1.2rem' }}>No events found in this category.</p>
-            </div>
-          ) : (
-            <div className="grid grid-3">
-              {filtered.map(event => (
-                <a key={event.id} href={`/events/${event.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <div className="card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <div style={{
-                      height: 180, background: 'linear-gradient(135deg, var(--dark-elevated), var(--dark-card))',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      borderBottom: '1px solid var(--dark-border)', position: 'relative',
-                    }}>
-                      <span style={{ fontSize: '3rem' }}>
-                        {event.category === 'weekly' ? '' : event.category === 'screening' ? '' : ''}
-                      </span>
-                      <span className="badge badge-gold" style={{ position: 'absolute', top: 12, right: 12 }}>{event.category}</span>
+
+      {/* TAB CONTENT */}
+      {activeTab === 'movies' && (
+        <>
+          {/* MOVIE POSTER CAROUSEL */}
+          <section style={{
+            padding: '32px 0',
+            background: lightBg,
+            borderBottom: '1px solid #e0e0e0',
+          }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+              <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: 20, color: dark }}>
+                Featured Movies
+              </h2>
+              <div style={{
+                display: 'flex', gap: 16, overflowX: 'auto',
+                paddingBottom: 12, scrollSnapType: 'x mandatory',
+                WebkitOverflowScrolling: 'touch',
+              }}>
+                {allVisibleMovies.map(movie => (
+                  <div
+                    key={movie.slug}
+                    style={{
+                      minWidth: 180, maxWidth: 180, scrollSnapAlign: 'start',
+                      cursor: 'pointer', borderRadius: 8, overflow: 'hidden',
+                      background: white, flexShrink: 0,
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                      transition: 'transform 0.2s, box-shadow 0.2s',
+                    }}
+                    onClick={() => {
+                      var el = document.getElementById('showtimes');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    <div style={{ position: 'relative', height: 260 }}>
+                      <img
+                        src={movie.poster}
+                        alt={movie.title}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                      {movie.trailerId && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setTrailerOpen(movie.trailerId); }}
+                          style={{
+                            position: 'absolute', top: '50%', left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: 48, height: 48, borderRadius: '50%',
+                            background: 'rgba(0,0,0,0.65)', border: '2px solid white',
+                            color: 'white', fontSize: 18, cursor: 'pointer',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          }}
+                        >&#9654;</button>
+                      )}
+                      {isComingSoon(movie) && (
+                        <span style={{
+                          position: 'absolute', top: 8, left: 8,
+                          background: red, color: '#fff',
+                          padding: '3px 10px', borderRadius: 4,
+                          fontSize: '0.7rem', fontWeight: 700, letterSpacing: 1,
+                        }}>COMING SOON</span>
+                      )}
                     </div>
-                    <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                      <h3 style={{ fontSize: '1.25rem', marginBottom: 8 }}>{event.title}</h3>
-                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: 16, flex: 1 }}>{event.description}</p>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                        <div>
-                          <div style={{ fontSize: '0.85rem', color: gold, fontWeight: 600 }}>{formatDate(event.date)}</div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatTime(event.time)} · {event.venue}</div>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                          <div style={{ fontSize: '1.4rem', fontWeight: 700, color: gold, fontFamily: "'Playfair Display', serif" }}>{event.ticketPrice === 0 ? 'Free' : `$${event.ticketPrice}`}</div>
-                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{event.ticketPrice === 0 ? 'admission' : 'per ticket'}</div>
-                        </div>
+                    <div style={{ padding: '10px 12px' }}>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 600, color: dark, marginBottom: 3 }}>
+                        {movie.title}
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0 0', borderTop: '1px solid var(--dark-border)' }}>
-                        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Selling Fast</span>
-                        <span className="btn btn-gold btn-sm" style={{ pointerEvents: 'none' }}>Book Now </span>
+                      <div style={{ fontSize: '0.75rem', color: '#999' }}>
+                        {movie.rating} {movie.runtime && 'Â· ' + movie.runtime}
                       </div>
                     </div>
                   </div>
-                </a>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* SHOWTIMES SECTION */}
+          <section id="showtimes" style={{ padding: '32px 0 48px', background: white }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: 20, color: dark }}>
+                Showtimes
+              </h2>
+
+              {/* Date Picker Bar */}
+              <div style={{
+                display: 'flex', gap: 0, overflowX: 'auto',
+                borderBottom: '1px solid #e0e0e0',
+                marginBottom: 32, paddingBottom: 0,
+              }}>
+                {dates.map((date, i) => {
+                  var isSelected = selectedDate === i;
+                  var isToday = i === 0;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setSelectedDate(i)}
+                      style={{
+                        padding: '12px 20px',
+                        background: 'none',
+                        border: 'none',
+                        borderBottom: isSelected ? '3px solid ' + red : '3px solid transparent',
+                        color: isSelected ? red : '#666',
+                        fontWeight: isSelected ? 700 : 400,
+                        fontSize: '0.9rem',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap',
+                        transition: 'all 0.15s',
+                        minWidth: 70,
+                        textAlign: 'center',
+                      }}
+                    >
+                      <div style={{ fontSize: '0.85rem' }}>
+                        {isToday ? 'Today' : getShortDay(date)}
+                      </div>
+                      <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>
+                        {getMonthDay(date)}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Movie Listings */}
+              {moviesWithShowtimes.length === 0 ? (
+                <div style={{
+                  textAlign: 'center', padding: '60px 20px',
+                  color: '#999', fontSize: '1rem',
+                }}>
+                  <p>No showtimes available for {getDayName(dates[selectedDate])}.</p>
+                  <p style={{ fontSize: '0.85rem', marginTop: 8 }}>
+                    We are open Wednesday through Sunday.
+                  </p>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+                  {moviesWithShowtimes.map(movie => {
+                    var times = getMovieShowtimes(movie, selectedDay);
+                    return (
+                      <div
+                        key={movie.slug}
+                        style={{
+                          display: 'flex', gap: 24,
+                          paddingBottom: 32,
+                          borderBottom: '1px solid #eee',
+                        }}
+                      >
+                        {/* Poster */}
+                        <div style={{
+                          minWidth: 120, maxWidth: 120,
+                          borderRadius: 6, overflow: 'hidden',
+                          flexShrink: 0,
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                        }}>
+                          <img
+                            src={movie.poster}
+                            alt={movie.title}
+                            style={{ width: '100%', height: 170, objectFit: 'cover' }}
+                          />
+                        </div>
+
+                        {/* Movie Info */}
+                        <div style={{ flex: 1 }}>
+                          <h3 style={{
+                            fontSize: '1.25rem', fontWeight: 700,
+                            color: dark, marginBottom: 6,
+                          }}>
+                            {movie.title}
+                          </h3>
+                          <div style={{
+                            fontSize: '0.85rem', color: '#666',
+                            marginBottom: 12,
+                          }}>
+                            {movie.rating && <span>{movie.rating}</span>}
+                            {movie.runtime && <span> &nbsp;|&nbsp; {movie.runtime}</span>}
+                            {movie.genre && <span> &nbsp;|&nbsp; {movie.genre}</span>}
+                          </div>
+
+                          {/* Action buttons */}
+                          <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+                            {movie.trailerId && (
+                              <button
+                                onClick={() => setTrailerOpen(movie.trailerId)}
+                                style={{
+                                  padding: '6px 16px', borderRadius: 4,
+                                  border: '1px solid #ccc', background: white,
+                                  color: '#333', fontSize: '0.82rem', fontWeight: 600,
+                                  cursor: 'pointer', transition: 'all 0.2s',
+                                }}
+                              >
+                                Trailer
+                              </button>
+                            )}
+                          </div>
+
+                          {/* Format label */}
+                          <div style={{
+                            fontSize: '0.8rem', fontWeight: 700,
+                            color: dark, marginBottom: 8,
+                          }}>
+                            Standard Format
+                          </div>
+
+                          {/* Showtime buttons */}
+                          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                            {times.map(t => (
+                              <a
+                                key={t}
+                                href={getTicketLink(movie, t)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  padding: '10px 20px',
+                                  borderRadius: 4,
+                                  border: '1px solid #ddd',
+                                  background: white,
+                                  color: dark,
+                                  fontSize: '0.9rem',
+                                  fontWeight: 600,
+                                  textDecoration: 'none',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s',
+                                }}
+                                title={'Buy ticket for ' + t}
+                              >
+                                {t}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </section>
+
+          {/* WEEKLY EVENTS BAR */}
+          <section style={{
+            padding: '40px 0',
+            background: lightBg,
+            borderTop: '1px solid #e0e0e0',
+          }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+              <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: 20, color: dark }}>
+                Weekly Events
+              </h2>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16 }}>
+                {[
+                  { day: 'Friday', name: 'Karaoke Night', time: '7:30 PM', desc: 'Sing your heart out every Friday' },
+                  { day: 'Saturday', name: 'Salsa Night', time: '8:00 PM', desc: 'Dance the night away with live music' },
+                ].map(item => (
+                  <div key={item.day} style={{
+                    background: white,
+                    borderRadius: 8,
+                    padding: '20px 24px',
+                    border: '1px solid #e0e0e0',
+                    display: 'flex', alignItems: 'center', gap: 16,
+                  }}>
+                    <div style={{
+                      minWidth: 56, height: 56, borderRadius: 8,
+                      background: 'rgba(207,32,39,0.08)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: '1.5rem',
+                    }}>
+                      {item.day === 'Friday' ? 'ð¤' : 'ð'}
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 700, color: dark, fontSize: '1rem' }}>{item.name}</div>
+                      <div style={{ fontSize: '0.85rem', color: '#666' }}>
+                        {item.day}s at {item.time}
+                      </div>
+                      <div style={{ fontSize: '0.8rem', color: '#999', marginTop: 2 }}>{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* SPECIAL EVENT */}
+          <section style={{
+            padding: '40px 0',
+            background: white,
+            borderTop: '1px solid #e0e0e0',
+          }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+              <div style={{
+                display: 'flex', gap: 24, alignItems: 'center',
+                background: lightBg, borderRadius: 12,
+                padding: 28, border: '1px solid #e0e0e0',
+                flexWrap: 'wrap',
+              }}>
+                <div style={{
+                  minWidth: 80, height: 80, borderRadius: 12,
+                  background: 'rgba(207,32,39,0.08)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '2.2rem', flexShrink: 0,
+                }}>
+                  ð¨
+                </div>
+                <div style={{ flex: 1, minWidth: 200 }}>
+                  <span style={{
+                    display: 'inline-block', background: red, color: '#fff',
+                    padding: '2px 10px', borderRadius: 4,
+                    fontSize: '0.7rem', fontWeight: 700, letterSpacing: 1,
+                    marginBottom: 8,
+                  }}>SPECIAL EVENT</span>
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: dark, marginBottom: 4 }}>
+                    Art &amp; East-Meets-West Fusion Concert
+                  </h3>
+                  <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: 8 }}>
+                    May 23, 2026 &middot; 5:00 PM - 8:00 PM &middot; $15
+                  </p>
+                  <p style={{ fontSize: '0.85rem', color: '#999', marginBottom: 12 }}>
+                    Abstract art, fusion music, DJ sets, and a surprise Disney animator pop-up sketch session.
+                  </p>
+                  <a
+                    href="https://square.link/u/TREEYNkF"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex', padding: '8px 24px',
+                      background: red, color: '#fff', borderRadius: 6,
+                      fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none',
+                    }}
+                  >
+                    Buy Tickets
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* GIFT CARDS */}
+          <section style={{
+            padding: '48px 0',
+            background: lightBg,
+            borderTop: '1px solid #e0e0e0',
+            textAlign: 'center',
+          }}>
+            <div style={{ maxWidth: 600, margin: '0 auto', padding: '0 24px' }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: dark, marginBottom: 8 }}>
+                Gift Cards
+              </h2>
+              <p style={{ color: '#666', fontSize: '0.95rem', marginBottom: 24 }}>
+                Give the gift of movies, food, drinks, and events. Digital delivery from $10.
+              </p>
+              <a
+                href={GIFT_CARD_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex', padding: '12px 36px',
+                  background: red, color: '#fff', borderRadius: 6,
+                  fontSize: '1rem', fontWeight: 700, textDecoration: 'none',
+                }}
+              >
+                Buy Gift Cards
+              </a>
+            </div>
+          </section>
+        </>
+      )}
+
+      {activeTab === 'events' && (
+        <section style={{ padding: '40px 0', background: white }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: dark, marginBottom: 24 }}>
+              Upcoming Events
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
+              {[
+                { title: 'Karaoke Night', day: 'Every Friday', time: '7:30 PM', price: 'Free', emoji: 'ð¤' },
+                { title: 'Salsa Night', day: 'Every Saturday', time: '8:00 PM', price: 'Free', emoji: 'ð' },
+                { title: 'Art & East-Meets-West Fusion Concert', day: 'May 23, 2026', time: '5:00 PM', price: '$15', emoji: 'ð¨', link: 'https://square.link/u/TREEYNkF' },
+                { title: 'Motorcycle Movie of the Month', day: 'Monthly', time: '11:00 AM', price: 'Free', emoji: 'ðï¸' },
+                { title: 'Drink & Draw', day: 'Weekly', time: 'Evening', price: 'Free', emoji: 'ð¨' },
+                { title: 'Tabletop Night', day: 'Weekly', time: 'Evening', price: 'Free', emoji: 'ð²' },
+              ].map((event, i) => (
+                <div key={i} style={{
+                  background: white, borderRadius: 8,
+                  border: '1px solid #e0e0e0',
+                  padding: 24,
+                  transition: 'box-shadow 0.2s',
+                }}>
+                  <div style={{ fontSize: '2rem', marginBottom: 12 }}>{event.emoji}</div>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: dark, marginBottom: 6 }}>
+                    {event.title}
+                  </h3>
+                  <div style={{ fontSize: '0.85rem', color: '#666', marginBottom: 4 }}>
+                    {event.day} at {event.time}
+                  </div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: red }}>
+                    {event.price}
+                  </div>
+                  {event.link && (
+                    <a href={event.link} target="_blank" rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex', marginTop: 12,
+                        padding: '8px 20px', background: red, color: '#fff',
+                        borderRadius: 6, fontSize: '0.82rem', fontWeight: 700,
+                        textDecoration: 'none',
+                      }}>
+                      Get Tickets
+                    </a>
+                  )}
+                </div>
               ))}
             </div>
-          )}
-        </div>
-      </section>
-
-      {/*  6. COMMUNITY NIGHTS  */}
-      <section style={{ padding: '72px 0', background: '#0f0f0f', borderTop: '1px solid rgba(212,175,55,0.10)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.8rem', letterSpacing: 3, color: gold, marginBottom: 12, textTransform: 'uppercase' }}>Free & For Everyone</div>
-          <h2 style={{ fontSize: '2rem', marginBottom: 14, fontFamily: "'Playfair Display', serif" }}>Community Nights</h2>
-          <p style={{ color: 'rgba(240,233,215,0.55)', maxWidth: 640, margin: '0 auto 40px' }}>
-            Drop-in gatherings in the lobby lounge. Grab a drink, meet neighbors, no cover charge.
-          </p>
-          <div className="grid grid-3" style={{ textAlign: 'left' }}>
-            <div className="card" style={{ padding: 28 }}>
-              <div style={{ fontSize: '2rem', marginBottom: 12 }}></div>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: 8 }}>Drink & Draw</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Artists of every skill level welcome. Bring a sketchbook, order a drink, make something new. Free, weekly.</p>
-            </div>
-            <div className="card" style={{ padding: 28 }}>
-              <div style={{ fontSize: '2rem', marginBottom: 12 }}></div>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: 8 }}>Tabletop Night</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Drop-in tabletop and board games hosted in the lounge. All you need is your imagination. Free, weekly.</p>
-            </div>
-            <div className="card" style={{ padding: 28 }}>
-              <div style={{ fontSize: '2rem', marginBottom: 12 }}></div>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: 8 }}>Karma Screenings</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Pay what you want. 20% of proceeds go to a local non-profit partner each month. Good films, good cause.</p>
-            </div>
           </div>
+        </section>
+      )}
 
-                  <div className="card" style={{ padding: 28 }}>
-                          <div style={{ fontSize: '2rem', marginBottom: 12 }}>&#x1F3CD;&#xFE0F;</div>
-                          <h3 style={{ fontSize: '1.2rem', marginBottom: 8 }}>Motorcycle Movie of the Month</h3>
-                          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: 8 }}>Presented by <span style={{ color: gold }}>Big Sur Motorcycle Adventure Tours</span></p>
-                          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: 12 }}>Free private screening every month. Doors open at 11:00 AM, showtime at 11:30 AM.</p>
-                          <div style={{ fontSize: '0.8rem', color: gold, lineHeight: 1.8 }}>May 17 &middot; Jun 7 &middot; Jul 12 &middot; Aug 2 &middot; Sep 6 &middot; Oct 18 &middot; Nov 8</div>
+      {activeTab === 'about' && (
+        <section style={{ padding: '48px 0', background: white }}>
+          <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px' }}>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: dark, marginBottom: 20 }}>
+              About Lighthouse Cinema
+            </h2>
+            <p style={{ color: '#555', fontSize: '1rem', lineHeight: 1.8, marginBottom: 16 }}>
+              Lighthouse Cinema has been a beloved staple of Pacific Grove since July 1987,
+              when brothers John and Sal Enea opened its doors. For nearly four decades it has
+              been more than a movie theater &mdash; a place where first dates happen, friendships
+              grow, and families share the magic of the big screen.
+            </p>
+            <p style={{ color: '#555', fontSize: '1rem', lineHeight: 1.8, marginBottom: 24 }}>
+              Under new ownership by Dr. Ayman Adeeb and his family, and with the dedication
+              of a hard-working staff, Lighthouse Cinema is shining brighter than ever. With
+              movies, karaoke, salsa nights, comedy, and community events, there is something
+              for everyone.
+            </p>
+
+            <div style={{
+              background: lightBg, borderRadius: 12, padding: 28,
+              border: '1px solid #e0e0e0', marginBottom: 32,
+            }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: dark, marginBottom: 12 }}>
+                Theater Information
+              </h3>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, fontSize: '0.9rem', color: '#555' }}>
+                <div>
+                  <strong style={{ color: dark }}>Address</strong><br />
+                  525 Lighthouse Ave<br />
+                  Pacific Grove, CA 93950
+                </div>
+                <div>
+                  <strong style={{ color: dark }}>Phone</strong><br />
+                  <a href="tel:+18317173124" style={{ color: red }}>(831) 717-3124</a>
+                </div>
+                <div>
+                  <strong style={{ color: dark }}>Hours</strong><br />
+                  Wed - Sun: Open<br />
+                  Mon - Tue: Closed
+                </div>
+                <div>
+                  <strong style={{ color: dark }}>Text Us</strong><br />
+                  <a href="sms:+18334414049" style={{ color: red }}>(833) 441-4049</a>
+                </div>
               </div>
-        </div>
-      </section>
+            </div>
 
-      {/*  7. ABOUT  */}
-      <section style={{ padding: '80px 0', background: dark }}>
-        <div className="container" style={{ maxWidth: 820, textAlign: 'center' }}>
-          <div style={{ fontSize: '0.8rem', letterSpacing: 3, color: gold, marginBottom: 12, textTransform: 'uppercase' }}>About Us</div>
-          <h2 style={{ fontSize: '2rem', marginBottom: 20, fontFamily: "'Playfair Display', serif" }}>A Neighborhood Cinema Since 1987</h2>
-          <p style={{ color: 'rgba(240,233,215,0.65)', fontSize: '1.05rem', lineHeight: 1.75, marginBottom: 16 }}>
-            Lighthouse Cinema has been a beloved staple of Pacific Grove since July 1987,
-            when brothers John and Sal Enea opened its doors. For nearly four decades it has
-            been more than a movie theater  a place where first dates happen, friendships
-            grow, and families share the magic of the big screen.
-          </p>
-          <p style={{ color: 'rgba(240,233,215,0.65)', fontSize: '1.05rem', lineHeight: 1.75, marginBottom: 24 }}>
-            Under new ownership by Dr. Ayman Adeeb and his family, and with the dedication
-            of a hard-working staff, Lighthouse Cinema is shining brighter than ever. Thank
-            you, Pacific Grove, for your continued love and support.
-          </p>
-          <p style={{ color: gold, fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', fontStyle: 'italic' }}>
-            See you at the theatre.
-          </p>
-        </div>
-      </section>
+            {/* VIP Signup */}
+            <div style={{
+              background: 'rgba(207,32,39,0.04)', borderRadius: 12, padding: 28,
+              border: '1px solid rgba(207,32,39,0.15)', textAlign: 'center',
+            }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: dark, marginBottom: 8 }}>
+                Join the VIP List
+              </h3>
+              <p style={{ color: '#666', fontSize: '0.9rem', marginBottom: 16 }}>
+                Text <strong style={{ color: red }}>JOIN</strong> to{' '}
+                <strong style={{ color: red }}>(831) 747-4470</strong> for showtimes, new events,
+                and 10% off your next visit.
+              </p>
+              <a href="sms:+18317474470?body=JOIN" style={{
+                display: 'inline-flex', padding: '10px 28px',
+                background: red, color: '#fff', borderRadius: 6,
+                fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none',
+              }}>
+                Text JOIN
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
 
-      {/*  8. VIP  */}
-      <section style={{ padding: '60px 0', background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1505 100%)', borderTop: '1px solid rgba(212,175,55,0.15)' }}>
-        <div className="container" style={{ textAlign: 'center', maxWidth: 680 }}>
-          <h2 style={{ fontSize: '1.8rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>
-            Join the <span style={{ color: gold }}>VIP List</span>
-          </h2>
-          <p style={{ color: 'rgba(240,233,215,0.55)', marginBottom: 24 }}>
-            Text <strong style={{ color: gold }}>JOIN</strong> to <strong style={{ color: gold }}>(831) 747-4470</strong> for showtimes, new events, and <strong>10% off</strong> your next visit.
-          </p>
-          <a href="sms:+18317474470?body=JOIN" style={goldBtn}>Text JOIN </a>
-        </div>
-      </section>
-
-
-      {/* ART & EAST-MEETS-WEST FUSION CONCERT */}
-      <section id="art-fusion" style={{
-        padding: '80px 0',
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%)',
+      {/* BOTTOM MARQUEE BAR */}
+      <section style={{
+        background: red, color: '#fff',
+        padding: '10px 0', overflow: 'hidden',
+        fontWeight: 600, fontSize: '0.85rem',
       }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
-          <div style={{ display: 'inline-block', background: 'rgba(212,175,55,0.12)', padding: '4px 16px', borderRadius: 999, fontSize: '0.8rem', color: gold, fontWeight: 600, letterSpacing: 1, marginBottom: 16 }}>SPECIAL EVENT</div>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', color: cream, marginBottom: 8 }}>Art & East-Meets-West Fusion Concert</h2>
-          <p style={{ color: gold, fontSize: '1.1rem', fontWeight: 600, marginBottom: 24 }}>May 23, 2026 · 5:00 PM - 8:00 PM</p>
-          <p style={{ color: '#ccc', fontSize: '1rem', lineHeight: 1.7, maxWidth: 700, margin: '0 auto 32px' }}>
-            An evening of abstract art and fusion music at Lighthouse Cinema. Featuring artwork by <strong style={{color: cream}}>Shagufta Khan</strong> (Abstract Impressionist) and <strong style={{color: cream}}>Nate Stapleton</strong> (Abstract Artist), live performance by the <strong style={{color: cream}}>Echoes Eternal Collective</strong>, DJ sets by <strong style={{color: cream}}>The Guam Show</strong> (KHDC 90.9 FM), and a surprise pop-up sketch session by <strong style={{color: cream}}>Edge Lorenzo</strong>, Disney's veteran animator. Wine and light refreshments served.
-          </p>
-          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 24 }}>
-            <div style={{ background: 'rgba(212,175,55,0.08)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: 12, padding: '16px 24px' }}>
-              <div style={{ fontSize: '1.6rem', fontWeight: 700, color: gold, fontFamily: "'Playfair Display', serif" }}>$15</div>
-              <div style={{ fontSize: '0.8rem', color: '#999' }}>per person</div>
-            </div>
-          </div>
-          <a href="https://square.link/u/TREEYNkF" target="_blank" rel="noopener noreferrer" style={{
-            display: 'inline-block', background: gold, color: dark, padding: '14px 40px', borderRadius: 8,
-            fontWeight: 700, fontSize: '1rem', textDecoration: 'none', letterSpacing: 0.5,
-            transition: 'transform 0.2s, box-shadow 0.2s',
-          }}>
-            Buy Tickets
-          </a>
-          <p style={{ color: '#666', fontSize: '0.8rem', marginTop: 12 }}>525 Lighthouse Ave, Pacific Grove, CA 93950</p>
+        <div style={{ whiteSpace: 'nowrap', textAlign: 'center', letterSpacing: 0.5 }}>
+          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &middot; I LOVE BOOSTERS &nbsp;|&nbsp;
+          KARAOKE FRIDAYS 7:30 PM &nbsp;|&nbsp;
+          SALSA SATURDAYS 8 PM &nbsp;|&nbsp;
+          BAR &amp; GRILL OPEN DAILY
         </div>
       </section>
 
-      {/*  9. MARQUEE  */}
-      <section style={{ background: gold, color: dark, padding: '12px 0', overflow: 'hidden', fontWeight: 600, fontSize: '0.9rem' }}>
-        <div style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-          NOW SHOWING: DEVIL WEARS PRADA 2 · SHEEP DETECTIVES · MAMMA MIA! &nbsp;·&nbsp;
-          KARAOKE FRIDAYS 7:30 PM &nbsp;·&nbsp;
-          SALSA SATURDAYS 8 PM &nbsp;·&nbsp;
-          BAR & GRILL OPEN DAILY
-        </div>
-      </section>
-
-      {/*  10. CONTACT  */}
-      <section style={{ padding: '72px 0', background: '#0c0c0c', borderTop: '1px solid rgba(212,175,55,0.10)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: 12, fontFamily: "'Playfair Display', serif" }}>
-            Contact <span style={{ color: gold }}>Lighthouse Cinema</span>
+      {/* CONTACT SECTION */}
+      <section style={{ padding: '48px 0', background: lightBg, borderTop: '1px solid #e0e0e0' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '1.3rem', fontWeight: 700, color: dark, marginBottom: 20 }}>
+            Contact Lighthouse Cinema
           </h2>
-          <p style={{ color: 'rgba(240,233,215,0.55)', maxWidth: 640, margin: '0 auto 40px' }}>
-            Reach our team directly for movie times, private events, reservations, and VIP assistance.
-          </p>
-          <div className="grid grid-3" style={{ textAlign: 'left', marginBottom: 32 }}>
-            <div className="card" style={{ padding: 24 }}>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: 8 }}> Fast answers</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Ask about showtimes, seating, special menus, or upcoming events.</p>
-            </div>
-            <div className="card" style={{ padding: 24 }}>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: 8 }}> Direct contact</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Your message goes straight to Lighthouse Cinema, not a third party.</p>
-            </div>
-            <div className="card" style={{ padding: 24 }}>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: 8 }}> Simple & convenient</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Text us anytime, or call during business hours for immediate help.</p>
-            </div>
-          </div>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="sms:+18334414049" style={goldBtn}>Text the Cinema</a>
-            <a href="tel:+18317173124" style={darkBtn}>Call the Cinema (831) 717-3124</a>
-            <a href="tel:+18317173124" style={{...darkBtn, border: '1px solid #D4AF37', color: '#D4AF37'}}>Call Manager Direct</a>
+            <a href="sms:+18334414049" style={{
+              display: 'inline-flex', padding: '12px 28px',
+              background: red, color: '#fff', borderRadius: 6,
+              fontWeight: 700, fontSize: '0.9rem', textDecoration: 'none',
+            }}>
+              Text the Cinema
+            </a>
+            <a href="tel:+18317173124" style={{
+              display: 'inline-flex', padding: '12px 28px',
+              background: white, color: dark, borderRadius: 6,
+              fontWeight: 700, fontSize: '0.9rem', textDecoration: 'none',
+              border: '1px solid #ddd',
+            }}>
+              Call (831) 717-3124
+            </a>
           </div>
         </div>
       </section>
-
-      {/* JOIN THE LIGHTHOUSE FAMILY */}
-      <section style={{padding: "80px 20px", background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)", textAlign: "center"}}>
-        <div style={{maxWidth: 600, margin: "0 auto"}}>
-          <h2 style={{fontFamily: "Playfair Display, serif", fontSize: "2.2rem", color: "#D4AF37", marginBottom: 10}}>Join the Lighthouse Family</h2>
-          <p style={{color: "#ccc", fontSize: "1.1rem", marginBottom: 30}}>Get event updates, exclusive offers, and community news delivered to your inbox.</p>
-          {signupStatus === "success" ? (
-            <div style={{background: "rgba(212,175,55,0.15)", border: "1px solid #D4AF37", borderRadius: 12, padding: "30px 20px"}}>
-              <p style={{color: "#D4AF37", fontSize: "1.4rem", fontFamily: "Playfair Display, serif", margin: 0}}>You&apos;re in. Welcome to the family.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSignup} style={{display: "flex", flexDirection: "column", gap: 14}}>
-              <input type="text" placeholder="Your Name" required value={signupName} onChange={e => setSignupName(e.target.value)} style={{padding: "14px 18px", borderRadius: 8, border: "1px solid #333", background: "#0a0a1a", color: "#fff", fontSize: "1rem"}} />
-              <input type="email" placeholder="Email Address" required value={signupEmail} onChange={e => setSignupEmail(e.target.value)} style={{padding: "14px 18px", borderRadius: 8, border: "1px solid #333", background: "#0a0a1a", color: "#fff", fontSize: "1rem"}} />
-              <input type="tel" placeholder="Phone (optional)" value={signupPhone} onChange={e => setSignupPhone(e.target.value)} style={{padding: "14px 18px", borderRadius: 8, border: "1px solid #333", background: "#0a0a1a", color: "#fff", fontSize: "1rem"}} />
-              <button type="submit" disabled={signupLoading} style={{padding: "16px", borderRadius: 8, border: "none", background: "#D4AF37", color: "#1a1a2e", fontSize: "1.1rem", fontWeight: "bold", cursor: "pointer", marginTop: 6}}>{signupLoading ? "Joining..." : "Join the Lighthouse Family"}</button>
-              {signupStatus === "error" && <p style={{color: "#ff6b6b", margin: 0}}>Something went wrong. Please try again.</p>}
-            </form>
-          )}
-        </div>
-      </section>
-
-      {/*  RESPONSIVE  */}
-      <style>{`h
-        @media (max-width: 768px) {
-          #now-playing > div > div:nth-child(2) { grid-template-columns: 1fr !important; }\n          #coming-soon > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
-          #documentaries > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </div>
   );
 }
