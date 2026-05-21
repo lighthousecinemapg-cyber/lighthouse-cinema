@@ -218,7 +218,7 @@ export const movies = [
       { date: '2026-05-16', times: ['9:00 PM'] },
     ],
     ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
-    displayNote: 'Special Screening Ã¢ÂÂ Sat May 16',
+    displayNote: 'Special Screening - Sat May 16',
   },
 
 
@@ -251,8 +251,8 @@ export const movies = [
         { date: '2026-05-24', times: ['12:15 PM', '3:00 PM', '6:15 PM'] },
       ],
         ticketLinks: { default: 'https://square.link/u/zmrq8yCF' },
-        displayNote: 'Opens Friday May 22 â 97% on Rotten Tomatoes!',
-        hoursNote: 'Open WedâSun',
+        displayNote: 'Opens Friday May 22 - 97% on Rotten Tomatoes!',
+        hoursNote: 'Open Wed-Sun',
   },
 
     // -- NEW UPCOMING MOVIES (added May 2026) --
@@ -280,7 +280,7 @@ export const movies = [
     },
     ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
     displayNote: 'Directed by Guy Ritchie',
-    hoursNote: 'Open WedâSun',
+    hoursNote: 'Open Wed-Sun',
   },
 
   {
@@ -311,7 +311,7 @@ export const movies = [
     ],
     ticketLinks: { default: 'https://square.link/u/kdjFey9Y' },
     displayNote: 'Star Wars on the big screen!',
-    hoursNote: 'Open WedâSun',
+    hoursNote: 'Open Wed-Sun',
   },
 
   {
@@ -337,7 +337,7 @@ export const movies = [
     },
     ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
     displayNote: 'Starring Nate Bargatze and Mandy Moore',
-    hoursNote: 'Open WedâSun',
+    hoursNote: 'Open Wed-Sun',
   },
 
   {
@@ -363,7 +363,7 @@ export const movies = [
     },
     ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
     displayNote: 'Directed by Steven Spielberg',
-    hoursNote: 'Open WedâSun',
+    hoursNote: 'Open Wed-Sun',
   },
 
   {
@@ -389,7 +389,7 @@ export const movies = [
     },
     ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
     displayNote: 'Pixar is back!',
-    hoursNote: 'Open WedâSun',
+    hoursNote: 'Open Wed-Sun',
   },
 
   {
@@ -415,7 +415,7 @@ export const movies = [
     },
     ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
     displayNote: 'From Illumination',
-    hoursNote: 'Open WedâSun',
+    hoursNote: 'Open Wed-Sun',
   },
 
   {
@@ -441,7 +441,7 @@ export const movies = [
     },
     ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
     displayNote: 'Disney Live-Action',
-    hoursNote: 'Open WedâSun',
+    hoursNote: 'Open Wed-Sun',
   },
 
   {
@@ -467,7 +467,7 @@ export const movies = [
     },
     ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
     displayNote: 'Directed by Christopher Nolan - IMAX 70mm',
-    hoursNote: 'Open WedâSun',
+    hoursNote: 'Open Wed-Sun',
   },
 
   {
@@ -493,7 +493,7 @@ export const movies = [
     },
     ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
     displayNote: 'Marvel MCU Phase Six',
-    hoursNote: 'Open WedâSun',
+    hoursNote: 'Open Wed-Sun',
   },
 
   {
@@ -519,7 +519,7 @@ export const movies = [
     },
     ticketLinks: { default: 'https://square.link/u/lejOr2Wt' },
     displayNote: 'Dinos + Pups = Summer fun!',
-    hoursNote: 'Open WedâSun',
+    hoursNote: 'Open Wed-Sun',
   },
 ];
 
