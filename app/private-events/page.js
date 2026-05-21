@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo, useCallback } from 'react';
 
-/* ââ constants âââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* -- constants --------------------------------------------------- */
 const SQUARE_PAYMENT_LINK = 'https://square.link/u/pfGKjKqr';
 const PHONE = '(831) 241-6617';
 const WHATSAPP_CONTACTS = [
@@ -14,55 +14,55 @@ const SERVICE_FEE_RATE = 0.10;
 const TAX_RATE = 0.0925;
 
 const TIME_SLOTS = [
-  { id: '1-4',  label: '1 PM â 4 PM',  hours: 3, start: 13, end: 16, type: '3hr' },
-  { id: '4-7',  label: '4 PM â 7 PM',  hours: 3, start: 16, end: 19, type: '3hr' },
-  { id: '7-10', label: '7 PM â 10 PM', hours: 3, start: 19, end: 22, type: '3hr' },
-  { id: '1-7',  label: '1 PM â 7 PM',  hours: 6, start: 13, end: 19, type: '6hr' },
-  { id: '4-10', label: '4 PM â 10 PM', hours: 6, start: 16, end: 22, type: '6hr' },
-  { id: '1-10', label: '1 PM â 10 PM', hours: 9, start: 13, end: 22, type: '9hr' },
+  { id: '1-4',  label: '1 PM - 4 PM',  hours: 3, start: 13, end: 16, type: '3hr' },
+  { id: '4-7',  label: '4 PM - 7 PM',  hours: 3, start: 16, end: 19, type: '3hr' },
+  { id: '7-10', label: '7 PM - 10 PM', hours: 3, start: 19, end: 22, type: '3hr' },
+  { id: '1-7',  label: '1 PM - 7 PM',  hours: 6, start: 13, end: 19, type: '6hr' },
+  { id: '4-10', label: '4 PM - 10 PM', hours: 6, start: 16, end: 22, type: '6hr' },
+  { id: '1-10', label: '1 PM - 10 PM', hours: 9, start: 13, end: 22, type: '9hr' },
 ];
 
 const DURATION_MULTIPLIER = { '3hr': 1, '6hr': 1.75, '9hr': 2.5 };
 
 const PACKAGES = [
   {
-    id: 'birthday', name: 'Birthday Party', icon: 'ð',
+    id: 'birthday', name: 'Birthday Party', icon: '',
     basePrice: 350, perGuest: 18, tag: '',
     desc: 'The ultimate birthday celebration with cinema magic',
     includes: ['Private auditorium','Movie of your choice','Party setup & cleanup','Dedicated event host'],
   },
   {
-    id: 'screening', name: 'Private Screening', icon: 'ð¬',
+    id: 'screening', name: 'Private Screening', icon: '',
     basePrice: 300, perGuest: 15, tag: '',
     desc: 'Exclusive movie experience for your group',
     includes: ['Private auditorium','Movie of your choice','Premium sound system','Lobby access'],
   },
   {
-    id: 'school', name: 'School / Field Trip', icon: 'ð',
+    id: 'school', name: 'School / Field Trip', icon: '',
     basePrice: 200, perGuest: 10, tag: 'Best Value',
     desc: 'Educational & fun outing for students',
     includes: ['Private auditorium','Age-appropriate film','Group seating','Teacher lounge access'],
   },
   {
-    id: 'premium', name: 'Premium Gala', icon: 'â¨',
+    id: 'premium', name: 'Premium Gala', icon: '',
     basePrice: 500, perGuest: 35, tag: 'Most Popular',
     desc: 'First-class event with VIP treatment',
-    includes: ['Full venue access','Movie + live entertainment','Premium dÃ©cor package','Dedicated event coordinator','VIP lounge'],
+    includes: ['Full venue access','Movie + live entertainment','Premium decor package','Dedicated event coordinator','VIP lounge'],
   },
 ];
 
 const ADDONS = [
-  { id: 'crepe',    name: 'Crepe Bar',        price: 13, unit: 'per guest', icon: 'ð¥', perGuest: true },
-  { id: 'pizza',    name: 'Pizza Buffet',      price: 10, unit: 'per guest', icon: 'ð', perGuest: true },
-  { id: 'popcorn',  name: 'Popcorn Tower',     price: 32, unit: 'flat',      icon: 'ð¿', perGuest: false },
-  { id: 'candy',    name: 'Candy Bar',         price: 5,  unit: 'per guest', icon: 'ð¬', perGuest: true },
-  { id: 'drinks',   name: 'Beer & Wine Bar',   price: 16, unit: 'per guest', icon: 'ð·', perGuest: true },
-  { id: 'decor',    name: 'Custom DÃ©cor',      price: 140, unit: 'flat',     icon: 'ð¨', perGuest: false },
-  { id: 'dj',       name: 'DJ / Sound System', price: 325, unit: 'flat',     icon: 'ð§', perGuest: false },
-  { id: 'photo',    name: 'Photographer',      price: 200, unit: 'flat',     icon: 'ð¸', perGuest: false },
+  { id: 'crepe',    name: 'Crepe Bar',        price: 13, unit: 'per guest', icon: '', perGuest: true },
+  { id: 'pizza',    name: 'Pizza Buffet',      price: 10, unit: 'per guest', icon: '', perGuest: true },
+  { id: 'popcorn',  name: 'Popcorn Tower',     price: 32, unit: 'flat',      icon: '', perGuest: false },
+  { id: 'candy',    name: 'Candy Bar',         price: 5,  unit: 'per guest', icon: '', perGuest: true },
+  { id: 'drinks',   name: 'Beer & Wine Bar',   price: 16, unit: 'per guest', icon: '', perGuest: true },
+  { id: 'decor',    name: 'Custom Decor',      price: 140, unit: 'flat',     icon: '', perGuest: false },
+  { id: 'dj',       name: 'DJ / Sound System', price: 325, unit: 'flat',     icon: '', perGuest: false },
+  { id: 'photo',    name: 'Photographer',      price: 200, unit: 'flat',     icon: '', perGuest: false },
 ];
 
-/* ââ helpers âââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* -- helpers ----------------------------------------------------- */
 const fmt = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
 function getMinDate() {
@@ -79,29 +79,29 @@ function formatDateNice(iso) {
 
 function buildWhatsAppMsg(data) {
   const lines = [
-    `ð¬ *NEW BOOKING REQUEST*`,
+    ` *NEW BOOKING REQUEST*`,
     ``,
-    `ð¤ *${data.name}*`,
-    `ð§ ${data.email}`,
-    `ð± ${data.phone}`,
+    ` *${data.name}*`,
+    ` ${data.email}`,
+    ` ${data.phone}`,
     ``,
-    `ð *Date:* ${formatDateNice(data.date)}`,
-    `ð *Time:* ${data.timeSlotLabel}`,
-    `ðï¸ *Package:* ${data.packageName}`,
-    `ð¥ *Guests:* ${data.guests}`,
+    ` *Date:* ${formatDateNice(data.date)}`,
+    ` *Time:* ${data.timeSlotLabel}`,
+    ` *Package:* ${data.packageName}`,
+    ` *Guests:* ${data.guests}`,
   ];
   if (data.addons.length) {
-    lines.push(`ð *Add-ons:* ${data.addons.join(', ')}`);
+    lines.push(` *Add-ons:* ${data.addons.join(', ')}`);
   }
   if (data.notes) {
-    lines.push(`ð *Notes:* ${data.notes}`);
+    lines.push(` *Notes:* ${data.notes}`);
   }
-  lines.push(``, `ð° *Total: ${data.total}*`);
-  lines.push(``, `â³ Awaiting Square payment confirmation.`);
+  lines.push(``, ` *Total: ${data.total}*`);
+  lines.push(``, ` Awaiting Square payment confirmation.`);
   return encodeURIComponent(lines.join('\n'));
 }
 
-/* ââ sub-components ââââââââââââââââââââââââââââââââââââââââââââââ */
+/* -- sub-components ---------------------------------------------- */
 function StepIndicator({ step, total }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', gap: 8, margin: '32px 0' }}>
@@ -119,7 +119,7 @@ function StepIndicator({ step, total }) {
             border: active ? '2px solid #d4af37' : '2px solid transparent',
             transition: 'all .3s',
           }}>
-            {done ? 'â' : s}
+            {done ? '*' : s}
           </div>
         );
       })}
@@ -127,31 +127,31 @@ function StepIndicator({ step, total }) {
   );
 }
 
-/* ââ MAIN PAGE âââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* -- MAIN PAGE --------------------------------------------------- */
 export default function PrivateEventsPage() {
   const [step, setStep] = useState(1);
 
-  // Step 1 â date & time
+  // Step 1 - date & time
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedSlot, setSelectedSlot] = useState(null);
 
-  // Step 2 â package & guests
+  // Step 2 - package & guests
   const [selectedPkg, setSelectedPkg] = useState(null);
   const [guests, setGuests] = useState(20);
 
-  // Step 3 â add-ons
+  // Step 3 - add-ons
   const [addons, setAddons] = useState({});
 
-  // Step 4 â contact
+  // Step 4 - contact
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [notes, setNotes] = useState('');
 
-  // Step 5 â review & pay
+  // Step 5 - review & pay
   const [submitted, setSubmitted] = useState(false);
 
-  /* ââ pricing calc âââââââââââââââââââââââââââââââââââ */
+  /* -- pricing calc ----------------------------------- */
   const pricing = useMemo(() => {
     if (!selectedPkg || !selectedSlot) return null;
     const pkg = PACKAGES.find(p => p.id === selectedPkg);
@@ -178,13 +178,13 @@ export default function PrivateEventsPage() {
     return { base, guestFee, addonsTotal, subtotal, serviceFee, tax, total, mult, pkg, slot };
   }, [selectedPkg, selectedSlot, guests, addons]);
 
-  /* ââ navigation guards ââââââââââââââââââââââââââââââ */
+  /* -- navigation guards ------------------------------ */
   const canStep2 = selectedDate && selectedSlot;
   const canStep3 = selectedPkg && guests >= 1;
   const canStep4 = true; // add-ons are optional
   const canStep5 = name.trim() && email.trim() && phone.trim();
 
-  /* ââ submit & notify ââââââââââââââââââââââââââââââââ */
+  /* -- submit & notify -------------------------------- */
   const handleSubmit = useCallback(() => {
     if (!pricing) return;
     const slot = TIME_SLOTS.find(s => s.id === selectedSlot);
@@ -223,7 +223,7 @@ export default function PrivateEventsPage() {
     setSubmitted(true);
   }, [pricing, selectedSlot, selectedPkg, addons, name, email, phone, notes, selectedDate, guests]);
 
-  /* ââ shared styles ââââââââââââââââââââââââââââââââââ */
+  /* -- shared styles ---------------------------------- */
   const gold = '#d4af37';
   const goldDark = '#b8942e';
   const darkBg = '#111111';
@@ -244,12 +244,12 @@ export default function PrivateEventsPage() {
     cursor: 'pointer', transition: 'all .3s',
   };
 
-  /* ââ SUCCESS VIEW âââââââââââââââââââââââââââââââââââ */
+  /* -- SUCCESS VIEW ----------------------------------- */
   if (submitted) {
     return (
       <div style={{ minHeight: '100vh', background: '#0a0a0a', color: '#fff', fontFamily: "'Inter', sans-serif" }}>
         <div style={{ maxWidth: 600, margin: '0 auto', padding: '80px 20px', textAlign: 'center' }}>
-          <div style={{ fontSize: 64, marginBottom: 24 }}>ð</div>
+          <div style={{ fontSize: 64, marginBottom: 24 }}></div>
           <h1 style={{ fontSize: 32, color: gold, marginBottom: 16 }}>Booking Request Sent!</h1>
           <p style={{ fontSize: 18, color: '#ccc', lineHeight: 1.6, marginBottom: 32 }}>
             Your private event request has been sent to our team via WhatsApp.
@@ -269,11 +269,11 @@ export default function PrivateEventsPage() {
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href={SQUARE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer"
               style={{ ...btnPrimary, textDecoration: 'none', display: 'inline-block' }}>
-              ð³ Pay on Square
+               Pay on Square
             </a>
             <a href="/"
               style={{ ...btnSecondary, textDecoration: 'none', display: 'inline-block' }}>
-              â Back to Home
+               Back to Home
             </a>
           </div>
           <p style={{ marginTop: 40, color: '#888', fontSize: 14 }}>
@@ -284,7 +284,7 @@ export default function PrivateEventsPage() {
     );
   }
 
-  /* ââ MAIN RENDER ââââââââââââââââââââââââââââââââââââ */
+  /* -- MAIN RENDER ------------------------------------ */
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', color: '#fff', fontFamily: "'Inter', sans-serif" }}>
       {/* Hero */}
@@ -293,7 +293,7 @@ export default function PrivateEventsPage() {
         padding: '60px 20px 40px', textAlign: 'center',
       }}>
         <a href="/" style={{ color: gold, textDecoration: 'none', fontSize: 14, letterSpacing: 2, textTransform: 'uppercase' }}>
-          â Back to Lighthouse Cinema
+           Back to Lighthouse Cinema
         </a>
         <h1 style={{
           fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: 800, marginTop: 20,
@@ -311,7 +311,7 @@ export default function PrivateEventsPage() {
 
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 20px 80px' }}>
 
-        {/* ââââââââââ STEP 1: Date & Time ââââââââââ */}
+        {/*  STEP 1: Date & Time  */}
         {step === 1 && (
           <div>
             <h2 style={{ fontSize: 24, color: gold, marginBottom: 8 }}>Choose Your Date & Time</h2>
@@ -352,7 +352,7 @@ export default function PrivateEventsPage() {
                     border: selectedSlot === slot.id ? `2px solid ${gold}` : `1px solid ${cardBorder}`,
                   }}
                 >
-                  ð {slot.label}
+                   {slot.label}
                   <div style={{ fontSize: 12, fontWeight: 400, marginTop: 4, opacity: 0.7 }}>
                     {slot.hours} hours
                   </div>
@@ -360,7 +360,7 @@ export default function PrivateEventsPage() {
               ))}
             </div>
 
-            <p style={{ color: '#888', fontSize: 13, marginBottom: 16 }}>Extended Blocks â <span style={{ color: gold }}>Best Value</span></p>
+            <p style={{ color: '#888', fontSize: 13, marginBottom: 16 }}>Extended Blocks  <span style={{ color: gold }}>Best Value</span></p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12, marginBottom: 20 }}>
               {TIME_SLOTS.filter(s => s.type !== '3hr').map(slot => (
                 <button
@@ -374,9 +374,9 @@ export default function PrivateEventsPage() {
                     border: selectedSlot === slot.id ? `2px solid ${gold}` : `1px solid ${cardBorder}`,
                   }}
                 >
-                  ð {slot.label}
+                   {slot.label}
                   <div style={{ fontSize: 12, fontWeight: 400, marginTop: 4, opacity: 0.7 }}>
-                    {slot.hours} hours {slot.type === '9hr' ? 'â Full Day' : 'â Half Day'}
+                    {slot.hours} hours {slot.type === '9hr' ? ' Full Day' : ' Half Day'}
                   </div>
                 </button>
               ))}
@@ -392,18 +392,18 @@ export default function PrivateEventsPage() {
                   cursor: canStep2 ? 'pointer' : 'not-allowed',
                 }}
               >
-                Next: Choose Package â
+                Next: Choose Package 
               </button>
             </div>
           </div>
         )}
 
-        {/* ââââââââââ STEP 2: Package & Guests ââââââââââ */}
+        {/*  STEP 2: Package & Guests  */}
         {step === 2 && (
           <div>
             <h2 style={{ fontSize: 24, color: gold, marginBottom: 8 }}>Choose Your Package</h2>
             <p style={{ color: '#888', marginBottom: 28 }}>
-              {formatDateNice(selectedDate)} Â· {TIME_SLOTS.find(s => s.id === selectedSlot)?.label}
+              {formatDateNice(selectedDate)}  {TIME_SLOTS.find(s => s.id === selectedSlot)?.label}
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16, marginBottom: 32 }}>
@@ -442,7 +442,7 @@ export default function PrivateEventsPage() {
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                       {pkg.includes.map(item => (
                         <li key={item} style={{ fontSize: 13, color: '#aaa', padding: '2px 0' }}>
-                          â {item}
+                          * {item}
                         </li>
                       ))}
                     </ul>
@@ -463,7 +463,7 @@ export default function PrivateEventsPage() {
                 <button onClick={() => setGuests(Math.max(1, guests - 5))} style={{
                   width: 44, height: 44, borderRadius: '50%', fontSize: 20,
                   background: 'rgba(212,175,55,0.15)', color: gold, border: 'none', cursor: 'pointer',
-                }}>â</button>
+                }}></button>
                 <input
                   type="number"
                   min={1}
@@ -501,19 +501,19 @@ export default function PrivateEventsPage() {
             )}
 
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32, flexWrap: 'wrap', gap: 12 }}>
-              <button onClick={() => setStep(1)} style={btnSecondary}>â Back</button>
+              <button onClick={() => setStep(1)} style={btnSecondary}> Back</button>
               <button
                 disabled={!canStep3}
                 onClick={() => setStep(3)}
                 style={{ ...btnPrimary, opacity: canStep3 ? 1 : 0.4, cursor: canStep3 ? 'pointer' : 'not-allowed' }}
               >
-                Next: Add-Ons â
+                Next: Add-Ons 
               </button>
             </div>
           </div>
         )}
 
-        {/* ââââââââââ STEP 3: Add-Ons ââââââââââ */}
+        {/*  STEP 3: Add-Ons  */}
         {step === 3 && (
           <div>
             <h2 style={{ fontSize: 24, color: gold, marginBottom: 8 }}>Enhance Your Event</h2>
@@ -543,11 +543,11 @@ export default function PrivateEventsPage() {
                         background: active ? gold : 'transparent',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: 14, color: '#0a0a0a', fontWeight: 700,
-                      }}>{active ? 'â' : ''}</span>
+                      }}>{active ? '*' : ''}</span>
                     </div>
                     <div style={{ fontSize: 15, fontWeight: 600, marginTop: 8 }}>{addon.name}</div>
                     <div style={{ fontSize: 13, color: '#888', marginTop: 2 }}>
-                      {fmt(addon.price)}{addon.perGuest ? '/guest' : ''} Â· <span style={{ color: gold }}>{fmt(cost)}</span>
+                      {fmt(addon.price)}{addon.perGuest ? '/guest' : ''}  <span style={{ color: gold }}>{fmt(cost)}</span>
                     </div>
                   </button>
                 );
@@ -555,15 +555,15 @@ export default function PrivateEventsPage() {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32, flexWrap: 'wrap', gap: 12 }}>
-              <button onClick={() => setStep(2)} style={btnSecondary}>â Back</button>
+              <button onClick={() => setStep(2)} style={btnSecondary}> Back</button>
               <button onClick={() => setStep(4)} style={btnPrimary}>
-                Next: Your Details â
+                Next: Your Details 
               </button>
             </div>
           </div>
         )}
 
-        {/* ââââââââââ STEP 4: Contact Info ââââââââââ */}
+        {/*  STEP 4: Contact Info  */}
         {step === 4 && (
           <div>
             <h2 style={{ fontSize: 24, color: gold, marginBottom: 8 }}>Your Details</h2>
@@ -614,19 +614,19 @@ export default function PrivateEventsPage() {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32, flexWrap: 'wrap', gap: 12 }}>
-              <button onClick={() => setStep(3)} style={btnSecondary}>â Back</button>
+              <button onClick={() => setStep(3)} style={btnSecondary}> Back</button>
               <button
                 disabled={!canStep5}
                 onClick={() => setStep(5)}
                 style={{ ...btnPrimary, opacity: canStep5 ? 1 : 0.4, cursor: canStep5 ? 'pointer' : 'not-allowed' }}
               >
-                Next: Review & Pay â
+                Next: Review & Pay 
               </button>
             </div>
           </div>
         )}
 
-        {/* ââââââââââ STEP 5: Review & Pay ââââââââââ */}
+        {/*  STEP 5: Review & Pay  */}
         {step === 5 && pricing && (
           <div>
             <h2 style={{ fontSize: 24, color: gold, marginBottom: 8 }}>Review & Pay</h2>
@@ -700,7 +700,7 @@ export default function PrivateEventsPage() {
                   <span>{fmt(pricing.base)}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, color: '#ccc' }}>
-                  <span>{guests} guests Ã {fmt(pricing.pkg.perGuest)}</span>
+                  <span>{guests} guests  {fmt(pricing.pkg.perGuest)}</span>
                   <span>{fmt(pricing.guestFee)}</span>
                 </div>
                 {pricing.addonsTotal > 0 && (
@@ -733,7 +733,7 @@ export default function PrivateEventsPage() {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
-              <button onClick={() => setStep(4)} style={btnSecondary}>â Back</button>
+              <button onClick={() => setStep(4)} style={btnSecondary}> Back</button>
               <button
                 onClick={handleSubmit}
                 style={{
@@ -741,13 +741,13 @@ export default function PrivateEventsPage() {
                   boxShadow: '0 4px 20px rgba(212,175,55,0.3)',
                 }}
               >
-                ð³ Book & Pay {fmt(pricing.total)}
+                 Book & Pay {fmt(pricing.total)}
               </button>
             </div>
           </div>
         )}
 
-        {/* ââ FAQ (shown on all steps) ââââââââââââââââââââ */}
+        {/* -- FAQ (shown on all steps) -------------------- */}
         <div style={{ marginTop: 64, borderTop: `1px solid ${cardBorder}`, paddingTop: 40 }}>
           <h3 style={{ fontSize: 22, color: gold, textAlign: 'center', marginBottom: 28 }}>Frequently Asked Questions</h3>
           {[
@@ -769,7 +769,7 @@ export default function PrivateEventsPage() {
             },
             {
               q: 'Can I bring my own food or decorations?',
-              a: 'Outside food is allowed with prior arrangement. We also offer catering add-ons. Custom dÃ©cor is welcome!',
+              a: 'Outside food is allowed with prior arrangement. We also offer catering add-ons. Custom decor is welcome!',
             },
             {
               q: 'What\'s the cancellation policy?',
@@ -777,7 +777,7 @@ export default function PrivateEventsPage() {
             },
             {
               q: 'Do longer time slots cost more?',
-              a: 'Yes â 6-hour blocks are 1.75Ã the base rate and 9-hour blocks (full day) are 2.5Ã the base rate. Great value for extended celebrations!',
+              a: 'Yes  6-hour blocks are 1.75 the base rate and 9-hour blocks (full day) are 2.5 the base rate. Great value for extended celebrations!',
             },
             {
               q: 'How do I pay?',
