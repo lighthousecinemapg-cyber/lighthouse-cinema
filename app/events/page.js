@@ -80,7 +80,7 @@ export default async function EventsPage() {
               const days = groupByDay(movie.showtimes);
               const posterUrl = movie.image?.startsWith('http')
                 ? movie.image
-                : `https://img.youtube.com/vi/m08TxIsFTRI/maxresdefault.jpg`;
+                : `https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop`;
 
               return (
                 <article key={movie.title} style={{ ...card, display: 'grid', gridTemplateColumns: '340px 1fr', gap: 0, marginBottom: 24 }}>
@@ -184,7 +184,7 @@ export default async function EventsPage() {
                       </div>
                     ) : (
                       <div style={{ background: 'linear-gradient(135deg, #1a1a1a, #2a1f0a)', height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontSize: 48, opacity: 0.5 }}></span>
+                        <span style={{ fontSize: 48, opacity: 0.5 }}>🎬</span>
                       </div>
                     )}
                     <div style={{ padding: '20px 24px 24px', display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
