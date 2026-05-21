@@ -287,7 +287,7 @@ export const movies = [
     slug: 'the-mandalorian-and-grogu',
     title: 'The Mandalorian & Grogu',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-05-18',
     endDate: null,
     rating: 'PG-13',
