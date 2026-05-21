@@ -6,7 +6,7 @@ import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from
 
 const GIFT_CARD_LINK = 'https://square.link/u/PicBQip5';
 
-/* style constants â GOLD & BLACK theme */
+/* style constants --- GOLD & BLACK theme */
 const gold = '#d4af37';
 const goldDark = '#b8942e';
 const black = '#0a0a0a';
@@ -41,7 +41,7 @@ function getMonthDay(date) {
   return (date.getMonth() + 1) + '/' + date.getDate();
 }
 
-/* Get showtimes for a specific day â handles BOTH formats:
+/* Get showtimes for a specific day --- handles BOTH formats:
    1. showtimes: { Wednesday: ['2:30 PM', ...] }  (day-of-week keys)
    2. showDates: [{ date: '2026-05-20', times: ['1:00 PM', ...] }]  (specific dates)
 */
