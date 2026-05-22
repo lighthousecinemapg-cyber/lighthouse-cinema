@@ -66,6 +66,8 @@ export default function HomePage() {
   var [trailerOpen, setTrailerOpen] = useState(null);
   var [selectedDate, setSelectedDate] = useState(0);
   var [activeTab, setActiveTab] = useState('movies');
+  var [ticketModal, setTicketModal] = useState(null);
+  var [ticketType, setTicketType] = useState('adult');
   var dates = getNextDays(10);
   var selectedDay = getDayName(dates[selectedDate]);
 
@@ -116,6 +118,112 @@ export default function HomePage() {
             }}
             aria-label="Close trailer"
           >&times;</button>
+        </div>
+      )}
+
+      {/* TICKET TYPE MODAL */}
+      {ticketModal && (
+        <div
+          onClick={function() { setTicketModal(null); setTicketType('adult'); }}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(0,0,0,0.85)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: 20,
+          }}
+        >
+          <div
+            onClick={function(e) { e.stopPropagation(); }}
+            style={{
+              background: darkCard, borderRadius: 16,
+              border: '2px solid ' + gold, padding: 32,
+              maxWidth: 420, width: '100%',
+              boxShadow: '0 8px 32px rgba(212,175,55,0.15)',
+            }}
+          >
+            <button
+              onClick={function() { setTicketModal(null); setTicketType('adult'); }}
+              style={{
+                position: 'absolute', top: 12, right: 16,
+                background: 'none', border: 'none', color: textMuted,
+                fontSize: 24, cursor: 'pointer',
+              }}
+            >&times;</button>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: 4, textAlign: 'center' }}>
+              Select Ticket Type
+            </h3>
+            <p style={{ color: gold, fontSize: '0.95rem', textAlign: 'center', marginBottom: 24, fontWeight: 600 }}>
+              {ticketModal.movie.title} &mdash; {ticketModal.time}
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
+              {[
+                { id: 'adult', emoji: '\u{1F464}', label: 'Adult', price: selectedDay === 'Tuesday' ? '$7' : '$15', desc: 'General admission' },
+                { id: 'senior', emoji: '\u{1F474}', label: 'Senior (62+)', price: selectedDay === 'Tuesday' ? '$7' : '$12', desc: 'Valid ID required' },
+                { id: 'child', emoji: '\u{1F9D2}', label: 'Child (under 12)', price: selectedDay === 'Tuesday' ? '$7' : '$12', desc: 'Must be accompanied by adult' },
+              ].map(function(opt) {
+                var isSelected = ticketType === opt.id;
+                return (
+                  <button
+                    key={opt.id}
+                    onClick={function() { setTicketType(opt.id); }}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: 14,
+                      padding: '14px 18px', borderRadius: 10,
+                      border: isSelected ? '2px solid ' + gold : '2px solid ' + darkBorder,
+                      background: isSelected ? 'rgba(212,175,55,0.1)' : 'transparent',
+                      cursor: 'pointer', textAlign: 'left',
+                      transition: 'all 0.15s',
+                    }}
+                  >
+                    <span style={{ fontSize: '1.6rem' }}>{opt.emoji}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.95rem' }}>{opt.label}</div>
+                      <div style={{ fontSize: '0.78rem', color: textMuted }}>{opt.desc}</div>
+                    </div>
+                    <div style={{ fontWeight: 700, fontSize: '1.1rem', color: isSelected ? gold : textMuted }}>
+                      {opt.price}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {selectedDay === 'Tuesday' && (
+              <div style={{
+                background: 'rgba(212,175,55,0.08)', borderRadius: 8,
+                padding: '8px 14px', marginBottom: 16, textAlign: 'center',
+                border: '1px solid rgba(212,175,55,0.2)',
+              }}>
+                <span style={{ color: gold, fontWeight: 700, fontSize: '0.85rem' }}>
+                  \u{1F389} TUESDAY $7 MOVIE DAY \u2014 All tickets just $7!
+                </span>
+              </div>
+            )}
+
+            <a
+              href={
+                selectedDay === 'Tuesday'
+                  ? SQUARE_LINKS.tuesdayDiscount
+                  : ticketType === 'adult'
+                    ? getTicketLink(ticketModal.movie, ticketModal.time)
+                    : SQUARE_LINKS.childSenior
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={function() { setTicketModal(null); setTicketType('adult'); }}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                gap: 8, width: '100%', padding: '14px 24px',
+                background: gold, color: '#000', borderRadius: 8,
+                fontSize: '1rem', fontWeight: 700, textDecoration: 'none',
+                border: 'none', cursor: 'pointer',
+                transition: 'background 0.2s',
+              }}
+            >
+              Continue to Payment \u2192
+            </a>
+          </div>
         </div>
       )}
 
@@ -378,11 +486,9 @@ export default function HomePage() {
                           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                             {times.map(function(t) {
                               return (
-                              <a
+                              <button
                                 key={t}
-                                href={getTicketLink(movie, t)}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                onClick={function() { setTicketModal({movie: movie, time: t}); setTicketType('adult'); }}
                                 style={{
                                   display: 'inline-flex',
                                   alignItems: 'center',
@@ -393,53 +499,16 @@ export default function HomePage() {
                                   color: '#fff',
                                   fontSize: '0.9rem',
                                   fontWeight: 600,
-                                  textDecoration: 'none',
                                   cursor: 'pointer',
                                   transition: 'all 0.15s',
                                 }}
                                 title={'Buy ticket for ' + t}
                               >
                                 {t}
-                              </a>
+                              </button>
                             ); })}
                           </div>
 
-                          {/* Ticket type links */}
-                          <div style={{ display: 'flex', gap: 12, marginTop: 10, flexWrap: 'wrap', alignItems: 'center' }}>
-                            <a
-                              href={SQUARE_LINKS.childSenior}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{
-                                fontSize: '0.78rem',
-                                color: gold,
-                                textDecoration: 'none',
-                                padding: '4px 12px',
-                                border: '1px solid rgba(212,175,55,0.3)',
-                                borderRadius: 4,
-                              }}
-                            >
-                              Child (under 12) / Senior (62+) Tickets
-                            </a>
-                            {selectedDay === 'Tuesday' && (
-                              <a
-                                href={SQUARE_LINKS.tuesdayDiscount}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{
-                                  fontSize: '0.78rem',
-                                  color: '#000',
-                                  background: gold,
-                                  textDecoration: 'none',
-                                  padding: '4px 12px',
-                                  borderRadius: 4,
-                                  fontWeight: 700,
-                                }}
-                              >
-                                $7 Tuesday Ticket
-                              </a>
-                            )}
-                          </div>
                         </div>
                       </div>
                     );
