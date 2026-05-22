@@ -403,6 +403,43 @@ export default function HomePage() {
                               </a>
                             ); })}
                           </div>
+
+                          {/* Ticket type links */}
+                          <div style={{ display: 'flex', gap: 12, marginTop: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+                            <a
+                              href={SQUARE_LINKS.childSenior}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                fontSize: '0.78rem',
+                                color: gold,
+                                textDecoration: 'none',
+                                padding: '4px 12px',
+                                border: '1px solid rgba(212,175,55,0.3)',
+                                borderRadius: 4,
+                              }}
+                            >
+                              Child (under 12) / Senior (62+) Tickets
+                            </a>
+                            {selectedDay === 'Tuesday' && (
+                              <a
+                                href={SQUARE_LINKS.tuesdayDiscount}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                  fontSize: '0.78rem',
+                                  color: '#000',
+                                  background: gold,
+                                  textDecoration: 'none',
+                                  padding: '4px 12px',
+                                  borderRadius: 4,
+                                  fontWeight: 700,
+                                }}
+                              >
+                                $7 Tuesday Ticket
+                              </a>
+                            )}
+                          </div>
                         </div>
                       </div>
                     );
@@ -747,7 +784,8 @@ export default function HomePage() {
         fontWeight: 600, fontSize: '0.85rem',
       }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center', letterSpacing: 0.5 }}>
-          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &middot; I LOVE BOOSTERS &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp; SALSA SATURDAYS 8 PM &nbsp;|&nbsp;
+          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &middot; I LOVE BOOSTERS &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
+          SALSA SATURDAYS 8 PM &nbsp;|&nbsp;
           BAR &amp; GRILL OPEN DAILY
         </div>
       </section>
