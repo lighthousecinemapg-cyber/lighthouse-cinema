@@ -747,9 +747,7 @@ export default function HomePage() {
         fontWeight: 600, fontSize: '0.85rem',
       }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center', letterSpacing: 0.5 }}>
-          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &middot; I LOVE BOOSTERS &nbsp;|&nbsp;\n          TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
-          TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
-          SALSA SATURDAYS 8 PM &nbsp;|&nbsp;
+          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &middot; I LOVE BOOSTERS &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp; SALSA SATURDAYS 8 PM &nbsp;|&nbsp;
           BAR &amp; GRILL OPEN DAILY
         </div>
       </section>
