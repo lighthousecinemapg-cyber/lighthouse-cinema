@@ -19,7 +19,7 @@ export const SQUARE_LINKS = {
   general: 'https://square.link/u/QwjSYwPo',
   payItForward: 'https://square.link/u/kNTJoYP4',
   banner: 'https://square.link/u/1uppuNv7',
-    tuesdayDiscount: 'https://square.link/u/EFiIgPlS',
+    tuesdayDiscount: 'https://square.link/u/bkzq4xI6',
   childSenior: 'https://square.link/u/667ATPzf',
 };
 
