@@ -196,7 +196,7 @@ export default function HomePage() {
                 border: '1px solid rgba(212,175,55,0.2)',
               }}>
                 <span style={{ color: gold, fontWeight: 700, fontSize: '0.85rem' }}>
-                  \u{1F389} TUESDAY $7 MOVIE DAY \u2014 All tickets just $7!
+                  {'🎉'} TUESDAY $7 MOVIE DAY {'—'} All tickets just $7!
                 </span>
               </div>
             )}
@@ -221,7 +221,7 @@ export default function HomePage() {
                 transition: 'background 0.2s',
               }}
             >
-              Continue to Payment \u2192
+              Continue to Payment {'→'}
             </a>
           </div>
         </div>
