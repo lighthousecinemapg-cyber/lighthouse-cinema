@@ -6,7 +6,7 @@ import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from
 
 const GIFT_CARD_LINK = 'https://square.link/u/PicBQip5';
 
-/* style constants --- GOLD & BLACK theme */
+/* style constants --- GOLD & BLACK themhe */
 const gold = '#d4af37';
 const goldDark = '#b8942e';
 const black = '#0a0a0a';
@@ -413,6 +413,65 @@ export default function HomePage() {
           </section>
 
           {/* TUESDAY $7 MOVIE DAY BANNER */}
+          {/* TUESDAY $7 MOVIE DAY BANNER */}
+          <section style={{
+            padding: '40px 0',
+            background: 'linear-gradient(135deg, #1a1400 0%, #2a1f00 50%, #1a1400 100%)',
+            borderTop: '2px solid ' + gold,
+            borderBottom: '2px solid ' + gold,
+          }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+              <div style={{
+                background: 'rgba(212,175,55,0.08)',
+                borderRadius: 16,
+                padding: '32px 24px',
+                border: '1px solid rgba(212,175,55,0.3)',
+              }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: 8 }}>{'\u{1F3AC}'}</div>
+                <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: gold, marginBottom: 8 }}>
+                  TUESDAY $7 MOVIE DAY
+                </h2>
+                <p style={{ color: textLight, fontSize: '1.1rem', marginBottom: 20 }}>
+                  Every movie, every showtime &mdash; just $7 on Tuesdays!
+                </p>
+                <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 24 }}>
+                  {[
+                    { title: 'Devil Wears Prada 2', times: '12 / 2:30 / 5 / 7:30' },
+                    { title: 'Sheep Detectives', times: '1 / 4 / 7' },
+                    { title: 'Mandalorian & Grogu', times: '12:30 / 3:30 / 6:30' },
+                    { title: 'I Love Boosters', times: '12:15 / 3 / 6:15' },
+                  ].map(function(m) {
+                    return (
+                      <div key={m.title} style={{
+                        background: darkCard,
+                        borderRadius: 8,
+                        padding: '12px 16px',
+                        border: '1px solid ' + darkBorder,
+                        minWidth: 200,
+                      }}>
+                        <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.9rem', marginBottom: 4 }}>{m.title}</div>
+                        <div style={{ color: gold, fontSize: '0.85rem' }}>{m.times}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <a
+                  href={SQUARE_LINKS.tuesdayDiscount}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex', padding: '14px 36px',
+                    background: gold, color: '#000', borderRadius: 8,
+                    fontSize: '1.1rem', fontWeight: 800, textDecoration: 'none',
+                    letterSpacing: 0.5,
+                  }}
+                >
+                  Get $7 Tickets
+                </a>
+              </div>
+            </div>
+          </section>
+
           <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)', padding: '40px 0', borderTop: '2px solid ' + gold, borderBottom: '2px solid ' + gold }}>
             <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: 3, color: gold, marginBottom: 8 }}>Every Tuesday</div>
@@ -441,6 +500,7 @@ export default function HomePage() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16 }}>
                 {[
                   { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! DWP2 12/2:30/5/7:30 \u2022 Sheep Detectives 1/4/7 \u2022 Mandalorian 12:30/3:30/6:30 \u2022 I Love Boosters 12:15/3/6:15' },
+                  { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! Support your local cinema.' },
                   { day: 'Saturday', name: 'Salsa Night', time: '8:00 PM', desc: 'Dance the night away with live music' },
                 ].map(function(item) {
                   return (
@@ -565,6 +625,7 @@ export default function HomePage() {
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
               {[
+                { title: 'Tuesday $7 Movie Day', day: 'Every Tuesday', time: 'All Day', price: '$7', emoji: '\u{1F3AC}', link: SQUARE_LINKS.tuesdayDiscount },
                 { title: 'Salsa Night', day: 'Every Saturday', time: '8:00 PM', price: 'Free', emoji: '\u{1F483}' },
                 { title: 'Art & East-Meets-West Fusion Concert', day: 'May 23, 2026', time: '5:00 PM', price: '$15', emoji: '\u{1F3A8}', link: 'https://square.link/u/TREEYNkF' },
                 { title: 'Motorcycle Movie of the Month', day: 'Monthly', time: '11:00 AM', price: 'Free', emoji: '\u{1F3CD}\u{FE0F}' },
@@ -644,8 +705,8 @@ export default function HomePage() {
                 </div>
                 <div>
                   <strong style={{ color: gold }}>Hours</strong><br />
-                  Wed - Sun: Open<br />
-                  Mon - Tue: Closed
+                  Tue - Sun: Open<br />
+                  Mon: Closed
                 </div>
                 <div>
                   <strong style={{ color: gold }}>Text Us</strong><br />
@@ -686,7 +747,7 @@ export default function HomePage() {
         fontWeight: 600, fontSize: '0.85rem',
       }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center', letterSpacing: 0.5 }}>
-          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &middot; I LOVE BOOSTERS &nbsp;|&nbsp;
+          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &middot; I LOVE BOOSTERS &nbsp;|&nbsp;\n          TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
           TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
           SALSA SATURDAYS 8 PM &nbsp;|&nbsp;
           BAR &amp; GRILL OPEN DAILY
