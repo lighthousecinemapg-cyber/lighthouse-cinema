@@ -412,6 +412,22 @@ export default function HomePage() {
             </div>
           </section>
 
+          {/* TUESDAY $7 MOVIE DAY BANNER */}
+          <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)', padding: '40px 0', borderTop: '2px solid ' + gold, borderBottom: '2px solid ' + gold }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: 3, color: gold, marginBottom: 8 }}>Every Tuesday</div>
+              <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', margin: '0 0 8px 0' }}>$7 Movie Day</h2>
+              <p style={{ color: '#ccc', fontSize: '1.1rem', margin: '0 0 16px 0' }}>Every movie. Every showing. Just seven bucks. Support your local independent cinema.</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, marginBottom: 20 }}>
+                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Devil Wears Prada 2: 12, 2:30, 5, 7:30</span>
+                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Sheep Detectives: 1, 4, 7</span>
+                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Mandalorian & Grogu: 12:30, 3:30, 6:30</span>
+                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>I Love Boosters: 12:15, 3, 6:15</span>
+              </div>
+              <a href={SQUARE_LINKS.general} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: gold, color: '#000', padding: '12px 32px', borderRadius: 8, fontWeight: 700, fontSize: '1rem', textDecoration: 'none' }}>Get $7 Tickets</a>
+            </div>
+          </section>
+
           {/* WEEKLY EVENTS BAR */}
           <section style={{
             padding: '40px 0',
@@ -424,7 +440,7 @@ export default function HomePage() {
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16 }}>
                 {[
-                  { day: 'Tuesday', name: '$7 Movie Day', time: 'All Showings', desc: 'Every movie just $7 every Tuesday!' },
+                  { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! DWP2 12/2:30/5/7:30 \u2022 Sheep Detectives 1/4/7 \u2022 Mandalorian 12:30/3:30/6:30 \u2022 I Love Boosters 12:15/3/6:15' },
                   { day: 'Saturday', name: 'Salsa Night', time: '8:00 PM', desc: 'Dance the night away with live music' },
                 ].map(function(item) {
                   return (
