@@ -20,6 +20,7 @@ export const SQUARE_LINKS = {
   payItForward: 'https://square.link/u/kNTJoYP4',
   banner: 'https://square.link/u/1uppuNv7',
     tuesdayDiscount: 'https://square.link/u/EFiIgPlS',
+  childSenior: 'https://square.link/u/667ATPzf',
 };
 
 export const movies = [
