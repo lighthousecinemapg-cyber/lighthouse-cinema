@@ -7,7 +7,7 @@
  *    1. Copy any movie block below
  *    2. Fill in the fields
  *    3. Set active: true -> it appears on the site
- *    4. Set active: false -> it disappears (links preserved for reuse)
+ *    4. Set active: false -> it disappears (linksh preserved for reuse)
  *
  *  HOW TO SWAP IN PER-SHOWTIME SQUARE LINKS:
  *    Replace the "default" link in ticketLinks with individual time keys:
@@ -254,13 +254,9 @@ export const movies = [
                 Wednesday: ['12:15 PM', '3:00 PM', '6:15 PM'],
                 Thursday: ['12:15 PM', '3:00 PM', '6:15 PM'],
                 Friday: ['3:00 PM', '6:15 PM'],
-                Saturday: ['12:15 PM'],
-                Sunday: ['12:15 PM'],
         },
       showDates: [
         { date: '2026-05-22', times: ['3:00 PM', '6:15 PM'] },
-        { date: '2026-05-23', times: ['12:15 PM'] },
-        { date: '2026-05-24', times: ['12:15 PM'] },
         { date: '2026-05-26', times: ['12:15 PM', '3:00 PM', '6:15 PM'] },
         { date: '2026-05-27', times: ['12:15 PM', '3:00 PM', '6:15 PM'] },
         { date: '2026-05-28', times: ['12:15 PM', '3:00 PM', '6:15 PM'] },
