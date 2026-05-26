@@ -5,7 +5,7 @@
  *
  *  HOW TO ADD A NEW MOVIE:
  *    1. Copy any movie block below
- *    2. Fill in the fields
+ *    2. Fill in the fieldsh
  *    3. Set active: true -> it appears on the site
  *    4. Set active: false -> it disappears (linksh preserved for reuse)
  *
