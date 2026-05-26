@@ -177,7 +177,7 @@ function ItemCard({ item, cartItem, cartCombo, onUpdate, expanded, onToggle }) {
         <div style={{marginTop:14}}>
           {qty===0 ? <button onClick={inc} style={{width:'100%',padding:12,background:'#d4af37',color:'#0a0a0a',border:'none',borderRadius:10,fontSize:'0.95rem',fontWeight:700,cursor:'pointer'}}>+ Add to Order</button>
           : <div style={{display:'flex',alignItems:'center',background:'#1a1a1a',borderRadius:10,overflow:'hidden',border:'1px solid #d4af37'}}>
-              <button onClick={dec} style={{width:44,height:44,background:'rgba(212,175,55,0.1)',border:'none',color:'#d4af37',fontSize:'1.3rem',fontWeight:700,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}>\u2212</button>
+              <button onClick={dec} style={{width:44,height:44,background:'rgba(212,175,55,0.1)',border:'none',color:'#d4af37',fontSize:'1.3rem',fontWeight:700,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}>−</button>
               <span style={{flex:1,textAlign:'center',fontSize:'1.1rem',fontWeight:700}}>{qty}</span>
               <button onClick={inc} style={{width:44,height:44,background:'rgba(212,175,55,0.1)',border:'none',color:'#d4af37',fontSize:'1.3rem',fontWeight:700,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}>+</button>
               <span style={{padding:'0 14px',fontSize:'0.95rem',fontWeight:700,color:'#d4af37'}}>{fmt((price+modTotal)*qty)}</span>
