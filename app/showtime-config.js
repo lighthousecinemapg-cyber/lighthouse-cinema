@@ -239,7 +239,7 @@ export const movies = [
         slug: 'i-love-boosters',
         title: 'I Love Boosters',
         status: 'now-playing',
-        active: true,
+        active: false,
         startDate: '2026-05-18',
         endDate: null,
         rating: 'R',
