@@ -109,7 +109,7 @@ export default function CheckoutPage() {
   return (
     <main style={{ background: '#0a0a0a', color: '#f5e9c8', minHeight: '100vh', padding: '32px 20px 140px' }}>
       <div style={{ maxWidth: 860, margin: '0 auto' }}>
-        <a href="/" style={{ color: '#d4af37', textDecoration: 'none', fontSize: '0.9rem' }}>\u2190 Back to Movies</a>
+        <a href="/" style={{ color: '#d4af37', textDecoration: 'none', fontSize: '0.9rem' }}>← Back to Movies</a>
         <h1 style={{ color: '#d4af37', fontSize: 36, marginBottom: 4, marginTop: 16 }}>Checkout</h1>
         <p style={{ opacity: 0.7, marginBottom: 24 }}>Review your order and complete your purchase.</p>
 
@@ -134,7 +134,7 @@ export default function CheckoutPage() {
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid #2a2a2a' }}>
               <div>
                 <strong>{ticketInfo.movieTitle}</strong>
-                <div style={{ fontSize: 13, opacity: 0.7 }}>{ticketInfo.showtime} \u2014 {ticketInfo.ticketType} x {ticketInfo.quantity}</div>
+                <div style={{ fontSize: 13, opacity: 0.7 }}>{ticketInfo.showtime} — {ticketInfo.ticketType} x {ticketInfo.quantity}</div>
               </div>
               <div style={{ color: '#d4af37', fontWeight: 700 }}>{formatPrice(ticketInfo.price * ticketInfo.quantity)}</div>
             </div>
@@ -150,14 +150,14 @@ export default function CheckoutPage() {
                   <strong>{item.name}</strong>
                   <div style={{ fontSize: 13, opacity: 0.7 }}>
                     x {item.quantity}
-                    {item.modifiers?.length > 0 && ` \u00B7 ${item.modifiers.join(', ')}`}
-                    {item.sauceChoice && ` \u00B7 ${item.sauceChoice} sauce`}
+                    {item.modifiers?.length > 0 && ` · ${item.modifiers.join(', ')}`}
+                    {item.sauceChoice && ` · ${item.sauceChoice} sauce`}
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <span style={{ color: '#d4af37', fontWeight: 700 }}>{formatPrice(item.lineTotal)}</span>
                   <button onClick={() => removeConcessionItem(i)}
-                    style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer', fontSize: '1.1rem' }}>\u00D7</button>
+                    style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer', fontSize: '1.1rem' }}>×</button>
                 </div>
               </div>
             ))}
@@ -171,14 +171,14 @@ export default function CheckoutPage() {
           <section style={{ ...section, textAlign: 'center', borderStyle: 'dashed', borderColor: 'rgba(212,175,55,0.3)' }}>
             <h3 style={{ color: '#d4af37', fontSize: '1.1rem', marginBottom: '8px' }}>Want food & drinks for your movie?</h3>
             <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: '16px' }}>
-              Skip the line \u2014 order ahead and have it ready when you arrive.
+              Skip the line — order ahead and have it ready when you arrive.
             </p>
             <a href="/concessions" style={{
               display: 'inline-block', padding: '12px 28px',
               background: 'rgba(212,175,55,0.1)', border: '1px solid #d4af37',
               borderRadius: '999px', color: '#d4af37', textDecoration: 'none',
               fontWeight: 700, fontSize: '0.95rem',
-            }}>Browse Menu \u2192</a>
+            }}>Browse Menu →</a>
           </section>
         )}
 
@@ -228,7 +228,7 @@ export default function CheckoutPage() {
             marginTop: 16, width: '100%', padding: 18,
             background: '#d4af37', color: '#0a0a0a', border: 0, borderRadius: 999,
             fontWeight: 800, fontSize: 17, cursor: 'pointer',
-          }}>{placing ? 'Processing\u2026' : `Pay ${formatPrice(combinedTotal)}`}</button>
+          }}>{placing ? 'Processing…' : `Pay ${formatPrice(combinedTotal)}`}</button>
         </form>
       </div>
     </main>
