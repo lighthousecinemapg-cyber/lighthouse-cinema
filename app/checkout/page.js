@@ -1,360 +1,260 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { ADDONS, calculatePricing, formatPrice } from '@/lib/pricing';
+import { CONCESSION_ITEMS, MODIFIER_GROUPS, COMBO_INCLUDES, calculateItemTotal } from '@/lib/concession-config';
 
 const TAX_RATE = 0.0925;
-const DEPOSIT_RATE = 0.20;
 
 export default function CheckoutPage() {
   const router = useRouter();
   const [cart, setCart] = useState([]);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [processing, setProcessing] = useState(false);
-  const [error, setError] = useState('');
-  const [squareReady, setSquareReady] = useState(false);
-  const cardRef = useRef(null);
-  const paymentRef = useRef(null);
+  const [concessions, setConcessions] = useState([]);
+  const [addonIds, setAddonIds] = useState([]);
+  const [customer, setCustomer] = useState({ name: '', email: '', phone: '' });
+  const [placing, setPlacing] = useState(false);
+  const [error, setError] = useState(null);
+  const [ticketInfo, setTicketInfo] = useState(null);
 
-  // Load cart from sessionStorage
   useEffect(() => {
     try {
-      const stored = sessionStorage.getItem('lh_cart');
-      if (stored) setCart(JSON.parse(stored));
-    } catch (e) {}
+      const raw = sessionStorage.getItem('lh_cart');
+      if (raw) setCart(JSON.parse(raw));
+    } catch {}
+    try {
+      const conc = sessionStorage.getItem('lh_concessions');
+      if (conc) setConcessions(JSON.parse(conc));
+    } catch {}
+    try {
+      const tix = sessionStorage.getItem('lh_ticket_selection');
+      if (tix) setTicketInfo(JSON.parse(tix));
+    } catch {}
   }, []);
 
-  // Initialize Square Web Payments SDK
-  useEffect(() => {
-    const appId = process.env.NEXT_PUBLIC_SQUARE_APP_ID;
-    const locationId = process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID;
-    if (!appId || !locationId) return;
+  const hasTickets = cart.length > 0 || ticketInfo;
+  const hasConcessions = concessions.length > 0;
 
-    const script = document.createElement('script');
-    script.src = 'https://sandbox.web.squarecdn.com/v1/square.js';
-    script.onload = async () => {
-      try {
-        const payments = window.Square.payments(appId, locationId);
-        paymentRef.current = payments;
-        const card = await payments.card();
-        await card.attach('#square-card');
-        cardRef.current = card;
-        setSquareReady(true);
-      } catch (err) {
-        console.error('Square init error:', err);
-      }
+  if (!hasTickets && !hasConcessions) {
+    return (
+      <main style={{ background: '#0a0a0a', color: '#f5e9c8', minHeight: '100vh', padding: 80, textAlign: 'center' }}>
+        <h1 style={{ color: '#d4af37' }}>Your cart is empty</h1>
+        <p style={{ color: 'rgba(245,233,200,0.6)', marginTop: '12px' }}>Browse movies or order food to get started.</p>
+        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '24px' }}>
+          <a href="/" style={{ color: '#d4af37', padding: '12px 24px', border: '1px solid #d4af37', borderRadius: '999px', textDecoration: 'none' }}>Browse Movies</a>
+          <a href="/concessions" style={{ color: '#d4af37', padding: '12px 24px', border: '1px solid #d4af37', borderRadius: '999px', textDecoration: 'none' }}>Order Food</a>
+        </div>
+      </main>
+    );
+  }
+
+  const ticketItems = cart.map(c => ({ packageId: c.packageId, quantity: c.quantity, addonIds }));
+  const ticketPricing = cart.length > 0 ? calculatePricing(ticketItems) : { lineItems: [], subtotal: 0, salesTax: 0, grandTotal: 0, salesTaxRate: TAX_RATE };
+
+  let concessionSubtotal = 0;
+  const concessionLineItems = concessions.map(ci => {
+    const item = CONCESSION_ITEMS.find(i => i.id === ci.itemId);
+    if (!item) return null;
+    const lineTotal = calculateItemTotal(item, ci.quantity, ci.isCombo, ci.modifiers || []);
+    concessionSubtotal += lineTotal;
+    return {
+      name: ci.isCombo ? `${item.name} COMBO` : item.name,
+      quantity: ci.quantity,
+      unitPrice: ci.isCombo ? item.comboPrice : item.price,
+      lineTotal,
+      modifiers: ci.modifiers || [],
+      sauceChoice: ci.sauceChoice || '',
     };
-    document.head.appendChild(script);
-  }, []);
+  }).filter(Boolean);
 
-  // Pricing calculations
-  function calcPricing() {
-    let subtotal = 0;
-    for (const item of cart) {
-      subtotal += item.ticketPrice * item.quantity;
-    }
-    const taxableAmount = subtotal;
-    const salesTax = Math.round(taxableAmount * TAX_RATE * 100) / 100;
-    const grandTotal = Math.round((subtotal + salesTax) * 100) / 100;
-    const deposit = Math.round(grandTotal * DEPOSIT_RATE * 100) / 100;
-    const remaining = Math.round((grandTotal - deposit) * 100) / 100;
-    return { subtotal, salesTax, grandTotal, deposit, remaining };
+  const combinedSubtotal = ticketPricing.subtotal + concessionSubtotal;
+  const combinedTax = Math.round(combinedSubtotal * TAX_RATE * 100) / 100;
+  const combinedTotal = Math.round((combinedSubtotal + combinedTax) * 100) / 100;
+
+  function toggleAddon(id) {
+    setAddonIds(a => a.includes(id) ? a.filter(x => x !== id) : [...a, id]);
   }
 
-  function removeItem(index) {
-    const updated = cart.filter((_, i) => i !== index);
-    setCart(updated);
-    try { sessionStorage.setItem('lh_cart', JSON.stringify(updated)); } catch (e) {}
+  function removeConcessionItem(index) {
+    const updated = concessions.filter((_, i) => i !== index);
+    setConcessions(updated);
+    sessionStorage.setItem('lh_concessions', JSON.stringify(updated));
   }
 
-  async function handleCheckout(e) {
+  async function placeOrder(e) {
     e.preventDefault();
-    setError('');
-
-    if (!name || !email || !phone) {
-      setError('Please fill in all contact fields.');
-      return;
-    }
-    if (cart.length === 0) {
-      setError('Your cart is empty.');
-      return;
-    }
-
-    setProcessing(true);
-
+    setPlacing(true); setError(null);
     try {
-      // Get payment token from Square
-      let paymentToken = 'DEMO_TOKEN'; // fallback for testing
-      if (cardRef.current) {
-        const tokenResult = await cardRef.current.tokenize();
-        if (tokenResult.status === 'OK') {
-          paymentToken = tokenResult.token;
-        } else {
-          setError('Payment card error. Please check your card details.');
-          setProcessing(false);
-          return;
-        }
-      }
-
-      const response = await fetch('/api/bookings', {
+      const res = await fetch('/api/bookings', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          customerName: name,
-          customerEmail: email,
-          customerPhone: phone,
-          items: cart.map(item => ({
-            eventId: item.eventId,
-            quantity: item.quantity,
-            packageId: item.packageId,
-          })),
-          paymentToken,
+          cart, addonIds, customer,
+          pricing: { ...ticketPricing, concessions: concessionLineItems, concessionSubtotal, combinedSubtotal, combinedTax, combinedTotal },
+          concessions: concessionLineItems,
+          ticketInfo,
         }),
       });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.error || 'Booking failed. Please try again.');
-        setProcessing(false);
-        return;
-      }
-
-      // Clear cart and redirect to confirmation
-      try { sessionStorage.removeItem('lh_cart'); } catch (e) {}
-
-      // Store booking ref for confirmation page
-      try { sessionStorage.setItem('lh_booking_ref', data.booking.bookingRef); } catch (e) {}
-      try { sessionStorage.setItem('lh_booking', JSON.stringify(data.booking)); } catch (e) {}
-
-      router.push('/confirmation');
+      if (!res.ok) throw new Error('Booking failed');
+      const data = await res.json();
+      sessionStorage.removeItem('lh_cart');
+      sessionStorage.removeItem('lh_concessions');
+      sessionStorage.removeItem('lh_ticket_selection');
+      router.push(`/confirmation?ref=${data.bookingRef || ''}`);
     } catch (err) {
-      setError('Something went wrong. Please try again.');
-      setProcessing(false);
+      setError('Could not place booking. Please try again.');
+      setPlacing(false);
     }
-  }
-
-  const pricing = calcPricing();
-
-  function formatDate(dateStr) {
-    return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', {
-      weekday: 'short', month: 'short', day: 'numeric',
-    });
-  }
-
-  function formatTime(timeStr) {
-    const [h, m] = timeStr.split(':');
-    const hour = parseInt(h);
-    return `${hour > 12 ? hour - 12 : hour}:${m} ${hour >= 12 ? 'PM' : 'AM'}`;
   }
 
   return (
-    <div className="animate-in">
-      <div className="container section">
-        <h1 style={{ fontSize: '2rem', marginBottom: '32px' }}>
-          <span className="gold-text">Checkout</span>
-        </h1>
+    <main style={{ background: '#0a0a0a', color: '#f5e9c8', minHeight: '100vh', padding: '32px 20px 140px' }}>
+      <div style={{ maxWidth: 860, margin: '0 auto' }}>
+        <a href="/" style={{ color: '#d4af37', textDecoration: 'none', fontSize: '0.9rem' }}>\u2190 Back to Movies</a>
+        <h1 style={{ color: '#d4af37', fontSize: 36, marginBottom: 4, marginTop: 16 }}>Checkout</h1>
+        <p style={{ opacity: 0.7, marginBottom: 24 }}>Review your order and complete your purchase.</p>
 
-        {cart.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '80px 0' }}>
-            <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', marginBottom: '24px' }}>Your cart is empty</p>
-            <a href="/" className="btn btn-gold">Browse Events</a>
-          </div>
-        ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: '48px', alignItems: 'start' }}>
-
-            {/* Left: Cart + Form */}
-            <div>
-              {/* Cart Items */}
-              <div style={{ marginBottom: '32px' }}>
-                <h3 style={{ marginBottom: '16px', fontSize: '1.1rem' }}>Your Tickets</h3>
-                {cart.map((item, idx) => (
-                  <div key={idx} style={{
-                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    padding: '16px', marginBottom: '8px',
-                    background: 'var(--dark-card)', border: '1px solid var(--dark-border)',
-                    borderRadius: 'var(--radius-sm)',
-                  }}>
-                    <div>
-                      <div style={{ fontWeight: '600' }}>{item.eventTitle}</div>
-                      <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                        {formatDate(item.date)} &middot; {formatTime(item.time)} &middot; {item.quantity} ticket{item.quantity > 1 ? 's' : ''}
-                      </div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--gold)' }}>
-                        {item.packageId !== 'single' ? item.packageId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Standard'}
-                      </div>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                      <span style={{ fontWeight: '600' }}>${(item.ticketPrice * item.quantity).toFixed(2)}</span>
-                      <button
-                        onClick={() => removeItem(idx)}
-                        style={{
-                          background: 'none', border: 'none', color: 'var(--error)',
-                          cursor: 'pointer', fontSize: '1.2rem', padding: '4px',
-                        }}
-                        aria-label="Remove item"
-                      >
-                        &times;
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Customer Info */}
-              <div style={{
-                background: 'var(--dark-card)', border: '1px solid var(--dark-border)',
-                borderRadius: 'var(--radius)', padding: '24px',
-              }}>
-                <h3 style={{ marginBottom: '20px', fontSize: '1.1rem' }}>Contact Information</h3>
-                <form onSubmit={handleCheckout}>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="name">Full Name</label>
-                    <input
-                      id="name"
-                      type="text"
-                      className="form-input"
-                      value={name}
-                      onChange={e => setName(e.target.value)}
-                      placeholder="John Smith"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="email">Email Address</label>
-                    <input
-                      id="email"
-                      type="email"
-                      className="form-input"
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      placeholder="john@example.com"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="phone">Phone Number</label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      className="form-input"
-                      value={phone}
-                      onChange={e => setPhone(e.target.value)}
-                      placeholder="(831) 555-1234"
-                      required
-                    />
-                  </div>
-
-                  {/* Square Card Element */}
-                  <div className="form-group">
-                    <label className="form-label">Payment Card</label>
-                    <div
-                      id="square-card"
-                      style={{
-                        minHeight: '50px',
-                        background: 'var(--dark-elevated)',
-                        border: '1px solid var(--dark-border)',
-                        borderRadius: 'var(--radius-sm)',
-                        padding: '12px',
-                      }}
-                    >
-                      {!squareReady && (
-                        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                          Loading secure payment form...
-                        </p>
-                      )}
-                    </div>
-                    <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                      Secured by Square. Only 20% deposit is charged now.
-                    </p>
-                  </div>
-
-                  {error && <div className="alert alert-error">{error}</div>}
-
-                  <button
-                    type="submit"
-                    className="btn btn-gold btn-lg"
-                    style={{ width: '100%' }}
-                    disabled={processing}
-                  >
-                    {processing ? (
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span className="spinner"></span>
-                        Processing...
-                      </span>
-                    ) : (
-                      `Pay $${pricing.deposit.toFixed(2)} Deposit`
-                    )}
-                  </button>
-                </form>
-              </div>
-            </div>
-
-            {/* Right: Order Summary */}
-            <div className="card" style={{ position: 'sticky', top: '100px' }}>
-              <div style={{
-                background: 'linear-gradient(135deg, var(--gold), var(--gold-dark))',
-                padding: '20px 24px',
-              }}>
-                <h3 style={{ color: '#000', margin: 0, fontSize: '1.1rem' }}>Order Summary</h3>
-              </div>
-              <div className="card-body">
-                {cart.map((item, idx) => (
-                  <div key={idx} style={{
-                    display: 'flex', justifyContent: 'space-between',
-                    fontSize: '0.9rem', marginBottom: '8px',
-                  }}>
-                    <span style={{ color: 'var(--text-secondary)' }}>
-                      {item.eventTitle} &times; {item.quantity}
-                    </span>
-                    <span>${(item.ticketPrice * item.quantity).toFixed(2)}</span>
-                  </div>
-                ))}
-
-                <div className="divider"></div>
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginBottom: '6px' }}>
-                  <span style={{ color: 'var(--text-secondary)' }}>Subtotal</span>
-                  <span>${pricing.subtotal.toFixed(2)}</span>
+        {cart.length > 0 && (
+          <section style={section}>
+            <h3 style={sh}>Movie Tickets</h3>
+            {cart.map((c, i) => (
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid #2a2a2a' }}>
+                <div>
+                  <strong>{c.eventTitle || c.movieTitle || 'Movie Ticket'}</strong>
+                  <div style={{ fontSize: 13, opacity: 0.7 }}>{c.packageName} x {c.quantity}</div>
                 </div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginBottom: '6px' }}>
-                  <span style={{ color: 'var(--text-secondary)' }}>Sales Tax (9.25%)</span>
-                  <span>${pricing.salesTax.toFixed(2)}</span>
-                </div>
-
-                <div className="divider"></div>
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.1rem', fontWeight: '700', marginBottom: '16px' }}>
-                  <span>Total</span>
-                  <span className="gold-text">${pricing.grandTotal.toFixed(2)}</span>
-                </div>
-
-                <div style={{
-                  background: 'var(--dark)', borderRadius: 'var(--radius-sm)',
-                  padding: '16px', border: '1px solid var(--dark-border)',
-                }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                    <span style={{ color: 'var(--success)', fontWeight: '600', fontSize: '0.9rem' }}>Deposit Due Now (20%)</span>
-                    <span style={{ color: 'var(--success)', fontWeight: '700', fontSize: '1.1rem' }}>${pricing.deposit.toFixed(2)}</span>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Remaining (invoiced)</span>
-                    <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>${pricing.remaining.toFixed(2)}</span>
-                  </div>
-                </div>
-
-                <p style={{
-                  fontSize: '0.75rem', color: 'var(--text-muted)',
-                  textAlign: 'center', marginTop: '16px', lineHeight: '1.5',
-                }}>
-                  A Square invoice for the remaining ${pricing.remaining.toFixed(2)} will be emailed to you. Payment is due 14 days before the event.
-                </p>
+                <div style={{ color: '#d4af37', fontWeight: 700 }}>{formatPrice(c.unitPrice * c.quantity)}</div>
               </div>
-            </div>
-          </div>
+            ))}
+          </section>
         )}
+
+        {ticketInfo && !cart.length && (
+          <section style={section}>
+            <h3 style={sh}>Movie Tickets</h3>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid #2a2a2a' }}>
+              <div>
+                <strong>{ticketInfo.movieTitle}</strong>
+                <div style={{ fontSize: 13, opacity: 0.7 }}>{ticketInfo.showtime} \u2014 {ticketInfo.ticketType} x {ticketInfo.quantity}</div>
+              </div>
+              <div style={{ color: '#d4af37', fontWeight: 700 }}>{formatPrice(ticketInfo.price * ticketInfo.quantity)}</div>
+            </div>
+          </section>
+        )}
+
+        {hasConcessions && (
+          <section style={section}>
+            <h3 style={sh}>Food & Drinks</h3>
+            {concessionLineItems.map((item, i) => (
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '1px solid #2a2a2a' }}>
+                <div style={{ flex: 1 }}>
+                  <strong>{item.name}</strong>
+                  <div style={{ fontSize: 13, opacity: 0.7 }}>
+                    x {item.quantity}
+                    {item.modifiers?.length > 0 && ` \u00B7 ${item.modifiers.join(', ')}`}
+                    {item.sauceChoice && ` \u00B7 ${item.sauceChoice} sauce`}
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ color: '#d4af37', fontWeight: 700 }}>{formatPrice(item.lineTotal)}</span>
+                  <button onClick={() => removeConcessionItem(i)}
+                    style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer', fontSize: '1.1rem' }}>\u00D7</button>
+                </div>
+              </div>
+            ))}
+            <a href="/concessions" style={{ display: 'inline-block', color: '#d4af37', fontSize: '0.85rem', marginTop: '12px', textDecoration: 'none' }}>
+              + Add more food & drinks
+            </a>
+          </section>
+        )}
+
+        {!hasConcessions && (
+          <section style={{ ...section, textAlign: 'center', borderStyle: 'dashed', borderColor: 'rgba(212,175,55,0.3)' }}>
+            <h3 style={{ color: '#d4af37', fontSize: '1.1rem', marginBottom: '8px' }}>Want food & drinks for your movie?</h3>
+            <p style={{ color: 'rgba(245,233,200,0.6)', fontSize: '0.85rem', marginBottom: '16px' }}>
+              Skip the line \u2014 order ahead and have it ready when you arrive.
+            </p>
+            <a href="/concessions" style={{
+              display: 'inline-block', padding: '12px 28px',
+              background: 'rgba(212,175,55,0.1)', border: '1px solid #d4af37',
+              borderRadius: '999px', color: '#d4af37', textDecoration: 'none',
+              fontWeight: 700, fontSize: '0.95rem',
+            }}>Browse Menu \u2192</a>
+          </section>
+        )}
+
+        {cart.length > 0 && (
+          <section style={section}>
+            <h3 style={sh}>Premium Upgrades</h3>
+            <div style={{ display: 'grid', gap: 10 }}>
+              {ADDONS.map(a => (
+                <label key={a.id} style={{
+                  display: 'flex', alignItems: 'center', gap: 12, padding: 12,
+                  border: `1px solid ${addonIds.includes(a.id) ? '#d4af37' : '#2a2a2a'}`,
+                  borderRadius: 10, cursor: 'pointer',
+                  background: addonIds.includes(a.id) ? 'rgba(212,175,55,0.08)' : 'transparent',
+                }}>
+                  <input type="checkbox" checked={addonIds.includes(a.id)} onChange={() => toggleAddon(a.id)}
+                    style={{ accentColor: '#d4af37' }} />
+                  <div style={{ flex: 1 }}>
+                    <strong>{a.name}</strong>
+                    <div style={{ fontSize: 12, opacity: 0.7 }}>{a.description}</div>
+                  </div>
+                  <span style={{ color: '#d4af37', fontWeight: 700 }}>+{formatPrice(a.price)}</span>
+                </label>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <form onSubmit={placeOrder} style={section}>
+          <h3 style={sh}>Your Details</h3>
+          <div style={{ display: 'grid', gap: 12 }}>
+            <Input label="Name" value={customer.name} onChange={v => setCustomer({ ...customer, name: v })} required />
+            <Input label="Email" type="email" value={customer.email} onChange={v => setCustomer({ ...customer, email: v })} required />
+            <Input label="Phone" type="tel" value={customer.phone} onChange={v => setCustomer({ ...customer, phone: v })} required />
+          </div>
+
+          <div style={{ marginTop: 20, padding: 16, background: '#0a0a0a', borderRadius: 10, border: '1px solid #2a2a2a' }}>
+            {ticketPricing.subtotal > 0 && <Row label="Tickets" value={formatPrice(ticketPricing.subtotal)} />}
+            {concessionSubtotal > 0 && <Row label="Food & Drinks" value={formatPrice(concessionSubtotal)} />}
+            <Row label="Subtotal" value={formatPrice(combinedSubtotal)} />
+            <Row label={`Sales Tax (${(TAX_RATE * 100).toFixed(2)}%)`} value={formatPrice(combinedTax)} />
+            <div style={{ height: 1, background: '#2a2a2a', margin: '10px 0' }} />
+            <Row bold label="Total" value={<span style={{ color: '#d4af37', fontSize: '1.15rem' }}>{formatPrice(combinedTotal)}</span>} />
+          </div>
+
+          {error && <p style={{ color: '#ff6b6b', marginTop: 12 }}>{error}</p>}
+          <button type="submit" disabled={placing} style={{
+            marginTop: 16, width: '100%', padding: 18,
+            background: '#d4af37', color: '#0a0a0a', border: 0, borderRadius: 999,
+            fontWeight: 800, fontSize: 17, cursor: 'pointer',
+          }}>{placing ? 'Processing\u2026' : `Pay ${formatPrice(combinedTotal)}`}</button>
+        </form>
       </div>
+    </main>
+  );
+}
+
+const section = { background: '#141414', border: '1px solid #2a2a2a', borderRadius: 16, padding: 22, marginBottom: 18 };
+const sh = { margin: '0 0 12px', color: '#d4af37', fontSize: 18 };
+
+function Row({ label, value, bold }) {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 0', fontWeight: bold ? 700 : 400 }}>
+      <span>{label}</span><span>{value}</span>
     </div>
+  );
+}
+
+function Input({ label, value, onChange, type = 'text', required }) {
+  return (
+    <label style={{ display: 'grid', gap: 6 }}>
+      <span style={{ fontSize: 12, color: '#d4af37' }}>{label}</span>
+      <input type={type} value={value} onChange={e => onChange(e.target.value)} required={required}
+        style={{
+          background: '#0a0a0a', border: '1px solid #2a2a2a', color: '#f5e9c8',
+          padding: '12px 14px', borderRadius: 10, fontSize: 15,
+        }} />
+    </label>
   );
 }
