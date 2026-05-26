@@ -57,10 +57,10 @@ export default function ConcessionsPage() {
     <main style={{ background:'#0a0a0a', color:'#f5e9c8', minHeight:'100vh', fontFamily:"-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" }}>
       <div style={{ background:'radial-gradient(ellipse at top,rgba(212,175,55,0.15),transparent 60%)', borderBottom:'1px solid rgba(212,175,55,0.2)', padding:'40px 20px 30px' }}>
         <div style={{ maxWidth:960, margin:'0 auto', textAlign:'center' }}>
-          <a href="/" style={{ color:'#d4af37', textDecoration:'none', fontSize:'0.9rem' }}>\u2190 Back</a>
+          <a href="/" style={{ color:'#d4af37', textDecoration:'none', fontSize:'0.9rem' }}>← Back</a>
           <h1 style={{ fontSize:'2rem', fontWeight:800, marginBottom:8 }}><span style={{color:'#d4af37'}}>\ud83c\udf7f</span> Add Food & Drinks</h1>
           <p style={{ color:'rgba(245,233,200,0.7)', maxWidth:500, margin:'0 auto' }}>
-            {isFromTickets ? 'Upgrade your movie experience! Ready at the counter.' : 'Order ahead \u2014 skip the line.'}
+            {isFromTickets ? 'Upgrade your movie experience! Ready at the counter.' : 'Order ahead — skip the line.'}
           </p>
         </div>
       </div>
@@ -98,15 +98,15 @@ export default function ConcessionsPage() {
             </div>
             <div style={{display:'flex',gap:10,alignItems:'center'}}>
               <span style={{fontSize:'1.25rem',fontWeight:800,color:'#d4af37'}}>{fmt(total)}</span>
-              <button onClick={handleCheckout} style={{padding:'12px 28px',background:'#d4af37',color:'#0a0a0a',border:'none',borderRadius:999,fontSize:'1rem',fontWeight:800,cursor:'pointer'}}>Checkout \u2192</button>
+              <button onClick={handleCheckout} style={{padding:'12px 28px',background:'#d4af37',color:'#0a0a0a',border:'none',borderRadius:999,fontSize:'1rem',fontWeight:800,cursor:'pointer'}}>Checkout →</button>
             </div>
           </div>
         </div>
       )}
 
       <div style={{textAlign:'center',padding:20}}>
-        {isFromTickets ? <button onClick={skipConcessions} style={{background:'none',border:'1px solid #333',color:'rgba(245,233,200,0.5)',padding:'12px 24px',borderRadius:999,fontSize:'0.9rem',cursor:'pointer'}}>No thanks, just the tickets \u2192</button>
-        : <a href="/" style={{color:'rgba(245,233,200,0.5)',padding:'12px 24px',border:'1px solid #333',borderRadius:999,textDecoration:'none',display:'inline-block'}}>\u2190 Back to Movies</a>}
+        {isFromTickets ? <button onClick={skipConcessions} style={{background:'none',border:'1px solid #333',color:'rgba(245,233,200,0.5)',padding:'12px 24px',borderRadius:999,fontSize:'0.9rem',cursor:'pointer'}}>No thanks, just the tickets →</button>
+        : <a href="/" style={{color:'rgba(245,233,200,0.5)',padding:'12px 24px',border:'1px solid #333',borderRadius:999,textDecoration:'none',display:'inline-block'}}>← Back to Movies</a>}
       </div>
       <div style={{height: totals.count > 0 ? 120 : 40}} />
     </main>
@@ -150,7 +150,7 @@ function ItemCard({ item, cartItem, cartCombo, onUpdate, expanded, onToggle }) {
           <div style={{fontSize:'1.15rem',fontWeight:800,color:'#d4af37',whiteSpace:'nowrap',marginLeft:12}}>{fmt(price)}</div>
         </div>
         {item.comboPrice && <button onClick={()=>setIsCombo(!isCombo)} style={{width:'100%',textAlign:'left',padding:'10px 14px',marginTop:12,background:isCombo?'rgba(212,175,55,0.15)':'rgba(212,175,55,0.08)',border:isCombo?'1px solid #d4af37':'1px dashed rgba(212,175,55,0.3)',borderRadius:10,color:'#d4af37',fontSize:'0.85rem',fontWeight:600,cursor:'pointer'}}>
-          {isCombo?'\u2713 ':'+ '}Make it a Combo \u2014 {fmt(item.comboPrice)}<br/><span style={{fontSize:'0.7rem',opacity:0.8}}>{COMBO_INCLUDES}</span>
+          {isCombo?'\u2713 ':'+ '}Make it a Combo — {fmt(item.comboPrice)}<br/><span style={{fontSize:'0.7rem',opacity:0.8}}>{COMBO_INCLUDES}</span>
         </button>}
         {hasMods && <div>
           <button onClick={onToggle} style={{background:'none',border:'none',color:'rgba(245,233,200,0.6)',fontSize:'0.8rem',cursor:'pointer',padding:'8px 0 0',fontWeight:600}}>
