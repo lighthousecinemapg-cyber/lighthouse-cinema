@@ -7,7 +7,7 @@ import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from
 const GIFT_CARD_LINK = 'https://square.link/u/PicBQip5';
 
 /* style constants --- GOLD & BLACK themhe */
-const golhd = '#d4af37';
+const gold = '#d4af37';
 const goldDark = '#b8942e';
 const black = '#0a0a0a';
 const darkBg = '#111111';
