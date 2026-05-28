@@ -542,9 +542,9 @@ export default function HomePage() {
                 </p>
                 <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 24 }}>
                   {[
-                    { title: 'Devil Wears Prada 2', times: '12 / 2:30 / 5 / 7:30' },
-                    { title: 'Sheep Detectives', times: '1 / 4 / 7' },
-                    { title: 'Mandalorian & Grogu', times: '12:30 / 3:30 / 6:30' },
+                    { title: 'Devil Wears Prada 2', times: '1:30 / 4:30 / 7:30' },
+                    { title: 'Sheep Detectives', times: '1:15 / 4:15 / 7:15' },
+                    { title: 'Mandalorian & Grogu', times: '1 / 4 / 7' },
                   ].map(function(m) {
                     return (
                       <div key={m.title} style={{
@@ -583,9 +583,9 @@ export default function HomePage() {
               <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', margin: '0 0 8px 0' }}>$7 Movie Day</h2>
               <p style={{ color: '#ccc', fontSize: '1.1rem', margin: '0 0 16px 0' }}>Every movie. Every showing. Just seven bucks. Support your local independent cinema.</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, marginBottom: 20 }}>
-                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Devil Wears Prada 2: 12, 2:30, 5, 7:30</span>
-                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Sheep Detectives: 1, 4, 7</span>
-                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Mandalorian & Grogu: 12:30, 3:30, 6:30</span>
+                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Devil Wears Prada 2: 1:30, 4:30, 7:30</span>
+                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Sheep Detectives: 1:15, 4:15, 7:15</span>
+                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Mandalorian & Grogu: 1, 4, 7</span>
               </div>
               <a href={SQUARE_LINKS.general} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: gold, color: '#000', padding: '12px 32px', borderRadius: 8, fontWeight: 700, fontSize: '1rem', textDecoration: 'none' }}>Get $7 Tickets</a>
             </div>
@@ -603,7 +603,7 @@ export default function HomePage() {
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16 }}>
                 {[
-                  { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! DWP2 12/2:30/5/7:30 \u2022 Sheep Detectives 1/4/7 \u2022 Mandalorian 12:30/3:30/6:30' },
+                  { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! DWP2 1:30/4:30/7:30 \u2022 Sheep Detectives 1:15/4:15/7:15 \u2022 Mandalorian 1/4/7' },
                   { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! Support your local cinema.' },
                   { day: 'Saturday', name: 'Salsa Night', time: '8:00 PM', desc: 'Dance the night away with live music' },
                 ].map(function(item) {
