@@ -563,11 +563,11 @@ export const movies = [
     startDate: '2026-06-05',
     endDate: null,
     rating: 'PG-13',
-    runtime: '2h 5m',
+    runtime: '2h 21m',
     genre: 'Action / Adventure / Fantasy',
     rottenTomatoes: null,
     description: 'The epic origin story of He-Man. A young prince discovers the legendary Power of Grayskull and must rise to defend Eternia from the evil Skeletor. Witness how he became He-Man.',
-    poster: 'https://image.tmdb.org/t/p/w500/hROBgbkMRgfhiMNanKMGpUUkB3j.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/nm2ianYVp7OXElUZVeeAbNTqBLr.jpg',
     trailerId: 'X21JsHLHnY8',
     showtimes: {
       Tuesday: ['1:00 PM', '4:00 PM', '7:00 PM'],
@@ -594,7 +594,7 @@ export const movies = [
     genre: 'Comedy / Horror',
     rottenTomatoes: null,
     description: 'The Wayans are BACK! Twenty-six years after outrunning a masked killer, the Core Four are back in the crosshairs and no horror movie IP is safe. Starring Marlon Wayans, Anna Faris, and Regina Hall.',
-    poster: 'https://image.tmdb.org/t/p/w500/yFHHfHcUgGAxziP1C3lLt0q2T4s.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/2OHkZEqQL4OjYXIqWopJu0BijTD.jpg',
     trailerId: '0fZ58S-7QP0',
     showtimes: {
       Tuesday: ['1:45 PM', '4:45 PM', '7:45 PM'],
@@ -621,7 +621,7 @@ export const movies = [
     genre: 'Crime / Thriller',
     rottenTomatoes: null,
     description: 'A gifted young piano tuner discovers his meticulous ear can crack safes as easily as it tunes pianos. Starring Leo Woodall, Dustin Hoffman, and Jean Reno.',
-    poster: 'https://image.tmdb.org/t/p/w500/sLBJra1WPCbfOCcRkmSxQfi3dAb.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/kyM60vcgf7lfofmZB4F5Rj7OrHW.jpg',
     trailerId: 'TBGE-vnvQq0',
     showtimes: {
       Tuesday: ['1:30 PM', '4:30 PM', '7:30 PM'],
