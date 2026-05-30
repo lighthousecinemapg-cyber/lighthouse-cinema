@@ -60,6 +60,12 @@ const ADDONS = [
   { id: 'decor',    name: 'Custom Decor',      price: 140, unit: 'flat',     icon: '', perGuest: false },
   { id: 'dj',       name: 'DJ / Sound System', price: 325, unit: 'flat',     icon: '', perGuest: false },
   { id: 'photo',    name: 'Photographer',      price: 200, unit: 'flat',     icon: '', perGuest: false },
+  { id: 'food-hotdogs',  name: 'Hot Dog Bar (per guest)',   price: 8.99, unit: 'per guest', icon: '', perGuest: true },
+  { id: 'food-pizza',    name: 'Pizza Party (per guest)',   price: 5,    unit: 'per guest', icon: '', perGuest: true },
+  { id: 'food-wings',    name: 'Wings Platter (5 per guest)', price: 11.95, unit: 'per guest', icon: '', perGuest: true },
+  { id: 'food-nachos',   name: 'Nachos & Cheese (per guest)', price: 7.99, unit: 'per guest', icon: '', perGuest: true },
+  { id: 'food-pretzels', name: 'Pretzel Basket (per guest)', price: 6, unit: 'per guest', icon: '', perGuest: true },
+  { id: 'food-tenders',  name: 'Chicken Tenders (per guest)', price: 10, unit: 'per guest', icon: '', perGuest: true },
 ];
 
 /* -- helpers ----------------------------------------------------- */
