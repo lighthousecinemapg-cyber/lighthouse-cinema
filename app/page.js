@@ -622,7 +622,7 @@ export default function HomePage() {
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       fontSize: '1.5rem',
                     }}>
-                      {'\u{1F483}'}
+                      {item.icon}
                     </div>
                     <div>
                       <div style={{ fontWeight: 700, color: '#fff', fontSize: '1rem' }}>{item.name}</div>
