@@ -605,6 +605,7 @@ export default function HomePage() {
                 {[
                   { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! DWP2 1:30/4:30/7:30 \u2022 Sheep Detectives 1:15/4:15/7:15 \u2022 Mandalorian 1/4/7' },
                   { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! Support your local cinema.' },
+                  { day: 'Friday', name: 'Karaoke Night', time: '8:00 - 11:00 PM', desc: 'Sing your heart out every Friday!' },
                   { day: 'Saturday', name: 'Salsa Night', time: '8:00 PM', desc: 'Dance the night away with live music' },
                 ].map(function(item) {
                   return (
@@ -730,6 +731,7 @@ export default function HomePage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
               {[
                 { title: 'Tuesday $7 Movie Day', day: 'Every Tuesday', time: 'All Day', price: '$7', emoji: '\u{1F3AC}', link: SQUARE_LINKS.tuesdayDiscount },
+                { title: 'Karaoke Night', day: 'Every Friday', time: '8:00 PM', price: 'Free', emoji: '\u{1F3A4}' },
                 { title: 'Salsa Night', day: 'Every Saturday', time: '8:00 PM', price: 'Free', emoji: '\u{1F483}' },
                 { title: 'Art & East-Meets-West Fusion Concert', day: 'May 23, 2026', time: '5:00 PM', price: '$15', emoji: '\u{1F3A8}', link: 'https://square.link/u/TREEYNkF' },
                 { title: 'Motorcycle Movie of the Month', day: 'Monthly', time: '11:00 AM', price: 'Free', emoji: '\u{1F3CD}\u{FE0F}' },
@@ -851,7 +853,7 @@ export default function HomePage() {
         fontWeight: 600, fontSize: '0.85rem',
       }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center', letterSpacing: 0.5 }}>
-          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
+          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &nbsp;|&nbsp; COMING JUNE 5: MASTERS OF THE UNIVERSE &middot; SCARY MOVIE &middot; TUNER &nbsp;|&nbsp; TOY STORY 5 ON SALE NOW $10 &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
           SALSA SATURDAYS 8 PM &nbsp;|&nbsp;
           BAR &amp; GRILL OPEN DAILY
         </div>
