@@ -8,47 +8,63 @@ const goldDark = '#b8942e';
 const cream = '#F0E9D7';
 
 const menuCategories = [
-  {
-    title: 'Pizza',
-    subtitle: 'Detroit Deep Dish & Italian Style',
-    items: [
-      { name: 'Pepperoni Slice', price: '$5', desc: 'Detroit Deep Dish - Crispy, cheesy, loaded', img: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Margherita Slice', price: '$5', desc: 'Italian - Tomato, Basil, Fresh Mozz', img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Supreme Slice', price: '$5', desc: 'Cauliflower Crust - Pepperoni, Sausage', badge: 'GF', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'White Slice', price: '$5', desc: 'Cauliflower - Spinach, Four Cheese', badge: 'GF', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-    ],
-  },
-  {
-    title: 'Mains',
-    subtitle: 'Hot Dogs, Wings & Sandwiches',
-    items: [
-      { name: 'Classic Dog', price: '$8.99', desc: 'All-Beef Frank - Choice of Toppings', img: 'https://images.unsplash.com/photo-1612392062126-22440e0a429e?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Chili Cheese Dog', price: '$9.99', desc: 'House Chili - Melted Cheese - Onions', img: 'https://images.unsplash.com/photo-1619740455993-9d701c55ef6e?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Chicken Wings (5)', price: '$11.95', desc: 'Crispy Fried - Choice of Sauce', img: 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Spicy Chicken Sandwich', price: '$11.95', desc: 'Crispy Chicken - Spicy Sauce - Pickles', img: 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-    ],
-  },
-  {
-    title: 'Snacks',
-    subtitle: 'Shareables & Sides',
-    items: [
-      { name: 'Nachos & Cheese', price: '$7.99', desc: 'Tortilla Chips - Warm Melted Cheese', img: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Mozzarella Sticks', price: '$9.99', desc: 'Hand-Battered - Golden - Marinara', img: 'https://images.unsplash.com/photo-1531749668029-2db88e4276c7?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Cheese Quesadilla', price: '$11', desc: 'Grilled Tortilla - Melted Cheese', img: 'https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Tomato Bruschetta', price: '$8.99', desc: 'Toasted Ciabatta - Tomato - Basil', img: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-    ],
-  },
-  {
-    title: 'Cinema Classics',
-    subtitle: 'Popcorn, Candy & Drinks',
-    items: [
-      { name: 'Large Popcorn', price: '$8', desc: 'Freshly Popped - Buttery Goodness', img: 'https://images.unsplash.com/photo-1585647347483-22b66260dfff?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Popcorn & Drink Combo', price: '$12', desc: 'Large Popcorn + Any Fountain Drink', badge: 'DEAL', img: 'https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Candy Bar', price: '$4', desc: 'Choose from our selection', img: 'https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-      { name: 'Fountain Drink', price: '$5', desc: 'Pepsi, Diet Pepsi, Mt Dew, Lemonade', img: 'https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=400&h=300&fit=crop', square: 'https://square.link/u/lejOr2Wt' },
-    ],
-  },
-];
+    {
+      title: 'Hot Dogs',
+      subtitle: 'All-Beef Franks, Loaded Your Way',
+      items: [
+        { name: 'Classic Dog', price: '$8.99', desc: 'Ketchup, Mustard', img: 'https://images.unsplash.com/photo-1612392062126-3e7e3b0c34fc?w=400&h=300&fit=crop' },
+        { name: 'Chili Cheese Dog', price: '$9.99', desc: 'House Chili, Melted Cheese', img: 'https://images.unsplash.com/photo-1619740455993-9d701c09e2cf?w=400&h=300&fit=crop' },
+        { name: 'BBQ Bacon Dog', price: '$11', desc: 'BBQ Sauce, Crispy Bacon', img: 'https://images.unsplash.com/photo-1635146037526-a75e80e84a92?w=400&h=300&fit=crop' },
+        { name: 'Spicy Jalapeno Dog', price: '$10', desc: 'Nacho Cheese, Jalapenos', img: 'https://images.unsplash.com/photo-1613483187636-03cfb4e4afba?w=400&h=300&fit=crop' },
+      ],
+    },
+    {
+      title: 'Pizza Slices',
+      subtitle: 'Fresh Baked, Generous Portions',
+      items: [
+        { name: 'Detroit Pepperoni', price: '$5', desc: 'Deep Dish, Crispy Edge', img: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop' },
+        { name: 'Margherita', price: '$5', desc: 'Basil, Fresh Mozzarella', img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop' },
+        { name: 'Supreme', price: '$5', desc: 'Pepperoni, Sausage, Veggies', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop' },
+        { name: 'White Pizza', price: '$5', desc: 'Spinach, Four Cheese Blend', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop' },
+      ],
+    },
+    {
+      title: 'Wings',
+      subtitle: 'Crispy Chicken Wings, Your Choice of Sauce',
+      items: [
+        { name: '5 Wings', price: '$11.95', desc: 'Hot, BBQ, or Original', img: 'https://images.unsplash.com/photo-1608039755401-742074f0548d?w=400&h=300&fit=crop' },
+        { name: '8 Wings', price: '$15.95', desc: 'Hot, BBQ, or Original', img: 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400&h=300&fit=crop' },
+      ],
+    },
+    {
+      title: 'Sides & Appetizers',
+      subtitle: 'Perfect for Sharing',
+      items: [
+        { name: 'Mozzarella Sticks', price: '$9.99', desc: 'Hand-Battered, Golden, Marinara', img: 'https://images.unsplash.com/photo-1531749668029-2db88e4276c7?w=400&h=300&fit=crop' },
+        { name: 'Chicken Tenders', price: '$10', desc: 'Crispy Breaded, Dipping Sauce', img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&h=300&fit=crop' },
+        { name: 'Nachos & Cheese', price: '$7.99', desc: 'Tortilla Chips, Warm Cheese', img: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=400&h=300&fit=crop' },
+      ],
+    },
+    {
+      title: 'Soft Pretzels',
+      subtitle: 'Freshly Baked, Warm & Delicious',
+      items: [
+        { name: 'Salted Pretzel', price: '$6', desc: 'Classic Sea Salt', img: 'https://images.unsplash.com/photo-1570563676800-3e4e2eb3d258?w=400&h=300&fit=crop' },
+        { name: 'Cheese Pretzel', price: '$6', desc: 'Warm Cheese Dip', img: 'https://images.unsplash.com/photo-1602351447937-745cb720612f?w=400&h=300&fit=crop' },
+        { name: 'Cinnamon Pretzel', price: '$6', desc: 'Cinnamon Sugar Coated', img: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400&h=300&fit=crop' },
+      ],
+    },
+    {
+      title: 'Cinema Classics',
+      subtitle: 'Popcorn, Candy & Drinks',
+      items: [
+        { name: 'Large Popcorn', price: '$8', desc: 'Freshly Popped, Buttered', img: 'https://images.unsplash.com/photo-1585647347483-22b66260dfff?w=400&h=300&fit=crop' },
+        { name: 'Candy Bar', price: '$4', desc: 'Assorted Selection', img: 'https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=400&h=300&fit=crop' },
+        { name: 'Fountain Drink', price: '$5', desc: 'Coke, Sprite, Lemonade', img: 'https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=400&h=300&fit=crop' },
+        { name: 'Bottled Water', price: '$3', desc: 'Cold & Refreshing', img: 'https://images.unsplash.com/photo-1560023907-5f339617ea55?w=400&h=300&fit=crop' },
+      ],
+    },
+  ]
 
 export default function MenuPage() {
   return (
