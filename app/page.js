@@ -73,6 +73,7 @@ export default function HomePage() {
 
   /* Filter movies that have showtimes on the selected day */
   var moviesWithShowtimes = allVisibleMovies.filter(function(m) {
+    if (isComingSoon(m)) return false;
     var times = getMovieShowtimes(m, selectedDay, dates[selectedDate]);
     return times.length > 0;
   });
