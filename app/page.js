@@ -533,6 +533,20 @@ export default function HomePage() {
             </div>
           </section>
 
+          {/* SOMEONE'S OUT NIGHT SPECIAL */}
+          <section style={{ padding: '32px 0', background: 'linear-gradient(135deg, #1a0d1a 0%, #2a0d2a 50%, #1a0d1a 100%)', borderTop: '2px solid #E91E63', borderBottom: '2px solid #E91E63' }}>
+            <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+              <div style={{ background: 'rgba(233,30,99,0.08)', borderRadius: 16, padding: '28px 24px', border: '1px solid rgba(233,30,99,0.3)' }}>
+                <div style={{ fontSize: '2rem', marginBottom: 6 }}>{'💖🎬🍾'}</div>
+                <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#E91E63', marginBottom: 6 }}>SOMEONE'S OUT NIGHT</h2>
+                <p style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 700, marginBottom: 4 }}>Treat yourself or a loved one to a night at the movies!</p>
+                <p style={{ color: gold, fontSize: '1.8rem', fontWeight: 800, marginBottom: 8 }}>2 Tickets + 2 Drinks + Popcorn</p>
+                <p style={{ color: textMuted, fontSize: '0.9rem', marginBottom: 16 }}>The perfect date night, friend night, or me-night combo. Available any showtime!</p>
+                <a href={'https://square.link/u/9mEJz9qA'} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', padding: '12px 32px', background: '#E91E63', color: '#fff', borderRadius: 8, fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>Get the Night Out Deal</a>
+              </div>
+            </div>
+          </section>
+
 
 
           {/* TUESDAY $7 MOVIE DAY BANNER */}
