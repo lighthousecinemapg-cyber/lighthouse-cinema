@@ -364,6 +364,15 @@ export default function HomePage() {
                 Showtimes
               </h2>
 
+              {/* Monday Closed Banner */}
+              {selectedDay === 'Monday' && (
+                <div style={{ background: 'rgba(255,68,68,0.1)', border: '2px solid #ff4444', borderRadius: 12, padding: '20px 24px', marginBottom: 24, textAlign: 'center' }}>
+                  <span style={{ fontSize: '1.3rem', fontWeight: 800, color: '#ff4444' }}>{'🚫'} WE ARE CLOSED TODAY (MONDAY) {'🚫'}</span>
+                  <p style={{ color: textMuted, fontSize: '0.9rem', margin: '8px 0 0' }}>Open Tuesday - Sunday. Select another day above to see showtimes!</p>
+                </div>
+              )}
+
+
               {/* Date Picker Bar */}
               <div style={{
                 display: 'flex', gap: 0, overflowX: 'auto',
@@ -409,10 +418,11 @@ export default function HomePage() {
                   textAlign: 'center', padding: '60px 20px',
                   color: textMuted, fontSize: '1rem',
                 }}>
-                  <p>No showtimes available for {getDayName(dates[selectedDate])}.</p>
-                  <p style={{ fontSize: '0.85rem', marginTop: 8 }}>
-                    We are open Wednesday through Sunday.
-                  </p>
+                  <div style={{ fontSize: '3rem', marginBottom: 12 }}>{'🚫'}</div>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ff4444', marginBottom: 8 }}>CLOSED ON MONDAYS</h3>
+                  <p style={{ fontSize: '1rem', marginBottom: 8 }}>We are closed every Monday. No movies, no showtimes.</p>
+                  <p style={{ fontSize: '0.95rem', color: gold, fontWeight: 600 }}>We are open Tuesday through Sunday!</p>
+                  <p style={{ fontSize: '0.85rem', marginTop: 12 }}>See you tomorrow! Check the other days above for showtimes.</p>
                 </div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
