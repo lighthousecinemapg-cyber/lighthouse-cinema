@@ -594,6 +594,63 @@ export default function HomePage() {
             </div>
           </section>
 
+          {/* COMING SOON SECTION */}
+          <section style={{ padding: '40px 0', background: darkBg, borderTop: '1px solid ' + darkBorder }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: 8, color: '#fff' }}>
+                Coming Soon
+              </h2>
+              <p style={{ color: textMuted, fontSize: '0.9rem', marginBottom: 24 }}>
+                Upcoming movies — showtimes and tickets available on opening day
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                {allVisibleMovies.filter(function(m) { return isComingSoon(m); }).map(function(movie) {
+                  return (
+                    <div key={movie.slug} style={{
+                      display: 'flex', gap: 20, padding: 20,
+                      background: darkCard, borderRadius: 10,
+                      border: '1px solid ' + darkBorder,
+                      flexWrap: 'wrap',
+                    }}>
+                      <div style={{ minWidth: 100, maxWidth: 100, borderRadius: 6, overflow: 'hidden', flexShrink: 0 }}>
+                        <img src={movie.poster} alt={movie.title} style={{ width: '100%', height: 150, objectFit: 'cover' }} />
+                      </div>
+                      <div style={{ flex: 1, minWidth: 200 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+                          <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#fff', margin: 0 }}>{movie.title}</h3>
+                          <span style={{ background: gold, color: '#000', padding: '2px 8px', borderRadius: 4, fontSize: '0.65rem', fontWeight: 700, letterSpacing: 1 }}>COMING SOON</span>
+                        </div>
+                        <div style={{ fontSize: '0.8rem', color: textMuted, marginBottom: 8 }}>
+                          {movie.rating} {movie.runtime && ' | ' + movie.runtime} {movie.genre && ' | ' + movie.genre}
+                        </div>
+                        <div style={{ fontSize: '0.85rem', color: gold, fontWeight: 600, marginBottom: 8 }}>
+                          Opens {movie.startDate ? new Date(movie.startDate + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) : 'TBA'}
+                        </div>
+                        <div style={{ fontSize: '0.8rem', color: textMuted, marginBottom: 10 }}>
+                          Showtimes: {movie.showtimes ? Object.values(movie.showtimes)[0].join(' | ') : 'TBA'}
+                        </div>
+                        <div style={{ display: 'flex', gap: 8 }}>
+                          {movie.trailerId && (
+                            <button onClick={function() { setTrailerOpen(movie.trailerId); }} style={{
+                              padding: '6px 14px', borderRadius: 4,
+                              border: '1px solid ' + darkBorder, background: 'transparent',
+                              color: '#fff', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer',
+                            }}>Watch Trailer</button>
+                          )}
+                          <a href={'https://square.link/u/YqvdJLdp'} target="_blank" rel="noopener noreferrer" style={{
+                            padding: '6px 14px', borderRadius: 4,
+                            background: gold, color: '#000',
+                            fontSize: '0.8rem', fontWeight: 700, textDecoration: 'none',
+                          }}>Buy Tickets</a>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          
+
           {/* WEEKLY EVENTS BAR */}
           <section style={{
             padding: '40px 0',
