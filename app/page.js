@@ -651,6 +651,9 @@ export default function HomePage() {
             </div>
           
 
+            </div>
+          </section>
+
           {/* WEEKLY EVENTS BAR */}
           <section style={{
             padding: '40px 0',
