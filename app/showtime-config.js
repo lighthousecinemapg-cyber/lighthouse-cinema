@@ -95,6 +95,11 @@ export const movies = [
       Saturday: ['4:00 PM'],
       Sunday: ['4:00 PM'],
     },
+    showDates: [
+      { date: '2026-06-02', times: ['1:30 PM', '4:30 PM', '7:30 PM'] },
+      { date: '2026-06-03', times: ['1:30 PM', '4:30 PM', '7:30 PM'] },
+      { date: '2026-06-04', times: ['1:30 PM', '4:30 PM', '7:30 PM'] },
+    ],
     ticketLinks: { default: 'https://square.link/u/YqvdJLdp' },
     displayNote: 'Now Playing',
   },
@@ -185,6 +190,10 @@ export const movies = [
       { date: '2026-05-30', times: ['1:15 PM', '4:15 PM', '7:15 PM'] },
       { date: '2026-05-31', times: ['1:15 PM', '4:15 PM', '7:15 PM'] },
       { date: '2026-06-01', times: ['1:15 PM', '4:15 PM', '7:15 PM'] },
+      { date: '2026-06-03', times: ['1:15 PM', '4:15 PM', '7:15 PM'] },
+      { date: '2026-06-04', times: ['1:15 PM', '4:15 PM', '7:15 PM'] },
+    
+      { date: '2026-06-02', times: ['1:15 PM', '4:15 PM', '7:15 PM'] },
       { date: '2026-06-03', times: ['1:15 PM', '4:15 PM', '7:15 PM'] },
       { date: '2026-06-04', times: ['1:15 PM', '4:15 PM', '7:15 PM'] },
     ],
@@ -341,6 +350,10 @@ export const movies = [
       { date: '2026-05-30', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-05-31', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-06-01', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-06-03', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+      { date: '2026-06-04', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
+    
+      { date: '2026-06-02', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-06-03', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-06-04', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
     ],
