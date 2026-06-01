@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from './showtime-config';
 
 const GIFT_CARD_LINK = 'https://square.link/u/PicBQip5';
-const TAX_RATE = 0.0925;
-function addTax(price) { return (price * (1 + TAX_RATE)).toFixed(2); }
 
 /* style constants --- GOLD & BLACK themhe */
 const gold = '#d4af37';
@@ -923,7 +921,7 @@ export default function HomePage() {
   );
 }
 
- + addTax(7) : ' },
+ : '$7.65' },
                 { id: 'senior', emoji: '\u{1F474}', label: 'Senior (62+)', price: selectedDay === 'Tuesday' ? '$7' : '$12', desc: 'Valid ID required' },
                 { id: 'child', emoji: '\u{1F9D2}', label: 'Child (under 12)', price: selectedDay === 'Tuesday' ? '$7' : '$12', desc: 'Must be accompanied by adult' },
               ].map(function(opt) {
@@ -1653,7 +1651,7 @@ export default function HomePage() {
   );
 }
 
- + addTax(15), desc: 'General admission (incl. 9.25% tax)' },
+ : '$16.39', desc: 'General admission (incl. 9.25% tax)' },
                 { id: 'senior', emoji: '\u{1F474}', label: 'Senior (62+)', price: selectedDay === 'Tuesday' ? '$7' : '$12', desc: 'Valid ID required' },
                 { id: 'child', emoji: '\u{1F9D2}', label: 'Child (under 12)', price: selectedDay === 'Tuesday' ? '$7' : '$12', desc: 'Must be accompanied by adult' },
               ].map(function(opt) {
