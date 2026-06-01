@@ -159,7 +159,7 @@ export default function HomePage() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
               {[
-                { id: 'adult', emoji: '\u{1F464}', label: 'Adult', price: selectedDay === 'Tuesday' ? ' },
+                { id: 'adult', emoji: '\u{1F464}', label: 'Adult', price: selectedDay === 'Tuesday' ? '$7' : '$15', desc: 'General admission' },
                 { id: 'senior', emoji: '\u{1F474}', label: 'Senior (62+)', price: selectedDay === 'Tuesday' ? '$7' : '$12', desc: 'Valid ID required' },
                 { id: 'child', emoji: '\u{1F9D2}', label: 'Child (under 12)', price: selectedDay === 'Tuesday' ? '$7' : '$12', desc: 'Must be accompanied by adult' },
               ].map(function(opt) {
@@ -528,7 +528,7 @@ export default function HomePage() {
                 <p style={{ color: '#fff', fontSize: '1.3rem', fontWeight: 700, marginBottom: 4 }}>Ticket + Small Popcorn + Small Drink</p>
                 <p style={{ color: gold, fontSize: '2rem', fontWeight: 800, marginBottom: 8 }}>Just $16!</p>
                 <p style={{ color: textMuted, fontSize: '0.9rem', marginBottom: 16 }}>Available all day every Wednesday. The perfect movie combo deal!</p>
-                <a href={SQUARE_LINKS.general} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', padding: '12px 32px', background: '#4CAF50', color: '#fff', borderRadius: 8, fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>Get the Wednesday Deal</a>
+                <a href={'https://square.link/u/9mEJz9qA'} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', padding: '12px 32px', background: '#4CAF50', color: '#fff', borderRadius: 8, fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>Get the Wednesday Deal</a>
               </div>
             </div>
           </section>
