@@ -634,7 +634,7 @@ export const movies = [
     slug: 'tuner-2026',
     title: 'Tuner',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-06-05',
     endDate: null,
     rating: 'R',
