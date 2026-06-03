@@ -926,7 +926,7 @@ export default function HomePage() {
         fontWeight: 600, fontSize: '0.85rem',
       }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center', letterSpacing: 0.5 }}>
-          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &nbsp;|&nbsp; COMING JUNE 5: MASTERS OF THE UNIVERSE &middot; SCARY MOVIE &middot; TUNER &nbsp;|&nbsp; TOY STORY 5 ON SALE NOW $10 &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
+          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &nbsp;|&nbsp; COMING JUNE 5: MASTERS OF THE UNIVERSE &middot; SCARY MOVIE &nbsp;|&nbsp; TOY STORY 5 ON SALE NOW $10 &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
           SALSA SATURDAYS 8 PM &nbsp;|&nbsp;
           BAR &amp; GRILL OPEN DAILY
         </div>
