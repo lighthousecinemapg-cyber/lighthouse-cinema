@@ -43,8 +43,11 @@ export default function PayItForward() {
   }, [open]);
 
   const PIF_LINKS = { 5: 'https://square.link/u/OLVnKAfx', 15: 'https://square.link/u/VZxtW8AG', 25: 'https://square.link/u/sHt1frSo', 50: 'https://square.link/u/hQKfZbOc' };
+  const FORWARD_TICKET_LINK = 'https://square.link/u/L2yCGOGv';
   const handleDonate = (amount) => {
-    const url = (selected && PIF_LINKS[selected]) ? PIF_LINKS[selected] : 'https://square.link/u/kNTJoYP4';
+    var url;
+    if (mode === 'forward') { url = FORWARD_TICKET_LINK; }
+    else { url = (selected && PIF_LINKS[selected]) ? PIF_LINKS[selected] : 'https://square.link/u/kNTJoYP4'; }
     window.open(url, '_blank');
     setDonated(true);
     setTimeout(() => { setDonated(false); setOpen(false); }, 5000);
