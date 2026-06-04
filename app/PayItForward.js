@@ -42,8 +42,10 @@ export default function PayItForward() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [open]);
 
+  const PIF_LINKS = { 5: 'https://square.link/u/OLVnKAfx', 15: 'https://square.link/u/VZxtW8AG', 25: 'https://square.link/u/sHt1frSo', 50: 'https://square.link/u/hQKfZbOc' };
   const handleDonate = (amount) => {
-    window.open('https://square.link/u/kNTJoYP4', '_blank');
+    const url = (selected && PIF_LINKS[selected]) ? PIF_LINKS[selected] : 'https://square.link/u/kNTJoYP4';
+    window.open(url, '_blank');
     setDonated(true);
     setTimeout(() => { setDonated(false); setOpen(false); }, 5000);
   };
@@ -61,7 +63,7 @@ export default function PayItForward() {
       }}>
         <div style={{ fontSize: '3rem', marginBottom: 16 }}>✨</div>
         <p style={{ color: gold, fontSize: '1.2rem', fontFamily: "'Playfair Display', serif", marginBottom: 8, lineHeight: 1.4 }}>
-          Because of you, someone is going to the movies.
+          Finish your gift in the secure window that just opened.
         </p>
         <p style={{ color: 'rgba(240,233,215,0.5)', fontSize: '0.85rem' }}>
           Thank you from Lighthouse Cinema
