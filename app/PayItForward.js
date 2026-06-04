@@ -79,8 +79,8 @@ export default function PayItForward() {
       </h3>
       <p style={{ color: cream, fontSize: '0.88rem', lineHeight: 1.6, margin: '0 0 10px' }}>
         {mode === 'tickets'
-          ? 'Buy movie tickets for neighbors who need one &mdash; families, seniors, veterans. Choose how many to gift:'
-          : 'Help keep Pacific Grove&rsquo;s last cinema alive. Every dollar counts:'}
+          ? 'Buy movie tickets for neighbors who need one — families, seniors, veterans. Choose how many to gift:'
+          : 'Help keep Pacific Grove’s last cinema alive. Every dollar counts:'}
       </p>
 
       {mode === 'tickets' && (
