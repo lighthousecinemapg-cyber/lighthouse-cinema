@@ -709,60 +709,6 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* SPECIAL EVENT */}
-          <section style={{
-            padding: '40px 0',
-            background: black,
-            borderTop: '1px solid ' + darkBorder,
-          }}>
-            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-              <div style={{
-                display: 'flex', gap: 24, alignItems: 'center',
-                background: darkCard, borderRadius: 12,
-                padding: 28, border: '1px solid ' + darkBorder,
-                flexWrap: 'wrap',
-              }}>
-                <div style={{
-                  minWidth: 80, height: 80, borderRadius: 12,
-                  background: 'rgba(212,175,55,0.12)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: '2.2rem', flexShrink: 0,
-                }}>
-                  {'\u{1F3A8}'}
-                </div>
-                <div style={{ flex: 1, minWidth: 200 }}>
-                  <span style={{
-                    display: 'inline-block', background: gold, color: '#000',
-                    padding: '2px 10px', borderRadius: 4,
-                    fontSize: '0.7rem', fontWeight: 700, letterSpacing: 1,
-                    marginBottom: 8,
-                  }}>SPECIAL EVENT</span>
-                  <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: 4 }}>
-                    Art &amp; East-Meets-West Fusion Concert
-                  </h3>
-                  <p style={{ fontSize: '0.9rem', color: textMuted, marginBottom: 8 }}>
-                    May 23, 2026 &middot; 5:00 PM - 8:00 PM &middot; $15
-                  </p>
-                  <p style={{ fontSize: '0.85rem', color: textMuted, marginBottom: 12 }}>
-                    Abstract art, fusion music, DJ sets, and a surprise Disney animator pop-up sketch session.
-                  </p>
-                  <a
-                    href="https://square.link/u/TREEYNkF"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: 'inline-flex', padding: '8px 24px',
-                      background: gold, color: '#000', borderRadius: 6,
-                      fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none',
-                    }}
-                  >
-                    Buy Tickets
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-
           {/* GIFT CARDS */}
           <section style={{
             padding: '48px 0',
@@ -804,10 +750,6 @@ export default function HomePage() {
               {[
                 { title: 'Tuesday $7 Movie Day', day: 'Every Tuesday', time: 'All Day', price: '$7', emoji: '\u{1F3AC}', link: SQUARE_LINKS.tuesdayDiscount },
                 { title: 'Salsa Night', day: 'Every Saturday', time: '8:00 PM', price: 'Free', emoji: '\u{1F483}' },
-                { title: 'Art & East-Meets-West Fusion Concert', day: 'May 23, 2026', time: '5:00 PM', price: '$15', emoji: '\u{1F3A8}', link: 'https://square.link/u/TREEYNkF' },
-                { title: 'Motorcycle Movie of the Month', day: 'Monthly', time: '11:00 AM', price: 'Free', emoji: '\u{1F3CD}\u{FE0F}' },
-                { title: 'Drink & Draw', day: 'Weekly', time: 'Evening', price: 'Free', emoji: '\u{1F3A8}' },
-                { title: 'Tabletop Night', day: 'Weekly', time: 'Evening', price: 'Free', emoji: '\u{1F3B2}' },
               ].map(function(event, i) {
                 return (
                 <div key={i} style={{
