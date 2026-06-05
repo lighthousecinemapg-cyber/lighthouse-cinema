@@ -440,7 +440,7 @@ export const movies = [
       Saturday: ['12:15 PM', '2:45 PM', '5:15 PM', '7:45 PM'],
       Sunday: ['12:15 PM', '2:45 PM', '5:15 PM', '7:45 PM'],
     },
-    ticketLinks: { default: 'https://square.link/u/t5M3AVbS' },
+    ticketLinks: { default: 'https://square.link/u/fsanQgFw' },
     displayNote: 'Opens June 19',
     hoursNote: 'Open Wed-Sun',
   },
