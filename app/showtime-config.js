@@ -440,11 +440,8 @@ export const movies = [
       Saturday: ['12:15 PM', '2:45 PM', '5:15 PM', '7:45 PM'],
       Sunday: ['12:15 PM', '2:45 PM', '5:15 PM', '7:45 PM'],
     },
-    showDates: [
-      { date: '2026-06-18', times: ['12:15 PM', '2:45 PM', '5:15 PM', '7:45 PM'] },
-    ],
-    ticketLinks: { default: 'https://square.link/u/YqvdJLdp' },
-    displayNote: 'Opens June 19 (Early Opening June 18)',
+    ticketLinks: { default: 'https://square.link/u/t5M3AVbS' },
+    displayNote: 'Opens June 19',
     hoursNote: 'Open Wed-Sun',
   },
 
