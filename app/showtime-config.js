@@ -10,6 +10,8 @@
  *    4. Set active: false -> it disappears (links preserved for reuse)
  *
  *  Cinema is CLOSED Mondays (no Monday keys / no Monday showDates).
+ *  NOTE: For a movie that opens on a future date but should appear in that
+ *  date's tab now, keep startDate <= today and control visibility via showDates.
  */
 
 export const SQUARE_LINKS = {
@@ -301,7 +303,7 @@ export const movies = [
     title: 'Disclosure Day',
     status: 'now-playing',
     active: true,
-    startDate: '2026-06-11',
+    startDate: '2026-06-10',
     endDate: null,
     rating: 'PG-13',
     runtime: '2h 15m',
@@ -328,7 +330,7 @@ export const movies = [
     title: 'Tuner',
     status: 'now-playing',
     active: true,
-    startDate: '2026-06-11',
+    startDate: '2026-06-10',
     endDate: null,
     rating: 'R',
     runtime: '1h 47m',
