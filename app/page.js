@@ -585,7 +585,7 @@ export default function HomePage() {
                   {[
                     { title: 'Devil Wears Prada 2', times: '1:30 / 4:30 / 7:30' },
                     { title: 'Sheep Detectives', times: '1:15 / 4:15 / 7:15' },
-                    { title: 'Mandalorian & Grogu', times: '1 / 4 / 7' },
+                    
                   ].map(function(m) {
                     return (
                       <div key={m.title} style={{
@@ -626,7 +626,6 @@ export default function HomePage() {
               <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, marginBottom: 20 }}>
                 <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Devil Wears Prada 2: 1:30, 4:30, 7:30</span>
                 <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Sheep Detectives: 1:15, 4:15, 7:15</span>
-                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Mandalorian & Grogu: 1, 4, 7</span>
               </div>
               <a href={SQUARE_LINKS.general} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: gold, color: '#000', padding: '12px 32px', borderRadius: 8, fontWeight: 700, fontSize: '1rem', textDecoration: 'none' }}>Get $7 Tickets</a>
             </div>
@@ -676,7 +675,7 @@ export default function HomePage() {
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16 }}>
                 {[
-                  { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! DWP2 1:30/4:30/7:30 \u2022 Sheep Detectives 1:15/4:15/7:15 \u2022 Mandalorian 1/4/7' },
+                  { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! DWP2 1:30/4:30/7:30 \u2022 Sheep Detectives 1:15/4:15/7:15' },
                   { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! Support your local cinema.' },
                   { day: 'Saturday', name: 'Salsa Night', time: '8:00 PM', desc: 'Dance the night away with live music' },
                 ].map(function(item) {
@@ -866,7 +865,7 @@ export default function HomePage() {
         fontWeight: 600, fontSize: '0.85rem',
       }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center', letterSpacing: 0.5 }}>
-          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &middot; MANDALORIAN &amp; GROGU &nbsp;|&nbsp; COMING JUNE 5: MASTERS OF THE UNIVERSE &middot; SCARY MOVIE &nbsp;|&nbsp; TOY STORY 5 ON SALE NOW $10 &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
+          NOW SHOWING: DEVIL WEARS PRADA 2 &middot; SHEEP DETECTIVES &nbsp;|&nbsp; COMING JUNE 5: MASTERS OF THE UNIVERSE &middot; SCARY MOVIE &nbsp;|&nbsp; TOY STORY 5 ON SALE NOW $10 &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
           SALSA SATURDAYS 8 PM &nbsp;|&nbsp;
           BAR &amp; GRILL OPEN DAILY
         </div>
