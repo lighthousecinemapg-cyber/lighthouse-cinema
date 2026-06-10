@@ -62,6 +62,22 @@ function getMovieShowtimes(movie, dayName, selectedDate) {
   return [];
 }
 
+function getTuesdayLineup() {
+  var d = new Date();
+  while (d.getDay() !== 2) { d.setDate(d.getDate() + 1); }
+  var y = d.getFullYear(), mo = String(d.getMonth() + 1).padStart(2, '0'), da = String(d.getDate()).padStart(2, '0');
+  var dateStr = y + '-' + mo + '-' + da;
+  return movies.filter(function (m) {
+    if (!m.active) return false;
+    if (m.startDate && dateStr < m.startDate) return false;
+    if (m.endDate && dateStr > m.endDate) return false;
+    return getMovieShowtimes(m, 'Tuesday', d).length > 0;
+  }).map(function (m) {
+    var t = getMovieShowtimes(m, 'Tuesday', d);
+    return { title: m.title, times: t, timesStr: t.join(' / ') };
+  });
+}
+
 export default function HomePage() {
   var [trailerOpen, setTrailerOpen] = useState(null);
   var [selectedDate, setSelectedDate] = useState(0);
@@ -579,14 +595,9 @@ export default function HomePage() {
                   TUESDAY $7 MOVIE DAY
                 </h2>
                 <p style={{ color: textLight, fontSize: '1.1rem', marginBottom: 20 }}>
-                  Every movie, every showtime &mdash; just $7 on Tuesdays!
-                </p>
+                  Every Tuesday • Every Movie • Every Showing • $7 Tickets</p>
                 <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 24 }}>
-                  {[
-                    { title: 'Devil Wears Prada 2', times: '1:30 / 4:30 / 7:30' },
-                    { title: 'Sheep Detectives', times: '1:15 / 4:15 / 7:15' },
-                    
-                  ].map(function(m) {
+                  {getTuesdayLineup().map(function(m) {
                     return (
                       <div key={m.title} style={{
                         background: darkCard,
@@ -596,7 +607,7 @@ export default function HomePage() {
                         minWidth: 200,
                       }}>
                         <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.9rem', marginBottom: 4 }}>{m.title}</div>
-                        <div style={{ color: gold, fontSize: '0.85rem' }}>{m.times}</div>
+                        <div style={{ color: gold, fontSize: '0.85rem' }}>{m.timesStr}</div>
                       </div>
                     );
                   })}
@@ -624,10 +635,9 @@ export default function HomePage() {
               <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', margin: '0 0 8px 0' }}>$7 Movie Day</h2>
               <p style={{ color: '#ccc', fontSize: '1.1rem', margin: '0 0 16px 0' }}>Every movie. Every showing. Just seven bucks. Support your local independent cinema.</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, marginBottom: 20 }}>
-                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Devil Wears Prada 2: 1:30, 4:30, 7:30</span>
-                <span style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>Sheep Detectives: 1:15, 4:15, 7:15</span>
-              </div>
-              <a href={SQUARE_LINKS.general} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: gold, color: '#000', padding: '12px 32px', borderRadius: 8, fontWeight: 700, fontSize: '1rem', textDecoration: 'none' }}>Get $7 Tickets</a>
+                {getTuesdayLineup().map(function (m) { return (<span key={m.title} style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>{m.title + ': ' + m.times.join(', ')}</span>); })}
+                </div>
+              <a href={SQUARE_LINKS.tuesdayDiscount} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: gold, color: '#000', padding: '12px 32px', borderRadius: 8, fontWeight: 700, fontSize: '1rem', textDecoration: 'none' }}>Get $7 Tickets</a>
             </div>
           </section>
 
@@ -675,7 +685,7 @@ export default function HomePage() {
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16 }}>
                 {[
-                  { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! DWP2 1:30/4:30/7:30 \u2022 Sheep Detectives 1:15/4:15/7:15' },
+                  { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'All movies, all showtimes - just $7 every Tuesday!' },
                   { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! Support your local cinema.' },
                   { day: 'Saturday', name: 'Salsa Night', time: '8:00 PM', desc: 'Dance the night away with live music' },
                 ].map(function(item) {
