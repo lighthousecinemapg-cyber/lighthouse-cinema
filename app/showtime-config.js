@@ -293,7 +293,6 @@ export const movies = [
     poster: 'https://image.tmdb.org/t/p/w500/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg',
     trailerId: 'WsVBUTwlSlg',
     showDates: [
-      { date: '2026-06-11', times: ['4:00 PM', '7:00 PM'] },
       { date: '2026-06-12', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-06-13', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-06-14', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
@@ -303,7 +302,7 @@ export const movies = [
       { date: '2026-06-19', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
     ],
     ticketLinks: { default: 'https://square.link/u/YqvdJLdp' },
-    displayNote: 'Opens Thursday June 11 - Directed by Steven Spielberg',
+    displayNote: 'Opens Friday June 12 - Directed by Steven Spielberg',
   },
   {
     slug: 'tuner',
