@@ -544,6 +544,12 @@ export default function HomePage() {
                               </button>
                             ); })}
                           </div>
+                          {times.length > 0 && (
+                            <div style={{ marginTop: 14, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                              <button onClick={function() { setTicketModal({ movie: movie, time: times[0] }); setTicketType('adult'); }} style={{ background: gold, color: '#000', border: 'none', padding: '11px 24px', borderRadius: 6, fontSize: '0.92rem', fontWeight: 800, cursor: 'pointer' }}>🎟️ Buy Tickets</button>
+                              <span style={{ color: textMuted, fontSize: '0.82rem', fontWeight: 600 }}>⚡ Only takes 30 seconds</span>
+                            </div>
+                          )}
 
                         </div>
                       </div>
@@ -728,6 +734,16 @@ export default function HomePage() {
             </div>
           </section>
 
+          {/* PRIVATE EVENTS CTA */}
+          <section style={{ padding: '40px 0', background: black, borderTop: '1px solid ' + darkBorder, textAlign: 'center' }}>
+            <div style={{ maxWidth: 820, margin: '0 auto', padding: '0 24px' }}>
+              <div style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: 2, color: gold, marginBottom: 8 }}>Private Events</div>
+              <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: 8 }}>Host Your Event at Lighthouse</h2>
+              <p style={{ color: textMuted, fontSize: '0.95rem', marginBottom: 20 }}>Birthday parties, corporate nights, school & church events, fundraisers, and private screenings — make it unforgettable on the big screen.</p>
+              <a href="/private-events" style={{ display: 'inline-flex', padding: '12px 32px', background: gold, color: '#000', borderRadius: 6, fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>Inquire About Private Events</a>
+            </div>
+          </section>
+
           {/* GIFT CARDS */}
           <section style={{
             padding: '48px 0',
@@ -740,7 +756,7 @@ export default function HomePage() {
                 Gift Cards
               </h2>
               <p style={{ color: textMuted, fontSize: '0.95rem', marginBottom: 24 }}>
-                Give the gift of movies, food, drinks, and events. Digital delivery from $10.
+                The Perfect Gift for Movie Lovers — give the gift of movies, food, drinks, and events. Digital delivery from $10.
               </p>
               <a
                 href={GIFT_CARD_LINK}
