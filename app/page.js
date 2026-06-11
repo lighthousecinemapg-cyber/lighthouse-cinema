@@ -358,6 +358,9 @@ export default function HomePage() {
                           fontSize: '0.7rem', fontWeight: 700, letterSpacing: 1,
                         }}>COMING SOON</span>
                       )}
+                      {movie.finalDay && (
+                        <span style={{ position: 'absolute', top: 8, left: 8, background: '#E50914', color: '#fff', padding: '3px 10px', borderRadius: 4, fontSize: '0.7rem', fontWeight: 800, letterSpacing: 1 }}>{movie.finalDay}</span>
+                      )}
                     </div>
                     <div style={{ padding: '10px 12px' }}>
                       <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff', marginBottom: 3 }}>
@@ -483,6 +486,12 @@ export default function HomePage() {
                             {movie.runtime && <span> &nbsp;|&nbsp; {movie.runtime}</span>}
                             {movie.genre && <span> &nbsp;|&nbsp; {movie.genre}</span>}
                           </div>
+                          {movie.finalDay && (
+                            <div style={{ display: 'inline-block', background: '#E50914', color: '#fff', padding: '5px 14px', borderRadius: 4, fontSize: '0.85rem', fontWeight: 800, letterSpacing: 0.5, marginBottom: 10 }}>{movie.finalDay}</div>
+                          )}
+                          {movie.finalDay && movie.displayNote && (
+                            <div style={{ color: '#ff6b6b', fontSize: '0.92rem', fontWeight: 600, marginBottom: 10 }}>{movie.displayNote}</div>
+                          )}
 
                           {/* Action buttons */}
                           <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
@@ -648,7 +657,7 @@ export default function HomePage() {
               <p style={{ color: textMuted, fontSize: '0.9rem', marginBottom: 24 }}>Upcoming movies with showtimes and tickets</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                 {allVisibleMovies.filter(function(m) { return isComingSoon(m); }).map(function(movie) {
-                  var movieTimes = movie.showtimes ? Object.values(movie.showtimes)[0] || [] : [];
+                  var movieTimes = movie.showtimes ? (Object.values(movie.showtimes)[0] || []) : (movie.showDates && movie.showDates[0] ? movie.showDates[0].times : []);
                   var openDate = movie.startDate ? movie.startDate.replace('2026-', '').replace('-', '/') : 'TBA';
                   return (
                     <div key={movie.slug} style={{ display: 'flex', gap: 16, padding: 16, background: darkCard, borderRadius: 8, border: '1px solid ' + darkBorder, flexWrap: 'wrap' }}>
@@ -660,6 +669,7 @@ export default function HomePage() {
                         </div>
                         <div style={{ fontSize: '0.8rem', color: textMuted, marginBottom: 6 }}>{movie.rating} {movie.runtime ? '| ' + movie.runtime : ''} {movie.genre ? '| ' + movie.genre : ''}</div>
                         <div style={{ fontSize: '0.85rem', color: gold, fontWeight: 600, marginBottom: 4 }}>{'Opens ' + openDate}</div>
+                        {movie.advanceSale && (<div style={{ display: 'inline-block', background: gold, color: '#000', padding: '3px 10px', borderRadius: 4, fontSize: '0.72rem', fontWeight: 800, letterSpacing: 0.5, marginBottom: 6 }}>NOW ON SALE - ADVANCE TICKETS</div>)}
                         <div style={{ fontSize: '0.8rem', color: textMuted, marginBottom: 8 }}>{'Showtimes: ' + (movieTimes.length > 0 ? movieTimes.join(' | ') : 'TBA')}</div>
                         <div style={{ display: 'flex', gap: 8 }}>
                           {movie.trailerId && <button onClick={function() { setTrailerOpen(movie.trailerId); }} style={{ padding: '5px 12px', borderRadius: 4, border: '1px solid ' + darkBorder, background: 'transparent', color: '#fff', fontSize: '0.75rem', cursor: 'pointer' }}>Trailer</button>}
