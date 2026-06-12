@@ -294,7 +294,6 @@ export const movies = [
     trailerId: 'WsVBUTwlSlg',
     showDates: [
       { date: '2026-06-12', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
-      { date: '2026-06-13', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-06-14', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-06-16', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-06-17', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
