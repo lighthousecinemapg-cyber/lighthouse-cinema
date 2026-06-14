@@ -292,6 +292,14 @@ export const movies = [
     description: 'Steven Spielberg returns to sci-fi with a gripping thriller about what happens when humanity learns we are not alone.',
     poster: 'https://image.tmdb.org/t/p/w500/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg',
     trailerId: 'WsVBUTwlSlg',
+    showtimes: {
+      Tuesday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+      Wednesday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+      Thursday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+      Friday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+      Saturday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+      Sunday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+    },
     showDates: [
       { date: '2026-06-12', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
       { date: '2026-06-14', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
@@ -301,7 +309,7 @@ export const movies = [
       { date: '2026-06-19', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
     ],
     ticketLinks: { default: 'https://square.link/u/YqvdJLdp' },
-    displayNote: 'Opens Friday June 12 - Directed by Steven Spielberg',
+    displayNote: 'Now Playing - Directed by Steven Spielberg',
   },
   {
     slug: 'tuner',
