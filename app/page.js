@@ -582,99 +582,38 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* WEDNESDAY SPECIAL BANNER */}
-          <section style={{ padding: '32px 0', background: 'linear-gradient(135deg, #0d1a0d 0%, #1a2a0d 50%, #0d1a0d 100%)', borderTop: '2px solid #4CAF50', borderBottom: '2px solid #4CAF50' }}>
-            <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
-              <div style={{ background: 'rgba(76,175,80,0.08)', borderRadius: 16, padding: '28px 24px', border: '1px solid rgba(76,175,80,0.3)' }}>
-                <div style={{ fontSize: '2rem', marginBottom: 6 }}>{'🍿🎬🥤'}</div>
-                <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#4CAF50', marginBottom: 6 }}>WEDNESDAY ALL-DAY SPECIAL</h2>
-                <p style={{ color: '#fff', fontSize: '1.3rem', fontWeight: 700, marginBottom: 4 }}>Ticket + Small Popcorn + Small Drink</p>
-                <p style={{ color: gold, fontSize: '2rem', fontWeight: 800, marginBottom: 8 }}>Just $16!</p>
-                <p style={{ color: textMuted, fontSize: '0.9rem', marginBottom: 16 }}>Available all day every Wednesday. The perfect movie combo deal!</p>
-                <a href={'https://square.link/u/9mEJz9qA'} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', padding: '12px 32px', background: '#4CAF50', color: '#fff', borderRadius: 8, fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>Get the Wednesday Deal</a>
-              </div>
-            </div>
-          </section>
-
-          {/* SOMEONE'S OUT NIGHT SPECIAL */}
-          <section style={{ padding: '32px 0', background: 'linear-gradient(135deg, #1a0d1a 0%, #2a0d2a 50%, #1a0d1a 100%)', borderTop: '2px solid #E91E63', borderBottom: '2px solid #E91E63' }}>
-            <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
-              <div style={{ background: 'rgba(233,30,99,0.08)', borderRadius: 16, padding: '28px 24px', border: '1px solid rgba(233,30,99,0.3)' }}>
-                <div style={{ fontSize: '2rem', marginBottom: 6 }}>{'💖🎬🍾'}</div>
-                <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#E91E63', marginBottom: 6 }}>SOMEONE'S OUT NIGHT</h2>
-                <p style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 700, marginBottom: 4 }}>Treat yourself or a loved one to a night at the movies!</p>
-                <p style={{ color: gold, fontSize: '1.8rem', fontWeight: 800, marginBottom: 8 }}>2 Tickets + 2 Drinks + Popcorn</p>
-                <p style={{ color: textMuted, fontSize: '0.9rem', marginBottom: 16 }}>The perfect date night, friend night, or me-night combo. Available any showtime!</p>
-                <a href={'https://square.link/u/9mEJz9qA'} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', padding: '12px 32px', background: '#E91E63', color: '#fff', borderRadius: 8, fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>Get the Night Out Deal</a>
-              </div>
-            </div>
-          </section>
-
-
-
-          {/* TUESDAY $7 MOVIE DAY BANNER */}
-          {/* TUESDAY $7 MOVIE DAY BANNER */}
-          <section style={{
-            padding: '40px 0',
-            background: 'linear-gradient(135deg, #1a1400 0%, #2a1f00 50%, #1a1400 100%)',
-            borderTop: '2px solid ' + gold,
-            borderBottom: '2px solid ' + gold,
-          }}>
-            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
-              <div style={{
-                background: 'rgba(212,175,55,0.08)',
-                borderRadius: 16,
-                padding: '32px 24px',
-                border: '1px solid rgba(212,175,55,0.3)',
-              }}>
-                <div style={{ fontSize: '2.5rem', marginBottom: 8 }}>{'\u{1F3AC}'}</div>
-                <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: gold, marginBottom: 8 }}>
-                  TUESDAY $7 MOVIE DAY
-                </h2>
-                <p style={{ color: textLight, fontSize: '1.1rem', marginBottom: 20 }}>
-                  Every Tuesday • Every Movie • Every Showing • $7 Tickets</p>
-                <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 24 }}>
-                  {getTuesdayLineup().map(function(m) {
-                    return (
-                      <div key={m.title} style={{
-                        background: darkCard,
-                        borderRadius: 8,
-                        padding: '12px 16px',
-                        border: '1px solid ' + darkBorder,
-                        minWidth: 200,
-                      }}>
-                        <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.9rem', marginBottom: 4 }}>{m.title}</div>
-                        <div style={{ color: gold, fontSize: '0.85rem' }}>{m.timesStr}</div>
+          {/* TODAY'S PRICE BANNER */}
+          <section style={{ padding: '44px 0', background: 'linear-gradient(135deg, #1a1400 0%, #2a1f00 50%, #1a1400 100%)', borderTop: '2px solid ' + gold, borderBottom: '2px solid ' + gold }}>
+            <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+              {(function () {
+                var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                var prices = { Sunday: '$10', Monday: 'CLOSED', Tuesday: '$7', Wednesday: '$10', Thursday: '$10', Friday: '$15', Saturday: '$15' };
+                var links = { Sunday: SQUARE_LINKS.tenDollar, Tuesday: SQUARE_LINKS.tuesdayDiscount, Wednesday: SQUARE_LINKS.tenDollar, Thursday: SQUARE_LINKS.tenDollar, Friday: SQUARE_LINKS.general, Saturday: SQUARE_LINKS.general };
+                var today = days[new Date().getDay()];
+                var price = prices[today];
+                var link = links[today] || SQUARE_LINKS.general;
+                return (
+                  <div>
+                    <div style={{ fontSize: '2.4rem', marginBottom: 4 }}>{'\u{1F3AC}'}</div>
+                    <div style={{ color: gold, letterSpacing: 2, textTransform: 'uppercase', fontSize: '0.85rem', fontWeight: 800 }}>{"Today\u2019s Price \u2014 " + today}</div>
+                    {price === 'CLOSED' ? (
+                      <h2 style={{ fontSize: 'clamp(1.8rem,6vw,2.8rem)', fontWeight: 800, color: '#fff', margin: '8px 0 0' }}>{"We\u2019re Closed Today \u2014 See You Tomorrow!"}</h2>
+                    ) : (
+                      <div>
+                        <h2 style={{ fontSize: 'clamp(2.2rem,7vw,3.4rem)', fontWeight: 800, color: '#fff', margin: '6px 0 14px' }}>{'ALL MOVIES ' + price + ' TODAY'}</h2>
+                        <a href={link} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: gold, color: '#000', padding: '15px 40px', borderRadius: 8, fontWeight: 800, fontSize: '1.15rem', textDecoration: 'none' }}>Buy Tickets Now</a>
                       </div>
-                    );
-                  })}
-                </div>
-                <a
-                  href={SQUARE_LINKS.tuesdayDiscount}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-flex', padding: '14px 36px',
-                    background: gold, color: '#000', borderRadius: 8,
-                    fontSize: '1.1rem', fontWeight: 800, textDecoration: 'none',
-                    letterSpacing: 0.5,
-                  }}
-                >
-                  Get $7 Tickets
-                </a>
-              </div>
-            </div>
-          </section>
-
-          <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)', padding: '40px 0', borderTop: '2px solid ' + gold, borderBottom: '2px solid ' + gold }}>
-            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: 3, color: gold, marginBottom: 8 }}>Every Tuesday</div>
-              <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', margin: '0 0 8px 0' }}>$7 Movie Day</h2>
-              <p style={{ color: '#ccc', fontSize: '1.1rem', margin: '0 0 16px 0' }}>Every movie. Every showing. Just seven bucks. Support your local independent cinema.</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, marginBottom: 20 }}>
-                {getTuesdayLineup().map(function (m) { return (<span key={m.title} style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 16px', color: textLight, fontSize: '0.85rem' }}>{m.title + ': ' + m.times.join(', ')}</span>); })}
-                </div>
-              <a href={SQUARE_LINKS.tuesdayDiscount} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: gold, color: '#000', padding: '12px 32px', borderRadius: 8, fontWeight: 700, fontSize: '1rem', textDecoration: 'none' }}>Get $7 Tickets</a>
+                    )}
+                    <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 8, marginTop: 24 }}>
+                      {['Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].map(function (d) {
+                        var on = d === today;
+                        return (<span key={d} style={{ background: on ? gold : darkCard, color: on ? '#000' : textLight, border: '1px solid ' + (on ? gold : darkBorder), borderRadius: 8, padding: '8px 14px', fontSize: '0.85rem', fontWeight: 700 }}>{d.slice(0,3) + ' ' + prices[d]}</span>);
+                      })}
+                      <span style={{ background: darkCard, color: textMuted, border: '1px solid ' + darkBorder, borderRadius: 8, padding: '8px 14px', fontSize: '0.85rem', fontWeight: 700 }}>Mon Closed</span>
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
           </section>
 
