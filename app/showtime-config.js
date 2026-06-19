@@ -25,6 +25,7 @@ export const SQUARE_LINKS = {
   thursday: 'https://square.link/u/6vfsnFhd',
   friday: 'https://square.link/u/QaG90YLo',
   saturday: 'https://square.link/u/2yBFNXGz',
+  sunday: 'https://square.link/u/8n5cKnCk',
 };
 
 export const movies = [
