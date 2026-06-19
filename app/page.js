@@ -80,8 +80,8 @@ function getTuesdayLineup() {
 
 function dealFor(day, time) {
   if (day === 'Tuesday') return { on: true, price: '$7', link: SQUARE_LINKS.tuesdayDiscount, label: 'TUESDAY MOVIE DAY - Every Movie, Every Show $7' };
-  if (day === 'Wednesday') return { on: true, price: '$10', link: SQUARE_LINKS.tenDollar, label: 'MIDWEEK MOVIE NIGHT - All Movies, All Showtimes $10' };
-  if (day === 'Thursday') return { on: true, price: '$10', link: SQUARE_LINKS.tenDollar, label: 'THURSDAY MOVIE NIGHT - All Movies, All Showtimes $10' };
+  if (day === 'Wednesday') return { on: true, price: '$10', link: SQUARE_LINKS.wednesday, label: 'MIDWEEK MOVIE NIGHT - All Movies, All Showtimes $10' };
+  if (day === 'Thursday') return { on: true, price: '$10', link: SQUARE_LINKS.thursday, label: 'THURSDAY MOVIE NIGHT - All Movies, All Showtimes $10' };
   if (day === 'Sunday') return { on: true, price: '$10', link: SQUARE_LINKS.tenDollar, label: 'SUNDAY FAMILY MOVIE DAY - All Movies $10' };
   return { on: false, price: '', link: '', label: '' };
 }

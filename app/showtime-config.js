@@ -21,6 +21,8 @@ export const SQUARE_LINKS = {
   tuesdayDiscount: 'https://square.link/u/EaXEumN4',
   childSenior: 'https://square.link/u/s3z3Ln4u',
   tenDollar: 'https://square.link/u/wxooaH3l',
+  wednesday: 'https://square.link/u/QfNrqsk7',
+  thursday: 'https://square.link/u/6vfsnFhd',
 };
 
 export const movies = [
