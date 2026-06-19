@@ -14,18 +14,23 @@ const textMuted = '#888888';
 
 const LINKS = {
   general: 'https://square.link/u/YqvdJLdp',
-  seven: 'https://square.link/u/bkzq4xI6',
+  seven: 'https://square.link/u/EaXEumN4',
   ten: 'https://square.link/u/wxooaH3l',
+  wednesday: 'https://square.link/u/QfNrqsk7',
+  thursday: 'https://square.link/u/6vfsnFhd',
+  friday: 'https://square.link/u/QaG90YLo',
+  saturday: 'https://square.link/u/2yBFNXGz',
+  sunday: 'https://square.link/u/8n5cKnCk',
 };
 
 const WEEK = [
   { day: 'Monday', price: 'Closed', label: 'Closed', link: null },
   { day: 'Tuesday', price: '$7', label: 'Tuesday Movie Day — Every Movie, Every Show', link: LINKS.seven },
-  { day: 'Wednesday', price: '$10', label: 'Midweek Movie Night — All Movies, All Showtimes', link: LINKS.ten },
-  { day: 'Thursday', price: '$10', label: 'Thursday Movie Night — All Movies, All Showtimes', link: LINKS.ten },
-  { day: 'Friday', price: '$15', label: 'Friday Premiere Night', link: LINKS.general },
-  { day: 'Saturday', price: '$15', label: 'Saturday Big Screen Experience', link: LINKS.general },
-  { day: 'Sunday', price: '$10', label: 'Sunday Family Movie Day — All Movies', link: LINKS.ten },
+  { day: 'Wednesday', price: '$10', label: 'Midweek Movie Night — All Movies, All Showtimes', link: LINKS.wednesday },
+  { day: 'Thursday', price: '$10', label: 'Thursday Movie Night — All Movies, All Showtimes', link: LINKS.thursday },
+  { day: 'Friday', price: '$15', label: 'Friday Premiere Night', link: LINKS.friday },
+  { day: 'Saturday', price: '$15', label: 'Saturday Big Screen Experience', link: LINKS.saturday },
+  { day: 'Sunday', price: '$10', label: 'Sunday Family Movie Day — All Movies', link: LINKS.sunday },
 ];
 
 export default function PricingPage() {
