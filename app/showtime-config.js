@@ -23,6 +23,8 @@ export const SQUARE_LINKS = {
   tenDollar: 'https://square.link/u/wxooaH3l',
   wednesday: 'https://square.link/u/QfNrqsk7',
   thursday: 'https://square.link/u/6vfsnFhd',
+  friday: 'https://square.link/u/QaG90YLo',
+  saturday: 'https://square.link/u/2yBFNXGz',
 };
 
 export const movies = [

@@ -83,6 +83,8 @@ function dealFor(day, time) {
   if (day === 'Wednesday') return { on: true, price: '$10', link: SQUARE_LINKS.wednesday, label: 'MIDWEEK MOVIE NIGHT - All Movies, All Showtimes $10' };
   if (day === 'Thursday') return { on: true, price: '$10', link: SQUARE_LINKS.thursday, label: 'THURSDAY MOVIE NIGHT - All Movies, All Showtimes $10' };
   if (day === 'Sunday') return { on: true, price: '$10', link: SQUARE_LINKS.tenDollar, label: 'SUNDAY FAMILY MOVIE DAY - All Movies $10' };
+  if (day === 'Friday') return { on: true, price: '$15', link: SQUARE_LINKS.friday, label: 'FRIDAY MOVIE NIGHT - All Movies, Any Showtime $15' };
+  if (day === 'Saturday') return { on: true, price: '$15', link: SQUARE_LINKS.saturday, label: 'SATURDAY BIG SCREEN - All Movies, Any Showtime $15' };
   return { on: false, price: '', link: '', label: '' };
 }
 
@@ -588,7 +590,7 @@ export default function HomePage() {
               {(function () {
                 var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
                 var prices = { Sunday: '$10', Monday: 'CLOSED', Tuesday: '$7', Wednesday: '$10', Thursday: '$10', Friday: '$15', Saturday: '$15' };
-                var links = { Sunday: SQUARE_LINKS.tenDollar, Tuesday: SQUARE_LINKS.tuesdayDiscount, Wednesday: SQUARE_LINKS.tenDollar, Thursday: SQUARE_LINKS.tenDollar, Friday: SQUARE_LINKS.general, Saturday: SQUARE_LINKS.general };
+                var links = { Sunday: SQUARE_LINKS.tenDollar, Tuesday: SQUARE_LINKS.tuesdayDiscount, Wednesday: SQUARE_LINKS.wednesday, Thursday: SQUARE_LINKS.thursday, Friday: SQUARE_LINKS.friday, Saturday: SQUARE_LINKS.saturday };
                 var today = days[new Date().getDay()];
                 var price = prices[today];
                 var link = links[today] || SQUARE_LINKS.general;
