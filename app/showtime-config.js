@@ -405,7 +405,7 @@ export const movies = [
     title: 'Moana',
     status: 'coming-soon',
     active: true,
-    startDate: '2026-07-09',
+    startDate: '2026-07-10',
     endDate: '2026-07-23',
     rating: 'PG',
     runtime: '2h 05m',
@@ -417,7 +417,7 @@ export const movies = [
     familyHighlight: true,
     advanceSale: true,
     showDates: [
-      { date: '2026-07-09', times: ['2:00 PM', '4:30 PM', '7:00 PM'] },
+      { date: '2026-07-10', times: ['2:00 PM', '4:30 PM', '7:00 PM'] },
     ],
     showtimes: {
       Tuesday: ['1:00 PM', '4:00 PM', '7:00 PM'],

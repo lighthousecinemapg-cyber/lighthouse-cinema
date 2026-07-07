@@ -309,21 +309,6 @@ export default function HomePage() {
       {/* TAB CONTENT */}
       {activeTab === 'movies' && (
         <>
-          {/* WORLD CUP BANNER */}
-          <section style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1400 55%, #0a0a0a 100%)', borderBottom: '2px solid ' + gold, padding: '26px 0' }}>
-            <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap' }}>
-              <div>
-                <div style={{ color: gold, letterSpacing: 2, textTransform: 'uppercase', fontSize: '0.8rem', fontWeight: 800 }}>World Cup Live Daily</div>
-                <div style={{ color: '#fff', fontSize: 'clamp(1.3rem, 3vw, 1.85rem)', fontWeight: 800 }}>The Best Place Outside the Stadium</div>
-                <div style={{ color: textMuted, fontSize: '0.9rem', marginTop: 4 }}>Every match on the biggest screen in town. Watch parties, group packages, and game-day food.</div>
-              </div>
-              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                <a href="https://square.link/u/YqvdJLdp" target="_blank" rel="noopener noreferrer" style={{ background: gold, color: '#000', padding: '12px 26px', borderRadius: 8, fontWeight: 800, textDecoration: 'none' }}>Buy Tickets</a>
-                <a href="/world-cup" style={{ color: '#fff', padding: '12px 26px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', border: '1px solid ' + gold }}>Watch Party Packages</a>
-              </div>
-            </div>
-          </section>
-
           {/* MOVIE POSTER CAROUSEL */}
           <section style={{
             padding: '32px 0',
