@@ -97,6 +97,43 @@ export default function HomePage() {
   var dates = getNextDays(10);
   var selectedDay = getDayName(dates[selectedDate]);
 
+  /* Persist the selected showtime so it never disappears (refresh, tab switch, back button). */
+  useEffect(function() {
+    try {
+      var raw = sessionStorage.getItem('lh_ticket_selection');
+      if (raw) {
+        var sel = JSON.parse(raw);
+        if (sel && sel.slug && sel.time && (Date.now() - (sel.savedAt || 0) < 2 * 60 * 60 * 1000)) {
+          var mv = movies.find(function(m) { return m.slug === sel.slug; });
+          if (mv) {
+            setTicketModal({ movie: mv, time: sel.time });
+            if (sel.ticketType) setTicketType(sel.ticketType);
+            if (typeof sel.dateIdx === 'number') setSelectedDate(sel.dateIdx);
+          }
+        }
+      }
+    } catch (e) {}
+  }, []);
+
+  useEffect(function() {
+    try {
+      if (ticketModal && ticketModal.movie) {
+        var d = dates[selectedDate];
+        sessionStorage.setItem('lh_ticket_selection', JSON.stringify({
+          slug: ticketModal.movie.slug,
+          movieTitle: ticketModal.movie.title,
+          time: ticketModal.time,
+          ticketType: ticketType,
+          dateIdx: selectedDate,
+          date: d ? d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : '',
+          runtime: ticketModal.movie.runtime || '',
+          rating: ticketModal.movie.rating || '',
+          savedAt: Date.now(),
+        }));
+      }
+    } catch (e) {}
+  }, [ticketModal, ticketType, selectedDate]);
+
   /* Filter movies that have showtimes on the selected day */
   var moviesWithShowtimes = allVisibleMovies.filter(function(m) {
     if (isComingSoon(m)) return false;
@@ -151,7 +188,7 @@ export default function HomePage() {
       {/* TICKET TYPE MODAL */}
       {ticketModal && (
         <div
-          onClick={function() { setTicketModal(null); setTicketType('adult'); }}
+          onClick={function() { setTicketModal(null); setTicketType('adult'); try { sessionStorage.removeItem('lh_ticket_selection'); } catch (e) {} }}
           style={{
             position: 'fixed', inset: 0, zIndex: 9999,
             background: 'rgba(0,0,0,0.85)',
@@ -169,7 +206,7 @@ export default function HomePage() {
             }}
           >
             <button
-              onClick={function() { setTicketModal(null); setTicketType('adult'); }}
+              onClick={function() { setTicketModal(null); setTicketType('adult'); try { sessionStorage.removeItem('lh_ticket_selection'); } catch (e) {} }}
               style={{
                 position: 'absolute', top: 12, right: 16,
                 background: 'none', border: 'none', color: textMuted,
@@ -179,9 +216,21 @@ export default function HomePage() {
             <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: 4, textAlign: 'center' }}>
               Select Ticket Type
             </h3>
-            <p style={{ color: gold, fontSize: '0.95rem', textAlign: 'center', marginBottom: 24, fontWeight: 600 }}>
-              {ticketModal.movie.title} &mdash; {ticketModal.time}
-            </p>
+            <div style={{
+              background: '#0a0a0a', border: '1px solid ' + gold, borderRadius: 12,
+              padding: '14px 16px', marginBottom: 22,
+            }}>
+              <div style={{ color: textMuted, fontSize: '0.68rem', letterSpacing: 2, textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>Your Reservation</div>
+              <div style={{ color: '#fff', fontSize: '1.15rem', fontWeight: 800, marginBottom: 6 }}>{'\u{1F3AC}'} {ticketModal.movie.title}</div>
+              <div style={{ color: textLight, fontSize: '0.9rem', marginBottom: 4 }}>{'\u{1F4C5}'} {dates[selectedDate] ? dates[selectedDate].toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : ''}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '8px 0 6px' }}>
+                <span style={{ fontSize: '1.5rem' }}>{'\u{1F551}'}</span>
+                <span style={{ color: gold, fontSize: '2rem', fontWeight: 800, lineHeight: 1 }}>{ticketModal.time}</span>
+              </div>
+              <div style={{ color: textMuted, fontSize: '0.8rem' }}>
+                {ticketModal.movie.rating}{ticketModal.movie.runtime ? '  \u00b7  ' + ticketModal.movie.runtime : ''}{'  \u00b7  Standard Format'}
+              </div>
+            </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
               {[
@@ -237,7 +286,7 @@ export default function HomePage() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              onClick={function() { setTicketModal(null); setTicketType('adult'); }}
+              onClick={function() { try { sessionStorage.setItem('lh_ticket_selection', JSON.stringify({ slug: ticketModal.movie.slug, movieTitle: ticketModal.movie.title, time: ticketModal.time, ticketType: ticketType, dateIdx: selectedDate, date: dates[selectedDate] ? dates[selectedDate].toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : '', savedAt: Date.now() })); } catch (e) {} }}
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 gap: 8, width: '100%', padding: '14px 24px',
