@@ -94,6 +94,8 @@ export default function HomePage() {
   var [activeTab, setActiveTab] = useState('movies');
   var [ticketModal, setTicketModal] = useState(null);
   var [ticketType, setTicketType] = useState('adult');
+  var [payLoading, setPayLoading] = useState(false);
+  var [qty, setQty] = useState(1);
   var dates = getNextDays(10);
   var selectedDay = getDayName(dates[selectedDate]);
 
@@ -140,6 +142,32 @@ export default function HomePage() {
     var times = getMovieShowtimes(m, selectedDay, dates[selectedDate]);
     return times.length > 0;
   });
+
+  async function startPayment() {
+    if (!ticketModal) return;
+    var deal = dealFor(selectedDay, ticketModal.time);
+    var priceStr = deal.on ? deal.price : (ticketType === 'adult' ? '$15' : '$12');
+    var dLabel = dates[selectedDate] ? dates[selectedDate].toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : '';
+    var fallback = deal.on ? deal.link : (ticketType === 'adult' ? getTicketLink(ticketModal.movie, ticketModal.time) : SQUARE_LINKS.childSenior);
+    var ttLabel = ticketType.charAt(0).toUpperCase() + ticketType.slice(1);
+    try {
+      sessionStorage.setItem('lh_ticket_selection', JSON.stringify({ slug: ticketModal.movie.slug, movieTitle: ticketModal.movie.title, time: ticketModal.time, ticketType: ticketType, dateIdx: selectedDate, date: dLabel, quantity: qty, savedAt: Date.now() }));
+    } catch (e) {}
+    setPayLoading(true);
+    try {
+      var res = await fetch('/api/square/payment-link', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ movieTitle: ticketModal.movie.title, dateLabel: dLabel, time: ticketModal.time, price: priceStr, quantity: qty, ticketType: ttLabel }),
+      });
+      if (res.ok) {
+        var data = await res.json();
+        if (data && data.url) { window.location.href = data.url; return; }
+      }
+    } catch (e) {}
+    // Fallback to existing static link if the Square API is not configured yet
+    window.location.href = fallback;
+  }
 
   return (
     <div className="animate-in">
@@ -277,27 +305,29 @@ export default function HomePage() {
               </div>
             )}
 
-            <a
-              href={
-                dealFor(selectedDay, ticketModal.time).on ? dealFor(selectedDay, ticketModal.time).link
-                  : ticketType === 'adult'
-                    ? getTicketLink(ticketModal.movie, ticketModal.time)
-                    : SQUARE_LINKS.childSenior
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={function() { try { sessionStorage.setItem('lh_ticket_selection', JSON.stringify({ slug: ticketModal.movie.slug, movieTitle: ticketModal.movie.title, time: ticketModal.time, ticketType: ticketType, dateIdx: selectedDate, date: dates[selectedDate] ? dates[selectedDate].toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : '', savedAt: Date.now() })); } catch (e) {} }}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+              <span style={{ color: textLight, fontWeight: 700, fontSize: '0.95rem' }}>Quantity</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <button onClick={function() { setQty(function(q) { return Math.max(1, q - 1); }); }} style={{ width: 34, height: 34, borderRadius: 8, border: '1px solid ' + gold, background: 'transparent', color: gold, fontSize: '1.2rem', fontWeight: 800, cursor: 'pointer', lineHeight: 1 }}>{'\u2212'}</button>
+                <span style={{ color: '#fff', fontWeight: 800, fontSize: '1.2rem', minWidth: 26, textAlign: 'center' }}>{qty}</span>
+                <button onClick={function() { setQty(function(q) { return Math.min(20, q + 1); }); }} style={{ width: 34, height: 34, borderRadius: 8, border: '1px solid ' + gold, background: 'transparent', color: gold, fontSize: '1.2rem', fontWeight: 800, cursor: 'pointer', lineHeight: 1 }}>{'+'}</button>
+              </div>
+            </div>
+            <button
+              onClick={startPayment}
+              disabled={payLoading}
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 gap: 8, width: '100%', padding: '14px 24px',
                 background: gold, color: '#000', borderRadius: 8,
                 fontSize: '1rem', fontWeight: 700, textDecoration: 'none',
-                border: 'none', cursor: 'pointer',
+                border: 'none', cursor: payLoading ? 'default' : 'pointer',
+                opacity: payLoading ? 0.7 : 1,
                 transition: 'background 0.2s',
               }}
             >
-              Continue to Payment {'→'}
-            </a>
+              {payLoading ? 'Preparing your ticket…' : 'Continue to Payment →'}
+            </button>
           </div>
         </div>
       )}
