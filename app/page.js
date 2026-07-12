@@ -452,7 +452,7 @@ export default function HomePage() {
                     </div>
                     <div style={{ padding: '10px 12px' }}>
                       <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff', marginBottom: 3 }}>
-                        {movie.title}
+                        <a href={'/movies/' + movie.slug} style={{ color: 'inherit', textDecoration: 'none' }}>{movie.title}</a>
                       </div>
                       <div style={{ fontSize: '0.75rem', color: textMuted }}>
                         {movie.rating} {movie.runtime && '\u00B7 ' + movie.runtime}
@@ -564,7 +564,7 @@ export default function HomePage() {
                             fontSize: '1.25rem', fontWeight: 700,
                             color: '#fff', marginBottom: 6,
                           }}>
-                            {movie.title}
+                            <a href={'/movies/' + movie.slug} style={{ color: 'inherit', textDecoration: 'none' }}>{movie.title}</a>
                           </h3>
                           <div style={{
                             fontSize: '0.85rem', color: textMuted,
@@ -697,7 +697,7 @@ export default function HomePage() {
                       <img src={movie.poster} alt={movie.title} style={{ width: 90, height: 130, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />
                       <div style={{ flex: 1, minWidth: 200 }}>
                         <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 4 }}>
-                          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', margin: 0 }}>{movie.title}</h3>
+                          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', margin: 0 }}><a href={'/movies/' + movie.slug} style={{ color: 'inherit', textDecoration: 'none' }}>{movie.title}</a></h3>
                           <span style={{ background: gold, color: '#000', padding: '2px 8px', borderRadius: 4, fontSize: '0.6rem', fontWeight: 700 }}>COMING SOON</span>
                         </div>
                         <div style={{ fontSize: '0.8rem', color: textMuted, marginBottom: 6 }}>{movie.rating} {movie.runtime ? '| ' + movie.runtime : ''} {movie.genre ? '| ' + movie.genre : ''}</div>
