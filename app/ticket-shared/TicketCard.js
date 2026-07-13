@@ -1,6 +1,6 @@
 'use client';
 // Shared branded ticket card: QR, details, calendar, directions, support, print.
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 const gold = '#d4af37';
 const darkCard = '#1a1a1a';
@@ -45,6 +45,27 @@ function stamp(d) {
 export default function TicketCard({ movie, poster, rating, runtime, date, time, qty, amountCents, ticketType, confRef, orderId, status }) {
   const start = useMemo(() => parseWhen(date, time), [date, time]);
   const end = start ? new Date(start.getTime() + 2 * 60 * 60 * 1000) : null;
+  const [emailing, setEmailing] = useState(false);
+
+  async function emailTicket() {
+    const to = window.prompt('Enter your email and we\'ll send this ticket:');
+    if (!to) return;
+    setEmailing(true);
+    try {
+      const res = await fetch('/api/ticket-email', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ to, orderId, confRef, movie, date, time, qty, amountCents, poster }),
+      });
+      const data = await res.json().catch(function () { return {}; });
+      if (res.ok) alert('Sent! Check ' + to + ' for your ticket.');
+      else if (data.needsSmtp) alert('Email delivery isn\'t switched on yet. Your ticket is always here on this page and at /my-tickets — or call (831) 717-3124.');
+      else alert(data.error || 'Could not send. Please try again or call (831) 717-3124.');
+    } catch (e) {
+      alert('Could not send right now. Please try again or call (831) 717-3124.');
+    }
+    setEmailing(false);
+  }
 
   const ticketUrl =
     'https://lighthousepgcinema.com/my-tickets?ref=' + encodeURIComponent(confRef || '') +
@@ -124,7 +145,8 @@ export default function TicketCard({ movie, poster, rating, runtime, date, time,
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 18 }}>
         {gcalHref && <a href={gcalHref} target="_blank" rel="noopener noreferrer" style={btnGold}>📅 Google Calendar</a>}
         {start && <button onClick={downloadIcs} style={btn}>⬇ Add to Calendar (.ics)</button>}
-        <button onClick={function () { window.print(); }} style={btn}>🖨 Print</button>
+        <button onClick={function () { window.print(); }} style={btn}>🖨 Print / Download PDF</button>
+        <button onClick={emailTicket} disabled={emailing} style={btn}>{emailing ? 'Sending…' : '✉ Email me this ticket'}</button>
         <a href="/my-tickets" style={btn}>🎟️ Find My Tickets</a>
         <a href="/" style={btn}>← Home</a>
       </div>
