@@ -347,7 +347,7 @@ export const movies = [
     slug: 'toy-story-5',
     title: 'Toy Story 5',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-06-18',
     endDate: null,
     rating: 'PG',
@@ -376,7 +376,7 @@ export const movies = [
     status: 'now-playing',
     active: true,
     startDate: '2026-07-01',
-    endDate: '2026-07-15',
+    endDate: '2026-07-16',
     rating: 'PG',
     runtime: '1h 29m',
     genre: 'Animation / Adventure / Comedy',
@@ -440,7 +440,7 @@ export const movies = [
     trailerId: 'Mzw2ttJD2qQ',
     advanceSale: true,
     showDates: [
-      { date: '2026-07-16', times: ['12:00 PM', '3:45 PM', '7:30 PM'] },
+      { date: '2026-07-16', times: ['3:45 PM', '7:00 PM'] },
     ],
     showtimes: {
       Tuesday: ['12:00 PM', '3:45 PM', '7:30 PM'],
