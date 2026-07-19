@@ -458,7 +458,7 @@ export const movies = [
     title: 'Spider-Man: Brand New Day',
     status: 'coming-soon',
     active: true,
-    startDate: '2026-07-30',
+    startDate: '2026-07-29',
     endDate: '2026-08-20',
     rating: 'PG-13',
     runtime: '2h 20m',
