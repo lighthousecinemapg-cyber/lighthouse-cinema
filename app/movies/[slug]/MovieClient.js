@@ -17,10 +17,15 @@ function dayPrice(day) {
 }
 
 // Next calendar date (YYYY-MM-DD) for a given weekday name, from today.
-function nextDateForDay(dayName) {
+function nextDateForDay(dayName, floorStr) {
   const names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const target = names.indexOf(dayName);
-  const d = new Date();
+  let d = new Date();
+  // For advance sales of a not-yet-open movie, never offer a date before it opens.
+  if (floorStr) {
+    const f = new Date(floorStr + 'T00:00:00');
+    if (f.getTime() > d.getTime()) d = f;
+  }
   for (let i = 0; i < 8; i++) {
     if (d.getDay() === target) break;
     d.setDate(d.getDate() + 1);
@@ -105,7 +110,7 @@ export default function MovieClient({ movie, showdays }) {
 
   // Earliest upcoming showtime for the calendar link
   const firstDay = showdays[0];
-  const calDate = firstDay ? nextDateForDay(firstDay.day) : null;
+  const calDate = firstDay ? nextDateForDay(firstDay.day, movie.startDate) : null;
   const calTime = firstDay && firstDay.times[0];
   const calHref =
     calDate && calTime
@@ -152,7 +157,7 @@ export default function MovieClient({ movie, showdays }) {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {showdays.map(function (sd) {
-          const dateObj = nextDateForDay(sd.day);
+          const dateObj = nextDateForDay(sd.day, movie.startDate);
           return (
             <div key={sd.day} style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 12, padding: '14px 16px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 10, flexWrap: 'wrap', gap: 6 }}>
