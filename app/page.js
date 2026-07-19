@@ -928,7 +928,7 @@ export default function HomePage() {
         fontWeight: 600, fontSize: '0.85rem',
       }}>
         <div style={{ whiteSpace: 'nowrap', textAlign: 'center', letterSpacing: 0.5 }}>
-          NOW PLAYING: MINIONS &middot; MOANA &middot; THE ODYSSEY &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
+          NOW PLAYING: {movies.filter(function (m) { return m.active && isMovieActive(m) && !isComingSoon(m); }).map(function (m) { return m.title.toUpperCase(); }).join(' \u00b7 ')} &nbsp;|&nbsp; TUESDAY $7 MOVIE DAY &nbsp;|&nbsp;
           SALSA SATURDAYS 8 PM &nbsp;|&nbsp;
           BAR &amp; GRILL OPEN DAILY
         </div>
