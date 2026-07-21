@@ -6,6 +6,8 @@ import { notFound } from 'next/navigation';
 import { movies, isMovieActive, isComingSoon } from '../../showtime-config';
 import MovieClient from './MovieClient';
 
+export const dynamic = 'force-dynamic';
+
 const gold = '#d4af37';
 const darkBg = '#111111';
 const darkCard = '#1a1a1a';
@@ -68,6 +70,8 @@ export function generateMetadata({ params }) {
 export default function MoviePage({ params }) {
   const movie = findMovie(params.slug);
   if (!movie) notFound();
+  // Past its run (not currently playing and not upcoming) — no longer purchasable.
+  if (!isMovieActive(movie) && !isComingSoon(movie)) notFound();
 
   const showdays = buildShowdays(movie);
   const comingSoon = isComingSoon(movie);
