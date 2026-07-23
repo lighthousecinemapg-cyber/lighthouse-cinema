@@ -1,40 +1,30 @@
 import { NextResponse } from 'next/server';
-import { sendEmail } from '@/lib/email';
-import { subscribeToMailchimp } from '@/lib/mailchimp';
+import { submitInquiry } from '@/lib/inquiry';
 
 export async function POST(request) {
   try {
-    const { name, email, phone, message } = await request.json();
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '';
+    const page = request.headers.get('referer') || '';
+    const { name, email, phone, message, company } = await request.json();
+
+    if (company) return NextResponse.json({ ok: true }); // honeypot
     if (!name || !email || !message) {
-      return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
+      return NextResponse.json({ error: 'Please provide your name, email, and a message.' }, { status: 400 });
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(email))) {
+      return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 });
     }
 
-    // Email to staff
-    try {
-      await sendEmail({
-        to: process.env.CONTACT_EMAIL || 'lighthousecinemapg@gmail.com',
-        subject: `New contact form: ${name}`,
-        html: `
-          <h2>New contact form submission</h2>
-          <p><b>Name:</b> ${escape(name)}</p>
-          <p><b>Email:</b> ${escape(email)}</p>
-          <p><b>Phone:</b> ${escape(phone || '')}</p>
-          <p><b>Message:</b><br/>${escape(message).replace(/\n/g, '<br/>')}</p>
-        `,
-      });
-    } catch (e) { console.error('email send', e); }
+    const result = await submitInquiry({
+      type: 'Contact',
+      name, email, phone,
+      fields: { 'Message': message },
+      page, ip,
+    });
 
-    // Push to Mailchimp
-    try {
-      await subscribeToMailchimp({ email, name, tags: ['Website-Contact'] });
-    } catch (e) { console.error('mailchimp', e); }
-
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, ref: result.ref });
   } catch (e) {
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    console.error('[contact] error:', e.message);
+    return NextResponse.json({ error: 'Server error. Please call (831) 717-3124.' }, { status: 500 });
   }
-}
-
-function escape(s) {
-  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
