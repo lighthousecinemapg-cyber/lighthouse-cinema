@@ -156,6 +156,9 @@ export default function PrivateEventsPage() {
 
   // Step 5 - review & pay
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [refId, setRefId] = useState('');
 
   /* -- pricing calc ----------------------------------- */
   const pricing = useMemo(() => {
@@ -191,43 +194,48 @@ export default function PrivateEventsPage() {
   const canStep5 = name.trim() && email.trim() && phone.trim();
 
   /* -- submit & notify -------------------------------- */
-  const handleSubmit = useCallback(() => {
-    if (!pricing) return;
+  const handleSubmit = useCallback(async () => {
+    if (!pricing || submitting) return;
+    setSubmitError('');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) {
+      setSubmitError('Please enter a valid email address so we can reach you.');
+      return;
+    }
     const slot = TIME_SLOTS.find(s => s.id === selectedSlot);
     const pkg = PACKAGES.find(p => p.id === selectedPkg);
     const addonNames = ADDONS.filter(a => addons[a.id]).map(a => a.name);
 
-    const data = {
-      name, email, phone, notes,
-      date: selectedDate,
+    const payload = {
+      eventType: pkg?.name || 'Private Event',
+      name: name.trim(), email: email.trim(), phone: phone.trim(), notes,
+      date: selectedDate ? formatDateNice(selectedDate) : '',
       timeSlotLabel: slot?.label || '',
       packageName: pkg?.name || '',
       guests,
       addons: addonNames,
       total: fmt(pricing.total),
+      company: '', // honeypot
     };
 
-    const msg = buildWhatsAppMsg(data);
-
-    // Open WhatsApp for first contact (primary notification)
-    const waUrl = `https://wa.me/${WHATSAPP_CONTACTS[0].number}?text=${msg}`;
-    window.open(waUrl, '_blank');
-
-    // Small delay then open for second and third contacts
-    setTimeout(() => {
-      window.open(`https://wa.me/${WHATSAPP_CONTACTS[1].number}?text=${msg}`, '_blank');
-    }, 1500);
-    setTimeout(() => {
-      window.open(`https://wa.me/${WHATSAPP_CONTACTS[2].number}?text=${msg}`, '_blank');
-    }, 3000);
-
-    // Redirect to Square payment after a moment
-    setTimeout(() => {
-      window.open(SQUARE_PAYMENT_LINK, '_blank');
-    }, 4500);
-
-    setSubmitted(true);
-  }, [pricing, selectedSlot, selectedPkg, addons, name, email, phone, notes, selectedDate, guests]);
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/event-inquiry', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        setRefId(data.ref || '');
+        setSubmitted(true);
+      } else {
+        setSubmitError(data.error || 'We could not submit your request. Please call (831) 241-6617.');
+      }
+    } catch (e) {
+      setSubmitError('Network error — please try again, or call (831) 241-6617.');
+    }
+    setSubmitting(false);
+  }, [pricing, submitting, selectedSlot, selectedPkg, addons, name, email, phone, notes, selectedDate, guests]);
 
   /* -- shared styles ---------------------------------- */
   const gold = '#d4af37';
@@ -256,20 +264,25 @@ export default function PrivateEventsPage() {
       <div style={{ minHeight: '100vh', background: '#0a0a0a', color: '#fff', fontFamily: "'Inter', sans-serif" }}>
         <div style={{ maxWidth: 600, margin: '0 auto', padding: '80px 20px', textAlign: 'center' }}>
           <div style={{ fontSize: 64, marginBottom: 24 }}></div>
-          <h1 style={{ fontSize: 32, color: gold, marginBottom: 16 }}>Booking Request Sent!</h1>
-          <p style={{ fontSize: 18, color: '#ccc', lineHeight: 1.6, marginBottom: 32 }}>
-            Your private event request has been sent to our team via WhatsApp.
-            Please complete your payment on Square to confirm your reservation.
+          <h1 style={{ fontSize: 32, color: gold, marginBottom: 16 }}>Request Received!</h1>
+          <p style={{ fontSize: 18, color: '#ccc', lineHeight: 1.6, marginBottom: 12 }}>
+            Thank you! Your event request has been sent to our team and a confirmation email is on its way to you.
+            We'll be in touch as soon as possible.
           </p>
+          {refId && (
+            <p style={{ fontSize: 16, color: gold, fontWeight: 700, marginBottom: 28 }}>
+              Reference #: {refId}
+            </p>
+          )}
           <div style={{
             background: cardBg, border: `1px solid ${gold}`, borderRadius: 12,
             padding: 24, marginBottom: 32, textAlign: 'left',
           }}>
             <h3 style={{ color: gold, marginBottom: 16, fontSize: 18 }}>Next Steps:</h3>
             <div style={{ color: '#ccc', lineHeight: 1.8 }}>
-              <p>1. Complete payment of <strong style={{ color: gold }}>{pricing ? fmt(pricing.total) : ''}</strong> on Square</p>
-              <p>2. You'll receive a confirmation via WhatsApp</p>
-              <p>3. Our team will reach out with event details</p>
+              <p>1. Check your email for your confirmation (Reference #{refId ? ' ' + refId : ''})</p>
+              <p>2. Our team will contact you to finalize the details</p>
+              <p>3. To reserve your date now, you can pay your deposit on Square below</p>
             </div>
           </div>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -735,19 +748,26 @@ export default function PrivateEventsPage() {
               background: 'rgba(212,175,55,0.06)', border: `1px solid rgba(212,175,55,0.2)`, borderRadius: 10,
               padding: 16, marginBottom: 28, fontSize: 13, color: '#aaa', lineHeight: 1.6,
             }}>
-              <strong style={{ color: gold }}>How it works:</strong> Clicking "Book & Pay" will send your booking details to our team via WhatsApp and open Square for payment. Your reservation is confirmed once payment is received. We'll text you a confirmation within 30 minutes.
+              <strong style={{ color: gold }}>How it works:</strong> Clicking "Send Request" emails your event details straight to our team and sends you a confirmation with a reference number. Our team will contact you to finalize everything. You can pay your deposit on Square afterward to lock in your date.
             </div>
 
+            {submitError && (
+              <div style={{ background: 'rgba(229,57,53,0.1)', border: '1px solid rgba(229,57,53,0.4)', color: '#ffb4b0', borderRadius: 10, padding: '12px 16px', marginBottom: 16, fontSize: 14 }}>
+                {submitError}
+              </div>
+            )}
             <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
-              <button onClick={() => setStep(4)} style={btnSecondary}> Back</button>
+              <button onClick={() => setStep(4)} disabled={submitting} style={btnSecondary}> Back</button>
               <button
                 onClick={handleSubmit}
+                disabled={submitting}
                 style={{
                   ...btnPrimary, fontSize: 18, padding: '16px 48px',
                   boxShadow: '0 4px 20px rgba(212,175,55,0.3)',
+                  opacity: submitting ? 0.7 : 1, cursor: submitting ? 'default' : 'pointer',
                 }}
               >
-                 Book & Pay {fmt(pricing.total)}
+                {submitting ? 'Sending Request…' : 'Send Request'}
               </button>
             </div>
           </div>
