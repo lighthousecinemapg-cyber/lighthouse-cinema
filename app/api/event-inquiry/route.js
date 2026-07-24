@@ -39,13 +39,24 @@ export async function POST(request) {
 
     const fields = {};
     const add = (label, val) => { if (val !== undefined && val !== null && String(val).trim() !== '') fields[label] = val; };
+    add('Company / Organization', b.companyName || b.organization);
+    add('Industry', b.industry);
+    add('Preferred Contact Method', b.preferredContact);
+    add('Address', b.address);
     add('Preferred Date', b.date);
+    add('Alternative Date', b.altDate);
     add('Preferred Time', b.timeSlotLabel);
     add('Package', b.packageName);
     add('Number of Guests', b.guests);
+    add('Budget', b.budget);
+    add('Food Package', b.foodPackage);
+    add('Bar / Alcohol Package', b.barPackage);
+    add('Branding / Logo Needs', b.brandingNeeds);
+    add('AV / Presentation Needs', b.avNeeds);
     add('Add-ons', Array.isArray(b.addons) ? b.addons.join(', ') : b.addons);
     add('Estimated Total', b.total);
     add('Movie Requested', b.movie);
+    add('Referral / Marketing Source', b.marketingSource || b.referralSource);
     add('Special Requests / Notes', b.notes);
 
     const result = await submitInquiry({
