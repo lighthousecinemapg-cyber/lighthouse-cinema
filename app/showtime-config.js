@@ -403,7 +403,7 @@ export const movies = [
     status: 'now-playing',
     active: true,
     startDate: '2026-07-10',
-    endDate: '2026-07-22',
+    endDate: '2026-07-30',
     rating: 'PG',
     runtime: '2h 05m',
     genre: 'Action / Adventure / Fantasy',
