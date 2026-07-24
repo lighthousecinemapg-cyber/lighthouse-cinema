@@ -440,12 +440,12 @@ export const movies = [
     trailerId: null,
     advanceSale: true,
     showtimes: {
-      Tuesday: ['1:15 PM', '4:15 PM', '7:15 PM'],
-      Wednesday: ['1:15 PM', '4:15 PM', '7:15 PM'],
-      Thursday: ['1:15 PM', '4:15 PM', '7:15 PM'],
-      Friday: ['1:15 PM', '4:15 PM', '7:15 PM'],
-      Saturday: ['1:15 PM', '4:15 PM', '7:15 PM'],
-      Sunday: ['1:15 PM', '4:15 PM', '7:15 PM'],
+      Tuesday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+      Wednesday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+      Thursday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+      Friday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+      Saturday: ['1:00 PM', '4:00 PM', '7:00 PM'],
+      Sunday: ['1:00 PM', '4:00 PM', '7:00 PM'],
     },
     ticketLinks: { default: 'https://square.link/u/YqvdJLdp' },
     displayNote: 'OPENS JULY 24 - Advance Tickets Available',
@@ -465,9 +465,6 @@ export const movies = [
     poster: 'https://image.tmdb.org/t/p/w500/2jzjE3OtXekGtn3vdRGXpyWrHe7.jpg',
     trailerId: 'Mzw2ttJD2qQ',
     advanceSale: true,
-    showDates: [
-      { date: '2026-07-16', times: ['3:45 PM', '7:00 PM'] },
-    ],
     showtimes: {
       Tuesday: ['11:45 AM', '3:15 PM', '7:00 PM'],
       Wednesday: ['11:45 AM', '3:15 PM', '7:00 PM'],
