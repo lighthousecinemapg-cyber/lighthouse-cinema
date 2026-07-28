@@ -140,6 +140,21 @@ export default function MoviePage({ params }) {
         </div>
       </section>
 
+      {/* COMING ATTRACTIONS - trailers playing before this feature */}
+      {movie.attachedTrailers && movie.attachedTrailers.length > 0 && (
+        <section style={{ maxWidth: 1100, margin: '0 auto', padding: '8px 24px 0' }}>
+          <div style={{ background: darkCard, border: '1px solid ' + darkBorder, borderRadius: 12, padding: '18px 20px' }}>
+            <h2 style={{ color: gold, fontSize: '1.05rem', fontWeight: 800, margin: '0 0 6px' }}>Coming Attractions</h2>
+            <p style={{ color: textMuted, fontSize: '0.85rem', margin: '0 0 12px' }}>Trailers playing before this feature:</p>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+              {movie.attachedTrailers.map((t) => (
+                <span key={t} style={{ background: '#000', border: '1px solid ' + darkBorder, color: textLight, borderRadius: 999, padding: '6px 14px', fontSize: '0.85rem' }}>🎬 {t}</span>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* RELATED */}
       {related.length > 0 && (
         <section style={{ background: darkBg, borderTop: '1px solid ' + darkBorder, marginTop: 40 }}>
