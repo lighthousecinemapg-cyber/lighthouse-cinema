@@ -521,7 +521,7 @@ export const movies = [
     genre: 'Sci-Fi / Drama',
     rottenTomatoes: '56%',
     description: 'From acclaimed Palme d Or winner Hirokazu Kore-eda comes a haunting near-future drama. A grieving couple who lost their young son welcome home an infant humanoid robot bearing his face and voice, testing the meaning of family, memory and love. An official selection of the 2026 Cannes Film Festival.',
-    poster: 'https://img.youtube.com/vi/2cyR7Zy2mWc/maxresdefault.jpg',
+    poster: 'https://img.youtube.com/vi/2cyR7Zy2mWc/hqdefault.jpg',
     trailerId: '2cyR7Zy2mWc',
     director: 'Hirokazu Kore-eda',
     cast: 'Haruka Ayase, Daigo Yamamoto, Rimu Kuwaki',
