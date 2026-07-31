@@ -1,14 +1,13 @@
 // app/api/schedule/route.js - Centralized Schedule API
-import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon } from '../../showtime-config';
+import { movies, SQUARE_LINKS, getTicketLink, isMovieActive, isComingSoon, pacificTodayStr, pacificWeekday } from '../../showtime-config';
 import { NextResponse } from 'next/server';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const filter = searchParams.get('filter');
   const format = searchParams.get('format');
-  const today = new Date();
-  const todayStr = today.toISOString().split('T')[0];
-  const dayOfWeek = today.toLocaleDateString('en-US', { weekday: 'long' });
+  const todayStr = pacificTodayStr();
+  const dayOfWeek = pacificWeekday();
 
   let filtered = movies.filter(m => m.active);
 
