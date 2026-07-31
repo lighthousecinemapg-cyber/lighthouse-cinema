@@ -79,7 +79,7 @@ export async function GET(request) {
     date: todayStr,
     dayOfWeek,
     squareLinks: SQUARE_LINKS,
-    nowPlaying: enriched.filter(m => !isComingSoon(m)),
+    nowPlaying: enriched.filter(m => isMovieActive(m) && !isComingSoon(m)),
     comingSoon: enriched.filter(m => isComingSoon(m)),
     totalMovies: enriched.length,
   });
