@@ -17,28 +17,35 @@ const textLight = '#e0e0e0';
 const textMuted = '#888888';
 const allVisibleMovies = movies.filter(m => m.active && (isMovieActive(m) || isComingSoon(m)));
 
-/* Helper: get dates for the next 10 days */
+/* Pacific-time helpers — schedule always matches the theater's local day in
+   Pacific Grove, CA, never UTC and never the visitor's device timezone. */
+function pacificYMD(date) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit' }).format(date || new Date());
+}
+
+/* Helper: get Date objects for the next `count` days, anchored on "today" in
+   Pacific time. Each is anchored at 12:00 UTC on that Pacific calendar date so
+   weekday/label formatting (done with timeZone America/Los_Angeles) is stable. */
 function getNextDays(count) {
   const days = [];
-  const today = new Date();
+  const p = pacificYMD().split('-').map(Number);
   for (let i = 0; i < count; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() + i);
-    days.push(d);
+    days.push(new Date(Date.UTC(p[0], p[1] - 1, p[2] + i, 12, 0, 0)));
   }
   return days;
 }
 
 function getDayName(date) {
-  return date.toLocaleDateString('en-US', { weekday: 'long' });
+  return date.toLocaleDateString('en-US', { weekday: 'long', timeZone: 'America/Los_Angeles' });
 }
 
 function getShortDay(date) {
-  return date.toLocaleDateString('en-US', { weekday: 'short' });
+  return date.toLocaleDateString('en-US', { weekday: 'short', timeZone: 'America/Los_Angeles' });
 }
 
 function getMonthDay(date) {
-  return (date.getMonth() + 1) + '/' + date.getDate();
+  const s = pacificYMD(date).split('-');
+  return parseInt(s[1], 10) + '/' + parseInt(s[2], 10);
 }
 
 /* Get showtimes for a specific day --- handles BOTH formats:
@@ -48,10 +55,7 @@ function getMonthDay(date) {
 function getMovieShowtimes(movie, dayName, selectedDate) {
   // First check showDates (specific date matches take priority)
   if (movie.showDates && selectedDate) {
-    var y = selectedDate.getFullYear();
-    var m = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    var d = String(selectedDate.getDate()).padStart(2, '0');
-    var dateStr = y + '-' + m + '-' + d;
+    var dateStr = pacificYMD(selectedDate);
     var match = movie.showDates.find(function(sd) { return sd.date === dateStr; });
     if (match) return match.times;
   }
@@ -63,10 +67,10 @@ function getMovieShowtimes(movie, dayName, selectedDate) {
 }
 
 function getTuesdayLineup() {
-  var d = new Date();
-  while (d.getDay() !== 2) { d.setDate(d.getDate() + 1); }
-  var y = d.getFullYear(), mo = String(d.getMonth() + 1).padStart(2, '0'), da = String(d.getDate()).padStart(2, '0');
-  var dateStr = y + '-' + mo + '-' + da;
+  var p = pacificYMD().split('-').map(Number);
+  var d = new Date(Date.UTC(p[0], p[1] - 1, p[2], 12, 0, 0));
+  while (getDayName(d) !== 'Tuesday') { d.setUTCDate(d.getUTCDate() + 1); }
+  var dateStr = pacificYMD(d);
   return movies.filter(function (m) {
     if (!m.active) return false;
     if (m.startDate && dateStr < m.startDate) return false;
@@ -158,15 +162,27 @@ export default function HomePage() {
       var res = await fetch('/api/square/payment-link', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ movieTitle: ticketModal.movie.title, dateLabel: dLabel, time: ticketModal.time, price: priceStr, quantity: qty, ticketType: ttLabel }),
+        body: JSON.stringify({ movieTitle: ticketModal.movie.title, dateLabel: dLabel, time: ticketModal.time, price: priceStr, quantity: qty, ticketType: ttLabel, screen: ticketModal.movie.screen || null }),
       });
       if (res.ok) {
         var data = await res.json();
         if (data && data.url) { window.location.href = data.url; return; }
       }
     } catch (e) {}
-    // Fallback to existing static link if the Square API is not configured yet
-    window.location.href = fallback;
+    // Square dynamic checkout not configured yet -> temporary fallback:
+    // preserve the exact screening, create an internal reservation + notify staff,
+    // then send the customer to a transition page that shows their screening and
+    // continues to secure checkout. (Screening is NOT yet recorded in Square.)
+    var holdRef = '';
+    try {
+      var hres = await fetch('/api/checkout/hold', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ slug: ticketModal.movie.slug, movieTitle: ticketModal.movie.title, date: dLabel, time: ticketModal.time, screen: ticketModal.movie.screen || '', ticketType: ttLabel, quantity: qty, price: priceStr }),
+      });
+      if (hres.ok) { var hd = await hres.json(); holdRef = (hd && hd.ref) || ''; }
+    } catch (e) {}
+    var hp = new URLSearchParams({ m: ticketModal.movie.title, d: dLabel, t: ticketModal.time, s: ticketModal.movie.screen ? String(ticketModal.movie.screen) : '', q: String(qty), tt: ttLabel, ref: holdRef, url: fallback });
+    window.location.href = '/checkout/hold?' + hp.toString();
   }
 
   return (
@@ -655,7 +671,7 @@ export default function HomePage() {
                 var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
                 var prices = { Sunday: '$10', Monday: 'CLOSED', Tuesday: '$7', Wednesday: '$10', Thursday: '$10', Friday: '$15', Saturday: '$15' };
                 var links = { Sunday: SQUARE_LINKS.sunday, Tuesday: SQUARE_LINKS.tuesdayDiscount, Wednesday: SQUARE_LINKS.wednesday, Thursday: SQUARE_LINKS.thursday, Friday: SQUARE_LINKS.friday, Saturday: SQUARE_LINKS.saturday };
-                var today = days[new Date().getDay()];
+                var today = getDayName(new Date());
                 var price = prices[today];
                 var link = links[today] || SQUARE_LINKS.general;
                 return (
