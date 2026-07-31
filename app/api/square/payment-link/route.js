@@ -9,7 +9,7 @@ import { createTicketPaymentLink } from '@/lib/square-payment-links';
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { movieTitle, dateLabel, time, price, quantity, ticketType } = body || {};
+    const { movieTitle, dateLabel, time, price, quantity, ticketType, screen } = body || {};
 
     if (!movieTitle || !time || !price) {
       return Response.json(
@@ -32,6 +32,7 @@ export async function POST(request) {
       amountCents,
       quantity: Math.max(1, parseInt(quantity, 10) || 1),
       ticketType: ticketType || 'Adult',
+      screen: screen || null,
     });
 
     if (!link.url) throw new Error('Square did not return a checkout URL.');
