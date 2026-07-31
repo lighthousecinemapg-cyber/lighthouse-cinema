@@ -401,7 +401,7 @@ export const movies = [
     slug: 'brunello-gracious-visionary',
     title: 'Brunello: The Gracious Visionary',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-07-24',
     endDate: '2026-07-30',
     rating: 'NR',
