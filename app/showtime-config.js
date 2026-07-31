@@ -674,10 +674,19 @@ export function getTicketLink(movie, time) {
   return movie.ticketLinks[key] || movie.ticketLinks.default || SQUARE_LINKS.general;
 }
 
+/* Pacific-time "today" (YYYY-MM-DD) so schedule logic matches the theater's local day
+   in Pacific Grove, CA — not UTC and not the visitor's device timezone. */
+export function pacificTodayStr(d) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d || new Date());
+}
+export function pacificWeekday(d) {
+  return new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', weekday: 'long' }).format(d || new Date());
+}
+
 /* Helper: is this movie currently showing? */
 export function isMovieActive(movie) {
   if (!movie.active) return false;
-  const today = new Date().toISOString().split('T')[0];
+  const today = pacificTodayStr();
   if (movie.startDate && today < movie.startDate) return false;
   if (movie.endDate && today > movie.endDate) return false;
   return true;
@@ -686,6 +695,6 @@ export function isMovieActive(movie) {
 /* Helper: is this movie coming soon? */
 export function isComingSoon(movie) {
   if (!movie.active) return false;
-  const today = new Date().toISOString().split('T')[0];
+  const today = pacificTodayStr();
   return movie.startDate && today < movie.startDate;
 }
