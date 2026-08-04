@@ -26,21 +26,26 @@ function findMovie(slug) {
 
 // Build the list of show days for the client component.
 function buildShowdays(movie) {
-  if (movie.showtimes) {
-    const order = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday'];
-    return order
-      .filter((d) => movie.showtimes[d] && movie.showtimes[d].length)
-      .map((d) => ({ day: d, times: movie.showtimes[d] }));
+  // Next 10 open days in Pacific time. Per-date overrides (showDates) take
+  // priority over the weekly pattern, matching the homepage/API exactly, and
+  // the movie's run window is respected. This keeps detail pages consistent
+  // with the daily schedule even when a film's times change mid-run.
+  const fmtYMD = (d) => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+  const fmtWD = (d) => new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', weekday: 'long' }).format(d);
+  const fmtLabel = (d) => new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', weekday: 'long', month: 'long', day: 'numeric' }).format(d);
+  const p = fmtYMD(new Date()).split('-').map(Number);
+  const out = [];
+  for (let i = 0; i < 10; i++) {
+    const d = new Date(Date.UTC(p[0], p[1] - 1, p[2] + i, 12, 0, 0));
+    const ymd = fmtYMD(d);
+    if (movie.startDate && ymd < movie.startDate) continue;
+    if (movie.endDate && ymd > movie.endDate) continue;
+    let times = [];
+    if (movie.showDates) { const mt = movie.showDates.find((sd) => sd.date === ymd); if (mt) times = mt.times; }
+    if (!times.length && movie.showtimes) { const wd = fmtWD(d); if (movie.showtimes[wd]) times = movie.showtimes[wd]; }
+    if (times.length) out.push({ day: fmtWD(d), label: fmtLabel(d), times });
   }
-  if (movie.showDates) {
-    return movie.showDates.map((sd) => {
-      const dt = new Date(sd.date + 'T00:00:00');
-      const day = dt.toLocaleDateString('en-US', { weekday: 'long' });
-      const label = dt.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-      return { day, label, times: sd.times };
-    });
-  }
-  return [];
+  return out;
 }
 
 export function generateMetadata({ params }) {
