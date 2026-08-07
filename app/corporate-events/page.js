@@ -11,7 +11,7 @@ const darkBorder = '#2a2a2a';
 const textLight = '#e0e0e0';
 const textMuted = '#8a8a8a';
 const BASE = 'https://lighthousepgcinema.com';
-const PHONE = '(831) 241-6617';
+const PHONE = '(831) 717-3124';
 const ADDRESS = '525 Lighthouse Ave, Pacific Grove, CA 93950';
 
 export const metadata = {
@@ -82,7 +82,7 @@ function jsonLd() {
     provider: {
       '@type': 'MovieTheater',
       name: 'Lighthouse Cinema',
-      telephone: '+1-831-241-6617',
+      telephone: '+1-831-717-3124',
       address: { '@type': 'PostalAddress', streetAddress: '525 Lighthouse Ave', addressLocality: 'Pacific Grove', addressRegion: 'CA', postalCode: '93950', addressCountry: 'US' },
       url: BASE,
     },
@@ -115,7 +115,7 @@ export default function CorporateEventsPage() {
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#inquire" style={{ background: gold, color: '#000', padding: '15px 36px', borderRadius: 10, fontWeight: 800, textDecoration: 'none', fontSize: '1.05rem' }}>Request a Proposal</a>
-            <a href={'tel:+18312416617'} style={{ color: '#fff', padding: '15px 32px', borderRadius: 10, fontWeight: 700, textDecoration: 'none', border: '1px solid ' + gold }}>Call {PHONE}</a>
+            <a href={'tel:+18317173124'} style={{ color: '#fff', padding: '15px 32px', borderRadius: 10, fontWeight: 700, textDecoration: 'none', border: '1px solid ' + gold }}>Call {PHONE}</a>
           </div>
         </div>
       </section>
@@ -198,7 +198,7 @@ export default function CorporateEventsPage() {
           <p style={{ color: textLight, margin: '0 0 22px', lineHeight: 1.6 }}>Serving Pacific Grove, Monterey, Carmel, Seaside, and Marina. {ADDRESS}.</p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#inquire" style={{ background: gold, color: '#000', padding: '14px 34px', borderRadius: 10, fontWeight: 800, textDecoration: 'none' }}>Request a Proposal</a>
-            <a href={'tel:+18312416617'} style={{ color: '#fff', padding: '14px 32px', borderRadius: 10, fontWeight: 700, textDecoration: 'none', border: '1px solid ' + gold }}>Call {PHONE}</a>
+            <a href={'tel:+18317173124'} style={{ color: '#fff', padding: '14px 32px', borderRadius: 10, fontWeight: 700, textDecoration: 'none', border: '1px solid ' + gold }}>Call {PHONE}</a>
           </div>
         </div>
       </section>
