@@ -37,8 +37,8 @@ export default function CorporateForm() {
       const res = await fetch('/api/event-inquiry', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(f) });
       const d = await res.json().catch(() => ({}));
       if (res.ok && d.ok) setRef(d.ref || 'received');
-      else setError(d.error || 'We could not submit your request. Please call (831) 241-6617.');
-    } catch (err) { setError('Network error — please try again or call (831) 241-6617.'); }
+      else setError(d.error || 'We could not submit your request. Please call (831) 717-3124.');
+    } catch (err) { setError('Network error — please try again or call (831) 717-3124.'); }
     setSubmitting(false);
   }
 
@@ -49,7 +49,7 @@ export default function CorporateForm() {
         <h3 style={{ color: '#fff', fontSize: '1.5rem', margin: '8px 0' }}>Request Received</h3>
         <p style={{ color: textLight, lineHeight: 1.6 }}>Thank you. Our events team has your inquiry and a confirmation is on its way to your inbox. We typically respond within one business day.</p>
         {ref !== 'received' && <p style={{ color: gold, fontWeight: 700, marginTop: 10 }}>Reference #: {ref}</p>}
-        <p style={{ color: textMuted, fontSize: '0.9rem', marginTop: 16 }}>Need to reach us sooner? Call <a href="tel:+18312416617" style={{ color: gold }}>(831) 241-6617</a>.</p>
+        <p style={{ color: textMuted, fontSize: '0.9rem', marginTop: 16 }}>Need to reach us sooner? Call <a href="tel:+18317173124" style={{ color: gold }}>(831) 717-3124</a>.</p>
       </div>
     );
   }
@@ -86,7 +86,7 @@ export default function CorporateForm() {
       <button type="submit" disabled={submitting} style={{ marginTop: 18, width: '100%', background: gold, color: '#000', border: 'none', padding: '15px', borderRadius: 10, fontWeight: 800, fontSize: '1.05rem', cursor: submitting ? 'default' : 'pointer', opacity: submitting ? 0.7 : 1 }}>
         {submitting ? 'Sending…' : 'Send My Request'}
       </button>
-      <p style={{ color: textMuted, fontSize: '0.8rem', textAlign: 'center', marginTop: 12 }}>We respond within one business day. Prefer to talk now? Call (831) 241-6617.</p>
+      <p style={{ color: textMuted, fontSize: '0.8rem', textAlign: 'center', marginTop: 12 }}>We respond within one business day. Prefer to talk now? Call (831) 717-3124.</p>
     </form>
   );
 }
