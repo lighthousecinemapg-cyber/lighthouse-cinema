@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const gold = '#d4af37';
 
@@ -29,9 +30,10 @@ export default function TicketButton({ slug, movieTitle, time, screen, price, da
     } catch (e) { window.location.href = fallbackLink || 'https://square.link/u/YqvdJLdp'; }
   }
   return (
-    <button onClick={go} disabled={loading} aria-label={'Buy tickets for ' + movieTitle + ' at ' + time}
+    <motion.button onClick={go} disabled={loading} aria-label={'Buy tickets for ' + movieTitle + ' at ' + time}
+      initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.94 }} transition={{ duration: 0.2 }}
       style={{ background: loading ? '#8a7420' : gold, color: '#000', border: 'none', borderRadius: 8, padding: '10px 14px', fontSize: '0.95rem', fontWeight: 800, cursor: loading ? 'wait' : 'pointer', minWidth: 92 }}>
       {loading ? '…' : time}
-    </button>
+    </motion.button>
   );
 }
