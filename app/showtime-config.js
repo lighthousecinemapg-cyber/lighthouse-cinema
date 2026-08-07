@@ -554,7 +554,7 @@ export const movies = [
     slug: 'i-want-your-sex',
     title: 'I Want Your Sex',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-07-31',
     endDate: '2026-08-06',
     rating: 'R',
