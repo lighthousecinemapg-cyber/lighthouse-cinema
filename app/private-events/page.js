@@ -3,7 +3,7 @@ import { useState, useMemo, useCallback } from 'react';
 
 /* -- constants --------------------------------------------------- */
 const SQUARE_PAYMENT_LINK = 'https://square.link/u/pfGKjKqr';
-const PHONE = '(831) 241-6617';
+const PHONE = '(831) 717-3124';
 const WHATSAPP_CONTACTS = [
   { name: 'Ayman', number: '18316016907' },
   { name: 'Emy',   number: '18318693640' },
@@ -229,10 +229,10 @@ export default function PrivateEventsPage() {
         setRefId(data.ref || '');
         setSubmitted(true);
       } else {
-        setSubmitError(data.error || 'We could not submit your request. Please call (831) 241-6617.');
+        setSubmitError(data.error || 'We could not submit your request. Please call (831) 717-3124.');
       }
     } catch (e) {
-      setSubmitError('Network error — please try again, or call (831) 241-6617.');
+      setSubmitError('Network error — please try again, or call (831) 717-3124.');
     }
     setSubmitting(false);
   }, [pricing, submitting, selectedSlot, selectedPkg, addons, name, email, phone, notes, selectedDate, guests]);
