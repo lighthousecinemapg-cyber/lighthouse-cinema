@@ -15,8 +15,8 @@ const darkBorder = '#2a2a2a';
 const textLight = '#e0e0e0';
 const textMuted = '#888888';
 const BOOK = '/private-events';
-const PHONE_DISPLAY = '(831) 241-6617';
-const PHONE_TEL = 'tel:+18312416617';
+const PHONE_DISPLAY = '(831) 717-3124';
+const PHONE_TEL = 'tel:+18317173124';
 
 function Card({ title, desc }) {
   return (
