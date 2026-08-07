@@ -68,7 +68,7 @@ export async function POST(request) {
   } catch (err) {
     console.error('[event-inquiry] error:', err.message);
     return Response.json(
-      { error: 'Something went wrong. Please call (831) 241-6617 and we will take your request directly.' },
+      { error: 'Something went wrong. Please call (831) 717-3124 and we will take your request directly.' },
       { status: 500 }
     );
   }
