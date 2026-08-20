@@ -28,12 +28,12 @@ export const SQUARE_LINKS = {
   sunday: 'https://square.link/u/8n5cKnCk',
 };
 
-export const movies = [
+export const movies = [  {    slug: 'spa-weekend',    title: 'Spa Weekend',    status: 'now-playing',    active: true,    startDate: '2026-08-21',    endDate: '2026-08-27',    rating: 'R',    runtime: '1h 44m',    genre: 'Comedy',    rottenTomatoes: null,    description: 'From the creators of Bad Moms and the writers of The Hangover, four lifelong friends escape to a luxury spa retreat for a weekend of fun, laughter and a whole lot of very bad decisions. A hilarious, heartfelt comedy about remembering how to take care of yourself and each other.',    poster: 'https://img.youtube.com/vi/ZAWNgB-R1Zk/hqdefault.jpg',    trailerId: 'ZAWNgB-R1Zk',    director: 'Jon Lucas & Scott Moore',    cast: 'Isla Fisher, Leslie Mann, Anna Faris, Michelle Buteau',    screen: 1,    showtimes: {      Tuesday: ['1:30 PM', '4:30 PM', '7:00 PM'],      Wednesday: ['1:30 PM', '4:30 PM', '7:00 PM'],      Thursday: ['1:30 PM', '4:30 PM', '7:00 PM'],      Friday: ['1:30 PM', '4:30 PM', '7:00 PM'],      Saturday: ['1:30 PM', '4:30 PM', '7:00 PM'],      Sunday: ['1:30 PM', '4:30 PM', '7:00 PM'],    },    ticketLinks: { default: 'https://square.link/u/YqvdJLdp' },    displayNote: 'Now Playing - Aug 21 to 27',  },  {    slug: 'insidious-out-of-the-further',    title: 'Insidious: Out of the Further',    status: 'now-playing',    active: true,    startDate: '2026-08-21',    endDate: '2026-08-27',    rating: 'PG-13',    runtime: '1h 43m',    genre: 'Horror / Thriller',    rottenTomatoes: null,    description: 'The Further reaches back. Gemma, a young mother raising her daughter in her childhood home, discovers she can cross into The Further, the purgatorial realm of lost souls at the heart of the Insidious universe, and pull what lives there into the real world. Lin Shaye returns as Elise in a terrifying new chapter of the franchise.',    poster: 'https://img.youtube.com/vi/jxU8FU3o75A/hqdefault.jpg',    trailerId: 'jxU8FU3o75A',    director: 'Jacob Young',    cast: 'Amelia Eve, Lin Shaye, Brandon Perea',    screen: 3,    showtimes: {      Tuesday: ['1:15 PM', '4:15 PM', '7:15 PM'],      Wednesday: ['1:15 PM', '4:15 PM', '7:15 PM'],      Thursday: ['1:15 PM', '4:15 PM', '7:15 PM'],      Friday: ['1:15 PM', '4:15 PM', '7:15 PM'],      Saturday: ['1:15 PM', '4:15 PM', '7:15 PM'],      Sunday: ['1:15 PM', '4:15 PM', '7:15 PM'],    },    ticketLinks: { default: 'https://square.link/u/YqvdJLdp' },    displayNote: 'Now Playing - Aug 21 to 27',  },  {    slug: 'sheep-in-the-box',    title: 'Sheep in the Box',    status: 'now-playing',    active: true,    startDate: '2026-08-21',    endDate: '2026-08-27',    rating: 'NR',    runtime: '2h 06m',    genre: 'Japanese / Sci-Fi / Drama',    rottenTomatoes: '56%',    description: 'From acclaimed Palme d Or winner Hirokazu Kore-eda comes a haunting near-future drama. A grieving couple who lost their young son welcome home an infant humanoid robot bearing his face and voice, testing the meaning of family, memory and love. An official selection of the 2026 Cannes Film Festival.',    poster: 'https://img.youtube.com/vi/2cyR7Zy2mWc/hqdefault.jpg',    trailerId: '2cyR7Zy2mWc',    director: 'Hirokazu Kore-eda',    cast: 'Haruka Ayase, Daigo Yamamoto, Rimu Kuwaki',    screen: 2,    showtimes: {      Tuesday: ['1:00 PM', '4:00 PM', '6:45 PM'],      Wednesday: ['1:00 PM', '4:00 PM', '6:45 PM'],      Thursday: ['1:00 PM', '4:00 PM', '6:45 PM'],      Friday: ['1:00 PM', '4:00 PM', '6:45 PM'],      Saturday: ['1:00 PM', '4:00 PM', '6:45 PM'],      Sunday: ['1:00 PM', '4:00 PM', '6:45 PM'],    },    ticketLinks: { default: 'https://square.link/u/YqvdJLdp' },    displayNote: 'Now Playing - Japanese Cinema - Aug 21 to 27',  },
   {
     slug: 'hadestown-the-musical',
     title: 'Hadestown: The Musical',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-08-07',
     endDate: '2026-08-13',
     rating: 'NR',
@@ -61,7 +61,7 @@ export const movies = [
     slug: 'cat-video-fest-2026',
     title: 'CatVideoFest 2026',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-08-08',
     endDate: '2026-08-09',
     rating: 'NR',
@@ -479,7 +479,7 @@ export const movies = [
     slug: 'the-odyssey',
     title: 'The Odyssey',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-07-29',
     endDate: '2026-08-13',
     rating: 'PG-13',
@@ -516,7 +516,7 @@ export const movies = [
     slug: 'spider-man-brand-new-day',
     title: 'Spider-Man: Brand New Day',
     status: 'now-playing',
-    active: true,
+    active: false,
     startDate: '2026-07-31',
     endDate: '2026-08-20',
     rating: 'PG-13',
@@ -581,7 +581,7 @@ export const movies = [
     displayNote: 'Now Playing - Rated R - Advance Tickets Available',
   },
   {
-    slug: 'sheep-in-the-box',
+    slug: 'sheep-in-the-box-archived-wk33',
     title: 'Sheep in the Box',
     status: 'coming-soon',
     active: false,
