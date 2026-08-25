@@ -35,7 +35,7 @@ function buildShowdays(movie) {
   const fmtLabel = (d) => new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', weekday: 'long', month: 'long', day: 'numeric' }).format(d);
   const p = fmtYMD(new Date()).split('-').map(Number);
   const out = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 40; i++) {
     const d = new Date(Date.UTC(p[0], p[1] - 1, p[2] + i, 12, 0, 0));
     const ymd = fmtYMD(d);
     if (movie.startDate && ymd < movie.startDate) continue;
