@@ -745,7 +745,7 @@ export default function HomePage() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16 }}>
                 {[
                   { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'All movies, all showtimes - just $7 every Tuesday!' },
-                  { day: 'Tuesday', name: '$7 Movie Day', time: 'All Day', desc: 'Every movie just $7! Support your local cinema.' },
+                  
                   { day: 'Saturday', name: 'Salsa Night', time: '8:00 PM', desc: 'Dance the night away with live music' },
                 ].map(function(item) {
                   return (
