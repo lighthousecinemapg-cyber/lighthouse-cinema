@@ -542,10 +542,10 @@ export default function HomePage() {
                   color: textMuted, fontSize: '1rem',
                 }}>
                   <div style={{ fontSize: '3rem', marginBottom: 12 }}>{'🚫'}</div>
-                  <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ff4444', marginBottom: 8 }}>CLOSED ON MONDAYS</h3>
-                  <p style={{ fontSize: '1rem', marginBottom: 8 }}>We are closed every Monday. No movies, no showtimes.</p>
-                  <p style={{ fontSize: '0.95rem', color: gold, fontWeight: 600 }}>We are open Tuesday through Sunday!</p>
-                  <p style={{ fontSize: '0.85rem', marginTop: 12 }}>See you tomorrow! Check the other days above for showtimes.</p>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ff4444', marginBottom: 8 }}>CLOSED MON, TUE & WED</h3>
+                  <p style={{ fontSize: '1rem', marginBottom: 8 }}>Through September 30 we are open Thursday through Sunday only - closed Monday, Tuesday and Wednesday.</p>
+                  <p style={{ fontSize: '0.95rem', color: gold, fontWeight: 600 }}>Starting October 1 we are open 6 days a week - every day except Monday!</p>
+                  <p style={{ fontSize: '0.85rem', marginTop: 12 }}>Check the other days above for showtimes.</p>
                 </div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
