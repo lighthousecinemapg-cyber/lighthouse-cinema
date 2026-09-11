@@ -722,7 +722,7 @@ export default function HomePage() {
                         <div style={{ fontSize: '0.8rem', color: textMuted, marginBottom: 8 }}>{'Showtimes: ' + (movieTimes.length > 0 ? movieTimes.join(' | ') : 'TBA')}</div>
                         <div style={{ display: 'flex', gap: 8 }}>
                           {movie.trailerId && <button onClick={function() { setTrailerOpen(movie.trailerId); }} style={{ padding: '5px 12px', borderRadius: 4, border: '1px solid ' + darkBorder, background: 'transparent', color: '#fff', fontSize: '0.75rem', cursor: 'pointer' }}>Trailer</button>}
-                          <a href={'https://square.link/u/YqvdJLdp'} target="_blank" rel="noopener noreferrer" style={{ padding: '5px 12px', borderRadius: 4, background: gold, color: '#000', fontSize: '0.75rem', fontWeight: 700, textDecoration: 'none' }}>Buy Tickets</a>
+                          {movieTimes.length > 0 && <a href={'https://square.link/u/YqvdJLdp'} target="_blank" rel="noopener noreferrer" style={{ padding: '5px 12px', borderRadius: 4, background: gold, color: '#000', fontSize: '0.75rem', fontWeight: 700, textDecoration: 'none' }}>Buy Tickets</a>}
                         </div>
                       </div>
                     </div>
